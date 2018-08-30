@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <script src="main.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -21,52 +27,27 @@
             <div class="col-lg-4 col-sm-6 col-xs-12" id="header">
                 Tuomari nro: <input type="text">
                 Kilpailijan nimi: <input type="text">
-                Kilpailijan oppilaitos: 
-                    <select name="oppilaitos" id="oppilaitos">
-                        <option value="asd">Asd</option>
-                        <option value="fgh">Fgh</option>
-                        <option value="jkl">Jkl</option>
-                        <option value="löä">Löä</option>
-                        <option value="zxc">Zxc</option>
-                    </select>
+                Kilpailijan oppilaitos:
+                <select name="oppilaitos" id="oppilaitos">
+                    <option value="asd">Asd</option>
+                    <option value="fgh">Fgh</option>
+                    <option value="jkl">Jkl</option>
+                    <option value="löä">Löä</option>
+                    <option value="zxc">Zxc</option>
+                </select>
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col-xs-12">
-                <h4>Aloitus</h4>
-                <div class="flex-grid">
-                    <div class="col">10%</div>
-                    <div class="col">
-                            Selkeä esittäytyminen:
-                            <br>
-                            Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:
-                            <br>
-                            Tapaamisen ajankäytöstä sopiminen:
-                            <br>
-                    </div>
-                    <div class="col">
-                            <select name="arvosana" id="arvosana">
-                                    <option value="zero">0</option>
-                                    <option value="one">1</option>
-                                    <option value="two">2</option>
-                                    <option value="three">3</option>
-                                    <option value="four">4</option>
-                                    <option value="five">5</option>
-                                    <option value="six">6</option>
-                                    <option value="seven">7</option>
-                            </select> <br>
-                            <select name="arvosana" id="arvosana">
-                                    <option value="zero">0</option>
-                                    <option value="one">1</option>
-                                    <option value="two">2</option>
-                                    <option value="three">3</option>
-                                    <option value="four">4</option>
-                                    <option value="five">5</option>
-                                    <option value="six">6</option>
-                                    <option value="seven">7</option>
-                            </select> <br>
-                            <select name="arvosana" id="arvosana">
+                <h4>Aloitus (10%)</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Selkeä esittäytyminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
                                     <option value="zero">0</option>
                                     <option value="one">1</option>
                                     <option value="two">2</option>
@@ -76,257 +57,381 @@
                                     <option value="six">6</option>
                                     <option value="seven">7</option>
                                 </select> <br>
-                    </div>
-                </div>
-                    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tapaamisen ajankäytöstä sopiminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <br>
         <div class="row">
             <div class="col-xs-12">
-                Vapaa palaute: <br> 
+                Vapaa palaute: <br>
                 <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </textarea> 
+                </textarea>
             </div>
         </div>
         <hr>
         <div class="row">
-                <div class="col-xs-12">
-                    <h4>Tarvekartoitus</h4>
-                        Perustietojen selvitys:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien kartoittaminen:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston selvittäminen:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                </div>
+            <div class="col-xs-12">
+                <h4>Tarvekartoitus (30%)</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Perustietojen selvitys:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien kartoittaminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston selvittäminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <br>
         <div class="row">
-                <div class="col-xs-12">
-                        Vapaa palaute: <br> 
-                        <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea> 
-                </div>
-        </div>
-        <hr>
-        <div class="row">
-                <div class="col-xs-12">
-                    <h4>Ratkaisun esittäminen</h4>
-                        Yhteenveto asiakkaan haasteista ja mahdollisuuksista:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin tapaamisiin perustuen:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                </div>
-        </div>
-        <br>
-        <div class="row">
-                <div class="col-xs-12">
-                        Vapaa palaute: <br> 
-                        <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea> 
-                </div>
+            <div class="col-xs-12">
+                Vapaa palaute: <br>
+                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </textarea>
+            </div>
         </div>
         <hr>
         <div class="row">
-                <div class="col-xs-12">
-                    <h4>Asiakkaan kysymysten käsittely</h4>
-                        Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Asiakkaan huolenaiheiden käsittely:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                </div>
+            <div class="col-xs-12">
+                <h4>Ratkaisun esittäminen (25%)</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin tapaamisiin
+                                perustuen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <br>
         <div class="row">
-                <div class="col-xs-12">
-                        Vapaa palaute: <br> 
-                        <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea> 
-                </div>
-        </div>
-        <hr>
-        <div class="row">
-                <div class="col-xs-12">
-                    <h4>Päättäminen</h4>
-                        Sopivan sitoutumisen perusteltu ehdottaminen:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja jatkotoimenpiteistä sopiminen:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                </div>
-        </div>
-        <br>
-        <div class="row">
-                <div class="col-xs-12">
-                        Vapaa palaute: <br> 
-                        <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea> 
-                </div>
+            <div class="col-xs-12">
+                Vapaa palaute: <br>
+                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </textarea>
+            </div>
         </div>
         <hr>
         <div class="row">
-                <div class="col-xs-12">
-                    <h4>Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot</h4>
-                        Aktiivinen kuuntelu ja läsnäolo:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                        Tilannetaju ja erilaisuuden huomioiminen:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                </div>
+            <div class="col-xs-12">
+                <h4>Asiakkaan kysymysten käsittely (10%)</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Asiakkaan huolenaiheiden käsittely:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <br>
         <div class="row">
-                <div class="col-xs-12">
-                        Vapaa palaute: <br> 
-                        <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea> 
-                </div>
+            <div class="col-xs-12">
+                Vapaa palaute: <br>
+                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </textarea>
+            </div>
         </div>
         <hr>
         <div class="row">
-                <div class="col-xs-12">
-                        Minkä arvosanan annat myyjän kokonaissuorituksesta:
-                        <select name="arvosana" id="arvosana">
-                            <option value="zero">0</option>
-                            <option value="one">1</option>
-                            <option value="two">2</option>
-                            <option value="three">3</option>
-                            <option value="four">4</option>
-                            <option value="five">5</option>
-                            <option value="six">6</option>
-                            <option value="seven">7</option>
-                        </select> <br>
-                </div>
+            <div class="col-xs-12">
+                <h4>Päättäminen (10%)</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Sopivan sitoutumisen perusteltu ehdottaminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja jatkotoimenpiteistä
+                                sopiminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <br>
         <div class="row">
-                <div class="col-xs-12">
-                        Vapaa palaute: <br> 
-                        <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea> 
-                </div>
+            <div class="col-xs-12">
+                Vapaa palaute: <br>
+                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </textarea>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Aktiivinen kuuntelu ja läsnäolo:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tilannetaju ja erilaisuuden huomioiminen:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                Vapaa palaute: <br>
+                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </textarea>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>Myyjän arvosana (5%)</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Minkä arvosanan annat myyjän kokonaissuorituksesta:</td>
+                            <td>
+                                <select name="arvosana" id="arvosana">
+                                    <option value="valinta" selected>Valitse:</option>
+                                    <option value="zero">0</option>
+                                    <option value="one">1</option>
+                                    <option value="two">2</option>
+                                    <option value="three">3</option>
+                                    <option value="four">4</option>
+                                    <option value="five">5</option>
+                                    <option value="six">6</option>
+                                    <option value="seven">7</option>
+                                </select> <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                Vapaa palaute: <br>
+                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </textarea>
+            </div>
         </div>
     </div>
-    
+
 </body>
+
 </html>
