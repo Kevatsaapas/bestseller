@@ -1,32 +1,49 @@
 package com.syntaxterror.bestseller.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import java.util.List;
 
 @Entity
 public class OsaAlue {
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name = "osa_alue_id")
 	private Long osaAlueId;
+
+	@Column(name = "osa_alue_nimi")
 	private String nimi;
+
+	@Column(name = "osa_alue_painoarvo")
 	private Long painoarvo;
-	private Long kilpailuId;
-	
+
+	@Min(0)
+    @Max(7)
+    @Column(name = "osa_alue_piste")
+	private Integer osaAluePiste;
+
+
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "arviointi_osa_alue",
+            joinColumns = {@JoinColumn(name = "osa_alue_id")},
+            inverseJoinColumns = { @JoinColumn(name = "arviointi_id")}
+        )
+	private List<Arviointi> arvioinnit;
+
 	public OsaAlue() {
 		super();
 		this.nimi=null;
 		this.painoarvo=null;
-		this.kilpailuId=null;
 	}
 
 	public OsaAlue(String nimi, Long painoarvo, Long kilpailuId) {
 		super();
 		this.nimi = nimi;
 		this.painoarvo = painoarvo;
-		this.kilpailuId = kilpailuId;
 	}
 
 	public Long getOsaAlueId() {
@@ -53,23 +70,27 @@ public class OsaAlue {
 		this.painoarvo = painoarvo;
 	}
 
-	public Long getKilpailuId() {
-		return kilpailuId;
-	}
+    public Integer getOsaAluePiste() {
+        return osaAluePiste;
+    }
 
-	public void setKilpailuId(Long kilpailuId) {
-		this.kilpailuId = kilpailuId;
-	}
+    public void setOsaAluePiste(Integer osaAluePiste) {
+        this.osaAluePiste = osaAluePiste;
+    }
 
-	@Override
+    public List<Arviointi> getArvioinnit() {
+        return arvioinnit;
+    }
+
+    public void setArvioinnit(List<Arviointi> arvioinnit) {
+        this.arvioinnit = arvioinnit;
+    }
+
+
+    @Override
 	public String toString() {
-		return "OsaAlue [osaAlueId=" + osaAlueId + ", nimi=" + nimi + ", painoarvo=" + painoarvo + ", kilpailuId="
-				+ kilpailuId + "]";
+		return "OsaAlue [osaAlueId=" + osaAlueId + ", nimi=" + nimi + ", painoarvo=" + painoarvo + "]";
 	}
-	
-	
-	
-	
 	
 	
 }
