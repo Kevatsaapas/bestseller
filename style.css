@@ -1,10 +1,3 @@
-html body {
-  background-color: lightsteelblue;
-}
-
-#header input select {
-  margin-top: 6px;
-}
 
 .thead-custom {
   background-color: cornflowerblue;
@@ -18,10 +11,9 @@ textarea {
     width: 100%;
 }
 
-.container {
+.tuom {
   font-family: 'Open Sans', sans-serif;
   background-color: aliceblue;
-  
 }
 
 .padding {
@@ -30,4 +22,23 @@ textarea {
 
 textarea {
   padding-top: 10px;
+}
+
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Open Sans', sans-serif;
+  
+background: rgba(183,222,237,1);
+background: -moz-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(183,222,237,1)), color-stop(23%, rgba(113,206,239,1)), color-stop(51%, rgba(33,180,226,1)), color-stop(100%, rgba(183,222,237,1)));
+background: -webkit-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
+background: linear-gradient(135deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1 );
+
 }
