@@ -16,32 +16,39 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
 </head>
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row padding">
             <h1>Best Seller 2019</h1>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6 col-xs-12" id="header">
-                Tuomari nro: <input type="text">
-                Kilpailijan nimi: <input type="text">
-                Kilpailijan oppilaitos:
+        <div class="row padding">
+            <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                Kilpailija:
                 <select name="oppilaitos" id="oppilaitos">
-                    <option value="asd">Asd</option>
-                    <option value="fgh">Fgh</option>
-                    <option value="jkl">Jkl</option>
-                    <option value="löä">Löä</option>
-                    <option value="zxc">Zxc</option>
+                    <option value="asd" selected>Valitse:</option>
+                    <option value="fgh">Aku Ankka</option>
+                    <option value="jkl">Mikki Hiiri</option>
+                    <option value="löä">Hessu Hopo</option>
+                    <option value="zxc">Roope Ankka</option>
                 </select>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                    Tuomarin nro: <input type="text" size="6">
             </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
-                <h4>Aloitus (10%)</h4>
                 <table class="table">
+                    <thead class="thead-custom">
+                        <tr class="table-info">
+                            <th scope="col">Aloitus (10%)</td>
+                            <th scope="col"></td>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <td>Selkeä esittäytyminen:</td>
@@ -95,18 +102,23 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </textarea>
             </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
-                <h4>Tarvekartoitus (30%)</h4>
                 <table class="table">
+                        <thead class="thead-custom">
+                            <tr class="table-info">
+                                <th scope="col">Tarvekartoitus (30%)</td>
+                                <th scope="col"></td>
+                            </tr>
+                        </thead>
                     <tbody>
                         <tr>
                             <td>Perustietojen selvitys:</td>
@@ -176,18 +188,23 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </textarea>
             </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
-                <h4>Ratkaisun esittäminen (25%)</h4>
                 <table class="table">
+                        <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Ratkaisun esittäminen (25%)</td>
+                                    <th scope="col"></td>
+                                </tr>
+                            </thead>
                     <tbody>
                         <tr>
                             <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista:</td>
@@ -242,18 +259,23 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </textarea>
             </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
-                <h4>Asiakkaan kysymysten käsittely (10%)</h4>
                 <table class="table">
+                        <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Asiakkaan kysymysten käsittely (10%)</td>
+                                    <th scope="col"></td>
+                                </tr>
+                            </thead>
                     <tbody>
                         <tr>
                             <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely:</td>
@@ -291,18 +313,23 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </textarea>
             </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
-                <h4>Päättäminen (10%)</h4>
                 <table class="table">
+                        <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Päättäminen (10%)</td>
+                                    <th scope="col"></td>
+                                </tr>
+                            </thead>
                     <tbody>
                         <tr>
                             <td>Sopivan sitoutumisen perusteltu ehdottaminen:</td>
@@ -341,18 +368,23 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </textarea>
             </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
-                <h4>Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</h4>
                 <table class="table">
+                        <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</td>
+                                    <th scope="col"></td>
+                                </tr>
+                            </thead>
                     <tbody>
                         <tr>
                             <td>Aktiivinen kuuntelu ja läsnäolo:</td>
@@ -390,18 +422,23 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </textarea>
             </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
-                <h4>Myyjän arvosana (5%)</h4>
                 <table class="table">
+                        <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Myyjän arvosana (5%)</td>
+                                    <th scope="col"></td>
+                                </tr>
+                            </thead>
                     <tbody>
                         <tr>
                             <td>Minkä arvosanan annat myyjän kokonaissuorituksesta:</td>
@@ -423,10 +460,10 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea rows="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </textarea>
             </div>
         </div>

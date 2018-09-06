@@ -1,3 +1,15 @@
+html body {
+  background-color: lightsteelblue;
+}
+
+#header input select {
+  margin-top: 6px;
+}
+
+.thead-custom {
+  background-color: cornflowerblue;
+}
+
 textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -6,9 +18,16 @@ textarea {
     width: 100%;
 }
 
-.flex-grid {
-    display: flex;
-  }
-  .col {
-    flex: 1;
-  }
+.container {
+  font-family: 'Open Sans', sans-serif;
+  background-color: aliceblue;
+  
+}
+
+.padding {
+  padding-left: 10px;
+}
+
+textarea {
+  padding-top: 10px;
+}
