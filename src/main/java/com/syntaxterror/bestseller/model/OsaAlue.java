@@ -16,6 +16,9 @@ public class OsaAlue {
 
 	@Column(name = "osa_alue_nimi")
 	private String nimi;
+	
+	@Column(name="tavoite")
+	private String tavoite;
 
 	@Column(name = "osa_alue_painoarvo")
 	private Long painoarvo;
@@ -38,11 +41,13 @@ public class OsaAlue {
 		super();
 		this.nimi=null;
 		this.painoarvo=null;
+		this.tavoite=null;
 	}
 
-	public OsaAlue(String nimi, Long painoarvo, Long kilpailuId) {
+	public OsaAlue(String nimi, String tavoite, Long painoarvo) {
 		super();
 		this.nimi = nimi;
+		this.tavoite=tavoite;
 		this.painoarvo = painoarvo;
 	}
 

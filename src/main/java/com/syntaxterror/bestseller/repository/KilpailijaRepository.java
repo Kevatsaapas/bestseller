@@ -10,4 +10,5 @@ import com.syntaxterror.bestseller.model.Kilpailija;
 @Repository
 public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	Kilpailija findByKilpailijaId(Long kilpailijaId);
+	Iterable<Kilpailija> findByKilpailuId(Long kilpailuId);
 }
