@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Kilpailu (
+/* CREATE TABLE IF NOT EXISTS Kilpailu (
 kilpailuId integer auto_increment PRIMARY KEY,
 nimi varchar(40),
 pvm date,
@@ -70,4 +70,4 @@ FOREIGN KEY (kriteeriId) REFERENCES Kriteeri(kriteeriId),
 arviointiId integer,
 FOREIGN KEY (arviointiId) REFERENCES Arviointi(arviointiId)
 );
-
+*/

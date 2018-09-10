@@ -1,25 +1,34 @@
 package com.syntaxterror.bestseller.model;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Kilpailu {
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "kilpailu_id")
 	private Long kilpailuId;
+
+	@Column(name = "kilpailu_nimi")
 	private String nimi;
+
+    @Temporal(TemporalType.DATE)
+	@Column(name = "kilpailu_pvm")
 	private Date pvm;
+
+	@Column(name = "kilpailu_paikka")
 	private String paikka;
-	
+
+	@OneToMany
+	private List<Lohko> lohkot;
+
 	public Kilpailu() {
 		super();
 		this.nimi = null;
-		this.pvm = null;
 		this.pvm = null;
 		this.paikka = null;
 	}
@@ -63,7 +72,19 @@ public class Kilpailu {
 		this.paikka = paikka;
 	}
 
-	@Override
+	public Long getKilpailuId() { return kilpailuId; }
+
+	public void setKilpailuId(Long kilpailuId) { this.kilpailuId = kilpailuId; }
+
+    public List<Lohko> getLohkot() {
+        return lohkot;
+    }
+
+    public void setLohkot(List<Lohko> lohkot) {
+        this.lohkot = lohkot;
+    }
+
+    @Override
 	public String toString() {
 		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + "]";
 	}
