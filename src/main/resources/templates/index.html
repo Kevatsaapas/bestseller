@@ -14,6 +14,12 @@
 </head>
 <body>
 <h1>Bestseller</h1>
-<a th:href=@{/datat/1}> tsekkaa tiedot</a>
+<a th:href=@{/luokilpailu}> luo kilpailu</a>
+
+<table>
+<tr th:each="kilpailu:${kilpailut}">
+<td th:text="${kilpailu.nimi}"></td>
+<td><a th:href="@{'/datat/'+${kilpailu.kilpailuId}}">Tsekkaa</a>
+</table>
 </body>
 </html>

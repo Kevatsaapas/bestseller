@@ -34,6 +34,7 @@
 <br>
 
 <h2>Kilpailijat</h2>
+<a th:href="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">Lisää</a>
 <table>
 <tr>
 <td>Id</td>
@@ -51,6 +52,20 @@
 <td th:text="${kilpailija.kilpailijaNro}"></td>
 <td th:text="${kilpailija.koulu}"></td>
 <td th:text="${kilpailija.lohko.lohkoNro}"></td>
+</tr>
+</table>
+<br>
+
+<h2>Lohkot</h2>
+<table>
+<tr>
+<td>Id</td>
+<td>Lohkonumero</td>
+</tr>
+
+<tr th:each="lohko:${lohkot}">
+<td th:text="${lohko.lohkoId}"></td>
+<td th:text="${lohko.lohkoNro}"></td>
 </tr>
 </table>
 <br>

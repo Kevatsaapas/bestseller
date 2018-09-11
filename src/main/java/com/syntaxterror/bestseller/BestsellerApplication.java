@@ -7,14 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
-import com.syntaxterror.bestseller.model.Kriteeri;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.OsaAlue;
 import com.syntaxterror.bestseller.model.Ostaja;
-import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
