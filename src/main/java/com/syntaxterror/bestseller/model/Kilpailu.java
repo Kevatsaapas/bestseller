@@ -23,8 +23,6 @@ public class Kilpailu {
 	@Column(name = "kilpailu_paikka")
 	private String paikka;
 
-	@OneToMany
-	private List<Lohko> lohkot;
 
 	public Kilpailu() {
 		super();
@@ -76,13 +74,6 @@ public class Kilpailu {
 
 	public void setKilpailuId(Long kilpailuId) { this.kilpailuId = kilpailuId; }
 
-    public List<Lohko> getLohkot() {
-        return lohkot;
-    }
-
-    public void setLohkot(List<Lohko> lohkot) {
-        this.lohkot = lohkot;
-    }
 
     @Override
 	public String toString() {

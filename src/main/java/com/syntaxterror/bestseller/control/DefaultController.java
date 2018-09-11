@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
@@ -61,9 +62,27 @@ public class DefaultController {
 
 	@RequestMapping(value = "/tallennakilpailija", method = RequestMethod.POST)
 	public String tallennaKilpailija(Kilpailija kilpailija) {
-		;
 		kilrepo.save(kilpailija);
 		System.out.println(kilpailija);
+		String redirect = "redirect:/datat/"+Long.toString(kilpailija.getKilpailuId());
+		return redirect;
+	}
+	
+	@RequestMapping(value = "/poistakilpailija/{kilpailijaId}", method = RequestMethod.GET)
+	public String poistaKilpailija(@PathVariable Long kilpailijaId) {
+		Kilpailija kilpailija = kilrepo.findByKilpailijaId(kilpailijaId);
+		kilrepo.deleteById(kilpailijaId);
+		String redirect = "redirect:/datat/"+Long.toString(kilpailija.getKilpailuId());
+		return redirect;
+	}
+	
+	
+	@RequestMapping(value = "/poistakilpailu/{kilpailuId}", method = RequestMethod.GET)
+	public String poistaKilpailu(@PathVariable Long kilpailuId) {
+		kilrepo.deleteByKilpailuId(kilpailuId);
+		Kilpailu kilpailu= krepo.findByKilpailuId(kilpailuId);
+		lohrepo.deleteByKilpailu(kilpailu);
+		krepo.deleteById(kilpailuId);
 		return "redirect:/";
 	}
 
@@ -80,18 +99,14 @@ public class DefaultController {
 
 	public void luoLohkot(Long kilpailuId) {
 		Kilpailu kilpailu = krepo.findByKilpailuId(kilpailuId);
-		ArrayList<Lohko> lohli = new ArrayList<Lohko>();
 		for (int i = 1; i < 5; i++) {
 			Lohko loh = new Lohko((Integer.toString(i)), kilpailu, null);
-			lohli.add(loh);
 			lohrepo.save(loh);
 			System.out.println(loh);
 		}
 		Lohko loh = new Lohko("finaali", kilpailu, null);
-		lohli.add(loh);
 		lohrepo.save(loh);
 		System.out.println(loh);
-		kilpailu.setLohkot(lohli);
 		krepo.save(kilpailu);
 
 	}

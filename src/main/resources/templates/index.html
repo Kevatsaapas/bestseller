@@ -20,6 +20,7 @@
 <tr th:each="kilpailu:${kilpailut}">
 <td th:text="${kilpailu.nimi}"></td>
 <td><a th:href="@{'/datat/'+${kilpailu.kilpailuId}}">Tsekkaa</a>
+<td><a th:href="@{'/poistakilpailu/'+${kilpailu.kilpailuId}}">Poista</a></td>
 </table>
 </body>
 </html>

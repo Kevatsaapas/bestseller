@@ -16,7 +16,7 @@
 <h1>Bestseller - datat</h1>
 
 <h2>Kilpailu</h2>
-<table>
+<table class="table table-striped">
 <tr>
 <td>Id</td>
 <td>Nimi</td>
@@ -35,7 +35,7 @@
 
 <h2>Kilpailijat</h2>
 <a th:href="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">Lisää</a>
-<table>
+<table class="table table-striped">
 <tr>
 <td>Id</td>
 <td>Etunimi</td>
@@ -43,6 +43,7 @@
 <td>Kilpailijanumero</td>
 <td>Koulu</td>
 <td>Lohko</td>
+<td></td>
 </tr>
 
 <tr th:each="kilpailija:${kilpailijat}">
@@ -52,20 +53,23 @@
 <td th:text="${kilpailija.kilpailijaNro}"></td>
 <td th:text="${kilpailija.koulu}"></td>
 <td th:text="${kilpailija.lohko.lohkoNro}"></td>
+<td><a th:href="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">Poista</a></td>
 </tr>
 </table>
 <br>
 
 <h2>Lohkot</h2>
-<table>
+<table class="table table-striped">
 <tr>
 <td>Id</td>
 <td>Lohkonumero</td>
+<td>KilpailuId</td>
 </tr>
 
 <tr th:each="lohko:${lohkot}">
 <td th:text="${lohko.lohkoId}"></td>
 <td th:text="${lohko.lohkoNro}"></td>
+<td th:text="${lohko.kilpailu.kilpailuId}"></td>
 </tr>
 </table>
 <br>

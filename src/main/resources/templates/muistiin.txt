@@ -29,3 +29,12 @@ Date deit = new Date();
 			System.out.println(lore.findAll());
 			System.out.println(ore.findAll());
 			};
+			
+			
+			<td><form th:action="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">
+<input type="hidden"  th:value="${kilpailija.kilpailijaId}">
+<input id="deleteButton" type="submit" class="btn btn-primary" value="Poista">
+</form></td>
+			
+			
+			<td><a th:href="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">Poista</a></td>
