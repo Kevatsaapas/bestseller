@@ -18,7 +18,7 @@ public class Kilpailija {
     private String sukunimi;
 
     @Column(name = "kilpailija_nro")
-    private String kilpailijaNro;
+    private int kilpailijaNro;
 
     @Column(name = "kilpailija_koulu")
     private String koulu;
@@ -76,11 +76,11 @@ public class Kilpailija {
         this.sukunimi = sukunimi;
     }
 
-    public String getKilpailijaNro() {
+    public int getKilpailijaNro() {
         return kilpailijaNro;
     }
 
-    public void setKilpailijaNro(String kilpailijaNro) {
+    public void setKilpailijaNro(int kilpailijaNro) {
         this.kilpailijaNro = kilpailijaNro;
     }
 

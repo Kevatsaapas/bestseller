@@ -82,13 +82,10 @@ public class Arviointi {
         this.osaAlueet = osaAlueet;
     }
 
-<<<<<<< HEAD
-=======
     @Override
    	public String toString() {
    		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
    				+ ", tuomari=" + tuomari + ", osaAlueet=" + osaAlueet + "]";
    	}
-    
->>>>>>> testaus
+
 }

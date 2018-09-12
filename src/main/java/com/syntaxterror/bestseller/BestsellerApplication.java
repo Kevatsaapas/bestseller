@@ -29,7 +29,7 @@ public class BestsellerApplication {
 		
 	}
 	@Bean
-	public CommandLineRunner best(KilpailuRepository repo, KilpailijaRepository kilrepo, KriteeriRepository kripo, TuomariRepository tuore, LohkoRepository lore, OsaAlueRepository ore, ArviointiRepository are, OstajaRepository osre) {
+	public CommandLineRunner best(KilpailuRepository repo, KilpailijaRepository kilpailijaRepo, KriteeriRepository kripo, TuomariRepository tuore, LohkoRepository lohkoRepo, OsaAlueRepository osaalueRepo, ArviointiRepository are, OstajaRepository ostajaRepo) {
 		return args ->{
 			Date pvm = new Date();
 			
@@ -40,47 +40,47 @@ public class BestsellerApplication {
 			
 			//Ostaja
 			Ostaja ostaja = new Ostaja("Tarja Halonen");
-			osre.save(ostaja);
-			System.out.println(osre.findAll());
+			ostajaRepo.save(ostaja);
+			System.out.println(ostajaRepo.findAll());
 			
 			//Lohkot
 			Lohko lohko1 = new Lohko("1", bestseller, ostaja);
-			lore.save(lohko1);
+			lohkoRepo.save(lohko1);
 			Lohko lohko2 = new Lohko("2", bestseller, ostaja);
-			lore.save(lohko2);
+			lohkoRepo.save(lohko2);
 			Lohko lohko3 = new Lohko("3", bestseller, ostaja);
-			lore.save(lohko3);
+			lohkoRepo.save(lohko3);
 			Lohko lohko4 = new Lohko("4", bestseller, ostaja);
-			lore.save(lohko4);
+			lohkoRepo.save(lohko4);
 			Lohko finaali = new Lohko("5", bestseller, ostaja);
-			lore.save(finaali);
-			System.out.println(lore.findAll());
+			lohkoRepo.save(finaali);
+			System.out.println(lohkoRepo.findAll());
 			
 			//Osa-alueet
 			OsaAlue aloitus= new OsaAlue("Aloitus", "Myyntitapaamisen hyvä haltuunotto ja keskustelusuhteen luominen.", new Long(10));
-			ore.save(aloitus);
+			osaalueRepo.save(aloitus);
 			OsaAlue tarvekartoitus= new OsaAlue("Tarvekartoitus", "Saada tietoa asiakkaan tilanteesta ja tarpeista niin, että myyjä pystyy esittämään oman ratkaisunsa linkittyen asiakkaan tarpeisiin.", new Long(30));
-			ore.save(tarvekartoitus);
+			osaalueRepo.save(tarvekartoitus);
 			OsaAlue ratkaisu= new OsaAlue("Ratkaisun esittäminen", "Ratkaisun ja sen hyötyjen esittäminen.", new Long(25));
-			ore.save(ratkaisu);
+			osaalueRepo.save(ratkaisu);
 			OsaAlue asiakaskys= new OsaAlue("Asiakkaan kysymysten käsittely", "Asiakkaan esittämien kysymyksien käsittely sekä mahdollisten huolien ja epäilyjen poistaminen.", new Long(10));
-			ore.save(asiakaskys);
+			osaalueRepo.save(asiakaskys);
 			OsaAlue paattaminen= new OsaAlue("Päättäminen", "Ymmärtää, miten asian käsittely etenee ja missä päätöksenteon kannalta ollaan sekä sopia jatkosta.", new Long(10));
-			ore.save(paattaminen);
+			osaalueRepo.save(paattaminen);
 			OsaAlue yleisvaikutelma= new OsaAlue("Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot.", "", new Long(10));
-			ore.save(yleisvaikutelma);
-			System.out.println(ore.findAll());
+			osaalueRepo.save(yleisvaikutelma);
+			System.out.println(osaalueRepo.findAll());
 			
 			//kilpailijat
 			Kilpailija kil1 = new Kilpailija("Tiivi", "Taavi", 1, "Haaga-Helia", lohko1, new Long(1));
-			kilrepo.save(kil1);
+			kilpailijaRepo.save(kil1);
 			Kilpailija kil2 = new Kilpailija("Hip", "Su", 2, "Haaga-Helia", lohko1, new Long(1));
-			kilrepo.save(kil2);
+			kilpailijaRepo.save(kil2);
 			Kilpailija kil3 = new Kilpailija("Laa", "Laaa", 3, "Haaga-Helia", lohko2, new Long(1));
-			kilrepo.save(kil3);
+			kilpailijaRepo.save(kil3);
 			Kilpailija kil4 = new Kilpailija("Pai", "Ai", 4, "Haaga-Helia", lohko2, new Long(1));
-			kilrepo.save(kil4);
-			System.out.println(kilrepo.findAll());
+			kilpailijaRepo.save(kil4);
+			System.out.println(kilpailijaRepo.findAll());
 		};
 	}
 }
