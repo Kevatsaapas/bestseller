@@ -23,11 +23,33 @@ public class Kilpailija {
     @Column(name = "kilpailija_koulu")
     private String koulu;
 
+    @Column(name = "kilpailu_Id")
+    private Long kilpailuId;
+
     @ManyToOne
     private Lohko lohko;
 
     @OneToMany
     private List<Arviointi> arvioinnit;
+
+    public Kilpailija() {
+        this.etunimi = null;
+        this.sukunimi = null;
+        this.kilpailijaNro = 0;
+        this.koulu = null;
+        this.lohko = null;
+        this.kilpailuId = null;
+    }
+
+    public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, String koulu, Lohko lohko, Long kilpailuId) {
+        super();
+        this.etunimi = etunimi;
+        this.sukunimi = sukunimi;
+        this.kilpailijaNro = kilpailijaNro;
+        this.koulu = koulu;
+        this.lohko = lohko;
+        this.kilpailuId = kilpailuId;
+    }
 
     public Long getKilpailijaId() {
         return kilpailijaId;
@@ -84,5 +106,20 @@ public class Kilpailija {
 
     public void setArvioinnit(List<Arviointi> arvioinnit) {
         this.arvioinnit = arvioinnit;
+    }
+
+    public Long getKilpailuId() {
+        return kilpailuId;
+    }
+
+    public void setKilpailuId(Long kilpailuId) {
+        this.kilpailuId = kilpailuId;
+    }
+
+    @Override
+    public String toString() {
+        return "Kilpailija [kilpailijaId=" + kilpailijaId + ", etunimi=" + etunimi + ", sukunimi=" + sukunimi
+                + ", kilpailijaNro=" + kilpailijaNro + ", koulu=" + koulu + ", kilpailuId=" + kilpailuId + ", lohko="
+                + lohko + "]";
     }
 }

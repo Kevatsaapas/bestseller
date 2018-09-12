@@ -16,7 +16,16 @@ public class Ostaja {
     @OneToOne
     private Lohko lohko;
 
-    public Long getOstajaId() {
+    public Ostaja() {
+    	this.ostajaNimi = null;
+    }
+
+    public Ostaja(String ostajaNimi) {
+		super();
+		this.ostajaNimi = ostajaNimi;
+	}
+
+	public Long getOstajaId() {
         return ostajaId;
     }
 
@@ -39,6 +48,11 @@ public class Ostaja {
     public void setLohko(Lohko lohko) {
         this.lohko = lohko;
     }
+
+	@Override
+	public String toString() {
+		return "Ostaja [ostajaId=" + ostajaId + ", ostajaNimi=" + ostajaNimi + ", lohko=" + lohko + "]";
+	}
 
 
 }

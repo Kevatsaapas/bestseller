@@ -29,8 +29,6 @@ public class Kilpailu {
 	public Kilpailu() {
 		super();
 		this.nimi = null;
-
-		this.pvm = null;
 		this.pvm = null;
 		this.paikka = null;
 	}

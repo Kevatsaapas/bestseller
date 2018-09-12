@@ -18,7 +18,21 @@ public class Tuomari {
     @ManyToOne
     private Lohko lohko;
 
-    public Long getTuomariId() {
+
+    public Tuomari() {
+    	this.tuomariNro = null;
+    	this.lohko = null;
+    }
+
+
+
+	public Tuomari(String tuomariNro, Lohko lohko) {
+		super();
+		this.tuomariNro = tuomariNro;
+		this.lohko = lohko;
+	}
+
+	public Long getTuomariId() {
         return tuomariId;
     }
 
@@ -41,5 +55,10 @@ public class Tuomari {
     public void setLohko(Lohko lohko) {
         this.lohko = lohko;
     }
+
+    @Override
+	public String toString() {
+		return "Tuomari [tuomariId=" + tuomariId + ", tuomariNro=" + tuomariNro + ", lohko=" + lohko + "]";
+	}
 
 }

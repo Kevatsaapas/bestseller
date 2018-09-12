@@ -34,7 +34,21 @@ public class Lohko {
 
     public void setKilpailijat(List<Kilpailija> kilpailijat) { this.kilpailijat = kilpailijat; }
 
-    public Long getLohkoId() {
+    public Lohko() {
+    	this.lohkoNro = null;
+    	this.kilpailu = null;
+    	this.ostaja = null;
+    }
+    
+
+	public Lohko(String lohkoNro, Kilpailu kilpailu, Ostaja ostaja) {
+		super();
+		this.lohkoNro = lohkoNro;
+		this.kilpailu = kilpailu;
+		this.ostaja = ostaja;
+	}
+
+	public Long getLohkoId() {
         return lohkoId;
     }
 
@@ -73,4 +87,12 @@ public class Lohko {
     public void setOstaja(Ostaja ostaja) {
         this.ostaja = ostaja;
     }
+
+	@Override
+	public String toString() {
+		return "Lohko [lohkoId=" + lohkoId + ", lohkoNro=" + lohkoNro + ", kilpailu=" + kilpailu + "]";
+	}
+
+
+
 }

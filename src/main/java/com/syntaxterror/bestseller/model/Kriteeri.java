@@ -20,7 +20,24 @@ public class Kriteeri {
     @Column(name = "kriteeri_piste")
     private Integer kriteeriPiste;
 
-    public Long getKriteeriId() {
+    public Kriteeri() {
+    	this.kriteeriTeksti=null;
+    	this.kriteeriPiste=0;
+    }
+
+    @Override
+	public String toString() {
+		return "Kriteeri [kriteeriId=" + kriteeriId + ", kriteeriTeksti=" + kriteeriTeksti + ", kriteeriPiste="
+				+ kriteeriPiste + "]";
+	}
+
+	public Kriteeri(String kriteeriTeksti, Integer kriteeriPiste) {
+		super();
+		this.kriteeriTeksti = kriteeriTeksti;
+		this.kriteeriPiste = kriteeriPiste;
+	}
+
+	public Long getKriteeriId() {
         return kriteeriId;
     }
 

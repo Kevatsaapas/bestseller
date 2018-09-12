@@ -29,7 +29,20 @@ public class Arviointi {
     @ManyToMany(mappedBy = "arvioinnit")
     private List<OsaAlue> osaAlueet;
 
-    public Long getArviointiId() {
+    public Arviointi() {
+    	this.arviointiPvm=null;
+    	this.kilpailija=null;
+    	this.tuomari=null;
+    }
+
+	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari) {
+		super();
+		this.arviointiPvm = arviointiPvm;
+		this.kilpailija = kilpailija;
+		this.tuomari = tuomari;
+	}
+
+	public Long getArviointiId() {
         return arviointiId;
     }
 
@@ -69,4 +82,13 @@ public class Arviointi {
         this.osaAlueet = osaAlueet;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+   	public String toString() {
+   		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
+   				+ ", tuomari=" + tuomari + ", osaAlueet=" + osaAlueet + "]";
+   	}
+    
+>>>>>>> testaus
 }
