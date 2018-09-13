@@ -20,7 +20,8 @@ public class DataController {
 
     @Autowired
     public LohkoRepository lohkoRepository;
-
+    
+    @Autowired
     public KilpailijaRepository kilpailijaRepository;
 
     @RequestMapping("/datat/{kilpailuId}")

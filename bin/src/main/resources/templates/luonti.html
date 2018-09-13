@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}"></link>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Bestseller - luo kilpailu</title>
+</head>
+<body>
+<h2>Luo uusi kilpailu</h2>
+
+<form role="form" th:object="${kilpailu}" th:action="@{/tallennakilpailu}" action="#" method="post">
+                <div class="form-group">
+
+                    <label for="nimi">
+                       Kilpailun nimi
+                    </label>
+                    <input type="text" class="nimi" th:required="required" th:field="*{nimi}"/>
+                </div>
+                
+                
+                <div class="form-group">
+
+                    <label for="paikka">
+                        Kilpailun paikka
+                    </label>
+                    <input type="text" class="form-control" id="paikka" th:required="required" th:field="*{paikka}"/>
+                    <br />
+                  
+                </div>
+                <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna">
+                </input>
+            </form>
+
+</body>
+</html>

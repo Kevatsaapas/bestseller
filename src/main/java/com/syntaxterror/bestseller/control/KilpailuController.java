@@ -54,7 +54,7 @@ public class KilpailuController {
         kilpailuRepository.save(kilpailu);
         luoLohkot(kilpailu.getKilpailuId());
         System.out.println(kilpailu);
-        return "redirect:/";
+        return "redirect:/testaus";
     }
 
     @RequestMapping(value = "/poistakilpailu/{kilpailuId}", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class KilpailuController {
         Kilpailu kilpailu= kilpailuRepository.findByKilpailuId(kilpailuId);
         lohkoRepository.deleteByKilpailu(kilpailu);
         kilpailuRepository.deleteById(kilpailuId);
-        return "redirect:/";
+        return "redirect:/testaus";
     }
 
 }

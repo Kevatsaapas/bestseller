@@ -20,15 +20,25 @@ import com.syntaxterror.bestseller.repository.LohkoRepository;
 public class DefaultController {
     @Autowired
     public KilpailuRepository kilpailuRepository;
+    @Autowired
+    public KilpailijaRepository kilpailijarepository;
 
     @RequestMapping("/")
-    public String index(Model model) {
-        model.addAttribute("kilpailut", kilpailuRepository.findAll());
+    public String index() {
         return "index";
+    }
+    
+    @RequestMapping("/testaus")
+    public String testaus(Model model) {
+        model.addAttribute("kilpailut", kilpailuRepository.findAll());
+        return "testaus";
     }
 
     @RequestMapping("/tuomarointi")
-    public String tuomarointi(){
+    public String tuomarointi(Model model){
+    	model.addAttribute("kilpailijat", kilpailijarepository.findByKilpailuId(new Long(1)));
+    	System.out.println(kilpailijarepository.findByKilpailuId(new Long(1)));
+    	System.out.println("joo");
         return "tuomarointi";
     }
 

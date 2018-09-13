@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" th:href="@{/css/style.css}"/>
     <script src="main.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -24,17 +23,22 @@
         <div class="row padding">
             <h1>Best Seller 2019</h1>
         </div>
-        <div class="row padding">
-            <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+        <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
                 Kilpailija:
-                <select name="oppilaitos" id="oppilaitos">
-                    <option value="asd" selected>Valitse:</option>
-                    <option value="fgh">Aku Ankka</option>
-                    <option value="jkl">Mikki Hiiri</option>
-                    <option value="löä">Hessu Hopo</option>
-                    <option value="zxc">Roope Ankka</option>
+                <select name="kilpailija" id="kilpailija" >
+                 <option value="asd" selected>Valitse:</option>
+                <ul>
+                <li th:each="kilpailija:${kilpailijat}">
+               
+                   
+                    <option th:value="${kilpailija.sukunimi}"/><p th:text="${kilpailija.etunimi+' '}"> </p><p th:text="${kilpailija.sukunimi}"></p></option>
+                    </li>
+                     </ul>
+
+
                 </select>
             </div>
+        <div class="row padding">
             <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
                     Tuomarin nro: <input type="text" size="6">
             </div>
