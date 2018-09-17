@@ -3,4 +3,8 @@
 *.iml
 .classpath
 .project
+<<<<<<< HEAD
 /.settings/
+=======
+/.settings/
+>>>>>>> 3232783340f5c0840353d4c950ff85ab78ab8b0d
