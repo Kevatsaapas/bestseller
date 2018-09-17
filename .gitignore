@@ -1,10 +1,25 @@
 /target/
-/.idea/
-*.iml
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
 .classpath
+.factorypath
 .project
-<<<<<<< HEAD
-/.settings/
-=======
-/.settings/
->>>>>>> 3232783340f5c0840353d4c950ff85ab78ab8b0d
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
