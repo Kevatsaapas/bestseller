@@ -12,6 +12,7 @@ import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.OsaAlue;
 import com.syntaxterror.bestseller.model.Ostaja;
+import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
@@ -29,7 +30,7 @@ public class BestsellerApplication {
 		
 	}
 	@Bean
-	public CommandLineRunner best(KilpailuRepository repo, KilpailijaRepository kilpailijaRepo, KriteeriRepository kripo, TuomariRepository tuore, LohkoRepository lohkoRepo, OsaAlueRepository osaalueRepo, ArviointiRepository are, OstajaRepository ostajaRepo) {
+	public CommandLineRunner best(KilpailuRepository repo, KilpailijaRepository kilpailijaRepo, KriteeriRepository kripo, TuomariRepository tuore, LohkoRepository lohkoRepo, OsaAlueRepository osaalueRepo, ArviointiRepository are, OstajaRepository ostajaRepo, TuomariRepository tuomarirepo) {
 		return args ->{
 			Date pvm = new Date();
 			
@@ -81,6 +82,20 @@ public class BestsellerApplication {
 			Kilpailija kil4 = new Kilpailija("Pai", "Ai", 4, "Haaga-Helia", lohko2, new Long(1));
 			kilpailijaRepo.save(kil4);
 			System.out.println(kilpailijaRepo.findAll());
+			
+			//tuomarit
+			Tuomari tuo1 = new Tuomari("1", "1", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo1);
+			Tuomari tuo2 = new Tuomari("2", "1", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo2);
+			Tuomari tuo3 = new Tuomari("3", "2", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo3);
+			Tuomari tuo4 = new Tuomari("4", "3", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo4);
+			Tuomari tuo5 = new Tuomari("5", "4", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo5);
+			System.out.println(tuomarirepo.findAll());
+			
 		};
 	}
 }

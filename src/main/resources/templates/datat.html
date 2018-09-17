@@ -75,6 +75,26 @@
 </table>
 <br>
 
+
+<h2>Tuomarit</h2>
+<a th:href="@{'/luotuomari/'+${kilpailu.kilpailuId}}">Lisää</a>
+<table class="table table-striped">
+<tr>
+<td>Id</td>
+<td>tuomarinumero</td>
+<td>lohko</td>
+<td></td>
+</tr>
+
+<tr th:each="tuomari:${tuomarit}">
+<td th:text="${tuomari.tuomariId}"></td>
+<td th:text="${tuomari.tuomariNro}"></td>
+<td th:text="${tuomari.lohkoNro}"></td>
+<td><a th:href="@{'/poistatuomari/'+${tuomari.tuomariId}}">Poista</a></td>
+</tr>
+</table>
+<br>
+
 <a href="/testaus">takaisin</a>
 </body>
 </html>

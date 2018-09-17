@@ -15,39 +15,23 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-<title>Bestseller - luo kilpailu</title>
+<title>Bestseller - luo tuomari</title>
 </head>
 <body>
-	<h2>Luo uusi kilpailija</h2>
+	<h2>Luo uusi tuomari</h2>
 
-	<form role="form" th:object="${kilpailija}"
-		th:action="@{/tallennakilpailija}" action="#" method="post">
+	<form role="form" th:object="${tuomari}"
+		th:action="@{/tallennatuomari}" action="#" method="post">
 		<div class="form-group">
-			<label for="etunimi">Etunimi</label> <input type="text"
-				th:required="required" th:field="*{etunimi}" />
-		</div>
-
-		<div class="form-group">
-			<label for="sukunimi">Sukunimi</label> <input type="text"
-				id="sukunimi" th:required="required" th:field="*{sukunimi}" />
-		</div>
-
-		<div class="form-group">
-			<label for="kilpailijaNro">Kilpailijanumero</label> <input
-				type="text" id="kilpailijaNro" th:required="required"
-				th:field="*{kilpailijaNro}" />
-		</div>
-
-		<div class="form-group">
-			<label for="koulu">Oppilaitos</label> <input type="text" id="koulu"
-				th:required="required" th:field="*{koulu}" />
+			<label for="tuomariNro">Tuomarinumero:</label> <input type="text"
+				th:required="required" th:field="*{tuomariNro}" />
 		</div>
 
 		<h2>Valitse Lohkonumero:</h2>
 		<ul>
 			<li th:each="lohko:${lohkot}"><input type="radio"
-				th:field="*{lohko}" th:value="${lohko.lohkoId}" /> <label
-				th:for="${#ids.prev('lohko')}" th:text="${lohko.lohkoNro}">Lohkonro</label>
+				th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" /> <label
+				th:for="${lohkoNro}" th:text="${lohko.lohkoNro}">Lohkonro</label>
 			</li>
 		</ul>
 		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"

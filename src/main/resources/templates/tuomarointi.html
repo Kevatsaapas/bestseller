@@ -38,11 +38,20 @@
 
                 </select>
             </div>
-        <div class="row padding">
+       
+      <div class="row padding">
             <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
-                    Tuomarin nro: <input type="text" size="6">
+                    Tuomarin nro: <select name="tuomari" id="tuomari">
+                    	<option value="wasd" selected>valitse:</option>
+                    	<ul>
+                    	<li th:each="tuomari:${tuomarit}">
+                    		<option th:value="${tuomari.tuomariNro}"><p th:text="${tuomari.tuomariNro}"></p></option>
+                    		</li>
+                    	</ul>
+                    </select>
             </div>
         </div>
+            
         <hr>
         <div class="row padding">
             <div class="col-xs-12">
@@ -109,8 +118,7 @@
         <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </textarea>
+                <textarea row paddings="2" cols="70"></textarea>
             </div>
         </div>
         <hr>
@@ -195,8 +203,7 @@
         <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea>
+                <textarea row paddings="2" cols="70"></textarea>
             </div>
         </div>
         <hr>
@@ -266,8 +273,7 @@
         <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea>
+                <textarea row paddings="2" cols="70"></textarea>
             </div>
         </div>
         <hr>
@@ -320,8 +326,7 @@
         <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </textarea>
+                <textarea row paddings="2" cols="70"></textarea>
             </div>
         </div>
         <hr>
@@ -375,8 +380,7 @@
         <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea>
+                <textarea row paddings="2" cols="70"></textarea>
             </div>
         </div>
         <hr>
@@ -429,8 +433,7 @@
         <div class="row padding">
             <div class="col-xs-12">
                 Vapaa palaute: <br>
-                <textarea row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </textarea>
+                <textarea row paddings="2" cols="70"></textarea>
             </div>
         </div>
         <hr>

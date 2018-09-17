@@ -6,6 +6,8 @@ import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class DataController {
     
     @Autowired
     public KilpailijaRepository kilpailijaRepository;
+    
+    @Autowired
+    public TuomariRepository tuomariRepository;
 
     @RequestMapping("/datat/{kilpailuId}")
     public String dataa(@PathVariable Long kilpailuId, Model model) {
@@ -32,6 +37,7 @@ public class DataController {
         model.addAttribute("kilpailijat", kilpailijat);
         Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
         model.addAttribute("lohkot", lohkot);
+        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
         return "datat";
     }
 }
