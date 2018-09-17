@@ -1,23 +1,35 @@
+.table thead th {
+  background-color: #96ceb4;
+  border-style: none;
+}
 
-.thead-custom {
-  background-color: cornflowerblue;
+.headertext {
+  font-family: 'Changa One', cursive;
+  font-size: 4em;
+}
+
+.standard {
+  background-color: #cecbcb;
+  background-image: url("img/arches.png");
+  background-repeat: repeat;
 }
 
 textarea {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 
-    width: 100%;
+  width: 100%;
 }
 
 .tuom {
   font-family: 'Open Sans', sans-serif;
-  background-color: aliceblue;
+  background-color: #cbdadb;
+  opacity: 0.8;
 }
 
 .padding {
-  padding-left: 10px;
+  padding: 10px 10px 10px 10px;
 }
 
 textarea {
@@ -26,19 +38,19 @@ textarea {
 
 
 .indexbody {
-  
+
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
 
-  background: rgba(183,222,237,1);
-  background: -moz-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(183,222,237,1)), color-stop(23%, rgba(113,206,239,1)), color-stop(51%, rgba(33,180,226,1)), color-stop(100%, rgba(183,222,237,1)));
-  background: -webkit-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: -o-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: -ms-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: linear-gradient(135deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1 );
+  background: rgba(183, 222, 237, 1);
+  background: -moz-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(183, 222, 237, 1)), color-stop(23%, rgba(113, 206, 239, 1)), color-stop(51%, rgba(33, 180, 226, 1)), color-stop(100%, rgba(183, 222, 237, 1)));
+  background: -webkit-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+  background: linear-gradient(135deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1);
 }
 
 /* Links */
@@ -58,7 +70,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  
+
   height: 100%;
 }
 
@@ -66,16 +78,19 @@ body {
 .site-wrapper {
   display: table;
   width: 100%;
-  height: 100%; /* For at least Firefox */
+  height: 100%;
+  /* For at least Firefox */
   font-family: 'Open Sans', sans-serif;
   min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+  -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
 }
+
 .site-wrapper-inner {
   display: table-cell;
   vertical-align: top;
 }
+
 .cover-container {
   margin-right: auto;
   margin-left: auto;
@@ -100,6 +115,7 @@ body {
 .cover {
   padding: 0 20px;
 }
+
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
@@ -119,23 +135,28 @@ body {
  */
 
 @media (min-width: 768px) {
+
   /* Pull out the header and footer */
   .masthead {
     position: fixed;
     top: 0;
   }
+
   /* Start the vertical centering */
   .site-wrapper-inner {
     vertical-align: middle;
   }
+
   /* Handle the widths */
   .masthead,
   .cover-container {
-    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+    width: 100%;
+    /* Must be percentage or pixels for horizontal alignment */
   }
 }
 
 @media (min-width: 992px) {
+
   .masthead,
   .cover-container {
     width: 700px;
