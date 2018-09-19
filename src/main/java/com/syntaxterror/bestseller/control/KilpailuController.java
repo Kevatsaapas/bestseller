@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 
 @Controller
@@ -32,7 +33,7 @@ public class KilpailuController {
         model.addAttribute(kilpailu);
         return "luonti";
     }
-
+    
     private void luoLohkot(Long kilpailuId) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
         for (int i = 1; i < 5; i++) {
@@ -48,6 +49,7 @@ public class KilpailuController {
     }
 
     @RequestMapping(value = "/tallennakilpailu", method = RequestMethod.POST)
+    @Transactional
     public String tallennaKilpailu(Kilpailu kilpailu) {
         Date pvm = new Date();
         kilpailu.setPvm(pvm);
@@ -58,6 +60,7 @@ public class KilpailuController {
     }
 
     @RequestMapping(value = "/poistakilpailu/{kilpailuId}", method = RequestMethod.GET)
+    @Transactional
     public String poistaKilpailu(@PathVariable Long kilpailuId) {
         kilpailijaRepository.deleteByKilpailuId(kilpailuId);
         Kilpailu kilpailu= kilpailuRepository.findByKilpailuId(kilpailuId);

@@ -1,6 +1,7 @@
 package com.syntaxterror.bestseller.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Tuomari {
@@ -11,6 +12,7 @@ public class Tuomari {
     private Long tuomariId;
 
     @Column(name = "tuomari_nro")
+    @NotNull
     private String tuomariNro;
 
     // Oletuksella, että joka lohkossa eri tuomarit

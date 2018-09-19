@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Kilpailu {
@@ -14,6 +15,7 @@ public class Kilpailu {
 	private Long kilpailuId;
 
 	@Column(name = "kilpailu_nimi")
+	@NotNull
 	private String nimi;
 
     @Temporal(TemporalType.DATE)
@@ -21,6 +23,7 @@ public class Kilpailu {
 	private Date pvm;
 
 	@Column(name = "kilpailu_paikka")
+	@NotNull
 	private String paikka;
 
 	@OneToMany
