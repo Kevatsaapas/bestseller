@@ -58,11 +58,9 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</body>
 
-                <table class="table">
-                    <tr th:each="kilpailu:${kilpailut}">
-                        <td th:text="${kilpailu.nimi}"></td>
-                        <td><a href="#" th:href="@{'/datat/'+${kilpailu.kilpailuId}}">Tsekkaa</a></td>
-                        <td><a href="#" th:href="@{'/poistakilpailu/'+${kilpailu.kilpailuId}}">Poista</a></td>
-                    </tr>
-                    <a href="#" th:href=@{/}>Takaisin alkuun</a> </table> </div> </div> </div> </body> </html>
+</html>
