@@ -5,3 +5,7 @@ install: true
 before_install:
   - chmod +x mvnw
 script: ./mvnw clean install
+
+cache:
+  directories:
+  - $HOME/.m2
