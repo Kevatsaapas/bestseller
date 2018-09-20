@@ -1,6 +1,7 @@
 package com.syntaxterror.bestseller.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -12,18 +13,23 @@ public class Kilpailija {
     private Long kilpailijaId;
 
     @Column(name = "kilpailija_etunimi")
+    @NotNull
     private String etunimi;
 
     @Column(name = "kilpailija_sukunimi")
+    @NotNull
     private String sukunimi;
 
     @Column(name = "kilpailija_nro")
+    @NotNull
     private int kilpailijaNro;
 
     @Column(name = "kilpailija_koulu")
+    @NotNull
     private String koulu;
 
     @Column(name = "kilpailu_Id")
+    @NotNull
     private Long kilpailuId;
 
     @ManyToOne

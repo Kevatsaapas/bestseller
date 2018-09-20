@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Kriteeri {
@@ -13,11 +14,13 @@ public class Kriteeri {
     private Long kriteeriId;
 
     @Column(name = "kriteeri_teksti")
+    @NotNull
     private String kriteeriTeksti;
 
     @Min(0)
     @Max(7)
     @Column(name = "kriteeri_piste")
+    @NotNull
     private Integer kriteeriPiste;
 
     public Kriteeri() {

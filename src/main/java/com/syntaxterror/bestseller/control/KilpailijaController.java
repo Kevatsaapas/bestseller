@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.transaction.Transactional;
+
 @Controller
 public class KilpailijaController {
 
@@ -25,6 +27,7 @@ public class KilpailijaController {
     public LohkoRepository lohkoRepository;
 
     @RequestMapping("/luokilpailija/{kilpailuId}")
+    @Transactional
     public String luoKilpailija(Model model, @PathVariable Long kilpailuId, Kilpailija kilpailija) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
         model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
@@ -33,6 +36,7 @@ public class KilpailijaController {
 
     }
     @RequestMapping(value = "/tallennakilpailija", method = RequestMethod.POST)
+    @Transactional
     public String tallennaKilpailija(Kilpailija kilpailija) {
         kilpailijaRepository.save(kilpailija);
         System.out.println(kilpailija);
@@ -41,6 +45,7 @@ public class KilpailijaController {
     }
 
     @RequestMapping(value = "/poistakilpailija/{kilpailijaId}", method = RequestMethod.GET)
+    @Transactional
     public String poistaKilpailija(@PathVariable Long kilpailijaId) {
         Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
         kilpailijaRepository.deleteById(kilpailijaId);
