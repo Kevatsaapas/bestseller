@@ -37,14 +37,14 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Kilpailu</th>
+                            <th>Olemassa olevat kilpailut</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="kilpailu:${kilpailut}">
-                            <td th:text="${kilpailu.nimi}"></td>
+                            <td style="font-weight: bold; width: 70%" th:text="${kilpailu.nimi}">asdasd</td>
                             <td>
                                 <form th:action="@{'/datat/'+${kilpailu.kilpailuId}}">
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
