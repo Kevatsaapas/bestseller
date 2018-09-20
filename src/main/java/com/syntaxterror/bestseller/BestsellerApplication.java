@@ -35,14 +35,13 @@ public class BestsellerApplication {
 			Date pvm = new Date();
 			
 			//Kilpailu
+			
 			Kilpailu bestseller = new Kilpailu("Bestseller 2019",pvm, "Turku" );
 			repo.save(bestseller);
-			System.out.println(repo.findAll());
 			
 			//Ostaja
 			Ostaja ostaja = new Ostaja("Tarja Halonen");
 			ostajaRepo.save(ostaja);
-			System.out.println(ostajaRepo.findAll());
 			
 			//Lohkot
 			Lohko lohko1 = new Lohko("1", bestseller, ostaja);
@@ -55,22 +54,24 @@ public class BestsellerApplication {
 			lohkoRepo.save(lohko4);
 			Lohko finaali = new Lohko("5", bestseller, ostaja);
 			lohkoRepo.save(finaali);
-			System.out.println(lohkoRepo.findAll());
 			
 			//Osa-alueet
-			OsaAlue aloitus= new OsaAlue("Aloitus", "Myyntitapaamisen hyvä haltuunotto ja keskustelusuhteen luominen.", new Long(10));
+			OsaAlue aloitus= new OsaAlue("Aloitus", "Myyntitapaamisen hyvä haltuunotto ja keskustelusuhteen luominen.", new Long(10), bestseller.getKilpailuId());
 			osaalueRepo.save(aloitus);
-			OsaAlue tarvekartoitus= new OsaAlue("Tarvekartoitus", "Saada tietoa asiakkaan tilanteesta ja tarpeista niin, että myyjä pystyy esittämään oman ratkaisunsa linkittyen asiakkaan tarpeisiin.", new Long(30));
+			OsaAlue tarvekartoitus= new OsaAlue("Tarvekartoitus", "Saada tietoa asiakkaan tilanteesta ja tarpeista niin, että myyjä pystyy esittämään oman ratkaisunsa linkittyen asiakkaan tarpeisiin.", new Long(30), bestseller.getKilpailuId());
 			osaalueRepo.save(tarvekartoitus);
-			OsaAlue ratkaisu= new OsaAlue("Ratkaisun esittäminen", "Ratkaisun ja sen hyötyjen esittäminen.", new Long(25));
+			OsaAlue ratkaisu= new OsaAlue("Ratkaisun esittäminen", "Ratkaisun ja sen hyötyjen esittäminen.", new Long(25), bestseller.getKilpailuId());
 			osaalueRepo.save(ratkaisu);
-			OsaAlue asiakaskys= new OsaAlue("Asiakkaan kysymysten käsittely", "Asiakkaan esittämien kysymyksien käsittely sekä mahdollisten huolien ja epäilyjen poistaminen.", new Long(10));
+			OsaAlue asiakaskys= new OsaAlue("Asiakkaan kysymysten käsittely", "Asiakkaan esittämien kysymyksien käsittely sekä mahdollisten huolien ja epäilyjen poistaminen.", new Long(10), bestseller.getKilpailuId());
 			osaalueRepo.save(asiakaskys);
-			OsaAlue paattaminen= new OsaAlue("Päättäminen", "Ymmärtää, miten asian käsittely etenee ja missä päätöksenteon kannalta ollaan sekä sopia jatkosta.", new Long(10));
+			OsaAlue paattaminen= new OsaAlue("Päättäminen", "Ymmärtää, miten asian käsittely etenee ja missä päätöksenteon kannalta ollaan sekä sopia jatkosta.", new Long(10), bestseller.getKilpailuId());
 			osaalueRepo.save(paattaminen);
-			OsaAlue yleisvaikutelma= new OsaAlue("Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot.", "", new Long(10));
+			OsaAlue yleisvaikutelma= new OsaAlue("Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot.", "", new Long(10), bestseller.getKilpailuId());
 			osaalueRepo.save(yleisvaikutelma);
-			System.out.println(osaalueRepo.findAll());
+			
+			//kriteerit
+			
+			
 			
 			//kilpailijat
 			Kilpailija kil1 = new Kilpailija("Tiivi", "Taavi", 1, "Haaga-Helia", lohko1, new Long(1));
@@ -81,7 +82,6 @@ public class BestsellerApplication {
 			kilpailijaRepo.save(kil3);
 			Kilpailija kil4 = new Kilpailija("Pai", "Ai", 4, "Haaga-Helia", lohko2, new Long(1));
 			kilpailijaRepo.save(kil4);
-			System.out.println(kilpailijaRepo.findAll());
 			
 			//tuomarit
 			Tuomari tuo1 = new Tuomari("1", "1", bestseller.getKilpailuId());
@@ -94,7 +94,6 @@ public class BestsellerApplication {
 			tuomarirepo.save(tuo4);
 			Tuomari tuo5 = new Tuomari("5", "4", bestseller.getKilpailuId());
 			tuomarirepo.save(tuo5);
-			System.out.println(tuomarirepo.findAll());
 			
 		};
 	}

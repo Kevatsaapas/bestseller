@@ -3,9 +3,11 @@ package com.syntaxterror.bestseller.control;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.OsaAlue;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.OsaAlueRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class DataController {
     
     @Autowired
     public TuomariRepository tuomariRepository;
+    
+    @Autowired
+    public OsaAlueRepository osaaluerepository;
 
     @RequestMapping("/datat/{kilpailuId}")
     public String dataa(@PathVariable Long kilpailuId, Model model) {
@@ -38,6 +43,8 @@ public class DataController {
         Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
         model.addAttribute("lohkot", lohkot);
         model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
+        Iterable<OsaAlue> alueet = osaaluerepository.findByKilpailuId(kilpailuId);
+        model.addAttribute("osaalueet", alueet);
         return "datat";
     }
 }

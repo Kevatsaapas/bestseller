@@ -10,4 +10,5 @@ import com.syntaxterror.bestseller.model.OsaAlue;
 @Repository
 public interface OsaAlueRepository extends CrudRepository<OsaAlue, Long> {
 	List<OsaAlue> findByOsaAlueId(Long osaAlueId);
+	Iterable<OsaAlue> findByKilpailuId(Long kilpailuId);
 }

@@ -22,6 +22,9 @@ public class OsaAlue {
 
 	@Column(name = "osa_alue_painoarvo")
 	private Long painoarvo;
+	
+	@Column(name = "kilpailu_id")
+	private Long kilpailuId;
 
 	@Min(0)
     @Max(7)
@@ -42,13 +45,33 @@ public class OsaAlue {
 		this.nimi=null;
 		this.painoarvo=null;
 		this.tavoite=null;
+		this.kilpailuId=null;
 	}
 
-	public OsaAlue(String nimi, String tavoite, Long painoarvo) {
+	public OsaAlue(String nimi, String tavoite, Long painoarvo, Long kilpailuId) {
 		super();
 		this.nimi = nimi;
 		this.tavoite=tavoite;
 		this.painoarvo = painoarvo;
+		this.kilpailuId=kilpailuId;
+	}
+
+	
+	
+	public String getTavoite() {
+		return tavoite;
+	}
+
+	public void setTavoite(String tavoite) {
+		this.tavoite = tavoite;
+	}
+
+	public Long getKilpailuId() {
+		return kilpailuId;
+	}
+
+	public void setKilpailuId(Long kilpailuId) {
+		this.kilpailuId = kilpailuId;
 	}
 
 	public Long getOsaAlueId() {
@@ -91,11 +114,14 @@ public class OsaAlue {
         this.arvioinnit = arvioinnit;
     }
 
-
-    @Override
+	@Override
 	public String toString() {
-		return "OsaAlue [osaAlueId=" + osaAlueId + ", nimi=" + nimi + ", painoarvo=" + painoarvo + "]";
+		return "OsaAlue [osaAlueId=" + osaAlueId + ", nimi=" + nimi + ", tavoite=" + tavoite + ", painoarvo="
+				+ painoarvo + ", kilpailuId=" + kilpailuId + ", osaAluePiste=" + osaAluePiste + ", arvioinnit="
+				+ arvioinnit + "]";
 	}
-	
+
+
+    
 	
 }

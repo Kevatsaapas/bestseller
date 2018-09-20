@@ -41,8 +41,6 @@ public class DefaultController {
     public String tuomarointi(Model model){
     	model.addAttribute("kilpailijat", kilpailijarepository.findByKilpailuId(new Long(1)));
     	model.addAttribute("tuomarit", tuomarirepository.findByKilpailuId(new Long(1)));
-    	System.out.println(kilpailijarepository.findByKilpailuId(new Long(1)));
-    	System.out.println("joo");
         return "tuomarointi";
     }
 
