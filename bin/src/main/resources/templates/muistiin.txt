@@ -1,0 +1,61 @@
+spring.jpa.show-sql=true
+
+
+
+
+Date deit = new Date();
+			Long ykönen = new Long(1);
+			Long viiskymppii = new Long(50);
+			Kilpailu kilpailu = new Kilpailu("Parasmyynti", deit, "stadi");
+			repo.save(kilpailu);
+			Lohko lohko1 = new Lohko("1", repo.findByKilpailuId(ykönen), null);
+			lore.save(lohko1);
+			Kilpailija kilpailija = new Kilpailija("Matti", "Mattinen", 1, "Heego-Holia");
+			kilrepo.save(kilpailija);
+			Tuomari tuomari = new Tuomari("420", lohko1);
+			Kriteeri kriteeri = new Kriteeri("miltä meno maistuu", 3);
+			OsaAlue osalue = new OsaAlue("Esittely", viiskymppii, ykönen);
+			ore.save(osalue);
+			
+			kripo.save(kriteeri);
+			tuore.save(tuomari);
+			
+			Arviointi arviointi = new Arviointi(deit, kilpailija, tuomari);
+			are.save(arviointi);
+		
+			System.out.println(repo.findAll());
+			System.out.println(kripo.findAll());
+			System.out.println(tuore.findAll());
+			System.out.println(lore.findAll());
+			System.out.println(ore.findAll());
+			};
+			
+			
+			<td><form th:action="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">
+<input type="hidden"  th:value="${kilpailija.kilpailijaId}">
+<input id="deleteButton" type="submit" class="btn btn-primary" value="Poista">
+</form></td>
+			
+			
+			<td><a th:href="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">Poista</a></td>
+			
+			
+			
+			
+			
+			<a th:href="@{/tuomarointi}">
+			
+			 <option value="asd" selected>Valitse:</option>
+			 
+			 
+			 
+			  <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                Kilpailija:
+                <select name="kilpailija" id="kilpailija" th:each="kilpailija:${kilpailijat}">
+                    <option value="asd" selected>Valitse:</option>
+                    <option th:value="${kilpailija.sukunimi}"/><p th:text="${kilpailija.sukunimi}"></p></option>
+
+
+                </select>
+            </div>
+            

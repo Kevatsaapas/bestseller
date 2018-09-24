@@ -1,7 +1,6 @@
 package com.syntaxterror.bestseller.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -13,7 +12,6 @@ public class Lohko {
     private Long lohkoId;
 
     @Column(name = "lohko_nro")
-    @NotNull
     private String lohkoNro;
 
     @ManyToOne

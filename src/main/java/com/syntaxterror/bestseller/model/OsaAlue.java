@@ -4,7 +4,6 @@ package com.syntaxterror.bestseller.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -16,21 +15,17 @@ public class OsaAlue {
 	private Long osaAlueId;
 
 	@Column(name = "osa_alue_nimi")
-	@NotNull
 	private String nimi;
 
 	@Column(name="tavoite")
-	@NotNull
 	private String tavoite;
 
 	@Column(name = "osa_alue_painoarvo")
-	@NotNull
 	private Long painoarvo;
 
 	@Min(0)
     @Max(7)
     @Column(name = "osa_alue_piste")
-	@NotNull
 	private Integer osaAluePiste;
 
 
@@ -49,12 +44,11 @@ public class OsaAlue {
 		this.tavoite=null;
 	}
 
-	public OsaAlue(String nimi, String tavoite, Long painoarvo, Integer osaAluePiste) {
+	public OsaAlue(String nimi, String tavoite, Long painoarvo) {
 		super();
 		this.nimi = nimi;
 		this.tavoite=tavoite;
 		this.painoarvo = painoarvo;
-		this.osaAluePiste = osaAluePiste;
 	}
 
 	public Long getOsaAlueId() {
