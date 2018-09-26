@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
-import com.syntaxterror.bestseller.model.OsaAlue;
 import com.syntaxterror.bestseller.model.Ostaja;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
@@ -18,7 +17,6 @@ import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.KriteeriRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
-import com.syntaxterror.bestseller.repository.OsaAlueRepository;
 import com.syntaxterror.bestseller.repository.OstajaRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
@@ -30,7 +28,7 @@ public class BestsellerApplication {
 		
 	}
 	@Bean
-	public CommandLineRunner best(KilpailuRepository repo, KilpailijaRepository kilpailijaRepo, KriteeriRepository kripo, TuomariRepository tuore, LohkoRepository lohkoRepo, OsaAlueRepository osaalueRepo, ArviointiRepository are, OstajaRepository ostajaRepo, TuomariRepository tuomarirepo) {
+	public CommandLineRunner best(KilpailuRepository repo, KilpailijaRepository kilpailijaRepo, KriteeriRepository kripo, TuomariRepository tuore, LohkoRepository lohkoRepo, ArviointiRepository are, OstajaRepository ostajaRepo, TuomariRepository tuomarirepo) {
 		return args ->{
 			Date pvm = new Date();
 			
@@ -56,22 +54,7 @@ public class BestsellerApplication {
 			Lohko finaali = new Lohko("5", bestseller, ostaja);
 			lohkoRepo.save(finaali);
 			System.out.println(lohkoRepo.findAll());
-			
-			//Osa-alueet
-			OsaAlue aloitus= new OsaAlue("Aloitus", "Myyntitapaamisen hyvä haltuunotto ja keskustelusuhteen luominen.", new Long(10), 1);
-			osaalueRepo.save(aloitus);
-			OsaAlue tarvekartoitus= new OsaAlue("Tarvekartoitus", "Saada tietoa asiakkaan tilanteesta ja tarpeista niin, että myyjä pystyy esittämään oman ratkaisunsa linkittyen asiakkaan tarpeisiin.", new Long(30), 1);
-			osaalueRepo.save(tarvekartoitus);
-			OsaAlue ratkaisu= new OsaAlue("Ratkaisun esittäminen", "Ratkaisun ja sen hyötyjen esittäminen.", new Long(25), 1);
-			osaalueRepo.save(ratkaisu);
-			OsaAlue asiakaskys= new OsaAlue("Asiakkaan kysymysten käsittely", "Asiakkaan esittämien kysymyksien käsittely sekä mahdollisten huolien ja epäilyjen poistaminen.", new Long(10), 1);
-			osaalueRepo.save(asiakaskys);
-			OsaAlue paattaminen= new OsaAlue("Päättäminen", "Ymmärtää, miten asian käsittely etenee ja missä päätöksenteon kannalta ollaan sekä sopia jatkosta.", new Long(10), 1);
-			osaalueRepo.save(paattaminen);
-			OsaAlue yleisvaikutelma= new OsaAlue("Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot.", "", new Long(10), 1);
-			osaalueRepo.save(yleisvaikutelma);
-			System.out.println(osaalueRepo.findAll());
-			
+
 			//kilpailijat
 			Kilpailija kil1 = new Kilpailija("Tiivi", "Taavi", 1, "Haaga-Helia", lohko1, new Long(1));
 			kilpailijaRepo.save(kil1);

@@ -1,5 +1,7 @@
 package com.syntaxterror.bestseller.model;
 
+import com.syntaxterror.bestseller.model.util.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -27,8 +29,23 @@ public class Arviointi {
     @JoinColumn(name = "tuomari_id")
     private Tuomari tuomari;
 
-    @ManyToMany(mappedBy = "arvioinnit")
-    private List<OsaAlue> osaAlueet;
+    @Embedded
+    private Aloitus aloitus;
+
+    @Embedded
+    private KysymystenKasittely kysymystenKasittely;
+
+    @Embedded
+    private Paattaminen paattaminen;
+
+    @Embedded
+    private Ratkaisu ratkaisu;
+
+    @Embedded
+    private Tarvekartoitus tarvekartoitus;
+
+    @Embedded
+    private Yleisvaikutelma yleisvaikutelma;
 
     public Arviointi() {
     	this.arviointiPvm=null;
@@ -75,18 +92,58 @@ public class Arviointi {
         this.tuomari = tuomari;
     }
 
-    public List<OsaAlue> getOsaAlueet() {
-        return osaAlueet;
+    public Aloitus getAloitus() {
+        return aloitus;
     }
 
-    public void setOsaAlueet(List<OsaAlue> osaAlueet) {
-        this.osaAlueet = osaAlueet;
+    public void setAloitus(Aloitus aloitus) {
+        this.aloitus = aloitus;
+    }
+
+    public KysymystenKasittely getKysymystenKasittely() {
+        return kysymystenKasittely;
+    }
+
+    public void setKysymystenKasittely(KysymystenKasittely kysymystenKasittely) {
+        this.kysymystenKasittely = kysymystenKasittely;
+    }
+
+    public Paattaminen getPaattaminen() {
+        return paattaminen;
+    }
+
+    public void setPaattaminen(Paattaminen paattaminen) {
+        this.paattaminen = paattaminen;
+    }
+
+    public Ratkaisu getRatkaisu() {
+        return ratkaisu;
+    }
+
+    public void setRatkaisu(Ratkaisu ratkaisu) {
+        this.ratkaisu = ratkaisu;
+    }
+
+    public Tarvekartoitus getTarvekartoitus() {
+        return tarvekartoitus;
+    }
+
+    public void setTarvekartoitus(Tarvekartoitus tarvekartoitus) {
+        this.tarvekartoitus = tarvekartoitus;
+    }
+
+    public Yleisvaikutelma getYleisvaikutelma() {
+        return yleisvaikutelma;
+    }
+
+    public void setYleisvaikutelma(Yleisvaikutelma yleisvaikutelma) {
+        this.yleisvaikutelma = yleisvaikutelma;
     }
 
     @Override
    	public String toString() {
    		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
-   				+ ", tuomari=" + tuomari + ", osaAlueet=" + osaAlueet + "]";
+   				+ ", tuomari=" + tuomari + "]";
    	}
 
 }
