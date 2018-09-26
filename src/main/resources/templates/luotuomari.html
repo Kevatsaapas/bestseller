@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content=""></meta>
+<meta name="author" content=""></meta>
+<link rel="shortcut icon" type="image/png"
+	th:href="@{/images/favicon.png}"></link>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<title>Bestseller - luo tuomari</title>
+</head>
+<body>
+	<h2>Luo uusi tuomari</h2>
+
+	<form role="form" th:object="${tuomari}"
+		th:action="@{/tallennatuomari}" action="#" method="post">
+		<div class="form-group">
+			<label for="tuomariNro">Tuomarinumero:</label> <input type="text"
+				th:required="required" th:field="*{tuomariNro}" />
+		</div>
+
+		<h2>Valitse Lohkonumero:</h2>
+		<ul>
+			<li th:each="lohko:${lohkot}"><input type="radio"
+				th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" /> <label
+				th:for="${lohkoNro}" th:text="${lohko.lohkoNro}">Lohkonro</label>
+			</li>
+		</ul>
+		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
+			th:value="${kilpailuId}" /> <input id="addButton" type="submit"
+			class="btn btn-primary" value="Tallenna">
+	</form>
+
+</body>
+</html>

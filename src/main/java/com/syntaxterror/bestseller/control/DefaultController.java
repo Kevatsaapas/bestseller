@@ -15,6 +15,7 @@ import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
 
 @Controller
 public class DefaultController {
@@ -22,6 +23,8 @@ public class DefaultController {
     public KilpailuRepository kilpailuRepository;
     @Autowired
     public KilpailijaRepository kilpailijarepository;
+    @Autowired
+    public TuomariRepository tuomarirepository;
 
     @RequestMapping("/")
     public String index() {
@@ -37,6 +40,7 @@ public class DefaultController {
     @RequestMapping("/tuomarointi")
     public String tuomarointi(Model model){
     	model.addAttribute("kilpailijat", kilpailijarepository.findByKilpailuId(new Long(1)));
+    	model.addAttribute("tuomarit", tuomarirepository.findByKilpailuId(new Long(1)));
     	System.out.println(kilpailijarepository.findByKilpailuId(new Long(1)));
     	System.out.println("joo");
         return "tuomarointi";
