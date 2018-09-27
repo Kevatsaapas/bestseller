@@ -26,14 +26,15 @@
 
 <body>
     <div class="standard h-100">
-        <div class="container">
+        <div class="container tuom">
             <div class="row">
                 <a href="index.html" th:href="@{/index}"><img src="../static/img/BSC_sinetti_logo.png" th:src="@{./img/BSC_sinetti_logo.png}"
                         alt="logo-sm" class="logo-sm" /></a>
                 <h1 class="headertext">Best Seller Admin</h1>
             </div>
+            <hr>
             <div class="row padding">
-                <form th:action="@{/luokilpailu}">
+                <form action="luonti.html" th:action="@{/luokilpailu}">
                     <button class="btn btn-lg btn-info">Luo kilpailu</button>
                 </form>
                 <table class="table table-striped">
@@ -46,9 +47,9 @@
                     </thead>
                     <tbody>
                         <tr th:each="kilpailu:${kilpailut}">
-                            <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}">asdasd</td>
+                            <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}"></td>
                             <td>
-                                <form th:action="@{'/datat/'+${kilpailu.kilpailuId}}">
+                                <form action="datat.html" th:action="@{'/datat/'+${kilpailu.kilpailuId}}">
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
                                 </form>
                             </td>
