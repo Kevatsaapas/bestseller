@@ -28,9 +28,11 @@
     <div class="standard h-100">
         <div class="container">
             <div class="row">
+                <a href="index.html" th:href="@{/index}"><img src="../static/img/BSC_sinetti_logo.png" th:src="@{./img/BSC_sinetti_logo.png}"
+                        alt="logo-sm" class="logo-sm" /></a>
                 <h1 class="headertext">Best Seller Admin</h1>
             </div>
-            <div class="row">
+            <div class="row padding">
                 <form th:action="@{/luokilpailu}">
                     <button class="btn btn-lg btn-info">Luo kilpailu</button>
                 </form>

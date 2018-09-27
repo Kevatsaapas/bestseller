@@ -47,7 +47,9 @@
             </div>
             <div class="row">
                 <h2>Kilpailijat</h2>
-                <a th:href="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">Lisää</a>
+                <form th:action="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">
+                    <button class="btn btn-md btn-info">Lisää</button>
+                </form>
                 <table class="table table-striped">
                     <tr>
                         <td>Id</td>

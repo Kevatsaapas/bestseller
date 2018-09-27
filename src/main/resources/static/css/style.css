@@ -8,9 +8,15 @@
     margin-bottom: 20px;
 }
 
+.logo-sm {
+    height: 100px;
+    margin-right: 10px;
+}
+
 .headertext {
     font-family: 'Changa One', cursive;
-    font-size: 4em;
+    font-size: 3em;
+    margin-top: 20px;
 }
 
 .standard {

@@ -29,7 +29,8 @@
                     </div>
 
                     <div class="inner cover">
-                        <img src="../static/img/BSC_sinetti_logo.png" class="logo" alt="logo" />
+                        <img src="../static/img/BSC_sinetti_logo.png" th:src="@{./img/BSC_sinetti_logo}" class="logo"
+                            alt="logo" />
                         <h3>Lohko: X</h3>
 
                         <p class="lead">Valitse roolisi:
@@ -37,18 +38,18 @@
                         </p>
                         <div class="row">
                             <div class="col-lg-4 col-md-4">
-                                <form th:action="@{/arviointi/uusi}">
+                                <form action="tuomarointi.html" th:action="@{/arviointi/uusi}">
                                     <button class="btn btn-lg btn-info">Tuomari</button>
                                 </form>
 
                             </div>
                             <div class="col-lg-4 col-md-4">
-                                <form th:action="@{/testaus}">
+                                <form action="testaus.html" th:action="@{/testaus}">
                                     <button class="btn btn-lg btn-danger">Admin</a></button>
                                 </form>
                             </div>
                             <div class="col-lg-4 col-md-4">
-                                <form th:action="@{/ostaja}">
+                                <form action="ostaja.html" th:action="@{/ostaja}">
                                     <button class="btn btn-lg btn-success">Ostaja</a></button>
                                 </form>
                             </div>

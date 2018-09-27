@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Best Seller - Tuomari</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/style.css" th:href="@{/css/style.css}" />
     <script src="main.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
+        crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -20,444 +21,461 @@
 </head>
 
 <body>
-<form id="arvform" th:action="@{/arviointi/tallenna}" th:object="${arviointi}" method="POST">
-<div class="standard h-auto">
-    <div class="container tuom">
-        <div class="row padding">
-            <h1 class="headertext">Best Seller Competition 2019</h1>
-        </div>
-        <div class="row padding">
-            <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
-                Kilpailija:
-                <select th:field="*{kilpailija}" name="kilpailija" id="kilpailijaId">
-                    <option value="kilpailijaId" selected>Valitse:</option>
-                    <ul>
-                        <li th:each="kilpailija:${kilpailijat}">
-                            <option th:value="${kilpailija.kilpailijaId}" ><p th:text="${kilpailija.etunimi + ' '}"></p><p th:text="${kilpailija.sukunimi}"></p></option>
-                        </li>
-                    </ul>
-                </select>
-            </div>
+    <form id="arvform" th:action="@{/arviointi/tallenna}" th:object="${arviointi}" method="POST">
+        <div class="standard h-auto">
+            <div class="container tuom">
+                <div class="row padding">
+                    <a href="index.html" th:href="@{/index}"><img src="../static/img/BSC_sinetti_logo.png" th:src="@{./img/BSC_sinetti_logo.png}" alt="logo-sm"
+                            class="logo-sm" /></a>
+                    <h1 class="headertext">Best Seller Competition 2019</h1>
+                </div>
+                <div class="row padding">
+                    <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                        Kilpailija:
+                        <select th:field="*{kilpailija}" name="kilpailija" id="kilpailijaId">
+                            <option value="kilpailijaId" selected>Valitse:</option>
+                            <ul>
+                                <li th:each="kilpailija:${kilpailijat}">
+                                    <option th:value="${kilpailija.kilpailijaId}">
+                                        <p th:text="${kilpailija.etunimi + ' '}"></p>
+                                        <p th:text="${kilpailija.sukunimi}"></p>
+                                    </option>
+                                </li>
+                            </ul>
+                        </select>
+                    </div>
 
-            <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
-                Tuomarin nro: <select name="tuomari" id="tuomari">
-                    <option value="asd" selected>Valitse:</option>
-                    <ul>
-                        <li th:each="tuomari:${tuomarit}">
-                            <option th:value="${tuomari.tuomariId}"><p th:text="${tuomari.tuomariNro}"></p></option>
-                        </li>
-                    </ul>
-                </select>
-            </div>
-        </div>
-        <hr>
-        <div class="row padding">
-            <div class="col-xs-12">
-                <table class="table">
-                    <thead class="thead-custom">
-                    <tr class="table-info">
-                        <th scope="col">Aloitus (10%)</td>
-                        <th scope="col">
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Selkeä esittäytyminen:</td>
-                        <td>
-                            <select th:field="*{aloitus.selkeaEsittaytyminenPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
-                        <td>
-                            <select th:field="*{aloitus.tapaamisenLahtotilannePist}"name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tapaamisen ajankäytöstä sopiminen:</td>
-                        <td>
-                            <select th:field="*{aloitus.tapaamisenAjankayttoPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row padding">
-            <div class="col-xs-12">
-                Vapaa palaute: <br>
-                <textarea form="arvform" th:field="*{aloitus.aloitusVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                        Tuomarin nro: <select name="tuomari" id="tuomari">
+                            <option value="asd" selected>Valitse:</option>
+                            <ul>
+                                <li th:each="tuomari:${tuomarit}">
+                                    <option th:value="${tuomari.tuomariId}">
+                                        <p th:text="${tuomari.tuomariNro}"></p>
+                                    </option>
+                                </li>
+                            </ul>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        <table class="table">
+                            <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Aloitus (10%)</td>
+                                    <th scope="col">
+                                        </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Selkeä esittäytyminen:</td>
+                                    <td>
+                                        <select th:field="*{aloitus.selkeaEsittaytyminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
+                                    <td>
+                                        <select th:field="*{aloitus.tapaamisenLahtotilannePist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tapaamisen ajankäytöstä sopiminen:</td>
+                                    <td>
+                                        <select th:field="*{aloitus.tapaamisenAjankayttoPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        Vapaa palaute: <br>
+                        <textarea form="arvform" th:field="*{aloitus.aloitusVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </textarea>
-            </div>
-        </div>
-        <hr>
-        <div class="row padding">
-            <div class="col-xs-12">
-                <table class="table">
-                    <thead class="thead-custom">
-                    <tr class="table-info">
-                        <th scope="col">Tarvekartoitus (30%)</td>
-                        <th scope="col">
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Perustietojen selvitys:</td>
-                        <td>
-                            <select th:field="*{tarvekartoitus.perustietojenSelvitysPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien
-                            kartoittaminen:</td>
-                        <td>
-                            <select th:field="*{tarvekartoitus.asiakkaanNykytilaPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle:</td>
-                        <td>
-                            <select th:field="*{tarvekartoitus.tarpeenKehittaminenPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston selvittäminen:</td>
-                        <td>
-                            <select th:field="*{tarvekartoitus.paatoksentekoprosessiPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row padding">
-            <div class="col-xs-12">
-                Vapaa palaute: <br>
-                <textarea form="arvform" th:field="*{tarvekartoitus.tarvekartoitusVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        <table class="table">
+                            <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Tarvekartoitus (30%)</td>
+                                    <th scope="col">
+                                        </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Perustietojen selvitys:</td>
+                                    <td>
+                                        <select th:field="*{tarvekartoitus.perustietojenSelvitysPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien
+                                        kartoittaminen:</td>
+                                    <td>
+                                        <select th:field="*{tarvekartoitus.asiakkaanNykytilaPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle:</td>
+                                    <td>
+                                        <select th:field="*{tarvekartoitus.tarpeenKehittaminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston selvittäminen:</td>
+                                    <td>
+                                        <select th:field="*{tarvekartoitus.paatoksentekoprosessiPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        Vapaa palaute: <br>
+                        <textarea form="arvform" th:field="*{tarvekartoitus.tarvekartoitusVapaaPalaute}" row paddings="2"
+                            cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     </textarea>
-            </div>
-        </div>
-        <hr>
-        <div class="row padding">
-            <div class="col-xs-12">
-                <table class="table">
-                    <thead class="thead-custom">
-                    <tr class="table-info">
-                        <th scope="col">Ratkaisun esittäminen (25%)</td>
-                        <th scope="col">
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista:</td>
-                        <td>
-                            <select th:field="*{ratkaisu.haasteYhteenvetoPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin tapaamisiin
-                            perustuen:</td>
-                        <td>
-                            <select th:field="*{ratkaisu.ratkaisunEsittaminenPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan:</td>
-                        <td>
-                            <select th:field="*{ratkaisu.hyotyjenEsilletuontiPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row padding">
-            <div class="col-xs-12">
-                Vapaa palaute: <br>
-                <textarea form="arvform" th:field="*{ratkaisu.ratkaisuVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        <table class="table">
+                            <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Ratkaisun esittäminen (25%)</td>
+                                    <th scope="col">
+                                        </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista:</td>
+                                    <td>
+                                        <select th:field="*{ratkaisu.haasteYhteenvetoPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin
+                                        tapaamisiin
+                                        perustuen:</td>
+                                    <td>
+                                        <select th:field="*{ratkaisu.ratkaisunEsittaminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan:</td>
+                                    <td>
+                                        <select th:field="*{ratkaisu.hyotyjenEsilletuontiPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        Vapaa palaute: <br>
+                        <textarea form="arvform" th:field="*{ratkaisu.ratkaisuVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     </textarea>
-            </div>
-        </div>
-        <hr>
-        <div class="row padding">
-            <div class="col-xs-12">
-                <table class="table">
-                    <thead class="thead-custom">
-                    <tr class="table-info">
-                        <th scope="col">Asiakkaan kysymysten käsittely (10%)</td>
-                        <th scope="col">
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely:</td>
-                        <td>
-                            <select th:field="*{kysymystenKasittely.vastavaitteidenYmmartaminenPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Asiakkaan huolenaiheiden käsittely:</td>
-                        <td>
-                            <select th:field="*{kysymystenKasittely.huolenaiheidenKasittelyPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row padding">
-            <div class="col-xs-12">
-                Vapaa palaute: <br>
-                <textarea form="arvform" th:field="*{kysymystenKasittely.kasittelyVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        <table class="table">
+                            <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Asiakkaan kysymysten käsittely (10%)</td>
+                                    <th scope="col">
+                                        </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely:</td>
+                                    <td>
+                                        <select th:field="*{kysymystenKasittely.vastavaitteidenYmmartaminenPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Asiakkaan huolenaiheiden käsittely:</td>
+                                    <td>
+                                        <select th:field="*{kysymystenKasittely.huolenaiheidenKasittelyPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        Vapaa palaute: <br>
+                        <textarea form="arvform" th:field="*{kysymystenKasittely.kasittelyVapaaPalaute}" row paddings="2"
+                            cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </textarea>
-            </div>
-        </div>
-        <hr>
-        <div class="row padding">
-            <div class="col-xs-12">
-                <table class="table">
-                    <thead class="thead-custom">
-                    <tr class="table-info">
-                        <th scope="col">Päättäminen (10%)</td>
-                        <th scope="col">
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Sopivan sitoutumisen perusteltu ehdottaminen:</td>
-                        <td>
-                            <select th:field="*{paattaminen.sitoutumisenEhdotusPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja jatkotoimenpiteistä
-                            sopiminen:</td>
-                        <td>
-                            <select th:field="*{paattaminen.sitoutumisenSaaminenPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row padding">
-            <div class="col-xs-12">
-                Vapaa palaute: <br>
-                <textarea form="arvform" th:field="*{paattaminen.paattaminenVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        <table class="table">
+                            <thead class="thead-custom">
+                                <tr class="table-info">
+                                    <th scope="col">Päättäminen (10%)</td>
+                                    <th scope="col">
+                                        </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sopivan sitoutumisen perusteltu ehdottaminen:</td>
+                                    <td>
+                                        <select th:field="*{paattaminen.sitoutumisenEhdotusPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja
+                                        jatkotoimenpiteistä
+                                        sopiminen:</td>
+                                    <td>
+                                        <select th:field="*{paattaminen.sitoutumisenSaaminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        Vapaa palaute: <br>
+                        <textarea form="arvform" th:field="*{paattaminen.paattaminenVapaaPalaute}" row paddings="2"
+                            cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     </textarea>
-            </div>
-        </div>
-        <hr>
-        <div class="row padding">
-            <div class="col-xs-12">
-                <table class="table">
-                    <thead class="thead-custom" style="background-color: darksalmon;">
-                    <tr class="table-info">
-                        <th scope="col">Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</td>
-                        <th scope="col">
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Aktiivinen kuuntelu ja läsnäolo:</td>
-                        <td>
-                            <select th:field="*{yleisvaikutelma.aktiivinenKuunteluPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tilannetaju ja erilaisuuden huomioiminen:</td>
-                        <td>
-                            <select th:field="*{yleisvaikutelma.tilannetajuPist}" name="arvosana" id="arvosana">
-                                <option value="99" selected>Valitse:</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select> <br>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row padding">
-            <div class="col-xs-12">
-                Vapaa palaute: <br>
-                <textarea form="arvform" th:field="*{yleisvaikutelma.yleisvaikutelmaVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        <table class="table">
+                            <thead class="thead-custom" style="background-color: darksalmon;">
+                                <tr class="table-info">
+                                    <th scope="col">Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</td>
+                                    <th scope="col">
+                                        </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Aktiivinen kuuntelu ja läsnäolo:</td>
+                                    <td>
+                                        <select th:field="*{yleisvaikutelma.aktiivinenKuunteluPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tilannetaju ja erilaisuuden huomioiminen:</td>
+                                    <td>
+                                        <select th:field="*{yleisvaikutelma.tilannetajuPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select> <br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row padding">
+                    <div class="col-xs-12">
+                        Vapaa palaute: <br>
+                        <textarea form="arvform" th:field="*{yleisvaikutelma.yleisvaikutelmaVapaaPalaute}" row paddings="2"
+                            cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     </textarea>
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+
+                        <input type="submit" class="btn btn-lg btn-success"></input>
+
+                    </div>
+                </div>
             </div>
         </div>
-        <hr>
-        <div class="row padding">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-
-                    <input type="submit" class="btn btn-lg btn-success" ></input>
-
-            </div>
-        </div>
-    </div>
-</div>
-</form>
+    </form>
 </body>
 
 </html>
