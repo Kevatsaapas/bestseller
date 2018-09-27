@@ -33,6 +33,7 @@ public class BestsellerApplication {
 			Date pvm = new Date();
 			
 			//Kilpailu
+
 			Kilpailu bestseller = new Kilpailu("Bestseller 2019",pvm, "Turku" );
 			repo.save(bestseller);
 			System.out.println(repo.findAll());

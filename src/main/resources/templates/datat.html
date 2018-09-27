@@ -95,6 +95,28 @@
 </table>
 <br>
 
+
+<h2>Osa-alueet</h2>
+<table class="table table-striped">
+<tr>
+<td>Id</td>
+<td>Nimi</td>
+<td>Painoarvo</td>
+<td>Tavoite</td>
+<td>KilpailuId</td>
+<td></td>
+</tr>
+
+<tr th:each="osaalue:${osaalueet}">
+<td th:text="${osaalue.osaAlueId}"></td>
+<td th:text="${osaalue.nimi}"></td>
+<td th:text="${osaalue.painoarvo}+'%'"></td>
+<td th:text="${osaalue.tavoite}"></td>
+<td th:text="${osaalue.kilpailuId}"></td>
+</tr>
+</table>
+<br>
+
 <a href="/testaus">takaisin</a>
 </body>
 </html>
