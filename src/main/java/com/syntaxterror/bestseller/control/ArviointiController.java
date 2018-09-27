@@ -39,10 +39,12 @@ public class ArviointiController {
         return "tuomarointi";
     }
 
-    @RequestMapping(value = "/tallenna", method = RequestMethod.POST)
-    public String tallennaArviointi(Arviointi arviointi){
+    @RequestMapping(value = "/tallenna/{kilpailuId}", method = RequestMethod.POST)
+    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId){
         Date arviointipvm = new Date();
         arviointi.setArviointiPvm(arviointipvm);
+        arviointi.setKilpailuId(kilpailuId);
+        System.out.println(arviointi);
         arviointiRepository.save(arviointi);
         return "redirect:/";
     }

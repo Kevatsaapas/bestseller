@@ -96,23 +96,29 @@
 <br>
 
 
-<h2>Osa-alueet</h2>
-<table class="table table-striped">
+<h2>Arvioinnit</h2>
+<table class="table table-stripped">
 <tr>
-<td>Id</td>
-<td>Nimi</td>
-<td>Painoarvo</td>
-<td>Tavoite</td>
-<td>KilpailuId</td>
-<td></td>
+<td>Id </td>
+<td>Kilpailijan nimi</td>
+<td>Tuomarin numero</td>
+<td>Aloitus 10%</td>
+<td>Tarvekartoitus 30%</td>
+<td>Ratkaisun esittäminen 25%</td>
+<td>Asiakkaan kysymysten käsittely 10%</td>
+<td>Päättäminen 10%</td>
+<td>Yleivaikutelma 10%</td>
 </tr>
-
-<tr th:each="osaalue:${osaalueet}">
-<td th:text="${osaalue.osaAlueId}"></td>
-<td th:text="${osaalue.nimi}"></td>
-<td th:text="${osaalue.painoarvo}+'%'"></td>
-<td th:text="${osaalue.tavoite}"></td>
-<td th:text="${osaalue.kilpailuId}"></td>
+<tr th:each="arviointi:${arvioinnit}">
+<td th:text="${arviointi.arviointiId}"></td>
+<td th:text="${arviointi.kilpailija.etunimi}"></td>
+<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+<td th:text="${arviointi.aloitus}"></td>
+<td th:text="${arviointi.kysymystenKasittely}"></td>
+<td th:text="${arviointi.paattaminen}"></td>
+<td th:text="${arviointi.ratkaisu}"></td>
+<td th:text="${arviointi.tarvekartoitus}"></td>
+<td th:text="${arviointi.yleisvaikutelma}"></td>
 </tr>
 </table>
 <br>
