@@ -31,8 +31,8 @@ public class ArviointiController {
     @RequestMapping(value = "/uusi", method = RequestMethod.GET)
     public String palautaArviointiLuontiSivu(Model model, Long kilpailuId){
         model.addAttribute("arviointi", new Arviointi());
-        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuId(new Long(1)));
-        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(new Long(1)));
+        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuId(new Long(22)));
+        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(new Long(22)));
         return "tuomarointi";
     }
 
