@@ -30,8 +30,7 @@
 
                     <div class="inner cover">
                         <h1 class="cover-heading">Best Seller Competition</h1>
-						<h2>Tervetuloa!</h2>
-						<h2>Valitse kilpailu:</h2>
+						<h2>Valitse lohko:</h2>
 
                      
 
@@ -44,10 +43,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="kilpailu:${kilpailut}">
-                            <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}">asdasd</td>
+                        <tr th:each="lohko:${lohkot}">
+                            <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${lohko.lohkoNro}">asdasd</td>
                             <td>
-                                <form th:action="@{'/valitselohko/'+${kilpailu.kilpailuId}}">
+                                <form th:action="@{/valikko/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
                                     <button class="btn btn-sm btn-success">Valitse</button>
                                 </form>
                             </td>
@@ -61,13 +60,7 @@
                 </div>
             </div>
         </div>
-         <div class="col-lg-4 col-md-4">
-                                <form th:action="@{/testaus}">
-                                    <button class="btn btn-lg btn-danger">Admin</a></button>
-                                </form>
-                            </div>
     </div>
-   
 </body>
 
 </html>

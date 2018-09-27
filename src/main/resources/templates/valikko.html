@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bestseller Competition</title>
+    <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" th:href="@{/css/style.css}" />
     <script src="main.js"></script>
@@ -29,45 +29,40 @@
                     </div>
 
                     <div class="inner cover">
-                        <h1 class="cover-heading">Best Seller Competition</h1>
-						<h2>Tervetuloa!</h2>
-						<h2>Valitse kilpailu:</h2>
+                        <h1 class="cover-heading" th:text="${kilpailu.nimi}"></h1>
 
-                     
+                        <h3 th:text="'Lohko: '+${lohko.lohkoNro}"></h3>
 
-                       <div class="row">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="kilpailu:${kilpailut}">
-                            <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}">asdasd</td>
-                            <td>
-                                <form th:action="@{'/valitselohko/'+${kilpailu.kilpailuId}}">
-                                    <button class="btn btn-sm btn-success">Valitse</button>
+                        <p class="lead">Valitse roolisi:
+
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <form th:action="@{/arviointi/uusi/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
+                                    <button class="btn btn-lg btn-info">Tuomari</button>
                                 </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-4">
+                                <form th:action="@{/ostaja}">
+                                    <button class="btn btn-lg btn-success">Ostaja</a></button>
+                                </form>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <form th:action="@{/}">
+                                    <button class="btn btn-lg btn-danger">Poistu</a></button>
+                                </form>
+                            </div>
+                           
+                        </div>
+                        
 
                     </div>
 
-                </div>
             </div>
         </div>
-         <div class="col-lg-4 col-md-4">
-                                <form th:action="@{/testaus}">
-                                    <button class="btn btn-lg btn-danger">Admin</a></button>
-                                </form>
-                            </div>
     </div>
-   
 </body>
 
 </html>
