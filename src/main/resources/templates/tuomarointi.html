@@ -20,11 +20,11 @@
 </head>
 
 <body>
-<form id="arvform" th:action="@{/arviointi/tallenna}" th:object="${arviointi}" method="POST">
+<form id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}(kilpailuId=${kilpailu.kilpailuId})}" th:object="${arviointi}" method="POST">
 <div class="standard h-auto">
     <div class="container tuom">
         <div class="row padding">
-            <h1 class="headertext">Best Seller Competition 2019</h1>
+            <h1 class="headertext" th:text="${kilpailu.nimi}"></h1>
         </div>
         <div class="row padding">
             <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
@@ -450,14 +450,14 @@
         <hr>
         <div class="row padding">
             <div class="col-lg-6 col-md-6 col-sm-6">
-
                     <input type="submit" class="btn btn-lg btn-success" ></input>
-
             </div>
         </div>
+     
     </div>
 </div>
 </form>
+
 </body>
 
 </html>

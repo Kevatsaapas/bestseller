@@ -25,10 +25,30 @@ public class DefaultController {
     public KilpailijaRepository kilpailijarepository;
     @Autowired
     public TuomariRepository tuomarirepository;
+    @Autowired
+    public LohkoRepository lohkoRepository;
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+    	model.addAttribute("kilpailut", kilpailuRepository.findAll());
         return "index";
+    }
+    
+    @RequestMapping("/valitselohko/{kilpailuId}")
+    public String dataa(@PathVariable Long kilpailuId, Model model) {
+        Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+        model.addAttribute("kilpailu", kilpailu);
+        Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+        model.addAttribute("lohkot", lohkot);
+        return "valitselohko";
+    }
+    
+    @RequestMapping("/valikko/{kilpailuId}/{lohkoId}")
+    public String valikko(Model model, @PathVariable Long kilpailuId, @PathVariable Long lohkoId) {
+        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+        Lohko valittulohko=lohkoRepository.findByLohkoId(lohkoId);
+        model.addAttribute("lohko", valittulohko);
+    	return "valikko";
     }
     
     @RequestMapping("/testaus")

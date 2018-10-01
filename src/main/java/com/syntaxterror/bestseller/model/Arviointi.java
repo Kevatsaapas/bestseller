@@ -29,6 +29,9 @@ public class Arviointi {
     @JoinColumn(name = "tuomari_id")
     private Tuomari tuomari;
 
+    @Column
+    private Long kilpailuId;
+    
     @Embedded
     private Aloitus aloitus;
 
@@ -51,13 +54,23 @@ public class Arviointi {
     	this.arviointiPvm=null;
     	this.kilpailija=null;
     	this.tuomari=null;
+    	this.kilpailuId=null;
     }
 
-	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari) {
+	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari, Long kilpailuId) {
 		super();
 		this.arviointiPvm = arviointiPvm;
 		this.kilpailija = kilpailija;
 		this.tuomari = tuomari;
+		this.kilpailuId = kilpailuId;
+	}
+
+	public Long getKilpailuId() {
+		return kilpailuId;
+	}
+
+	public void setKilpailuId(Long kilpailuId) {
+		this.kilpailuId = kilpailuId;
 	}
 
 	public Long getArviointiId() {
@@ -140,10 +153,14 @@ public class Arviointi {
         this.yleisvaikutelma = yleisvaikutelma;
     }
 
-    @Override
-   	public String toString() {
-   		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
-   				+ ", tuomari=" + tuomari + "]";
-   	}
+	@Override
+	public String toString() {
+		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
+				+ ", tuomari=" + tuomari + ", kilpailuId=" + kilpailuId + ", aloitus=" + aloitus
+				+ ", kysymystenKasittely=" + kysymystenKasittely + ", paattaminen=" + paattaminen + ", ratkaisu="
+				+ ratkaisu + ", tarvekartoitus=" + tarvekartoitus + ", yleisvaikutelma=" + yleisvaikutelma + "]";
+	}
+
+   
 
 }

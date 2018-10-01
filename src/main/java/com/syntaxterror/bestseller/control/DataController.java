@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.control;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
@@ -28,6 +29,9 @@ public class DataController {
     
     @Autowired
     public TuomariRepository tuomariRepository;
+    
+    @Autowired
+    public ArviointiRepository arviointiRepository;
 
     @RequestMapping("/datat/{kilpailuId}")
     public String dataa(@PathVariable Long kilpailuId, Model model) {
@@ -38,6 +42,7 @@ public class DataController {
         Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
         model.addAttribute("lohkot", lohkot);
         model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
+        model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
         return "datat";
     }
 }

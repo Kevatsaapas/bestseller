@@ -27,27 +27,30 @@ public class ArviointiController {
 
     @Autowired
     public KilpailuRepository kilpailuRepository;
+    @Autowired
+    public LohkoRepository lohkoRepository;
 
-    @RequestMapping(value = "/uusi", method = RequestMethod.GET)
-    public String palautaArviointiLuontiSivu(Model model, Long kilpailuId){
+    @RequestMapping(value = "/uusi/{kilpailuId}/{lohkoId}", method = RequestMethod.GET)
+    public String palautaArviointiLuontiSivu(Model model,@PathVariable Long kilpailuId, @PathVariable Long lohkoId){
         model.addAttribute("arviointi", new Arviointi());
-        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuId(new Long(22)));
-        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(new Long(22)));
+       model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
+        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
         return "tuomarointi";
     }
 
-    @RequestMapping(value = "/tallenna", method = RequestMethod.POST)
-    public String tallennaArviointi(Arviointi arviointi){
+    @RequestMapping(value = "/tallenna/{kilpailuId}", method = RequestMethod.POST)
+    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId){
         Date arviointipvm = new Date();
         arviointi.setArviointiPvm(arviointipvm);
+        arviointi.setKilpailuId(kilpailuId);
+        System.out.println(arviointi);
         arviointiRepository.save(arviointi);
-
         return "redirect:/";
     }
 
     public String poistaArviointi(@PathVariable Long arviointiId){
         arviointiRepository.deleteById(arviointiId);
-
         return "";
     }
 
