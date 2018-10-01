@@ -45,4 +45,10 @@ public class DataController {
         model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
         return "datat";
     }
+    
+    @RequestMapping("/tarkastelu/{arviointiId}")
+    public String tarkastelu(@PathVariable Long arviointiId, Model model) {
+    	model.addAttribute("arviointi", arviointiRepository.findByArviointiId(arviointiId));
+    	return "tarkastelu";
+    }
 }
