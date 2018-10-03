@@ -38,4 +38,8 @@ public class Yleisvaikutelma {
     public void setYleisvaikutelmaVapaaPalaute(String yleisvaikutelmaVapaaPalaute) {
         this.yleisvaikutelmaVapaaPalaute = yleisvaikutelmaVapaaPalaute;
     }
+
+    public int getKokonaistulos(){
+        return aktiivinenKuunteluPist + tilannetajuPist;
+    }
 }

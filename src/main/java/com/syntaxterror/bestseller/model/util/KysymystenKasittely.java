@@ -38,4 +38,8 @@ public class KysymystenKasittely {
     public void setKasittelyVapaaPalaute(String kasittelyVapaaPalaute) {
         this.kasittelyVapaaPalaute = kasittelyVapaaPalaute;
     }
+
+    public int getKokonaistulos(){
+        return vastavaitteidenYmmartaminenPist + huolenaiheidenKasittelyPist;
+    }
 }

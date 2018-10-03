@@ -36,6 +36,9 @@ public class Kilpailu {
 	@OneToMany
 	private List<Lohko> lohkot;
 
+	@OneToMany
+	private List<Arviointi> arvioinnit;
+
 	public Kilpailu() {
 		super();
 		this.nimi = null;

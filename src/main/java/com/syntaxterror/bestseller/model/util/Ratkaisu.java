@@ -49,5 +49,9 @@ public class Ratkaisu {
     public void setRatkaisuVapaaPalaute(String ratkaisuVapaaPalaute) {
         this.ratkaisuVapaaPalaute = ratkaisuVapaaPalaute;
     }
+
+    public int getKokonaistulos(){
+        return haasteYhteenvetoPist + ratkaisunEsittaminenPist + hyotyjenEsilletuontiPist;
+    }
 }
 

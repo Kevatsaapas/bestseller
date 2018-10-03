@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Arviointi {
+public class Arviointi implements Comparable{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -161,6 +161,26 @@ public class Arviointi {
 				+ ratkaisu + ", tarvekartoitus=" + tarvekartoitus + ", yleisvaikutelma=" + yleisvaikutelma + "]";
 	}
 
-   
 
+    @Override
+    public int compareTo(Object o) {
+
+        Arviointi toinen = (Arviointi) o;
+
+        if (this.getKokonaistulos() - toinen.getKokonaistulos() > 0) return 1;
+        else if (this.getKokonaistulos() - toinen.getKokonaistulos() == 0) return 0;
+        else return -1;
+    }
+
+    public double getKokonaistulos() {
+
+        double painotettuAloitus = this.aloitus.getKokonaistulos() * 0.1;
+        double painotettuKasittely = this.kysymystenKasittely.getKokonaistulos() * 0.3;
+        double painotettuPaattaminen = this.paattaminen.getKokonaistulos() * 0.25;
+        double painotettuRatkaisu = this.ratkaisu.getKokonaistulos() * 0.1;
+        double painotettuTarvekartoitus = this.tarvekartoitus.getKokonaistulos() * 0.1;
+        double painotettuYleisvaikutelma = this.yleisvaikutelma.getKokonaistulos() * 0.1;
+
+        return painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
+    }
 }

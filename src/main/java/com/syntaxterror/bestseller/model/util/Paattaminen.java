@@ -38,5 +38,9 @@ public class Paattaminen {
     public void setPaattaminenVapaaPalaute(String paattaminenVapaaPalaute) {
         this.paattaminenVapaaPalaute = paattaminenVapaaPalaute;
     }
+
+    public int getKokonaistulos(){
+        return sitoutumisenEhdotusPist + sitoutumisenSaaminenPist;
+    }
 }
 

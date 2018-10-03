@@ -49,4 +49,9 @@ public class Aloitus {
     public void setAloitusVapaaPalaute(String aloitusVapaaPalaute) {
         this.aloitusVapaaPalaute = aloitusVapaaPalaute;
     }
+
+    public int getKokonaistulos(){
+
+        return selkeaEsittaytyminenPist + tapaamisenAjankayttoPist + tapaamisenLahtotilannePist;
+    }
 }

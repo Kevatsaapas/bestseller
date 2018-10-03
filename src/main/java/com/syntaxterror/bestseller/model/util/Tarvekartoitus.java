@@ -60,4 +60,8 @@ public class Tarvekartoitus {
     public void setTarvekartoitusVapaaPalaute(String tarvekartoitusVapaaPalaute) {
         this.tarvekartoitusVapaaPalaute = tarvekartoitusVapaaPalaute;
     }
+
+    public int getKokonaistulos(){
+        return perustietojenSelvitysPist + asiakkaanNykytilaPist + tarpeenKehittaminenPist + paatoksentekoprosessiPist;
+    }
 }
