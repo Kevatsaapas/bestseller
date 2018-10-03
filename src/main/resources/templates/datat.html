@@ -48,10 +48,14 @@
 				<a href="index.html" th:href="@{/}"> <img
 					src="../static/img/BSC_sinetti_logo.png"
 					th:src="@{/img/BSC_sinetti_logo.png}" alt="logo-sm" class="logo-sm" /></a>
-				<h1 class="headertext">Best Seller Competition 2019 - Data</h1>
+				<h1 class="headertext" th:text="${kilpailu.nimi}+' - Data'"></h1>
+				<form th:action="@{'/luodatat/'+${kilpailu.kilpailuId}}">
+					<button class="btn btn-sm btn-danger">Lisää Testidata</button>
+				</form>
 			</div>
 			<hr>
-
+			
+			
 			<!-- Kilpailudata -->
 
 			<div class="row padding">
@@ -132,6 +136,8 @@
 				<form th:action="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">
 					<button class="btn btn-sm btn-info">Lisää uusi</button>
 				</form>
+
+
 			</div>
 			<hr>
 
