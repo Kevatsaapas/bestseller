@@ -127,3 +127,20 @@ Date deit = new Date();
 			tuomarirepo.save(tuo4);
 			Tuomari tuo5 = new Tuomari("5", "4", bestseller.getKilpailuId());
 			tuomarirepo.save(tuo5);
+			
+			
+			    public void luoKilpailijat(Kilpailu kilpailu){
+    	Long kilpailuId = kilpailu.getkilpailuId();
+    	Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "1");
+    		for(int i=0; i<5; i++){
+    			int randomNum = ThreadLocalRandom.current().nextInt(0, 4 + 1);
+    			String koulu = koulut[randomNum];
+    			Kilpailija kilpailija = new Kilpailija(etunimet[i], sukunimet[i], 0, koulu, lohko, kilpailuId);
+    			kilpailijaRepository.save(kilpailija);
+    	}
+    	}
+			
+			
+			private String[] etunimet = {"Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli", "Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari", "Sofia", "Tupu", "Hupu", "Lupu", "Aku"};
+	private String[] sukunimet= {"Korhonen", "Virtanen", "Mäkinen", "Nieminen", "Mäkelä", "Hämäläinen", "Laine", "Heikkinen", "Koskinen", "Järvinen", "Lehtonen", "Lehtinen", "Saarinen", "Salminen", "Heinonen", "Niemi", "Heikkilä", "Kinnunen", "Salonen", "Turunen", "Salo", "Laitinen", "Tuominen", "Rantanen"};
+	private String[] koulut = {"Haaga-Helia Ammattikorkeakoulu", "Metropolia Ammattikorkeakoulu", "Laurea Ammattikorkeakoulu", "Helsinki Business College"};

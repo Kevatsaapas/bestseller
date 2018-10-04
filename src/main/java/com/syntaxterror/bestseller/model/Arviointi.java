@@ -31,7 +31,7 @@ public class Arviointi implements Comparable{
 
     @Column
     private Long kilpailuId;
-    
+
     @Embedded
     private Aloitus aloitus;
 
