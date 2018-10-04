@@ -66,6 +66,15 @@ public class DataController {
 		model.addAttribute("arviointi", arviointiRepository.findByArviointiId(arviointiId));
 		return "tarkastelu";
 	}
+	
+	
+	 @RequestMapping("/poistaarviointi/{arviointiId}")
+	    public String poistaArviointi(@PathVariable Long arviointiId){
+		 	Long kilpailuId=arviointiRepository.findByArviointiId(arviointiId).getKilpailuId();
+		 	String kilid = kilpailuId.toString();
+	        arviointiRepository.deleteById(arviointiId);
+	        return "redirect:/datat/"+kilid;
+	    }
 
 	@RequestMapping("/luodatat/{kilpailuId}")
 	public String luoDataa(@PathVariable Long kilpailuId, Model model) {

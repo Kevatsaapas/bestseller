@@ -20,7 +20,7 @@ public class LeaderboardService {
         List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuId(kilpailuId);
 
         Collections.sort(arvioinnit);
-
+        Collections.reverse(arvioinnit);
         return arvioinnit;
     }
 

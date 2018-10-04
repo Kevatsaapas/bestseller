@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 @Controller
 @RequestMapping(value = "/arviointi")
 public class ArviointiController {
@@ -44,14 +46,22 @@ public class ArviointiController {
         Date arviointipvm = new Date();
         arviointi.setArviointiPvm(arviointipvm);
         arviointi.setKilpailuId(kilpailuId);
-        System.out.println(arviointi);
+        
+        double painotettuAloitus = arviointi.getAloitus().getKokonaistulos() * 0.1;
+        double painotettuKasittely = arviointi.getKysymystenKasittely().getKokonaistulos() * 0.3;
+        double painotettuPaattaminen = arviointi.getPaattaminen().getKokonaistulos() * 0.25;
+        double painotettuRatkaisu = arviointi.getRatkaisu().getKokonaistulos() * 0.1;
+        double painotettuTarvekartoitus = arviointi.getTarvekartoitus().getKokonaistulos() * 0.1;
+        double painotettuYleisvaikutelma = arviointi.getYleisvaikutelma().getKokonaistulos() * 0.1;
+        
+        double kokonaistulos = painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
+        arviointi.setKokonaistulos(kokonaistulos);
+        System.out.println(arviointi.getKokonaistulos());
         arviointiRepository.save(arviointi);
         return "redirect:/";
     }
-
-    public String poistaArviointi(@PathVariable Long arviointiId){
-        arviointiRepository.deleteById(arviointiId);
-        return "";
-    }
+    
+   
+    
 
 }

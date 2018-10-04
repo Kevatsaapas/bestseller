@@ -4,6 +4,8 @@ import com.syntaxterror.bestseller.model.util.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +33,9 @@ public class Arviointi implements Comparable{
 
     @Column
     private Long kilpailuId;
+    
+    @Column
+    private double kokonaistulos;
 
     @Embedded
     private Aloitus aloitus;
@@ -55,14 +60,22 @@ public class Arviointi implements Comparable{
     	this.kilpailija=null;
     	this.tuomari=null;
     	this.kilpailuId=null;
+    	this.kokonaistulos=0;
     }
 
-	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari, Long kilpailuId) {
+	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari, Long kilpailuId, double kokonaistulos) {
 		super();
 		this.arviointiPvm = arviointiPvm;
 		this.kilpailija = kilpailija;
 		this.tuomari = tuomari;
 		this.kilpailuId = kilpailuId;
+		this.kokonaistulos = kokonaistulos;
+	}
+
+	
+	
+	public void setKokonaistulos(double kokonaistulos) {
+		this.kokonaistulos = kokonaistulos;
 	}
 
 	public Long getKilpailuId() {
@@ -153,16 +166,19 @@ public class Arviointi implements Comparable{
         this.yleisvaikutelma = yleisvaikutelma;
     }
 
-	@Override
-	public String toString() {
-		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
-				+ ", tuomari=" + tuomari + ", kilpailuId=" + kilpailuId + ", aloitus=" + aloitus
-				+ ", kysymystenKasittely=" + kysymystenKasittely + ", paattaminen=" + paattaminen + ", ratkaisu="
-				+ ratkaisu + ", tarvekartoitus=" + tarvekartoitus + ", yleisvaikutelma=" + yleisvaikutelma + "]";
-	}
+	
 
 
     @Override
+	public String toString() {
+		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
+				+ ", tuomari=" + tuomari + ", kilpailuId=" + kilpailuId + ", kokonaistulos=" + kokonaistulos
+				+ ", aloitus=" + aloitus + ", kysymystenKasittely=" + kysymystenKasittely + ", paattaminen="
+				+ paattaminen + ", ratkaisu=" + ratkaisu + ", tarvekartoitus=" + tarvekartoitus + ", yleisvaikutelma="
+				+ yleisvaikutelma + "]";
+	}
+
+	@Override
     public int compareTo(Object o) {
 
         Arviointi toinen = (Arviointi) o;
@@ -172,15 +188,9 @@ public class Arviointi implements Comparable{
         else return -1;
     }
 
-    public double getKokonaistulos() {
+	public double getKokonaistulos() {
+		return kokonaistulos;
+	}
 
-        double painotettuAloitus = this.aloitus.getKokonaistulos() * 0.1;
-        double painotettuKasittely = this.kysymystenKasittely.getKokonaistulos() * 0.3;
-        double painotettuPaattaminen = this.paattaminen.getKokonaistulos() * 0.25;
-        double painotettuRatkaisu = this.ratkaisu.getKokonaistulos() * 0.1;
-        double painotettuTarvekartoitus = this.tarvekartoitus.getKokonaistulos() * 0.1;
-        double painotettuYleisvaikutelma = this.yleisvaikutelma.getKokonaistulos() * 0.1;
-
-        return painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
-    }
+    
 }
