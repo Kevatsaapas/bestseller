@@ -31,6 +31,12 @@
                 <h1 class="headertext">Best Seller Admin</h1>
                 
             </div>
+             <div class="col-lg-4 col-md-4">
+                                <form th:action="@{/}">
+                                    <button class="btn btn-lg btn-danger">Poistu</a></button>
+                                </form>
+                            </div>
+            <div class="row">
                 <form th:action="@{/luokilpailu}">
                     <button class="btn btn-lg btn-info">Luo kilpailu</button>
                 </form>
@@ -64,14 +70,6 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <!-- Footer -->
-
-                <div class="row padding">
-                    <form action="testaus.html" th:action="@{/testaus}">
-                        <button class="btn btn-lg btn-info">Takaisin</button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>

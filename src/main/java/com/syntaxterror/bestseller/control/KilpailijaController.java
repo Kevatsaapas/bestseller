@@ -41,6 +41,20 @@ public class KilpailijaController {
         return "luokilpailija";
 
     }
+    
+    
+    @RequestMapping("/editkilpailija/{kilpailijaId}")
+    @Transactional
+    public String editKilpailija(Model model, @PathVariable Long kilpailijaId) {
+    	Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
+        Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailija.getKilpailuId());
+        model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
+        model.addAttribute("kilpailu", kilpailu);
+        model.addAttribute("kilpailija", kilpailija);
+        return "editkilpailija";
+
+    }
+    
     @RequestMapping(value = "/tallennakilpailija", method = RequestMethod.POST)
     @Transactional
     public String tallennaKilpailija(Kilpailija kilpailija) {
@@ -49,6 +63,7 @@ public class KilpailijaController {
         String redirect = "redirect:/datat/"+ Long.toString(kilpailija.getKilpailuId());
         return redirect;
     }
+    
 
     @RequestMapping(value = "/poistakilpailija/{kilpailijaId}", method = RequestMethod.GET)
     @Transactional
@@ -73,8 +88,18 @@ public class KilpailijaController {
         model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
         model.addAttribute("kilpailu", kilpailu);
         return "luotuomari";
-
     }
+    
+    @RequestMapping("/edittuomari/{tuomariId}")
+    public String luoTuomari(Model model, @PathVariable Long tuomariId) {
+       Tuomari tuomari=tuomariRepository.findByTuomariId(tuomariId);
+       Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(tuomari.getKilpailuId());
+        model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
+        model.addAttribute("kilpailu", kilpailu);
+        model.addAttribute("tuomari", tuomari);
+        return "edittuomari";
+    }
+    
     @RequestMapping(value = "/tallennatuomari", method = RequestMethod.POST)
     public String tallennaTuomari(Tuomari tuomari) {
         tuomariRepository.save(tuomari);

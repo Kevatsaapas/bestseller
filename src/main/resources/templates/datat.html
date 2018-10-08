@@ -52,6 +52,7 @@
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,7 @@
                             <td>Nimi</td>
                             <td>Pvm</td>
                             <td>Paikka</td>
+                            <td></td>
                         </tr>
 
                         <tr>
@@ -67,6 +69,9 @@
                             <td th:text="${kilpailu.nimi}"></td>
                             <td th:text="${kilpailu.pvm}"></td>
                             <td th:text="${kilpailu.paikka}"></td>
+                            <td><form th:action="@{'/editkilpailu/'+${kilpailu.kilpailuId}}">
+                                    <button class="btn btn-sm btn-warning">Muokkaa</button>
+                                </form></td>
                         </tr>
                     </tbody>
 
@@ -106,7 +111,7 @@
                             <td th:text="${kilpailija.koulu}"></td>
                             <td th:text="${kilpailija.lohko.lohkoNro}"></td>
                             <td>
-                                <form>
+                                <form th:action="@{'/editkilpailija/'+${kilpailija.kilpailijaId}}">
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
                                 </form>
                             </td>
@@ -178,7 +183,7 @@
                             <td th:text="${tuomari.tuomariNro}"></td>
                             <td th:text="${tuomari.lohkoNro}"></td>
                             <td>
-                                <form>
+                               <form th:action="@{'/edittuomari/'+${tuomari.tuomariId}}">
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
                                 </form>
                             </td>
@@ -243,7 +248,6 @@
                 </div>
             </div>
         </div>
-	</div>
 </body>
 
 </html>
