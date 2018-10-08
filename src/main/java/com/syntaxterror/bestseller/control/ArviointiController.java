@@ -38,6 +38,8 @@ public class ArviointiController {
        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
         model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
         model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
+        model.addAttribute("lohko", lohkoRepository.findByLohkoId(lohkoId));
+
         return "tuomarointi";
     }
 
