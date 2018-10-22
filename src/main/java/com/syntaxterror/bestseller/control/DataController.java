@@ -47,7 +47,7 @@ public class DataController {
 			"Heikkilä", "Kinnunen", "Salonen", "Turunen", "Salo", "Laitinen", "Tuominen", "Rantanen" };
 	private String[] koulut = { "Haaga-Helia Ammattikorkeakoulu", "Metropolia Ammattikorkeakoulu",
 			"Laurea Ammattikorkeakoulu", "Helsinki Business College" };
-
+	private String[] postit = {"sähköposti@sähköposti.fi", "HH>Laure@paras.com", "niilo22@lempäälä.fi","OnniSuoraanMaagista@lempäälä.fi"};
 	@RequestMapping("/datat/{kilpailuId}")
 	public String dataa(@PathVariable Long kilpailuId, Model model) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
@@ -100,7 +100,7 @@ public class DataController {
 			int kohta = indeksi+i;
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
 			String koulu = koulut[randomNum];
-			Kilpailija kilpailija = new Kilpailija(etunimet[kohta], sukunimet[kohta], 0, koulu, lohko, kilpailuId);
+			Kilpailija kilpailija = new Kilpailija(etunimet[kohta], sukunimet[kohta],0, postit[kohta], koulu, lohko, kilpailuId);
 			kilpailijaRepository.save(kilpailija);
 		}
 		for(int luku=1; luku<3; luku++){

@@ -6,9 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 
 @EnableAutoConfiguration
@@ -38,19 +36,57 @@ public class Kilpailu {
 
 	@OneToMany
 	private List<Arviointi> arvioinnit;
+	
+	private Long paiva;
+	
+	private Long kuukausi;
+	
+	private Long vuosi;
 
 	public Kilpailu() {
 		super();
 		this.nimi = null;
 		this.pvm = null;
 		this.paikka = null;
+		this.paiva= null;
+		this.kuukausi = null;
+		this.vuosi = null;
 	}
 
-	public Kilpailu(String nimi, Date pvm, String paikka) {
+	public Kilpailu(String nimi, Date pvm, String paikka, Long paiva, Long kuukausi, Long vuosi) {
 		super();
+		this.paiva=paiva;
+		this.kuukausi=kuukausi;
+		this.vuosi=vuosi;
 		this.nimi = nimi;
 		this.pvm = pvm;
 		this.paikka = paikka;
+	}
+
+	
+	
+	public Long getPaiva() {
+		return paiva;
+	}
+
+	public void setPaiva(Long paiva) {
+		this.paiva = paiva;
+	}
+
+	public Long getKuukausi() {
+		return kuukausi;
+	}
+
+	public void setKuukausi(Long kuukausi) {
+		this.kuukausi = kuukausi;
+	}
+
+	public Long getVuosi() {
+		return vuosi;
+	}
+
+	public void setVuosi(Long vuosi) {
+		this.vuosi = vuosi;
 	}
 
 	public Long getkilpailuId() {
@@ -97,10 +133,13 @@ public class Kilpailu {
         this.lohkot = lohkot;
     }
 
-    @Override
+	@Override
 	public String toString() {
-		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + "]";
+		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka
+				+ ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + ", paiva=" + paiva + ", kuukausi=" + kuukausi
+				+ ", vuosi=" + vuosi + "]";
 	}
-	
+
+    
 	
 }

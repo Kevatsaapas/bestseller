@@ -24,6 +24,37 @@
                     <input type="text" class="nimi" th:required="required" th:field="*{nimi}"/>
                 </div>
                 
+                 <div class="form-group">
+                	<label for="pvm">
+                		Päivämäärä
+                	</label>
+                	<select name="paiva" id="paiva">
+                    <option value="asd" selected>Päivä:</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="14">14</option>
+                </select>
+                
+                	<select name="kuukausi" id="kuukausi">
+                    <option value="asd" selected>Kuukausi:</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                
+                <select name="vuosi" id="vuosi">
+                    <option value="asd" selected>Vuosi:</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="2018">2018</option>
+                </select>
+                
+                </div>
+                
                 <div class="form-group">
 
                     <label for="paikka">
