@@ -1,4 +1,4 @@
-package com.syntaxterror.bestseller.control;
+ package com.syntaxterror.bestseller.control;
 
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
