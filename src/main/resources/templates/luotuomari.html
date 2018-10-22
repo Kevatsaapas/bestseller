@@ -27,22 +27,36 @@
 </head>
 
 <body>
-	<h2>Luo uusi tuomari</h2>
+	<div class="standard h-100">
+		<div class="container tuom">
 
-	<form role="form" th:object="${tuomari}" th:action="@{/tallennatuomari}" action="#" method="post">
-		<div class="form-group">
-			<label for="tuomariNro">Tuomarinumero:</label> <input type="text" th:required="required" th:field="*{tuomariNro}" />
-		</div>
+			<!-- Header -->
 
-		<h2>Valitse alkueränumero:</h2>
-		<ul>
-			<li th:each="lohko:${lohkot}"><input type="radio" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" /> <label
-				 th:for="${lohkoNro}" th:text="${lohko.lohkoNro}">Alkueränro</label>
-			</li>
-		</ul>
-		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton" type="submit"
-		 class="btn btn-primary" value="Tallenna">
-	</form>
+			<div class="row padding">
+				<a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="{/img/BSC_sinetti_logo.png}"
+					 alt="logo-sm" class="logo-sm" /></a>
+				<h1 class="headertext">Luo uusi tuomari</h1>
+			</div>
+			<hr>
+
+			<!-- Main -->
+
+			<div class="row padding">
+				<form role="form" th:object="${tuomari}" th:action="@{/tallennatuomari}" action="#" method="post">
+					<div class="form-group">
+						<label for="tuomariNro">Tuomarinumero:</label> <input type="text" th:required="required" th:field="*{tuomariNro}" />
+					</div>
+
+					<h3>Valitse alkueränumero:</h3>
+					<ul>
+						<li type="square" th:each="lohko:${lohkot}"><input type="radio" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" />
+							<label th:for="${lohkoNro}" th:text="${lohko.lohkoNro}">Alkueränro</label>
+						</li>
+					</ul>
+					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton"
+					 type="submit" class="btn btn-primary" value="Tallenna">
+				</form>
+			</div>
 
 </body>
 

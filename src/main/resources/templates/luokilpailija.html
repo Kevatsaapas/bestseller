@@ -27,35 +27,50 @@
 </head>
 
 <body>
-	<h2>Luo uusi kilpailija</h2>
+	<div class="standard h-100">
+		<div class="container tuom">
 
-	<form role="form" th:object="${kilpailija}" th:action="@{/tallennakilpailija}" action="#" method="post">
-		<div class="form-group">
-			<label for="etunimi">Etunimi</label> <input type="text" th:required="required" th:field="*{etunimi}" />
+			<!-- Header -->
+
+			<div class="row padding">
+				<a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="{/img/BSC_sinetti_logo.png}"
+					 alt="logo-sm" class="logo-sm" /></a>
+				<h1 class="headertext">Luo uusi kilpailija</h1>
+			</div>
+			<hr>
+
+			<!-- Main -->
+
+			<div class="row padding">
+				<form role="form" th:object="${kilpailija}" th:action="@{/tallennakilpailija}" action="#" method="post">
+					<div class="form-group">
+						<label for="etunimi">Etunimi</label> <input type="text" th:required="required" th:field="*{etunimi}" />
+					</div>
+
+					<div class="form-group">
+						<label for="sukunimi">Sukunimi</label> <input type="text" id="sukunimi" th:required="required" th:field="*{sukunimi}" />
+					</div>
+
+					<div class="form-group">
+						<label for="sukunimi">Sähköpsti:</label> <input type="text" id="sahkoposti" th:required="required" th:field="*{sposti}" />
+					</div>
+
+					<div class="form-group">
+						<label for="koulu">Oppilaitos</label> <input type="text" id="koulu" th:required="required" th:field="*{koulu}" />
+					</div>
+
+					<h2>Valitse Alkueränumero:</h2>
+					<ul>
+						<li type="square" th:each="lohko:${lohkot}"><input type="radio" th:field="*{lohko}" th:value="${lohko.lohkoId}" />
+							<label th:for="${#ids.prev('lohko')}" th:text="${lohko.lohkoNro}">Alkueränro</label>
+						</li>
+					</ul>
+					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton"
+					 type="submit" class="btn btn-primary" value="Tallenna">
+				</form>
+			</div>
 		</div>
-
-		<div class="form-group">
-			<label for="sukunimi">Sukunimi</label> <input type="text" id="sukunimi" th:required="required" th:field="*{sukunimi}" />
-		</div>
-
-		<div class="form-group">
-			<label for="sukunimi">Sähköpsti:</label> <input type="text" id="sahkoposti" th:required="required" th:field="*{sposti}" />
-		</div>
-
-		<div class="form-group">
-			<label for="koulu">Oppilaitos</label> <input type="text" id="koulu" th:required="required" th:field="*{koulu}" />
-		</div>
-
-		<h2>Valitse Alkueränumero:</h2>
-		<ul>
-			<li th:each="lohko:${lohkot}"><input type="radio" th:field="*{lohko}" th:value="${lohko.lohkoId}" /> <label th:for="${#ids.prev('lohko')}"
-				 th:text="${lohko.lohkoNro}">Alkueränro</label>
-			</li>
-		</ul>
-		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton" type="submit"
-		 class="btn btn-primary" value="Tallenna">
-	</form>
-
+	</div>
 </body>
 
 </html>

@@ -49,9 +49,7 @@
                                 <form th:action="@{/arviointi/uusi/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
                                     <button class="btn btn-lg btn-info">Tuomari</button>
                                 </form>
-
                             </div>
-
                             <div class="col-lg-4 col-md-4">
                                 <form th:action="@{/ostaja}">
                                     <button class="btn btn-lg btn-success">Ostaja</a></button>
@@ -59,15 +57,11 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <form th:action="@{/}">
-                                    <button class="btn btn-lg btn-info">Takaisin</a></button>
+                                    <button class="btn btn-lg btn-warning">Takaisin</a></button>
                                 </form>
                             </div>
-
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
         </div>
