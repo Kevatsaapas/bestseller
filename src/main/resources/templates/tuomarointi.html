@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <form id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}(kilpailuId=${kilpailu.kilpailuId})}" th:object="${arviointi}"
+    <form id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}/{lohkoId}(kilpailuId = ${kilpailu.kilpailuId}, lohkoId=${lohko.lohkoId})}" th:object="${arviointi}"
         method="POST">
         <div class="standard h-auto">
             <div class="container tuom">
@@ -35,7 +35,7 @@
                 <div class="row padding">
                     <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
                         Kilpailija:
-                        <select th:field="*{kilpailija}" name="kilpailija" id="kilpailijaId">
+                        <select th:field="*{kilpailija}" name="kilpailija11" id="kilpailijaId">
                             <option value="kilpailijaId" selected>Valitse:</option>
                             <ul>
                                 <li th:each="kilpailija:${kilpailijat}">
@@ -48,6 +48,7 @@
                         </select>
                     </div>
                     <input type="hidden" th:field="*{kokonaistulos}" th:value=0 value=0 />
+                    <input type="hidden" th:field="*{lohko}" th:value="${lohko.lohkoId}"  />
                     <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
                         Tuomarin nro: <select name="tuomari" id="tuomari">
                             <option value="asd" selected>Valitse:</option>

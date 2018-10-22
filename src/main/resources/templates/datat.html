@@ -212,18 +212,21 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </thead>
                     <tr>
                         <td>Id</td>
                         <td>Kilpailijan nimi</td>
                         <td>Tuomarin numero</td>
                         <td>Pvm</td>
+                        <td>Alkuerä</td>
                     </tr>
                     <tr th:each="arviointi:${arvioinnit}">
                         <td th:text="${arviointi.arviointiId}"></td>
                         <td th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
                         <td th:text="${arviointi.tuomari.tuomariNro}"></td>
                         <td th:text="${arviointi.arviointiPvm}"></td>
+                        <td th:text="${arviointi.lohko.lohkoNro}"></td>
                         <td>
                             <form th:action="@{'/tarkastelu/'+${arviointi.arviointiId}}">
                                 <button class="btn btn-sm btn-warning">Tarkastele</button>
@@ -241,8 +244,8 @@
                 <!-- Footer -->
 
                 <div class="row padding">
-                    <form href="index.html" th:href="@{/}">
-                        <button class="btn btn-lg btn-info">Takaisin</button>
+                    <form th:action="@{/}">
+                        <button class="btn btn-lg btn-info">Takaisin</a></button>
                     </form>
                 </div>
             </div>
