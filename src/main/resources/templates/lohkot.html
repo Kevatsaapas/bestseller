@@ -27,32 +27,30 @@
 </head>
 
 <body>
-    <div class="standard h-100">
-        <div class="container tuom">
+    <h2>Luo alkuerät</h2>
 
-            <!-- Header -->
+    <form role="form" th:object="${kilpailu}" th:action="@{/tallennalohkot}" action="#" method="post">
+        <div class="form-group">
 
-            <div class="row padding">
-                <a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="{/img/BSC_sinetti_logo.png}"
-                        alt="logo-sm" class="logo-sm" /></a>
-                <h1 class="headertext">Luo alkuerät</h1>
-            </div>
-            <hr>
+            <label for="nimi">
+                Kilpailun nimi
+            </label>
+            <input type="text" class="nimi" th:required="required" th:field="*{nimi}" />
+        </div>
 
-            <!-- Main -->
 
-            <div class="row padding">
-                <form role="form" th:object="${kilpailu}" th:action="@{/tallennalohkot}" action="#" method="post">
+        <div class="form-group">
 
-                    <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna" />
-                </form>
-            </div>
+            <label for="paikka">
+                Kilpailun paikka
+            </label>
+            <input type="text" class="form-control" id="paikka" th:required="required" th:field="*{paikka}" />
+            <br />
 
         </div>
-    </div>
-
-
-
+        <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna">
+        </input>
+    </form>
 
 </body>
 
