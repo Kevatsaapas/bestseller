@@ -27,23 +27,39 @@
 </head>
 
 <body>
-	<h2>Muokkaa tuomaria</h2>
+	<div class="standard h-100">
+		<div class="container tuom">
 
-	<form role="form" th:object="${tuomari}" th:action="@{/tallennatuomari}" action="#" method="post">
-		<input type="hidden" th:required="required" th:field="*{tuomariId}" />
-		<div class="form-group">
-			<label for="tuomariNro">Tuomarinumero:</label> <input type="text" th:required="required" th:field="*{tuomariNro}" />
+			<!-- Header -->
+
+			<div class="row padding">
+				<a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="{/img/BSC_sinetti_logo.png}"
+					 alt="logo-sm" class="logo-sm" /></a>
+				<h1 class="headertext">Muokkaa tuomaria</h1>
+			</div>
+			<hr>
+
+			<!-- Main -->
+
+			<div class="row padding">
+				<form role="form" th:object="${tuomari}" th:action="@{/tallennatuomari}" action="#" method="post">
+					<input type="hidden" th:required="required" th:field="*{tuomariId}" />
+					<div class="form-group">
+						<label for="tuomariNro">Tuomarinumero:</label> <input type="text" th:required="required" th:field="*{tuomariNro}" />
+					</div>
+
+					<h2>Valitse Alkueränumero:</h2>
+					<ul>
+						<li type="square" th:each="lohko:${lohkot}"><input type="radio" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" />
+							<label th:for="${lohkoNro}" th:text="${lohko.lohkoNro}">Alkueränro</label>
+						</li>
+					</ul>
+					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton"
+					 type="submit" class="btn btn-primary" value="Tallenna">
+				</form>
+			</div>
 		</div>
-
-		<h2>Valitse Alkueränumero:</h2>
-		<ul>
-			<li th:each="lohko:${lohkot}"><input type="radio" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" /> <label
-				 th:for="${lohkoNro}" th:text="${lohko.lohkoNro}">Alkueränro</label>
-			</li>
-		</ul>
-		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton" type="submit"
-		 class="btn btn-primary" value="Tallenna">
-	</form>
+	</div>
 
 </body>
 

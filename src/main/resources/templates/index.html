@@ -37,7 +37,8 @@
                     </div>
 
                     <div class="inner cover">
-                        <img th:src="@{./img/BSC_sinetti_logo.png}" class="logo" alt="logo" />
+                        <img th:src="@{./img/BSC_sinetti_logo.png}" src="../static/img/BSC_sinetti_logo.png" class="logo"
+                            alt="logo" />
                         <h3>Tervetuloa!</h3>
 
                         <p class="lead">Valitse kilpailu:
@@ -62,14 +63,14 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="row">
+                                <form th:action="@{/testaus}">
+                                    <button class="btn btn-md btn-custom btn-danger">Admin</a></button>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-4">
-            <form th:action="@{/testaus}">
-                <button class="btn btn-lg btn-danger">Admin</a></button>
-            </form>
         </div>
     </div>
 
