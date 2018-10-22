@@ -52,7 +52,7 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="kilpailu:${kilpailut}">
-                                            <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}">asdasd</td>
+                                            <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}"></td>
                                             <td>
                                                 <form th:action="@{'/valitselohko/'+${kilpailu.kilpailuId}}">
                                                     <button class="btn btn-sm btn-success">Valitse</button>
@@ -62,9 +62,7 @@
                                     </tbody>
                                 </table>
                             </div>
-
                     </div>
-
                 </div>
             </div>
         </div>

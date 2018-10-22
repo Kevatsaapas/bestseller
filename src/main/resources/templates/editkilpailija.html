@@ -45,10 +45,10 @@
 			<label for="koulu">Oppilaitos</label> <input type="text" id="koulu" th:required="required" th:field="*{koulu}" />
 		</div>
 
-		<h2>Valitse Lohkonumero:</h2>
+		<h2>Valitse Alkueränumero:</h2>
 		<ul>
 			<li th:each="lohko:${lohkot}"><input type="radio" th:field="*{lohko}" th:value="${lohko.lohkoId}" /> <label th:for="${#ids.prev('lohko')}"
-				 th:text="${lohko.lohkoNro}">Lohkonro</label>
+				 th:text="${lohko.lohkoNro}">Alkueränro</label>
 			</li>
 		</ul>
 		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton" type="submit"
