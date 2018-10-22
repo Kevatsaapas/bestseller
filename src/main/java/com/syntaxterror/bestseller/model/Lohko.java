@@ -90,7 +90,6 @@ public class Lohko {
         this.ostaja = ostaja;
     }
 
-
 	@Override
 	public String toString() {
 		return "Lohko [lohkoId=" + lohkoId + ", lohkoNro=" + lohkoNro + ", kilpailu=" + kilpailu + "]";

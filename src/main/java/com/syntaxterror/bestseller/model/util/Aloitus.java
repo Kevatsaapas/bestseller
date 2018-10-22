@@ -7,38 +7,38 @@ import javax.persistence.Embeddable;
 public class Aloitus {
 
     @Column
-    private int selkeaEsittaytyminenPist;
+    private String selkeaEsittaytyminenPist;
 
     @Column
-    private int tapaamisenLahtotilannePist;
+    private String tapaamisenLahtotilannePist;
 
     @Column
-    private int tapaamisenAjankayttoPist;
+    private String tapaamisenAjankayttoPist;
 
     @Column
     private String aloitusVapaaPalaute;
 
-    public int getSelkeaEsittaytyminenPist() {
+    public String getSelkeaEsittaytyminenPist() {
         return selkeaEsittaytyminenPist;
     }
 
-    public void setSelkeaEsittaytyminenPist(int selkeaEsittaytyminenPist) {
+    public void setSelkeaEsittaytyminenPist(String selkeaEsittaytyminenPist) {
         this.selkeaEsittaytyminenPist = selkeaEsittaytyminenPist;
     }
 
-    public int getTapaamisenLahtotilannePist() {
+    public String getTapaamisenLahtotilannePist() {
         return tapaamisenLahtotilannePist;
     }
 
-    public void setTapaamisenLahtotilannePist(int tapaamisenLahtotilannePist) {
+    public void setTapaamisenLahtotilannePist(String tapaamisenLahtotilannePist) {
         this.tapaamisenLahtotilannePist = tapaamisenLahtotilannePist;
     }
 
-    public int getTapaamisenAjankayttoPist() {
+    public String getTapaamisenAjankayttoPist() {
         return tapaamisenAjankayttoPist;
     }
 
-    public void setTapaamisenAjankayttoPist(int tapaamisenAjankayttoPist) {
+    public void setTapaamisenAjankayttoPist(String tapaamisenAjankayttoPist) {
         this.tapaamisenAjankayttoPist = tapaamisenAjankayttoPist;
     }
 
@@ -52,6 +52,6 @@ public class Aloitus {
 
     public int getKokonaistulos(){
 
-        return selkeaEsittaytyminenPist + tapaamisenAjankayttoPist + tapaamisenLahtotilannePist;
+        return Integer.parseInt(selkeaEsittaytyminenPist) + Integer.parseInt(tapaamisenAjankayttoPist) + Integer.parseInt(tapaamisenLahtotilannePist);
     }
 }

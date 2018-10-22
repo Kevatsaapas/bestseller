@@ -21,8 +21,8 @@ public class Kriteeri {
     @Max(7)
     @Column(name = "kriteeri_piste")
     @NotNull
-    private Integer kriteeriPiste;
-
+    private int kriteeriPiste;
+    
     
     @Column(name = "osaAlue_id")
     private Long OsaAlueId;
@@ -39,7 +39,7 @@ public class Kriteeri {
 
    
 
-	public Kriteeri(String kriteeriTeksti, Integer kriteeriPiste, Long OsaAlueId, Long kilpailuId) {
+	public Kriteeri(String kriteeriTeksti, int kriteeriPiste, Long OsaAlueId, Long kilpailuId) {
 		super();
 		this.kriteeriTeksti = kriteeriTeksti;
 		this.kriteeriPiste = kriteeriPiste;
@@ -63,11 +63,11 @@ public class Kriteeri {
         this.kriteeriTeksti = kriteeriTeksti;
     }
 
-    public Integer getKriteeriPiste() {
+    public int getKriteeriPiste() {
         return kriteeriPiste;
     }
 
-    public void setKriteeriPiste(Integer kriteeriPiste) {
+    public void setKriteeriPiste(int kriteeriPiste) {
         this.kriteeriPiste = kriteeriPiste;
     }
 

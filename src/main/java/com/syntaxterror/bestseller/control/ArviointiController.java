@@ -2,7 +2,6 @@ package com.syntaxterror.bestseller.control;
 
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
-import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,18 +38,14 @@ public class ArviointiController {
        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
         model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
         model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
-        model.addAttribute("lohko", lohkoRepository.findByLohkoId(lohkoId));
-
         return "tuomarointi";
     }
 
-    @RequestMapping(value = "/tallenna/{kilpailuId}/{lohkoId}", method = RequestMethod.POST)
-    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId){
+    @RequestMapping(value = "/tallenna/{kilpailuId}", method = RequestMethod.POST)
+    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId){
         Date arviointipvm = new Date();
         arviointi.setArviointiPvm(arviointipvm);
         arviointi.setKilpailuId(kilpailuId);
-        Lohko loh = lohkoRepository.findByLohkoId(lohkoId);
-        arviointi.setLohko(loh);
         
         double painotettuAloitus = arviointi.getAloitus().getKokonaistulos() * 0.1;
         double painotettuKasittely = arviointi.getKysymystenKasittely().getKokonaistulos() * 0.3;
@@ -61,7 +56,6 @@ public class ArviointiController {
         
         double kokonaistulos = painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
         arviointi.setKokonaistulos(kokonaistulos);
-        System.out.println(arviointi.getLohko());
         System.out.println(arviointi.getKokonaistulos());
         arviointiRepository.save(arviointi);
         return "redirect:/";

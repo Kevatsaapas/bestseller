@@ -34,21 +34,6 @@ public class KilpailuController {
         return "luonti";
     }
     
-    @RequestMapping("/editkilpailu/{kilpailuId}")
-    public String editKilpailu(Model model, @PathVariable Long kilpailuId) {
-        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-        return "editkilpailu";
-    }
-    
-    @RequestMapping("/updatekilpailu")
-    public String updateKilpailu(Model model, Kilpailu kilpailu) {
-    	Date pvm = new Date();
-        kilpailu.setPvm(pvm);
-        kilpailuRepository.save(kilpailu);
-        model.addAttribute("kilpailut", kilpailuRepository.findAll());
-        return "testaus";
-    }
-    
     private void luoLohkot(Long kilpailuId) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
         for (int i = 1; i < 5; i++) {

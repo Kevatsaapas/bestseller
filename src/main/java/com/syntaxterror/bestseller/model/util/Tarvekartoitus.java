@@ -7,49 +7,49 @@ import javax.persistence.Embeddable;
 public class Tarvekartoitus {
 
     @Column
-    private int perustietojenSelvitysPist;
+    private String perustietojenSelvitysPist;
 
     @Column
-    private int asiakkaanNykytilaPist;
+    private String asiakkaanNykytilaPist;
 
     @Column
-    private int tarpeenKehittaminenPist;
+    private String tarpeenKehittaminenPist;
 
     @Column
-    private int paatoksentekoprosessiPist;
+    private String paatoksentekoprosessiPist;
 
     @Column
     private String tarvekartoitusVapaaPalaute;
 
-    public int getPerustietojenSelvitysPist() {
+    public String getPerustietojenSelvitysPist() {
         return perustietojenSelvitysPist;
     }
 
-    public void setPerustietojenSelvitysPist(int perustietojenSelvitysPist) {
+    public void setPerustietojenSelvitysPist(String perustietojenSelvitysPist) {
         this.perustietojenSelvitysPist = perustietojenSelvitysPist;
     }
 
-    public int getAsiakkaanNykytilaPist() {
+    public String getAsiakkaanNykytilaPist() {
         return asiakkaanNykytilaPist;
     }
 
-    public void setAsiakkaanNykytilaPist(int asiakkaanNykytilaPist) {
+    public void setAsiakkaanNykytilaPist(String asiakkaanNykytilaPist) {
         this.asiakkaanNykytilaPist = asiakkaanNykytilaPist;
     }
 
-    public int getTarpeenKehittaminenPist() {
+    public String getTarpeenKehittaminenPist() {
         return tarpeenKehittaminenPist;
     }
 
-    public void setTarpeenKehittaminenPist(int tarpeenKehittaminenPist) {
+    public void setTarpeenKehittaminenPist(String tarpeenKehittaminenPist) {
         this.tarpeenKehittaminenPist = tarpeenKehittaminenPist;
     }
 
-    public int getPaatoksentekoprosessiPist() {
+    public String getPaatoksentekoprosessiPist() {
         return paatoksentekoprosessiPist;
     }
 
-    public void setPaatoksentekoprosessiPist(int paatoksentekoprosessiPist) {
+    public void setPaatoksentekoprosessiPist(String paatoksentekoprosessiPist) {
         this.paatoksentekoprosessiPist = paatoksentekoprosessiPist;
     }
 
@@ -62,6 +62,6 @@ public class Tarvekartoitus {
     }
 
     public int getKokonaistulos(){
-        return perustietojenSelvitysPist + asiakkaanNykytilaPist + tarpeenKehittaminenPist + paatoksentekoprosessiPist;
+        return Integer.parseInt(perustietojenSelvitysPist) + Integer.parseInt(asiakkaanNykytilaPist) + Integer.parseInt(tarpeenKehittaminenPist) + Integer.parseInt(paatoksentekoprosessiPist);
     }
 }
