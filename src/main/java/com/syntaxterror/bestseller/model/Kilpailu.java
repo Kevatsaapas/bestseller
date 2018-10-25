@@ -32,6 +32,10 @@ public class Kilpailu {
 	@Column(name = "kilpailu_paikka")
 	@NotNull
 	private String paikka;
+	
+	@Column(name = "testi")
+	@NotNull
+	private Long testi;
 
 	@OneToMany
 	private List<Lohko> lohkot;
@@ -44,13 +48,15 @@ public class Kilpailu {
 		this.nimi = null;
 		this.pvm = null;
 		this.paikka = null;
+		this.testi=null;
 	}
 
-	public Kilpailu(String nimi, Date pvm, String paikka) {
+	public Kilpailu(String nimi, Date pvm, String paikka, Long testi) {
 		super();
 		this.nimi = nimi;
 		this.pvm = pvm;
 		this.paikka = paikka;
+		this.testi = testi;
 	}
 
 	public Long getkilpailuId() {
@@ -85,6 +91,15 @@ public class Kilpailu {
 		this.paikka = paikka;
 	}
 
+	
+	public Long getTesti() {
+		return testi;
+	}
+
+	public void setTesti(Long testi) {
+		this.testi = testi;
+	}
+
 	public Long getKilpailuId() { return kilpailuId; }
 
 	public void setKilpailuId(Long kilpailuId) { this.kilpailuId = kilpailuId; }
@@ -97,10 +112,13 @@ public class Kilpailu {
         this.lohkot = lohkot;
     }
 
-    @Override
+	@Override
 	public String toString() {
-		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + "]";
+		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka
+				+ ", testi=" + testi + ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + "]";
 	}
+
+    
 	
 	
 }

@@ -38,9 +38,10 @@
 				<h1 class="headertext" th:text="${kilpailu.nimi}+' - Kokonaistulos'"></h1>
 			</div>
 
-			<!-- Leaderboard -->
+			<!-- Leaderboard Lohko 1-->
 
 			<div class="row padding">
+			<h1>1. Alkuerä</h1>
 				<table class="table">
 					<thead class="thead-custom">
 						<tr class="table-info">
@@ -51,7 +52,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="arviointi:${arvioinnit}">
+						<tr th:each="arviointi:${lohko1}">
 							<td th:text="${arviointi.arviointiPvm}"></td>
 							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
 							<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
@@ -60,7 +61,107 @@
 					</tbody>
 				</table>
 			</div>
+			
+			
+			<!-- Leaderboard Lohko 2-->
 
+			<div class="row padding">
+			<h1>2. Alkuerä</h1>
+				<table class="table">
+					<thead class="thead-custom">
+						<tr class="table-info">
+							<th scope="col">PVM</th>
+							<th scope="col">TuomariNumero</th>
+							<th scope="col">Kilpailija</th>
+							<th scope="col">Kokonaistulos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="arviointi:${lohko2}">
+							<td th:text="${arviointi.arviointiPvm}"></td>
+							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+							<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+							<td th:text="${#numbers.formatDecimal(arviointi.kokonaistulos, 0, 2)}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
+			<!-- Leaderboard Lohko 3-->
+
+			<div class="row padding">
+			<h1>3. Alkuerä</h1>
+				<table class="table">
+					<thead class="thead-custom">
+						<tr class="table-info">
+							<th scope="col">PVM</th>
+							<th scope="col">TuomariNumero</th>
+							<th scope="col">Kilpailija</th>
+							<th scope="col">Kokonaistulos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="arviointi:${lohko3}">
+							<td th:text="${arviointi.arviointiPvm}"></td>
+							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+							<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+							<td th:text="${#numbers.formatDecimal(arviointi.kokonaistulos, 0, 2)}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<!-- Leaderboard Lohko 4-->
+
+			<div class="row padding">
+			<h1>4. Alkuerä</h1>
+				<table class="table">
+					<thead class="thead-custom">
+						<tr class="table-info">
+							<th scope="col">PVM</th>
+							<th scope="col">TuomariNumero</th>
+							<th scope="col">Kilpailija</th>
+							<th scope="col">Kokonaistulos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="arviointi:${lohko4}">
+							<td th:text="${arviointi.arviointiPvm}"></td>
+							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+							<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+							<td th:text="${#numbers.formatDecimal(arviointi.kokonaistulos, 0, 2)}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
+			<!-- Finaali-->
+
+			<div class="row padding">
+			<h1>Finaaliin Menee:</h1>
+				<table class="table">
+					<thead class="thead-custom">
+						<tr class="table-info">
+							<th scope="col">PVM</th>
+							<th scope="col">TuomariNumero</th>
+							<th scope="col">Kilpailija</th>
+							<th scope="col">Kokonaistulos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="arviointi:${finaali}">
+							<td th:text="${arviointi.arviointiPvm}"></td>
+							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+							<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+							<td th:text="${#numbers.formatDecimal(arviointi.kokonaistulos, 0, 2)}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
 			<!-- Footer -->
 
 			<div class="row padding">
