@@ -26,10 +26,10 @@
 }
 
 textarea {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     box-sizing: border-box;
-
     width: 100%;
 }
 
@@ -45,12 +45,10 @@ textarea {
 
 textarea {
     padding-top: 10px;
+    
+    
 }
 
-.btn-custom {
-    height: 60px;
-    width: 150px;
-}
 
 .indexbody {
 

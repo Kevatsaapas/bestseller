@@ -7,38 +7,38 @@ import javax.persistence.Embeddable;
 public class Ratkaisu {
 
     @Column
-    private int haasteYhteenvetoPist;
+    private String haasteYhteenvetoPist;
 
     @Column
-    private int ratkaisunEsittaminenPist;
+    private String ratkaisunEsittaminenPist;
 
     @Column
-    private int hyotyjenEsilletuontiPist;
+    private String hyotyjenEsilletuontiPist;
 
     @Column
     private String ratkaisuVapaaPalaute;
 
-    public int getHaasteYhteenvetoPist() {
+    public String getHaasteYhteenvetoPist() {
         return haasteYhteenvetoPist;
     }
 
-    public void setHaasteYhteenvetoPist(int haasteYhteenvetoPist) {
+    public void setHaasteYhteenvetoPist(String haasteYhteenvetoPist) {
         this.haasteYhteenvetoPist = haasteYhteenvetoPist;
     }
 
-    public int getRatkaisunEsittaminenPist() {
+    public String getRatkaisunEsittaminenPist() {
         return ratkaisunEsittaminenPist;
     }
 
-    public void setRatkaisunEsittaminenPist(int ratkaisunEsittaminenPist) {
+    public void setRatkaisunEsittaminenPist(String ratkaisunEsittaminenPist) {
         this.ratkaisunEsittaminenPist = ratkaisunEsittaminenPist;
     }
 
-    public int getHyotyjenEsilletuontiPist() {
+    public String getHyotyjenEsilletuontiPist() {
         return hyotyjenEsilletuontiPist;
     }
 
-    public void setHyotyjenEsilletuontiPist(int hyotyjenEsilletuontiPist) {
+    public void setHyotyjenEsilletuontiPist(String hyotyjenEsilletuontiPist) {
         this.hyotyjenEsilletuontiPist = hyotyjenEsilletuontiPist;
     }
 
@@ -51,7 +51,7 @@ public class Ratkaisu {
     }
 
     public int getKokonaistulos(){
-        return haasteYhteenvetoPist + ratkaisunEsittaminenPist + hyotyjenEsilletuontiPist;
+        return Integer.parseInt(haasteYhteenvetoPist) + Integer.parseInt(ratkaisunEsittaminenPist) + Integer.parseInt(hyotyjenEsilletuontiPist);
     }
 }
 

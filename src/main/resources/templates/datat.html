@@ -60,7 +60,6 @@
                             <td>Nimi</td>
                             <td>Pvm</td>
                             <td>Paikka</td>
-                            <td></td>
                         </tr>
 
                         <tr>
@@ -68,11 +67,6 @@
                             <td th:text="${kilpailu.nimi}"></td>
                             <td th:text="${kilpailu.pvm}"></td>
                             <td th:text="${kilpailu.paikka}"></td>
-                            <td>
-                                <form th:action="@{'/editkilpailu/'+${kilpailu.kilpailuId}}">
-                                    <button class="btn btn-sm btn-warning">Muokkaa</button>
-                                </form>
-                            </td>
                         </tr>
                     </tbody>
 
@@ -99,9 +93,8 @@
                             <td>Id</td>
                             <td>Etunimi</td>
                             <td>Sukunimi</td>
-                            <td>Sähköposti</td>
                             <td>Koulu</td>
-                            <td>Alkuerä</td>
+                            <td>Lohko</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -110,11 +103,10 @@
                             <td th:text="${kilpailija.kilpailijaId}"></td>
                             <td th:text="${kilpailija.etunimi}"></td>
                             <td th:text="${kilpailija.sukunimi}"></td>
-                            <td th:text="${kilpailija.sposti}"></td>
                             <td th:text="${kilpailija.koulu}"></td>
                             <td th:text="${kilpailija.lohko.lohkoNro}"></td>
                             <td>
-                                <form th:action="@{'/editkilpailija/'+${kilpailija.kilpailijaId}}">
+                                <form>
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
                                 </form>
                             </td>
@@ -139,14 +131,14 @@
             <div class="row padding">
                 <table class="table">
                     <thead class="thead-custom">
-                        <th scope="col">Alkuerät</th>
+                        <th scope="col">Lohkot</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Id</td>
-                            <td>Alkueränumero</td>
+                            <td>Lohkonumero</td>
                             <td>KilpailuId</td>
                         </tr>
 
@@ -176,7 +168,7 @@
                         <tr>
                             <td>Id</td>
                             <td>tuomarinumero</td>
-                            <td>Alkuerä</td>
+                            <td>lohko</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -186,7 +178,7 @@
                             <td th:text="${tuomari.tuomariNro}"></td>
                             <td th:text="${tuomari.lohkoNro}"></td>
                             <td>
-                                <form th:action="@{'/edittuomari/'+${tuomari.tuomariId}}">
+                                <form>
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
                                 </form>
                             </td>
@@ -216,21 +208,18 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
-                        <th scope="col"></th>
                     </thead>
                     <tr>
                         <td>Id</td>
                         <td>Kilpailijan nimi</td>
                         <td>Tuomarin numero</td>
                         <td>Pvm</td>
-                        <td>Alkuerä</td>
                     </tr>
                     <tr th:each="arviointi:${arvioinnit}">
                         <td th:text="${arviointi.arviointiId}"></td>
                         <td th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
                         <td th:text="${arviointi.tuomari.tuomariNro}"></td>
                         <td th:text="${arviointi.arviointiPvm}"></td>
-                        <td th:text="${arviointi.lohko.lohkoNro}"></td>
                         <td>
                             <form th:action="@{'/tarkastelu/'+${arviointi.arviointiId}}">
                                 <button class="btn btn-sm btn-warning">Tarkastele</button>
@@ -248,13 +237,12 @@
                 <!-- Footer -->
 
                 <div class="row padding">
-                    <form th:action="@{/}">
-                        <button class="btn btn-lg btn-info">Takaisin</a></button>
+                    <form action="testaus.html" th:action="@{/testaus}">
+                        <button class="btn btn-lg btn-info">Takaisin</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
