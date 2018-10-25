@@ -32,7 +32,7 @@ public class Kilpailu {
 	@Column(name = "kilpailu_paikka")
 	@NotNull
 	private String paikka;
-	
+
 	@Column(name = "testi")
 	@NotNull
 	private Long testi;
@@ -43,20 +43,58 @@ public class Kilpailu {
 	@OneToMany
 	private List<Arviointi> arvioinnit;
 
+	private Long paiva;
+
+	private Long kuukausi;
+
+	private Long vuosi;
+
 	public Kilpailu() {
 		super();
 		this.nimi = null;
 		this.pvm = null;
 		this.paikka = null;
 		this.testi=null;
+		this.paiva= null;
+		this.kuukausi = null;
+		this.vuosi = null;
 	}
 
-	public Kilpailu(String nimi, Date pvm, String paikka, Long testi) {
+	public Kilpailu(String nimi, Date pvm, String paikka, Long paiva, Long kuukausi, Long vuosi, Long testi) {
 		super();
+		this.paiva = paiva;
+		this.kuukausi = kuukausi;
+		this.vuosi = vuosi;
 		this.nimi = nimi;
 		this.pvm = pvm;
 		this.paikka = paikka;
 		this.testi = testi;
+	}
+
+
+
+	public Long getPaiva() {
+		return paiva;
+	}
+
+	public void setPaiva(Long paiva) {
+		this.paiva = paiva;
+	}
+
+	public Long getKuukausi() {
+		return kuukausi;
+	}
+
+	public void setKuukausi(Long kuukausi) {
+		this.kuukausi = kuukausi;
+	}
+
+	public Long getVuosi() {
+		return vuosi;
+	}
+
+	public void setVuosi(Long vuosi) {
+		this.vuosi = vuosi;
 	}
 
 	public Long getkilpailuId() {
@@ -91,7 +129,7 @@ public class Kilpailu {
 		this.paikka = paikka;
 	}
 
-	
+
 	public Long getTesti() {
 		return testi;
 	}
@@ -114,11 +152,10 @@ public class Kilpailu {
 
 	@Override
 	public String toString() {
-		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka
-				+ ", testi=" + testi + ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + "]";
+		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + ", testi=" + testi
+				+ ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + ", paiva=" + paiva + ", kuukausi=" + kuukausi
+				+ ", vuosi=" + vuosi + "]";
 	}
-
-    
 	
 	
 }

@@ -26,27 +26,49 @@
 		<div class="col-lg-6 col-sm-6 col-xs-12" >
 			<label for="etunimi">Etunimi</label> <input class="form-control is-invalid" id="etunimi" type="text"
 				required oninvalid="this.setCustomValidity('Etunimi puuttuu')" oninput="setCustomValidity('')" th:field="*{etunimi}" />
-		
+
 		</div>
+
+		<div class="form-group">
+			<label for="sukunimi">Sukunimi</label> <input type="text"
+				id="sukunimi" th:required="required" th:field="*{sukunimi}" />
 		</div>
-		
+
 		<div class="form-group">
 		<div class="col-lg-6 col-sm-6 col-xs-12">
 			<label for="sukunimi">Sukunimi</label> <input type="text" class="form-control is-invalid"
 				id="sukunimi" th:required="required" oninvalid="this.setCustomValidity('Sukunimi puuttuu')" oninput="setCustomValidity('')" th:field="*{sukunimi}" />
-		
 		</div>
-		
+
 		</div>
-		
-		
-		
+
+            <div class="form-group">
+                <label for="sukunimi">Sähköpsti:</label> <input type="text"
+                                                                id="sahkoposti" th:required="required" th:field="*{sposti}" />
+            </div>
+
+            <div>
+                <tbody>
+                <tr>
+                    <td>Oppilaitos:</td>
+                    <td><select th:field="*{koulu}" name="koulu" id="koulu">
+
+                        <option value="99" selected>Valitse:</option>
+                        <option value="Haaga-Helia">Haaga-Helia</option>
+                        <option value="Laurea">Laurea</option>
+                        <option value="Metropolia">Metropolia</option>
+                        <option value="XAMK">XAMK</option>
+
+                    </select> <br></td>
+                </tr>
+                </tbody>
+            </div>
 
 		<div class="form-group">
 		<div class="col-lg-6 col-sm-6 col-xs-12">
 			<label for="koulu">Oppilaitos</label> <input type="text" id="koulu" class="form-control is-invalid"
 				th:required="required" oninvalid="this.setCustomValidity('Oppilaitos puuttuu')" oninput="setCustomValidity('')"  th:field="*{koulu}" />
-		
+
 		</div>
 		</div>
 
