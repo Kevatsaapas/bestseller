@@ -5,10 +5,13 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
@@ -34,19 +37,21 @@ public class DefaultController {
         return "index";
     }
     
-    @RequestMapping("/valitselohko/{kilpailuId}")
-    public String dataa(@PathVariable Long kilpailuId, Model model) {
-        Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
-        model.addAttribute("kilpailu", kilpailu);
-        Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+    @RequestMapping(value="/kilpailuvalittu/", method=RequestMethod.POST)
+    public String dataa(@RequestParam("kilpailuId")Long kilpailuId, Model model) {
+    	System.out.println(kilpailuId);
+    	Kilpailu valittukilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+        model.addAttribute("kilpailu", valittukilpailu);
+        Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(valittukilpailu);
         model.addAttribute("lohkot", lohkot);
         return "valitselohko";
     }
     
-    @RequestMapping("/valikko/{kilpailuId}/{lohkoId}")
-    public String valikko(Model model, @PathVariable Long kilpailuId, @PathVariable Long lohkoId) {
+    @RequestMapping(value="/lohkovalittu/", method=RequestMethod.POST)
+    public String valikko(Model model, @RequestParam("kilpailuId") Long kilpailuId,@RequestParam("lohkoId") Long lohkoId) {
         model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
         Lohko valittulohko=lohkoRepository.findByLohkoId(lohkoId);
+        System.out.println(valittulohko);
         model.addAttribute("lohko", valittulohko);
     	return "valikko";
     }
@@ -56,12 +61,20 @@ public class DefaultController {
         model.addAttribute("kilpailut", kilpailuRepository.findAll());
         return "testaus";
     }
+    
+    
+    @RequestMapping(value = "/tuomarointi/", method = RequestMethod.POST)
+    public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId){
+    	Lohko lohko=lohkoRepository.findByLohkoId(lohkoId);
+    	System.out.println(lohkoId);
+        model.addAttribute("lohko", lohko);
+    	model.addAttribute("arviointi", new Arviointi());
+    	model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+        model.addAttribute("kilpailijat", kilpailijarepository.findByLohko(lohko));
+        model.addAttribute("tuomarit", tuomarirepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohko.getLohkoNro()));
+        
 
-    @RequestMapping("/tuomarointi")
-    public String tuomarointi(Model model){
-    	model.addAttribute("kilpailijat", kilpailijarepository.findByKilpailuId(new Long(1)));
-    	model.addAttribute("tuomarit", tuomarirepository.findByKilpailuId(new Long(1)));
-        return "tuomarointi";
+        return "tuomarointisivu";
     }
 
     @RequestMapping("/ostaja")

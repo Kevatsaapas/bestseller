@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,23 +37,14 @@ public class ArviointiController {
     @Autowired
     public LohkoRepository lohkoRepository;
 
-    @RequestMapping(value = "/uusi/{kilpailuId}/{lohkoId}", method = RequestMethod.GET)
-    public String palautaArviointiLuontiSivu(Model model,@PathVariable Long kilpailuId, @PathVariable Long lohkoId){
-        model.addAttribute("arviointi", new Arviointi());
-       model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
-        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
-        model.addAttribute("lohko", lohkoRepository.findByLohkoId(lohkoId));
-
-        return "tuomarointi";
-    }
+   
     
     @RequestMapping(value = "/uusitest/{kilpailuId}/{lohkoId}", method = RequestMethod.GET)
     public String palautaArviointiLuontiSivuDebug(Model model,@PathVariable Long kilpailuId, @PathVariable Long lohkoId){
         model.addAttribute("arviointi", new Arviointi());
        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
         model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
-        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
+        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
         model.addAttribute("lohko", lohkoRepository.findByLohkoId(lohkoId));
         List<Long> arvot = new ArrayList<Long>();
         for(int i=0; i<16; i++) {

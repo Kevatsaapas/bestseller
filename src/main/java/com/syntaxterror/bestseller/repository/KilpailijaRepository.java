@@ -13,4 +13,5 @@ public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	Iterable<Kilpailija> findByKilpailuId(Long kilpailuId);
 	Iterable<Kilpailija> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
 	Iterable<Kilpailija>deleteByKilpailuId(Long kilpailuId);
+	Iterable<Kilpailija> findByLohko(Lohko lohko);
 }

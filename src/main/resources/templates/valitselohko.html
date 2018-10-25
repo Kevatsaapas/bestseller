@@ -52,8 +52,10 @@
                                     <tr th:each="lohko:${lohkot}">
                                         <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${lohko.lohkoNro}">asdasd</td>
                                         <td>
-                                            <form th:action="@{/valikko/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
-                                                <button class="btn btn-sm btn-success">Valitse</button>
+                                            <form th:action="@{/lohkovalittu/}" method="POST">
+                                            <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}"/>
+                                            <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}"/>
+                                                <button class="btn btn-sm btn-success" type="submit">Valitse</button>
                                             </form>
                                         </td>
                                     </tr>
