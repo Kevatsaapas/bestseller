@@ -19,6 +19,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script src="LocalStorage.js"></script>
 
     <!-- Fontit -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -34,7 +35,7 @@
     </form>
 </div>
 
-<form class="was-validated" id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}(kilpailuId=${kilpailu.kilpailuId})}" th:object="${arviointi}" method="POST">
+<form class="was-validated" id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}/{lohkoId}(kilpailuId = ${kilpailu.kilpailuId}, lohkoId=${lohko.lohkoId})}" th:object="${arviointi}" method="POST">
 <div class="standard h-auto">
     <div class="container tuom">
         <div class="row padding">

@@ -55,7 +55,7 @@
 						<tr th:each="arviointi:${lohko1}">
 							<td th:text="${arviointi.arviointiPvm}"></td>
 							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
-							<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+							<td th:text="${arviointi.kilpailija.etunimi + ' ' + {arviointi.kilpailija.sukunimi}}"></td>
 							<td th:text="${#numbers.formatDecimal(arviointi.kokonaistulos, 0, 2)}"></td>
 						</tr>
 					</tbody>

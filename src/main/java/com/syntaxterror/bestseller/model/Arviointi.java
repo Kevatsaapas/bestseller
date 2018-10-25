@@ -31,6 +31,10 @@ public class Arviointi implements Comparable{
     @JoinColumn(name = "tuomari_id")
     private Tuomari tuomari;
 
+    @ManyToOne
+    @JoinColumn(name = "lohko_id")
+    private Lohko lohko;
+
     @Column
     private Long kilpailuId;
     
@@ -61,15 +65,17 @@ public class Arviointi implements Comparable{
     	this.tuomari=null;
     	this.kilpailuId=null;
     	this.kokonaistulos=0;
+    	this.lohko=null;
     }
 
-	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari, Long kilpailuId, double kokonaistulos) {
+	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari, Long kilpailuId, double kokonaistulos, Lohko lohko) {
 		super();
 		this.arviointiPvm = arviointiPvm;
 		this.kilpailija = kilpailija;
 		this.tuomari = tuomari;
 		this.kilpailuId = kilpailuId;
 		this.kokonaistulos = kokonaistulos;
+		this.lohko = lohko;
 	}
 
 	
@@ -166,8 +172,13 @@ public class Arviointi implements Comparable{
         this.yleisvaikutelma = yleisvaikutelma;
     }
 
-	
+    public Lohko getLohko() {
+        return lohko;
+    }
 
+    public void setLohko(Lohko lohko) {
+        this.lohko = lohko;
+    }
 
     @Override
 	public String toString() {

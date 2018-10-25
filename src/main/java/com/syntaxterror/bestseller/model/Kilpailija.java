@@ -28,6 +28,10 @@ public class Kilpailija {
     @NotNull
     private String koulu;
 
+    @Column(name = "kilpailija_sahkoposti")
+    @NotNull
+    private String sposti;
+
     @Column(name = "kilpailu_Id")
     @NotNull
     private Long kilpailuId;
@@ -43,21 +47,31 @@ public class Kilpailija {
         this.sukunimi = null;
         this.kilpailijaNro = 0;
         this.koulu = null;
+        this.sposti = null;
         this.lohko = null;
         this.kilpailuId = null;
     }
 
-    public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, String koulu, Lohko lohko, Long kilpailuId) {
+    public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, String koulu,String sposti, Lohko lohko, Long kilpailuId) {
         super();
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;
         this.kilpailijaNro = kilpailijaNro;
         this.koulu = koulu;
+        this.sposti = sposti;
         this.lohko = lohko;
         this.kilpailuId = kilpailuId;
     }
 
-    public Long getKilpailijaId() {
+    public String getSposti() {
+		return sposti;
+	}
+
+	public void setSposti(String sposti) {
+		this.sposti = sposti;
+	}
+
+	public Long getKilpailijaId() {
         return kilpailijaId;
     }
 

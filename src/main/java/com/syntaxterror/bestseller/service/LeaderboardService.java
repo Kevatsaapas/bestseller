@@ -1,6 +1,7 @@
 package com.syntaxterror.bestseller.service;
 
 import com.syntaxterror.bestseller.model.Arviointi;
+import com.syntaxterror.bestseller.model.util.Tarvekartoitus;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
