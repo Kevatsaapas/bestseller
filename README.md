@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.com/Kevatsaapas/bestseller.svg?branch=master)](https://travis-ci.com/Kevatsaapas/bestseller)
 
-# Bestseller työkalu
+# Best Seller työkalu
 
 ### Projektin kuvaus
 
-Projektin tarkoituksena on luoda verkossa toimiva arviointityökalu, joka mahdollistaa kilpailun arvioimisen vertailussa sekä tehtyjen arviointien tarkastelun kilpailu- ja kilpailijakohtaisesti.
+Projektin tarkoituksena on luoda verkossa toimiva arviointityökalu, joka mahdollistaa [Bestseller Competition](http://www.bestsellercompetition.fi)-kilpailun arvioimisen vertailussa sekä tehtyjen arviointien tarkastelun kilpailu- ja kilpailijakohtaisesti.
 
 ### Tekijät
 
