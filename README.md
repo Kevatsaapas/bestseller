@@ -4,7 +4,7 @@
 
 ### Projektin kuvaus
 
-Projektin tarkoituksena on luoda verkossa toimiva arviointityökalu, joka mahdollistaa [Bestseller Competition](http://www.bestsellercompetition.fi)-kilpailun arvioimisen vertailussa sekä tehtyjen arviointien tarkastelun kilpailu- ja kilpailijakohtaisesti.
+Projektin tarkoituksena on luoda verkossa toimiva arviointityökalu, joka mahdollistaa [Best Seller Competition](http://www.bestsellercompetition.fi)-kilpailun arvioimisen vertailussa sekä tehtyjen arviointien tarkastelun kilpailu- ja kilpailijakohtaisesti.
 
 ### Tekijät
 
