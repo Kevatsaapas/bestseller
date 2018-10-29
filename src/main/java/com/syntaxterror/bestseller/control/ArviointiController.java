@@ -37,7 +37,16 @@ public class ArviointiController {
     @Autowired
     public LohkoRepository lohkoRepository;
 
-   
+    @RequestMapping(value = "/uusi/{kilpailuId}/{lohkoId}", method = RequestMethod.GET)
+    public String palautaArviointiLuontiSivu(Model model,@PathVariable Long kilpailuId, @PathVariable Long lohkoId){
+        model.addAttribute("arviointi", new Arviointi());
+       model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
+        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
+        model.addAttribute("lohko", lohkoRepository.findByLohkoId(lohkoId));
+
+        return "tuomarointi";
+    }
     
     @RequestMapping(value = "/uusitest/{kilpailuId}/{lohkoId}", method = RequestMethod.GET)
     public String palautaArviointiLuontiSivuDebug(Model model,@PathVariable Long kilpailuId, @PathVariable Long lohkoId){
