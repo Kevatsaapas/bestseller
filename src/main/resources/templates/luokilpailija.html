@@ -42,22 +42,20 @@
 																 id="sahkoposti" th:required="required" th:field="*{sposti}" />
 			</div>
 
-			<div>
-				<tbody>
-				<tr>
-					<td>Oppilaitos:</td>
-					<td><select th:field="*{koulu}" name="koulu" id="koulu">
+			<div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                Koulu:
+                <select class="custom-select" th:field="*{koulu}" name="koulu" id="kouluId" required oninvalid="this.setCustomValidity('valitse koulun nimi')" oninput="setCustomValidity('')">
+                    <option value="" selected>Valitse:</option>
+                    <ul>
+                        <li th:each="koulu:${koulut}">
+                            <option th:value="${koulu.kouluId}" >
+                                <p th:text="${koulu.kouluNimi}"></p>
+                            </option>
+                        </li>
+                    </ul>
+                </select>
 
-						<option value="99" selected>Valitse:</option>
-						<option value="Haaga-Helia">Haaga-Helia</option>
-						<option value="Laurea">Laurea</option>
-						<option value="Metropolia">Metropolia</option>
-						<option value="XAMK">XAMK</option>
-
-					</select> <br></td>
-				</tr>
-				</tbody>
-			</div>
+            </div>
 
 			<h2>Valitse Lohkonumero:</h2>
 			<div class="custom-control custom-radio">
