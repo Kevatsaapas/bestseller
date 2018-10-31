@@ -14,23 +14,56 @@ public class Tuomari {
     private String tuomariNro;
 
     // Oletuksella, että joka lohkossa eri tuomarit
-
-    @ManyToOne
-    private Lohko lohko;
+    @Column(name = "lohko_id")
+    private String lohkoNro;
+    
+    @Column(name = "kilpailu_id")
+    private Long kilpailuId;
 
 
     public Tuomari() {
     	this.tuomariNro = null;
-    	this.lohko = null;
+    	this.lohkoNro = null;
+    	this.kilpailuId=null;
     }
 
 
 
-	public Tuomari(String tuomariNro, Lohko lohko) {
+	public Tuomari(String tuomariNro, String lohkoNro, Long kilpailuId) {
 		super();
 		this.tuomariNro = tuomariNro;
-		this.lohko = lohko;
+		this.lohkoNro = lohkoNro;
+		this.kilpailuId=kilpailuId;
 	}
+
+	
+	
+	public Long getKilpailuId() {
+		return kilpailuId;
+	}
+
+
+
+	public void setKilpailuId(Long kilpailuId) {
+		this.kilpailuId = kilpailuId;
+	}
+
+
+
+
+
+
+	public String getLohkoNro() {
+		return lohkoNro;
+	}
+
+
+
+	public void setLohkoNro(String lohkoNro) {
+		this.lohkoNro = lohkoNro;
+	}
+
+
 
 	public Long getTuomariId() {
         return tuomariId;
@@ -48,17 +81,16 @@ public class Tuomari {
         this.tuomariNro = tuomariNro;
     }
 
-    public Lohko getLohko() {
-        return lohko;
-    }
 
-    public void setLohko(Lohko lohko) {
-        this.lohko = lohko;
-    }
 
-    @Override
+
+	@Override
 	public String toString() {
-		return "Tuomari [tuomariId=" + tuomariId + ", tuomariNro=" + tuomariNro + ", lohko=" + lohko + "]";
+		return "Tuomari [tuomariId=" + tuomariId + ", tuomariNro=" + tuomariNro + ", lohkoNro=" + lohkoNro
+				+ ", kilpailuId=" + kilpailuId + "]";
 	}
+
+
+
 
 }

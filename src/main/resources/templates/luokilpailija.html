@@ -20,39 +20,58 @@
 <body>
 	<h2>Luo uusi kilpailija</h2>
 
-	<form role="form" th:object="${kilpailija}"
-		th:action="@{/tallennakilpailija}" action="#" method="post">
+	<form role="form"  class="was-validated" th:object="${kilpailija}"
+		  th:action="@{/tallennakilpailija}" action="#" method="post">
 		<div class="form-group">
-			<label for="etunimi">Etunimi</label> <input type="text"
-				th:required="required" th:field="*{etunimi}" />
-		</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12" >
+				<label for="etunimi">Etunimi</label> <input class="form-control is-invalid" id="etunimi" type="text"
+															required oninvalid="this.setCustomValidity('Etunimi puuttuu')" oninput="setCustomValidity('')" th:field="*{etunimi}" />
 
-		<div class="form-group">
-			<label for="sukunimi">Sukunimi</label> <input type="text"
-				id="sukunimi" th:required="required" th:field="*{sukunimi}" />
-		</div>
+			</div>
 
-		<div class="form-group">
-			<label for="kilpailijaNro">Kilpailijanumero</label> <input
-				type="text" id="kilpailijaNro" th:required="required"
-				th:field="*{kilpailijaNro}" />
-		</div>
+			<div class="form-group">
+				<div class="col-lg-6 col-sm-6 col-xs-12">
+					<label for="sukunimi">Sukunimi</label> <input type="text" class="form-control is-invalid"
+																  id="sukunimi" th:required="required" oninvalid="this.setCustomValidity('Sukunimi puuttuu')" oninput="setCustomValidity('')" th:field="*{sukunimi}" />
+				</div>
 
-		<div class="form-group">
-			<label for="koulu">Oppilaitos</label> <input type="text" id="koulu"
-				th:required="required" th:field="*{koulu}" />
-		</div>
+			</div>
 
-		<h2>Valitse Lohkonumero:</h2>
-		<ul>
-			<li th:each="lohko:${lohkot}"><input type="radio"
-				th:field="*{lohko}" th:value="${lohko.lohkoId}" /> <label
-				th:for="${#ids.prev('lohko')}" th:text="${lohko.lohkoNro}">Lohkonro</label>
-			</li>
-		</ul>
-		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
-			th:value="${kilpailuId}" /> <input id="addButton" type="submit"
-			class="btn btn-primary" value="Tallenna">
+			<div class="form-group">
+				<label for="sukunimi">Sähköposti:</label> <input type="text"
+																 id="sahkoposti" th:required="required" th:field="*{sposti}" />
+			</div>
+
+			<div>
+				<tbody>
+				<tr>
+					<td>Oppilaitos:</td>
+					<td><select th:field="*{koulu}" name="koulu" id="koulu">
+
+						<option value="99" selected>Valitse:</option>
+						<option value="Haaga-Helia">Haaga-Helia</option>
+						<option value="Laurea">Laurea</option>
+						<option value="Metropolia">Metropolia</option>
+						<option value="XAMK">XAMK</option>
+
+					</select> <br></td>
+				</tr>
+				</tbody>
+			</div>
+
+			<h2>Valitse Lohkonumero:</h2>
+			<div class="custom-control custom-radio">
+				<ul>
+					<li th:each="lohko:${lohkot}"><input type="radio"
+														 th:required="required" oninvalid="this.setCustomValidity('Valitse lohkonumero')" oninput="setCustomValidity('')" th:field="*{lohko}" th:value="${lohko.lohkoId}" /> <label
+							th:for="${#ids.prev('lohko')}" th:text="${lohko.lohkoNro}">Lohkonro</label>
+					</li>
+				</ul>
+			</div>
+			<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
+				   th:value="${kilpailuId}" /> <input id="addButton" type="submit"
+													  class="btn btn-primary" value="Tallenna">
+		</div>
 	</form>
 
 </body>

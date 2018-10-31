@@ -1,11 +1,19 @@
 package com.syntaxterror.bestseller.model;
 
+import com.syntaxterror.bestseller.model.util.*;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Arviointi {
+public class Arviointi implements Comparable{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -26,20 +34,66 @@ public class Arviointi {
     @JoinColumn(name = "tuomari_id")
     private Tuomari tuomari;
 
-    @ManyToMany(mappedBy = "arvioinnit")
-    private List<OsaAlue> osaAlueet;
+    @ManyToOne
+    @JoinColumn(name = "lohko_id")
+    @NotFound(action=NotFoundAction.IGNORE)
+    private Lohko lohko;
+
+    @Column
+    private Long kilpailuId;
+    
+    @Column
+    private double kokonaistulos;
+
+    @Embedded
+    private Aloitus aloitus;
+
+    @Embedded
+    private KysymystenKasittely kysymystenKasittely;
+
+    @Embedded
+    private Paattaminen paattaminen;
+
+    @Embedded
+    private Ratkaisu ratkaisu;
+
+    @Embedded
+    private Tarvekartoitus tarvekartoitus;
+
+    @Embedded
+    private Yleisvaikutelma yleisvaikutelma;
 
     public Arviointi() {
     	this.arviointiPvm=null;
     	this.kilpailija=null;
     	this.tuomari=null;
+    	this.kilpailuId=null;
+    	this.kokonaistulos=0;
+    	this.lohko=null;
     }
 
-	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari) {
+	public Arviointi( Date arviointiPvm, Kilpailija kilpailija, Tuomari tuomari, Long kilpailuId, double kokonaistulos, Lohko lohko) {
 		super();
 		this.arviointiPvm = arviointiPvm;
 		this.kilpailija = kilpailija;
 		this.tuomari = tuomari;
+		this.kilpailuId = kilpailuId;
+		this.kokonaistulos = kokonaistulos;
+		this.lohko = lohko;
+	}
+
+	
+	
+	public void setKokonaistulos(double kokonaistulos) {
+		this.kokonaistulos = kokonaistulos;
+	}
+
+	public Long getKilpailuId() {
+		return kilpailuId;
+	}
+
+	public void setKilpailuId(Long kilpailuId) {
+		this.kilpailuId = kilpailuId;
 	}
 
 	public Long getArviointiId() {
@@ -74,18 +128,84 @@ public class Arviointi {
         this.tuomari = tuomari;
     }
 
-    public List<OsaAlue> getOsaAlueet() {
-        return osaAlueet;
+    public Aloitus getAloitus() {
+        return aloitus;
     }
 
-    public void setOsaAlueet(List<OsaAlue> osaAlueet) {
-        this.osaAlueet = osaAlueet;
+    public void setAloitus(Aloitus aloitus) {
+        this.aloitus = aloitus;
+    }
+
+    public KysymystenKasittely getKysymystenKasittely() {
+        return kysymystenKasittely;
+    }
+
+    public void setKysymystenKasittely(KysymystenKasittely kysymystenKasittely) {
+        this.kysymystenKasittely = kysymystenKasittely;
+    }
+
+    public Paattaminen getPaattaminen() {
+        return paattaminen;
+    }
+
+    public void setPaattaminen(Paattaminen paattaminen) {
+        this.paattaminen = paattaminen;
+    }
+
+    public Ratkaisu getRatkaisu() {
+        return ratkaisu;
+    }
+
+    public void setRatkaisu(Ratkaisu ratkaisu) {
+        this.ratkaisu = ratkaisu;
+    }
+
+    public Tarvekartoitus getTarvekartoitus() {
+        return tarvekartoitus;
+    }
+
+    public void setTarvekartoitus(Tarvekartoitus tarvekartoitus) {
+        this.tarvekartoitus = tarvekartoitus;
+    }
+
+    public Yleisvaikutelma getYleisvaikutelma() {
+        return yleisvaikutelma;
+    }
+
+    public void setYleisvaikutelma(Yleisvaikutelma yleisvaikutelma) {
+        this.yleisvaikutelma = yleisvaikutelma;
+    }
+
+    public Lohko getLohko() {
+        return lohko;
+    }
+
+    public void setLohko(Lohko lohko) {
+        this.lohko = lohko;
     }
 
     @Override
-   	public String toString() {
-   		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
-   				+ ", tuomari=" + tuomari + ", osaAlueet=" + osaAlueet + "]";
-   	}
+	public String toString() {
+		return "Arviointi [arviointiId=" + arviointiId + ", arviointiPvm=" + arviointiPvm + ", kilpailija=" + kilpailija
+				+ ", tuomari=" + tuomari + ", kilpailuId=" + kilpailuId + ", kokonaistulos=" + kokonaistulos
+				+ ", aloitus=" + aloitus + ", kysymystenKasittely=" + kysymystenKasittely + ", paattaminen="
+				+ paattaminen + ", ratkaisu=" + ratkaisu + ", tarvekartoitus=" + tarvekartoitus + ", yleisvaikutelma="
+				+ yleisvaikutelma + "]";
+	}
 
+	@Override
+    public int compareTo(Object o) {
+
+        Arviointi toinen = (Arviointi) o;
+
+        if (this.getKokonaistulos() - toinen.getKokonaistulos() > 0) return 1;
+        else if (this.getKokonaistulos() - toinen.getKokonaistulos() == 0) return 0;
+        else return -1;
+    }
+
+	public double getKokonaistulos() {
+		return kokonaistulos;
+	}
+
+    
 }

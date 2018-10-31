@@ -5,9 +5,16 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+
+@EnableAutoConfiguration
 @Entity
 public class Kilpailu {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "kilpailu_id")
@@ -23,21 +30,68 @@ public class Kilpailu {
 	@Column(name = "kilpailu_paikka")
 	private String paikka;
 
+	@Column(name = "testi")
+	@NotNull
+	private Long testi;
+
 	@OneToMany
 	private List<Lohko> lohkot;
+
+	@OneToMany
+	private List<Arviointi> arvioinnit;
+
+	private Long paiva;
+
+	private Long kuukausi;
+
+	private Long vuosi;
 
 	public Kilpailu() {
 		super();
 		this.nimi = null;
 		this.pvm = null;
 		this.paikka = null;
+		this.testi=null;
+		this.paiva= null;
+		this.kuukausi = null;
+		this.vuosi = null;
 	}
 
-	public Kilpailu(String nimi, Date pvm, String paikka) {
+	public Kilpailu(String nimi, Date pvm, String paikka, Long paiva, Long kuukausi, Long vuosi, Long testi) {
 		super();
+		this.paiva = paiva;
+		this.kuukausi = kuukausi;
+		this.vuosi = vuosi;
 		this.nimi = nimi;
 		this.pvm = pvm;
 		this.paikka = paikka;
+		this.testi = testi;
+	}
+
+
+
+	public Long getPaiva() {
+		return paiva;
+	}
+
+	public void setPaiva(Long paiva) {
+		this.paiva = paiva;
+	}
+
+	public Long getKuukausi() {
+		return kuukausi;
+	}
+
+	public void setKuukausi(Long kuukausi) {
+		this.kuukausi = kuukausi;
+	}
+
+	public Long getVuosi() {
+		return vuosi;
+	}
+
+	public void setVuosi(Long vuosi) {
+		this.vuosi = vuosi;
 	}
 
 	public Long getkilpailuId() {
@@ -72,6 +126,15 @@ public class Kilpailu {
 		this.paikka = paikka;
 	}
 
+
+	public Long getTesti() {
+		return testi;
+	}
+
+	public void setTesti(Long testi) {
+		this.testi = testi;
+	}
+
 	public Long getKilpailuId() { return kilpailuId; }
 
 	public void setKilpailuId(Long kilpailuId) { this.kilpailuId = kilpailuId; }
@@ -84,9 +147,11 @@ public class Kilpailu {
         this.lohkot = lohkot;
     }
 
-    @Override
+	@Override
 	public String toString() {
-		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + "]";
+		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + ", testi=" + testi
+				+ ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + ", paiva=" + paiva + ", kuukausi=" + kuukausi
+				+ ", vuosi=" + vuosi + "]";
 	}
 	
 	

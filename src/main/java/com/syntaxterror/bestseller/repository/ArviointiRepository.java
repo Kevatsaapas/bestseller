@@ -9,5 +9,8 @@ import com.syntaxterror.bestseller.model.Arviointi;
 
 @Repository
 public interface ArviointiRepository extends CrudRepository<Arviointi, Long> {
-	List<Arviointi> findByArviointiId(Long arviointiId);
+	Arviointi findByArviointiId(Long arviointiId);
+	List<Arviointi> findByKilpailuId(Long kilpailuId);
+	Arviointi deleteByArviointiId(Long arviointiId);
+
 }

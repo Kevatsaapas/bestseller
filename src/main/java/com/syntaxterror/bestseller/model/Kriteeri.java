@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Kriteeri {
@@ -13,28 +14,37 @@ public class Kriteeri {
     private Long kriteeriId;
 
     @Column(name = "kriteeri_teksti")
+    @NotNull
     private String kriteeriTeksti;
 
     @Min(0)
     @Max(7)
     @Column(name = "kriteeri_piste")
-    private Integer kriteeriPiste;
-
+    @NotNull
+    private int kriteeriPiste;
+    
+    
+    @Column(name = "osaAlue_id")
+    private Long OsaAlueId;
+    
+    @Column(name = "kilpailuId")
+    private Long kilpailuId;
+    
     public Kriteeri() {
     	this.kriteeriTeksti=null;
     	this.kriteeriPiste=0;
+    	this.OsaAlueId=null;
+    	this.kilpailuId=null;
     }
 
-    @Override
-	public String toString() {
-		return "Kriteeri [kriteeriId=" + kriteeriId + ", kriteeriTeksti=" + kriteeriTeksti + ", kriteeriPiste="
-				+ kriteeriPiste + "]";
-	}
+   
 
-	public Kriteeri(String kriteeriTeksti, Integer kriteeriPiste) {
+	public Kriteeri(String kriteeriTeksti, int kriteeriPiste, Long OsaAlueId, Long kilpailuId) {
 		super();
 		this.kriteeriTeksti = kriteeriTeksti;
 		this.kriteeriPiste = kriteeriPiste;
+		this.OsaAlueId=OsaAlueId;
+    	this.kilpailuId=kilpailuId;
 	}
 
 	public Long getKriteeriId() {
@@ -53,11 +63,11 @@ public class Kriteeri {
         this.kriteeriTeksti = kriteeriTeksti;
     }
 
-    public Integer getKriteeriPiste() {
+    public int getKriteeriPiste() {
         return kriteeriPiste;
     }
 
-    public void setKriteeriPiste(Integer kriteeriPiste) {
+    public void setKriteeriPiste(int kriteeriPiste) {
         this.kriteeriPiste = kriteeriPiste;
     }
 

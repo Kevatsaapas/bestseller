@@ -1,0 +1,215 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}"></link>
+     <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" th:href="@{/css/style.css}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Bestseller - Arvioinnin tarkastelu</title>
+</head>
+<body>
+
+<h1>Arviointi</h1>
+
+<table>
+
+<tr>
+<td>PVM</td>
+<td>Tuomari</td>
+<td>Kilpailija<td>
+</tr>
+
+<tr>
+<td th:text="${arviointi.arviointiPvm}"></td>
+<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+</tr>
+
+</table>
+
+<h2>Aloitus (10%)</h2>
+
+<table>
+<tr>
+<td>Selkeä esittäytyminen</td>
+<td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
+<td th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Tapaamisen ajankäytöstä sopiminen:</td>
+<td th:text="${arviointi.aloitus.tapaamisenAjankayttoPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Vapaa palaute:</td>
+</tr>
+
+<tr>
+<td th:text="${arviointi.aloitus.aloitusVapaaPalaute}"></td>
+</tr>
+
+</table>
+
+<br/>
+
+
+<h2>Tarvekartoitus (30%)</h2>
+
+<table>
+<tr>
+<td>Perustietojen selvitys: </td>
+<td th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien kartoittaminen: </td>
+<td th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle: </td>
+<td th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkostonselvittäminen: </td>
+<td th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Vapaa palaute:</td>
+</tr>
+
+<tr>
+<td th:text="${arviointi.tarvekartoitus.tarvekartoitusVapaaPalaute}"></td>
+</tr>
+
+</table>
+
+
+<br/>
+
+
+<h2>Ratkaisun esittäminen (25%)</h2>
+
+<table>
+<tr>
+<td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista: </td>
+<td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin tapaamisiin perustuen: </td>
+<td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan: </td>
+<td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Vapaa palaute:</td>
+</tr>
+
+<tr>
+<td th:text="${arviointi.ratkaisu.ratkaisuVapaaPalaute}"></td>
+</tr>
+
+</table>
+
+
+<br/>
+
+
+<h2>Asiakkaan kysymysten käsittely (10%)</h2>
+
+<table>
+<tr>
+<td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely: </td>
+<td th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Asiakkaan huolenaiheiden käsittely: </td>
+<td th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Vapaa palaute:</td>
+</tr>
+
+<tr>
+<td th:text="${arviointi.kysymystenKasittely.kasittelyVapaaPalaute}"></td>
+</tr>
+
+</table>
+
+
+<br/>
+
+
+<h2>Päättäminen (10%)</h2>
+
+<table>
+<tr>
+<td>Sopivan sitoutumisen perusteltu ehdottaminen: </td>
+<td th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja jatkotoimenpiteistä sopiminen: </td>
+<td th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Vapaa palaute:</td>
+</tr>
+
+<tr>
+<td th:text="${arviointi.paattaminen.paattaminenVapaaPalaute}"></td>
+</tr>
+
+</table>
+
+
+<br/>
+
+
+<h2>Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</h2>
+
+<table>
+<tr>
+<td>Aktiivinen kuuntelu ja läsnäolo: </td>
+<td th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Tilannetaju ja erilaisuuden huomioiminen: </td>
+<td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
+</tr>
+
+<tr>
+<td>Vapaa palaute:</td>
+</tr>
+
+<tr>
+<td th:text="${arviointi.yleisvaikutelma.yleisvaikutelmaVapaaPalaute}"></td>
+</tr>
+
+</table>
+
+<a href="/testaus">takaisin</a>
+</body>
+</html>

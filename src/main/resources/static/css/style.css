@@ -1,51 +1,76 @@
+.table thead th {
+    background-color: #96ceb4;
+    border-style: none;
+}
 
-.thead-custom {
-  background-color: cornflowerblue;
+.logo {
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.logo-sm {
+    height: 100px;
+    margin-right: 10px;
+}
+
+.headertext {
+    font-family: 'Changa One', cursive;
+    font-size: 3em;
+    margin-top: 20px;
+}
+
+.standard {
+    background-color: #cecbcb;
+    background-image: url("../img/arches.png");
+    background-repeat: repeat;
 }
 
 textarea {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     box-sizing: border-box;
-
     width: 100%;
 }
 
 .tuom {
-  font-family: 'Open Sans', sans-serif;
-  background-color: aliceblue;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #cbdadb;
+    opacity: 0.8;
 }
 
 .padding {
-  padding-left: 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 textarea {
-  padding-top: 10px;
+    padding-top: 10px;
+    
+    
 }
 
 
 .indexbody {
-  
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 
-  background: rgba(183,222,237,1);
-  background: -moz-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(183,222,237,1)), color-stop(23%, rgba(113,206,239,1)), color-stop(51%, rgba(33,180,226,1)), color-stop(100%, rgba(183,222,237,1)));
-  background: -webkit-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: -o-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: -ms-linear-gradient(-45deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  background: linear-gradient(135deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 23%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1 );
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+
+    background: rgba(183, 222, 237, 1);
+    background: -moz-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(183, 222, 237, 1)), color-stop(23%, rgba(113, 206, 239, 1)), color-stop(51%, rgba(33, 180, 226, 1)), color-stop(100%, rgba(183, 222, 237, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+    background: linear-gradient(135deg, rgba(183, 222, 237, 1) 0%, rgba(113, 206, 239, 1) 23%, rgba(33, 180, 226, 1) 51%, rgba(183, 222, 237, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1);
 }
 
 /* Links */
 a,
 a:focus,
 a:hover {
-  color: #fff;
+    color: #fff;
 }
 
 /*
@@ -54,42 +79,45 @@ a:hover {
 
 html,
 body {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  
-  height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    height: 100%;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
-  display: table;
-  width: 100%;
-  height: 100%; /* For at least Firefox */
-  font-family: 'Open Sans', sans-serif;
-  min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    display: table;
+    width: 100%;
+    height: 100%;
+    /* For at least Firefox */
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
 }
+
 .site-wrapper-inner {
-  display: table-cell;
-  vertical-align: top;
+    display: table-cell;
+    vertical-align: top;
 }
+
 .cover-container {
-  margin-right: auto;
-  margin-left: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /* Padding for spacing */
 .inner {
-  padding: 30px;
+    padding: 30px;
 }
 
 @media (min-width: 768px) {
-  .masthead-brand {
-    float: left;
-  }
+    .masthead-brand {
+        float: left;
+    }
 }
 
 
@@ -98,20 +126,21 @@ body {
  */
 
 .cover {
-  padding: 0 20px;
+    padding: 0 20px;
 }
+
 .cover .btn-lg {
-  padding: 10px 20px;
-  font-weight: bold;
-  border-radius: 8px;
-  width: 180px;
-  height: 150px;
-  color: #fff;
-  font-size: 23pt;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 180px;
+    height: 150px;
+    color: #fff;
+    font-size: 23pt;
 }
 
 .cover-heading {
-  font-size: 62pt;
+    font-size: 62pt;
 }
 
 /*
@@ -119,25 +148,30 @@ body {
  */
 
 @media (min-width: 768px) {
-  /* Pull out the header and footer */
-  .masthead {
-    position: fixed;
-    top: 0;
-  }
-  /* Start the vertical centering */
-  .site-wrapper-inner {
-    vertical-align: middle;
-  }
-  /* Handle the widths */
-  .masthead,
-  .cover-container {
-    width: 100%; /* Must be percentage or pixels for horizontal alignment */
-  }
+
+    /* Pull out the header and footer */
+    .masthead {
+        position: fixed;
+        top: 0;
+    }
+
+    /* Start the vertical centering */
+    .site-wrapper-inner {
+        vertical-align: middle;
+    }
+
+    /* Handle the widths */
+    .masthead,
+    .cover-container {
+        width: 100%;
+        /* Must be percentage or pixels for horizontal alignment */
+    }
 }
 
 @media (min-width: 992px) {
-  .masthead,
-  .cover-container {
-    width: 700px;
-  }
+
+    .masthead,
+    .cover-container {
+        width: 700px;
+    }
 }
