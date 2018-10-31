@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.control;
 
 import com.syntaxterror.bestseller.model.SignupForm;
 import com.syntaxterror.bestseller.model.User;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,12 +21,14 @@ public class UserController {
 
     @Autowired
     private UserRepository repository;
+    
 
     @RequestMapping(value = "signup")
     public String addStudent(Model model){
         model.addAttribute("signupform", new SignupForm());
         return "signup";
     }
+    
 
     /**
      * Create new user

@@ -19,6 +19,7 @@ import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
+import com.syntaxterror.bestseller.repository.UserRepository;
 
 @Controller
 public class DefaultController {
@@ -30,10 +31,13 @@ public class DefaultController {
     public TuomariRepository tuomarirepository;
     @Autowired
     public LohkoRepository lohkoRepository;
+    @Autowired
+    private UserRepository urepository;
 
     @RequestMapping("/")
     public String index(Model model) {
     	model.addAttribute("kilpailut", kilpailuRepository.findAll());
+    	model.addAttribute("users", urepository.findAll());
         return "index";
     }
     @RequestMapping("login")
@@ -41,6 +45,11 @@ public class DefaultController {
         return "login";
     }
     
+    
+    @RequestMapping(value = "/login")
+	public String showLogin() {
+		return "login";
+	}
     
     @RequestMapping(value="/kilpailuvalittu/", method=RequestMethod.POST)
     public String dataa(@RequestParam("kilpailuId")Long kilpailuId, Model model) {

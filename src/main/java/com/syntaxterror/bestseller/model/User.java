@@ -19,15 +19,20 @@ public class User {
 
     @Column(name = "role", nullable = false)
     private String role;
+    
+    @Column(name = "tuomari_id", nullable = true)
+    private Long tuomariId;
 
     public User() {
     }
 
-    public User(String username, String passwordHash, String role) {
+    public User(String username, String passwordHash, String role, Long tuomariId) {
         super();
         this.username = username;
         this.passwordHash = passwordHash;
         this.role = role;
+        this.tuomariId = tuomariId;
+        
     }
 
     public Long getId() {
@@ -62,4 +67,13 @@ public class User {
         this.role = role;
     }
 
+	public Long getTuomariId() {
+		return tuomariId;
+	}
+
+	public void setTuomariId(Long tuomariId) {
+		this.tuomariId = tuomariId;
+	}
+
+    
 }
