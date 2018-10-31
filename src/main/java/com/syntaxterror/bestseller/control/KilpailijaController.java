@@ -9,11 +9,14 @@ import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.transaction.Transactional;
 
 @Controller
 public class KilpailijaController {
@@ -30,6 +33,7 @@ public class KilpailijaController {
     @Autowired
     public LohkoRepository lohkoRepository;
 
+    @Secured("ADMIN")
     @RequestMapping("/luokilpailija/{kilpailuId}")
     public String luoKilpailija(Model model, @PathVariable Long kilpailuId, Kilpailija kilpailija) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
@@ -39,7 +43,7 @@ public class KilpailijaController {
 
     }
 
-
+    @Secured("ADMIN")
     @RequestMapping("/editkilpailija/{kilpailijaId}")
     @Transactional
     public String editKilpailija(Model model, @PathVariable Long kilpailijaId) {
@@ -52,6 +56,7 @@ public class KilpailijaController {
 
     }
 
+    @Secured("ADMIN")
     @RequestMapping(value = "/tallennakilpailija", method = RequestMethod.POST)
     public String tallennaKilpailija(Kilpailija kilpailija) {
         kilpailijaRepository.save(kilpailija);
@@ -60,6 +65,7 @@ public class KilpailijaController {
         return redirect;
     }
 
+    @Secured("ADMIN")
     @RequestMapping(value = "/poistakilpailija/{kilpailijaId}", method = RequestMethod.GET)
     public String poistaKilpailija(@PathVariable Long kilpailijaId) {
         Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
@@ -67,7 +73,8 @@ public class KilpailijaController {
         String redirect = "redirect:/datat/"+Long.toString(kilpailija.getKilpailuId());
         return redirect;
     }
-    
+
+    @Secured("ADMIN")
     @RequestMapping(value = "/poistatuomari/{tuomariId}", method = RequestMethod.GET)
     public String poistaTuomari(@PathVariable Long tuomariId) {
         Tuomari tuomari = tuomariRepository.findByTuomariId(tuomariId);
@@ -75,7 +82,8 @@ public class KilpailijaController {
         String redirect = "redirect:/datat/"+Long.toString(tuomari.getKilpailuId());
         return redirect;
     }
-    
+
+    @Secured("ADMIN")
     @RequestMapping("/luotuomari/{kilpailuId}")
     public String luoTuomari(Model model, @PathVariable Long kilpailuId, Tuomari tuomari) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
@@ -84,6 +92,7 @@ public class KilpailijaController {
         return "luotuomari";
     }
 
+    @Secured("ADMIN")
     @RequestMapping("/edittuomari/{tuomariId}")
     public String luoTuomari(Model model, @PathVariable Long tuomariId) {
        Tuomari tuomari=tuomariRepository.findByTuomariId(tuomariId);
@@ -94,6 +103,7 @@ public class KilpailijaController {
         return "edittuomari";
     }
 
+    @Secured("ADMIN")
     @RequestMapping(value = "/tallennatuomari", method = RequestMethod.POST)
     public String tallennaTuomari(Tuomari tuomari) {
         tuomariRepository.save(tuomari);

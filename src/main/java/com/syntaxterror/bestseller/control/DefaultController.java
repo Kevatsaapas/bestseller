@@ -1,25 +1,20 @@
 package com.syntaxterror.bestseller.control;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.syntaxterror.bestseller.model.Arviointi;
-import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
-import com.syntaxterror.bestseller.repository.UserRepository;
+import com.syntaxterror.bestseller.repository.AccountRepository;
 
 @Controller
 public class DefaultController {
@@ -32,7 +27,7 @@ public class DefaultController {
     @Autowired
     public LohkoRepository lohkoRepository;
     @Autowired
-    private UserRepository urepository;
+    private AccountRepository urepository;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -40,13 +35,14 @@ public class DefaultController {
     	model.addAttribute("users", urepository.findAll());
         return "index";
     }
-    @RequestMapping("login")
+
+   @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login() {
         return "login";
     }
     
     
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLogin() {
 		return "login";
 	}

@@ -1,6 +1,7 @@
 package com.syntaxterror.bestseller.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity

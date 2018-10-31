@@ -1,4 +1,6 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
 
 <head th:fragment="htmlhead">
     <meta charset="utf-8" />
@@ -32,7 +34,7 @@
 
             <!-- Header -->
 
-            <div class="row padding">
+            <div class="row padding" sec:authorize="hasAuthority('ADMIN')">
                 <a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
                         alt="logo-sm" class="logo-sm" /></a>
                 <h1 class="headertext" th:text="${kilpailu.nimi}+' - Data'"></h1>

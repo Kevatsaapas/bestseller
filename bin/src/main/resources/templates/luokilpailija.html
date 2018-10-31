@@ -26,6 +26,10 @@
 			<label for="etunimi">Etunimi</label> <input type="text"
 				th:required="required" th:field="*{etunimi}" />
 		</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12" >
+				<label for="tuomariNimi">Tuomarin nimi:</label> <input type="text" class="form-control is-invalid"
+																	  th:required="required" oninvalid="this.setCustomValidity('Lisää tuomarin nimi')" oninput="setCustomValidity('')" th:field="*{tuomariNimi}" />
+			</div>
 
 		<div class="form-group">
 			<label for="sukunimi">Sukunimi</label> <input type="text"

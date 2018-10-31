@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +51,7 @@ public class DataController {
 	private String[] spostit = { "haaga.helia@haaga-helia.com", "metro@polia.com",
 			"laurea.ammatti@korkea.com", "business.college@helsinki.com" };
 
+	@Secured("ADMIN")
 	@RequestMapping("/datat/{kilpailuId}")
 	public String dataa(@PathVariable Long kilpailuId, Model model) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
@@ -68,9 +70,9 @@ public class DataController {
 		model.addAttribute("arviointi", arviointiRepository.findByArviointiId(arviointiId));
 		return "tarkastelu";
 	}
-	
-	
-	 @RequestMapping("/poistaarviointi/{arviointiId}")
+
+	@Secured("ADMIN")
+	@RequestMapping("/poistaarviointi/{arviointiId}")
 	    public String poistaArviointi(@PathVariable Long arviointiId){
 		 	Long kilpailuId=arviointiRepository.findByArviointiId(arviointiId).getKilpailuId();
 		 	String kilid = kilpailuId.toString();
@@ -78,6 +80,7 @@ public class DataController {
 	        return "redirect:/datat/"+kilid;
 	    }
 
+    @Secured("ADMIN")
 	@RequestMapping("/luodatat/{kilpailuId}")
 	public String luoDataa(@PathVariable Long kilpailuId, Model model) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);

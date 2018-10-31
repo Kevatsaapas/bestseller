@@ -2,9 +2,9 @@ package com.syntaxterror.bestseller.control;
 
 
 import com.syntaxterror.bestseller.model.SignupForm;
-import com.syntaxterror.bestseller.model.User;
-import com.syntaxterror.bestseller.repository.KilpailuRepository;
-import com.syntaxterror.bestseller.repository.UserRepository;
+import com.syntaxterror.bestseller.model.Account;
+import com.syntaxterror.bestseller.repository.AccountRepository;
+import com.syntaxterror.bestseller.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,10 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private UserRepository repository;
+    private AccountRepository repository;
+
+    @Autowired
+    private AccountService accountService;
     
 
     @RequestMapping(value = "signup")
@@ -40,33 +43,7 @@ public class UserController {
 */
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) { // validation errors
-            if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match
-                String pwd = signupForm.getPassword();
-                BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
-                String hashPwd = bc.encode(pwd);
-
-                User newUser = new User();
-                newUser.setPasswordHash(hashPwd);
-                newUser.setUsername(signupForm.getUsername());
-                newUser.setRole("USER");
-                if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
-                    repository.save(newUser);
-                }
-                else {
-                    bindingResult.rejectValue("username", "err.username", "Username already exists");
-                    return "signup";
-                }
-            }
-            else {
-                bindingResult.rejectValue("passwordCheck", "err.passCheck", "Passwords does not match");
-                return "signup";
-            }
-        }
-        else {
-            return "signup";
-        }
-        return "redirect:/login";
+        return "";
     }
 
 }

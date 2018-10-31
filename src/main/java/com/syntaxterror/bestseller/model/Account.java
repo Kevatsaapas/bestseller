@@ -3,7 +3,7 @@ package com.syntaxterror.bestseller.model;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,16 +17,16 @@ public class User {
     @Column(name = "password", nullable = false)
     private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+    @ManyToOne
+    private Role role;
     
     @Column(name = "tuomari_id", nullable = true)
     private Long tuomariId;
 
-    public User() {
+    public Account() {
     }
 
-    public User(String username, String passwordHash, String role, Long tuomariId) {
+    public Account(String username, String passwordHash, Role role, Long tuomariId) {
         super();
         this.username = username;
         this.passwordHash = passwordHash;
@@ -59,11 +59,11 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
