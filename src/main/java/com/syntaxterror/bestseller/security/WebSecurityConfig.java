@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
 /**
  @Autowired
 private DataSource dataSource();
@@ -19,49 +20,25 @@ private DataSource dataSource();
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private UserDetailServiceImpl userDetailsService;
+	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
                 .authorizeRequests()
-                .antMatchers("/css/style.css",
-                        "/img/*",
-                        "/arviointi",
-                        "/index",
-                        "/uusi/{kilpailuId}/{lohkoId}",
-                        "/uusitest/{kilpailuId}/{lohkoId}",
-                        "/tallenna/{kilpailuId}/{lohkoId}",
-                        "/datat/{kilpailuId}",
-                        "/tarkastelu/{arviointiId}",
-                        "/poistaarviointi/{arviointiId}",
-                        "/luodatat/{kilpailuId}",
-                        "/kilpailuvalittu/",
-                        "/lohkovalittu/",
-                        "/testaus",
-                        "/tuomarointi/",
-                        "/luokilpailija/{kilpailuId}",
-                        "/editkilpailija/{kilpailijaId}",
-                        "/tallennakilpailija",
-                        "/poistakilpailija/{kilpailijaId}",
-                        "/poistatuomari/{tuomariId}",
-                        "/tuomarivalikko",
-                        "/pisteet/{kilpailuId}",
-                        "/luokilpailija/{kilpailuId}",
-                        "/editkilpailija/{kilpailijaId}",
-                        "/tallennakilpailija",
-                        "/poistakilpailija/{kilpailijaId}",
-                        "/poistatuomari/{tuomariId}",
-                        "/luotuomari/{kilpailuId}",
-                        "/edittuomari/{tuomariId}",
-                        "/tallennatuomari").permitAll()
+                .antMatchers("/css/*","/img/*","login/*").permitAll()
+                .and()
+                .authorizeRequests().antMatchers("/testaus", "datat/*").access("hasAuthority('ADMIN')")
                 .and()
                 .authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/")
-                .defaultSuccessUrl("/index")
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
                 .logout()
@@ -70,6 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService()).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }
