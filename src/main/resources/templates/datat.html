@@ -133,8 +133,6 @@
                 <form th:action="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">
                     <button class="btn btn-sm btn-info">Lisää uusi</button>
                 </form>
-
-
             </div>
             <hr>
 
@@ -164,10 +162,10 @@
                 </table>
             </div>
             <hr>
-            
-            
+
+
             <!-- Koulut data -->
-            
+
             <div class="row padding">
                 <table class="table">
                     <thead class="thead-custom">
@@ -195,6 +193,8 @@
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
                                 </form>
                             </td>
+
+
                         </tr>
                     </tbody>
                 </table>
@@ -203,7 +203,7 @@
                 </form>
             </div>
             <hr>
-            
+
 
             <!-- Tuomarit data -->
 
@@ -242,6 +242,7 @@
                             </td>
                             <td>
                                 <form  onSubmit="if(!confirm('Haluatko varmasti poistaa tuomarin?')){return false;}" th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
+
                                     <button class="btn btn-sm btn-danger">Poista</button>
                                 </form>
                             </td>
@@ -288,6 +289,7 @@
                         </td>
                         <td>
                             <form  onSubmit="if(!confirm('Haluatko varmasti poistaa arvioinnin?')){return false;}" th:action="@{'/poistaarviointi/'+${arviointi.arviointiId}}">
+
                                 <button class="btn btn-sm btn-danger">Poista</button>
                             </form>
                         </td>
