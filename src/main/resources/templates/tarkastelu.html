@@ -27,203 +27,236 @@
 </head>
 
 <body>
+    <div class="standard h-auto">
+        <div class="container tuom">
 
-    <h1>Arviointi</h1>
+            <!-- Header -->
 
-    <table>
+            <div class="row padding">
+                <a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="{/img/BSC_sinetti_logo.png}"
+                        alt="logo-sm" class="logo-sm" /></a>
+                <h1 class="headertext">Arviointi</h1>
+            </div>
 
-        <tr>
-            <td>PVM</td>
-            <td>Tuomari</td>
-            <td>Kilpailija<td>
-        </tr>
+            <hr>
 
-        <tr>
-            <td th:text="${arviointi.arviointiPvm}"></td>
-            <td th:text="${arviointi.tuomari.tuomariNro}"></td>
-            <td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
-        </tr>
+            <!-- Intro -->
 
-    </table>
+            <div class="row padding">
+                <table class="table">
+                    <thead class="thead-custom">
+                        <tr class="table-info">
+                            <th scope="col">PVM</th>
+                            <th scope="col">Tuomari</th>
+                            <th scope="col">Kilpailija</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${arviointi.arviointiPvm}"></td>
+                            <td th:text="${arviointi.tuomari.tuomariNro}"></td>
+                            <td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-    <h2>Aloitus (10%)</h2>
+            <!-- Aloitus -->
 
-    <table>
-        <tr>
-            <td>Selkeä esittäytyminen</td>
-            <td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
-        </tr>
+            <div class="row padding">
+                <h2>Aloitus (10%)</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Selkeä esittäytyminen:</td>
+                            <td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
+                        </tr>
 
-        <tr>
-            <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
-            <td th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
+                            <td th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
+                        </tr>
 
-        <tr>
-            <td>Tapaamisen ajankäytöstä sopiminen:</td>
-            <td th:text="${arviointi.aloitus.tapaamisenAjankayttoPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Tapaamisen ajankäytöstä sopiminen:</td>
+                            <td th:text="${arviointi.aloitus.tapaamisenAjankayttoPist}+'/7'"></td>
+                        </tr>
 
-        <tr>
-            <td>Vapaa palaute:</td>
-        </tr>
+                        <tr>
+                            <td>Vapaa palaute:</td>
+                        </tr>
 
-        <tr>
-            <td th:text="${arviointi.aloitus.aloitusVapaaPalaute}"></td>
-        </tr>
+                        <tr>
+                            <td th:text="${arviointi.aloitus.aloitusVapaaPalaute}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-    </table>
+            <!-- Tarvekartoitus -->
 
-    <br />
+            <div class="row padding">
+                <h2>Tarvekartoitus (30%)</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Perustietojen selvitys: </td>
+                            <td th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
+                        </tr>
 
+                        <tr>
+                            <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien kartoittaminen:
+                            </td>
+                            <td th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
+                        </tr>
 
-    <h2>Tarvekartoitus (30%)</h2>
+                        <tr>
+                            <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle: </td>
+                            <td th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
+                        </tr>
 
-    <table>
-        <tr>
-            <td>Perustietojen selvitys: </td>
-            <td th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkostonselvittäminen: </td>
+                            <td th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
+                        </tr>
 
-        <tr>
-            <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien kartoittaminen: </td>
-            <td th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Vapaa palaute:</td>
+                        </tr>
 
-        <tr>
-            <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle: </td>
-            <td th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td th:text="${arviointi.tarvekartoitus.tarvekartoitusVapaaPalaute}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <tr>
-            <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkostonselvittäminen: </td>
-            <td th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
-        </tr>
+            <!-- Ratkaisun esittäminen -->
 
-        <tr>
-            <td>Vapaa palaute:</td>
-        </tr>
+            <div class="row padding">
+                <h2>Ratkaisun esittäminen (25%)</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista: </td>
+                            <td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
+                        </tr>
 
-        <tr>
-            <td th:text="${arviointi.tarvekartoitus.tarvekartoitusVapaaPalaute}"></td>
-        </tr>
+                        <tr>
+                            <td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin tapaamisiin
+                                perustuen: </td>
+                            <td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
+                        </tr>
 
-    </table>
+                        <tr>
+                            <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan: </td>
+                            <td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
+                        </tr>
 
+                        <tr>
+                            <td>Vapaa palaute:</td>
+                        </tr>
 
-    <br />
+                        <tr>
+                            <td th:text="${arviointi.ratkaisu.ratkaisuVapaaPalaute}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <!-- Ratkaisun esittäminen -->
 
-    <h2>Ratkaisun esittäminen (25%)</h2>
+            <div class="row padding">
+                <h2>Asiakkaan kysymysten käsittely (10%)</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely: </td>
+                            <td th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
+                        </tr>
 
-    <table>
-        <tr>
-            <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista: </td>
-            <td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Asiakkaan huolenaiheiden käsittely: </td>
+                            <td th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
+                        </tr>
 
-        <tr>
-            <td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin tapaamisiin perustuen: </td>
-            <td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Vapaa palaute:</td>
+                        </tr>
 
-        <tr>
-            <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan: </td>
-            <td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td th:text="${arviointi.kysymystenKasittely.kasittelyVapaaPalaute}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <tr>
-            <td>Vapaa palaute:</td>
-        </tr>
+            <!-- Päättäminen -->
 
-        <tr>
-            <td th:text="${arviointi.ratkaisu.ratkaisuVapaaPalaute}"></td>
-        </tr>
+            <div class="row padding">
+                <h2>Päättäminen (10%)</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Sopivan sitoutumisen perusteltu ehdottaminen: </td>
+                            <td th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
+                        </tr>
 
-    </table>
+                        <tr>
+                            <td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja jatkotoimenpiteistä
+                                sopiminen: </td>
+                            <td th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
+                        </tr>
 
+                        <tr>
+                            <td>Vapaa palaute:</td>
+                        </tr>
 
-    <br />
+                        <tr>
+                            <td th:text="${arviointi.paattaminen.paattaminenVapaaPalaute}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <!-- Päättäminen -->
 
-    <h2>Asiakkaan kysymysten käsittely (10%)</h2>
+            <div class="row padding">
+                <h2>Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Aktiivinen kuuntelu ja läsnäolo: </td>
+                            <td th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
+                        </tr>
 
-    <table>
-        <tr>
-            <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely: </td>
-            <td th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Tilannetaju ja erilaisuuden huomioiminen: </td>
+                            <td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
+                        </tr>
 
-        <tr>
-            <td>Asiakkaan huolenaiheiden käsittely: </td>
-            <td th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
-        </tr>
+                        <tr>
+                            <td>Vapaa palaute:</td>
+                        </tr>
 
-        <tr>
-            <td>Vapaa palaute:</td>
-        </tr>
+                        <tr>
+                            <td th:text="${arviointi.yleisvaikutelma.yleisvaikutelmaVapaaPalaute}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <tr>
-            <td th:text="${arviointi.kysymystenKasittely.kasittelyVapaaPalaute}"></td>
-        </tr>
+            <!-- Footer -->
 
-    </table>
+            <div class="row padding">
+                <form action="testaus.html" th:action="@{/testaus}">
+                    <button class="btn btn-lg btn-info">Takaisin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 
-
-    <br />
-
-
-    <h2>Päättäminen (10%)</h2>
-
-    <table>
-        <tr>
-            <td>Sopivan sitoutumisen perusteltu ehdottaminen: </td>
-            <td th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
-        </tr>
-
-        <tr>
-            <td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja jatkotoimenpiteistä sopiminen: </td>
-            <td th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
-        </tr>
-
-        <tr>
-            <td>Vapaa palaute:</td>
-        </tr>
-
-        <tr>
-            <td th:text="${arviointi.paattaminen.paattaminenVapaaPalaute}"></td>
-        </tr>
-
-    </table>
-
-
-    <br />
-
-
-    <h2>Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</h2>
-
-    <table>
-        <tr>
-            <td>Aktiivinen kuuntelu ja läsnäolo: </td>
-            <td th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
-        </tr>
-
-        <tr>
-            <td>Tilannetaju ja erilaisuuden huomioiminen: </td>
-            <td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
-        </tr>
-
-        <tr>
-            <td>Vapaa palaute:</td>
-        </tr>
-
-        <tr>
-            <td th:text="${arviointi.yleisvaikutelma.yleisvaikutelmaVapaaPalaute}"></td>
-        </tr>
-
-    </table>
-
-    <a href="/testaus">takaisin</a>
 </body>
 
 </html>

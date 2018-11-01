@@ -7,27 +7,27 @@ import javax.persistence.Embeddable;
 public class Yleisvaikutelma {
 
     @Column
-    private int aktiivinenKuunteluPist;
+    private String aktiivinenKuunteluPist;
 
     @Column
-    private int tilannetajuPist;
+    private String tilannetajuPist;
 
     @Column
     private String yleisvaikutelmaVapaaPalaute;
 
-    public int getAktiivinenKuunteluPist(){
+    public String getAktiivinenKuunteluPist(){
         return aktiivinenKuunteluPist;
     }
 
-    public void setAktiivinenKuunteluPist(int aktiivinenKuunteluPist) {
+    public void setAktiivinenKuunteluPist(String aktiivinenKuunteluPist) {
         this.aktiivinenKuunteluPist = aktiivinenKuunteluPist;
     }
 
-    public int getTilannetajuPist() {
+    public String getTilannetajuPist() {
         return tilannetajuPist;
     }
 
-    public void setTilannetajuPist(int tilannetajuPist) {
+    public void setTilannetajuPist(String tilannetajuPist) {
         this.tilannetajuPist = tilannetajuPist;
     }
 
@@ -40,6 +40,6 @@ public class Yleisvaikutelma {
     }
 
     public int getKokonaistulos(){
-        return aktiivinenKuunteluPist + tilannetajuPist;
+        return Integer.parseInt(aktiivinenKuunteluPist) + Integer.parseInt(tilannetajuPist);
     }
 }

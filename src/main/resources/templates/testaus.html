@@ -57,7 +57,8 @@
                             </form>
                         </td>
                         <td>
-                            <form th:action="@{'/poistakilpailu/'+${kilpailu.kilpailuId}}">
+                            <form onSubmit="if(!confirm('Haluatko varmasti poistaa kilpailun?')){return false;}"
+                                th:action="@{'/poistakilpailu/'+${kilpailu.kilpailuId}}">
                                 <button class="btn btn-sm btn-danger">Poista</button>
                             </form>
                         </td>
@@ -69,6 +70,52 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <!-- Käyttäjädata -->
+
+            <div class="row padding">
+                <table class="table">
+                    <thead class="thead-custom">
+                        <tr class="table-info">
+                            <th scope="col">Käyttäjät</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td>käyttäjänimi</td>
+                            <td>Admin</td>
+                            <td>Rooli</td>
+                            <td>RooliId</td>
+                        </tr>
+
+                        <tr th:each="kayt:${users}">
+                            <td th:text="${kayt.id}"></td>
+                            <td th:text="${kayt.username}"></td>
+                            <td th:if="${kayt.role == 'USER'}">EI</td>
+                            <td th:if="${kayt.role == 'ADMIN'}">KYLLÄ</td>
+                            <td th:text="${kayt.rooli}"></td>
+                            <div th:if="${kayt.rooliId == null}">
+                            <td th:if="${kayt.rooli=='tuomari'}">
+								<form th:action="@{'/liitatuomari/'+${kayt.username}}">
+                    			<button class="btn btn-lg btn-success">Liitä Tuomari</button>
+                				</form>
+							</td>
+                            <td th:if="${kayt.rooli=='ostaja'}">LIITÄ OSTAJA</td>
+                            <td th:if="${kayt.rooli=='valmentaja'}">LIITÄ VALMENTAJA</td>
+                            </div>
+                            <td th:text="${kayt.rooliId}"></td>
+                            
+						</tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <hr>
 
             <!-- Footer -->
 

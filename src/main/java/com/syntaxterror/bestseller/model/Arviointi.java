@@ -5,6 +5,9 @@ import com.syntaxterror.bestseller.model.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +36,7 @@ public class Arviointi implements Comparable{
 
     @ManyToOne
     @JoinColumn(name = "lohko_id")
+    @NotFound(action=NotFoundAction.IGNORE)
     private Lohko lohko;
 
     @Column
@@ -58,8 +62,6 @@ public class Arviointi implements Comparable{
 
     @Embedded
     private Yleisvaikutelma yleisvaikutelma;
-
-
 
     public Arviointi() {
     	this.arviointiPvm=null;

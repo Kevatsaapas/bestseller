@@ -7,27 +7,27 @@ import javax.persistence.Embeddable;
 public class KysymystenKasittely {
 
     @Column
-    private int vastavaitteidenYmmartaminenPist;
+    private String vastavaitteidenYmmartaminenPist;
 
     @Column
-    private int huolenaiheidenKasittelyPist;
+    private String huolenaiheidenKasittelyPist;
 
     @Column
     private String kasittelyVapaaPalaute;
 
-    public int getVastavaitteidenYmmartaminenPist() {
+    public String getVastavaitteidenYmmartaminenPist() {
         return vastavaitteidenYmmartaminenPist;
     }
 
-    public void setVastavaitteidenYmmartaminenPist(int vastavaitteidenYmmartaminenPist) {
+    public void setVastavaitteidenYmmartaminenPist(String vastavaitteidenYmmartaminenPist) {
         this.vastavaitteidenYmmartaminenPist = vastavaitteidenYmmartaminenPist;
     }
 
-    public int getHuolenaiheidenKasittelyPist() {
+    public String getHuolenaiheidenKasittelyPist() {
         return huolenaiheidenKasittelyPist;
     }
 
-    public void setHuolenaiheidenKasittelyPist(int huolenaiheidenKasittelyPist) {
+    public void setHuolenaiheidenKasittelyPist(String huolenaiheidenKasittelyPist) {
         this.huolenaiheidenKasittelyPist = huolenaiheidenKasittelyPist;
     }
 
@@ -40,6 +40,6 @@ public class KysymystenKasittely {
     }
 
     public int getKokonaistulos(){
-        return vastavaitteidenYmmartaminenPist + huolenaiheidenKasittelyPist;
+        return Integer.parseInt(vastavaitteidenYmmartaminenPist) + Integer.parseInt(huolenaiheidenKasittelyPist);
     }
 }

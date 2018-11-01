@@ -15,31 +15,31 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-<title>Bestseller - luo tuomari</title>
+<title>Bestseller - luo koulu</title>
 </head>
 <body>
-	<h2>Luo uusi tuomari</h2>
-
-	<form role="form" class="was-validated" th:object="${tuomari}"
-		th:action="@{/tallennatuomari}" action="#" method="post">
+	<h2>Lisää uusi koulu</h2>
+		<form role="form" th:object="${koulu}"
+		th:action="@{/tallennakoulu}" action="#" method="post">
 		<div class="form-group">
 		<div class="col-lg-6 col-sm-6 col-xs-12" >
-			<label for="tuomariNro">Tuomarinumero:</label> <input type="text" class="form-control is-invalid"
-				th:required="required" oninvalid="this.setCustomValidity('Lisää tuomarin numero')" oninput="setCustomValidity('')" th:field="*{tuomariNro}" />
+			<label for="kouluNimi">Koulun Nimi: </label><input type="text" class="form-control is-invalid"
+				th:required="required" th:field="*{kouluNimi}" />
 		</div>
 		</div>
 		
-		<h2>Valitse Lohkonumero:</h2>
-		<ul>
-			<li th:each="lohko:${lohkot}"><input type="radio"
-				th:required="required" oninvalid="this.setCustomValidity('Valitse lohkonumero')" oninput="setCustomValidity('')" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" /> <label
-				th:for="${lohkoNro}" th:text="${lohko.lohkoNro}">Lohkonro</label>
-			</li>
-		</ul>
+		<h2>Lisää Paikkakunta</h2>
+		<div class="form-group">
+		<div class="col-lg-6 col-sm-6 col-xs-12" >
+			<label for="kouluNimi">Koulun Paikkakunta: </label><input type="text" class="form-control is-invalid"
+				th:required="required" th:field="*{kouluKaupunki}" />
+		</div>
+		</div>
 		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
 			th:value="${kilpailuId}" /> <input id="addButton" type="submit"
 			class="btn btn-primary" value="Tallenna">
-	</form>
+		</form>
+
 
 </body>
 </html>

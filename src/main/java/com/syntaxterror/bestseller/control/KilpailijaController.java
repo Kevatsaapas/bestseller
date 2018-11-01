@@ -2,9 +2,11 @@ package com.syntaxterror.bestseller.control;
 
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
@@ -31,6 +33,10 @@ public class KilpailijaController {
 
     @Autowired
     public LohkoRepository lohkoRepository;
+    
+    @Autowired
+    public KouluRepository kouluRepository;
+
 
     @RequestMapping("/luokilpailija/{kilpailuId}")
     @Transactional
@@ -38,11 +44,12 @@ public class KilpailijaController {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
         model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
         model.addAttribute("kilpailu", kilpailu);
+        model.addAttribute("koulut",kouluRepository.findByKilpailuId(kilpailuId));
         return "luokilpailija";
 
     }
-    
-    
+
+
     @RequestMapping("/editkilpailija/{kilpailijaId}")
     @Transactional
     public String editKilpailija(Model model, @PathVariable Long kilpailijaId) {
@@ -54,7 +61,7 @@ public class KilpailijaController {
         return "editkilpailija";
 
     }
-    
+
     @RequestMapping(value = "/tallennakilpailija", method = RequestMethod.POST)
     @Transactional
     public String tallennaKilpailija(Kilpailija kilpailija) {
@@ -63,7 +70,6 @@ public class KilpailijaController {
         String redirect = "redirect:/datat/"+ Long.toString(kilpailija.getKilpailuId());
         return redirect;
     }
-    
 
     @RequestMapping(value = "/poistakilpailija/{kilpailijaId}", method = RequestMethod.GET)
     @Transactional
@@ -89,7 +95,7 @@ public class KilpailijaController {
         model.addAttribute("kilpailu", kilpailu);
         return "luotuomari";
     }
-    
+
     @RequestMapping("/edittuomari/{tuomariId}")
     public String luoTuomari(Model model, @PathVariable Long tuomariId) {
        Tuomari tuomari=tuomariRepository.findByTuomariId(tuomariId);
@@ -99,12 +105,41 @@ public class KilpailijaController {
         model.addAttribute("tuomari", tuomari);
         return "edittuomari";
     }
-    
+
     @RequestMapping(value = "/tallennatuomari", method = RequestMethod.POST)
     public String tallennaTuomari(Tuomari tuomari) {
         tuomariRepository.save(tuomari);
         System.out.println(tuomari);
         String redirect = "redirect:/datat/"+ Long.toString(tuomari.getKilpailuId());
         return redirect;
+    }
+    
+    @RequestMapping("/luokoulu/{kilpailuId}")
+    public String luoKoulu(Model model, Koulu koulu) {
+    	model.addAttribute(koulu);
+    	return "luokoulu";
+    }
+    
+    @RequestMapping(value = "/tallennakoulu", method = RequestMethod.POST)
+    public String tallennaKoulu(Koulu koulu) {
+    	kouluRepository.save(koulu);
+    	String redirect = "redirect:/datat/"+ Long.toString(koulu.getKilpailuId()); 
+    	return redirect;
+    }
+    @RequestMapping(value = "/poistakoulu/{kouluId}", method = RequestMethod.GET)
+    public String poistaKoulu(@PathVariable Long kouluId) {
+        Koulu koulu = kouluRepository.findByKouluId(kouluId);
+        kouluRepository.deleteById(kouluId);
+        String redirect = "redirect:/datat/"+Long.toString(koulu.getKilpailuId());
+        return redirect;
+    }
+    
+    @RequestMapping("/editkoulu/{kouluId}")
+    public String luoKoulu(Model model, @PathVariable Long kouluId) {
+       Koulu koulu=kouluRepository.findByKouluId(kouluId);
+       Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(koulu.getKilpailuId());
+       model.addAttribute("kilpailu", kilpailu);
+        model.addAttribute("koulu", koulu);
+        return "editkoulu";
     }
 }

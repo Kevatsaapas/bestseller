@@ -14,6 +14,12 @@ public class Tuomari {
     @Column(name = "tuomari_nro")
     @NotNull
     private String tuomariNro;
+    
+    @Column(name = "etunimi")
+    private String etunimi;
+    
+    @Column(name = "sukunimi")
+    private String sukunimi;
 
     // Oletuksella, että joka lohkossa eri tuomarit
     @Column(name = "lohko_id")
@@ -21,21 +27,31 @@ public class Tuomari {
     
     @Column(name = "kilpailu_id")
     private Long kilpailuId;
-
+    
+    @Column(name = "valittu")
+    private Long valittu;
+    
+    
 
     public Tuomari() {
     	this.tuomariNro = null;
+    	this.etunimi=null;
+    	this.sukunimi=null;
     	this.lohkoNro = null;
     	this.kilpailuId=null;
+    	this.valittu=null;
     }
 
 
 
-	public Tuomari(String tuomariNro, String lohkoNro, Long kilpailuId) {
+	public Tuomari(String tuomariNro,String etunimi, String sukunimi, String lohkoNro, Long kilpailuId, Long valittu) {
 		super();
 		this.tuomariNro = tuomariNro;
+		this.etunimi = etunimi;
+		this.sukunimi = sukunimi;
 		this.lohkoNro = lohkoNro;
 		this.kilpailuId=kilpailuId;
+		this.valittu=valittu;
 	}
 
 	
@@ -52,6 +68,30 @@ public class Tuomari {
 
 
 
+	
+
+
+	public String getEtunimi() {
+		return etunimi;
+	}
+
+
+
+	public void setEtunimi(String etunimi) {
+		this.etunimi = etunimi;
+	}
+
+
+
+	public String getSukunimi() {
+		return sukunimi;
+	}
+
+
+
+	public void setSukunimi(String sukunimi) {
+		this.sukunimi = sukunimi;
+	}
 
 
 
@@ -83,15 +123,28 @@ public class Tuomari {
         this.tuomariNro = tuomariNro;
     }
 
+    
+
+	public Long getValittu() {
+		return valittu;
+	}
+
+
+
+	public void setValittu(Long valittu) {
+		this.valittu = valittu;
+	}
 
 
 
 	@Override
 	public String toString() {
-		return "Tuomari [tuomariId=" + tuomariId + ", tuomariNro=" + tuomariNro + ", lohkoNro=" + lohkoNro
-				+ ", kilpailuId=" + kilpailuId + "]";
+		return "Tuomari [tuomariId=" + tuomariId + ", tuomariNro=" + tuomariNro + ", etunimi=" + etunimi + ", sukunimi="
+				+ sukunimi + ", lohkoNro=" + lohkoNro + ", kilpailuId=" + kilpailuId + ", valittu=" + valittu + "]";
 	}
 
+
+	
 
 
 

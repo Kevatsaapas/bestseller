@@ -24,10 +24,10 @@ public class Kilpailija {
     @NotNull
     private int kilpailijaNro;
 
-    @Column(name = "kilpailija_koulu")
-    @NotNull
-    private String koulu;
-    
+    @OneToOne
+    @JoinColumn(name = "koulu_Id")
+    private Koulu koulu;
+
     @Column(name = "kilpailija_sahkoposti")
     @NotNull
     private String sposti;
@@ -52,7 +52,7 @@ public class Kilpailija {
         this.kilpailuId = null;
     }
 
-    public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, String koulu,String sposti, Lohko lohko, Long kilpailuId) {
+    public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, Koulu koulu,String sposti, Lohko lohko, Long kilpailuId) {
         super();
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;
@@ -62,8 +62,6 @@ public class Kilpailija {
         this.lohko = lohko;
         this.kilpailuId = kilpailuId;
     }
-    
-    
 
     public String getSposti() {
 		return sposti;
@@ -106,11 +104,11 @@ public class Kilpailija {
         this.kilpailijaNro = kilpailijaNro;
     }
 
-    public String getKoulu() {
+    public Koulu getKoulu() {
         return koulu;
     }
 
-    public void setKoulu(String koulu) {
+    public void setKoulu(Koulu koulu) {
         this.koulu = koulu;
     }
 
@@ -141,9 +139,9 @@ public class Kilpailija {
 	@Override
 	public String toString() {
 		return "Kilpailija [kilpailijaId=" + kilpailijaId + ", etunimi=" + etunimi + ", sukunimi=" + sukunimi
-				+ ", kilpailijaNro=" + kilpailijaNro + ", koulu=" + koulu + ", sposti=" + sposti + ", kilpailuId="
+				+ ", kilpailijaNro=" + kilpailijaNro + ", kouluId=" + koulu + ", sposti=" + sposti + ", kilpailuId="
 				+ kilpailuId + ", lohko=" + lohko + ", arvioinnit=" + arvioinnit + "]";
 	}
 
-    
+   
 }

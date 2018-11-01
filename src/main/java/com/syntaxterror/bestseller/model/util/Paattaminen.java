@@ -7,27 +7,27 @@ import javax.persistence.Embeddable;
 public class Paattaminen {
 
     @Column
-    private int sitoutumisenEhdotusPist;
+    private String sitoutumisenEhdotusPist;
 
     @Column
-    private int sitoutumisenSaaminenPist;
+    private String sitoutumisenSaaminenPist;
 
     @Column
     private String paattaminenVapaaPalaute;
 
-    public int getSitoutumisenEhdotusPist() {
+    public String getSitoutumisenEhdotusPist() {
         return sitoutumisenEhdotusPist;
     }
 
-    public void setSitoutumisenEhdotusPist(int sitoutumisenEhdotusPist) {
+    public void setSitoutumisenEhdotusPist(String sitoutumisenEhdotusPist) {
         this.sitoutumisenEhdotusPist = sitoutumisenEhdotusPist;
     }
 
-    public int getSitoutumisenSaaminenPist() {
+    public String getSitoutumisenSaaminenPist() {
         return sitoutumisenSaaminenPist;
     }
 
-    public void setSitoutumisenSaaminenPist(int sitoutumisenSaaminenPist) {
+    public void setSitoutumisenSaaminenPist(String sitoutumisenSaaminenPist) {
         this.sitoutumisenSaaminenPist = sitoutumisenSaaminenPist;
     }
 
@@ -40,7 +40,7 @@ public class Paattaminen {
     }
 
     public int getKokonaistulos(){
-        return sitoutumisenEhdotusPist + sitoutumisenSaaminenPist;
+        return Integer.parseInt(sitoutumisenEhdotusPist) + Integer.parseInt(sitoutumisenSaaminenPist);
     }
 }
 

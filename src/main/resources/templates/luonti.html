@@ -52,24 +52,49 @@
                     </div>
 
                     <div class="form-group">
-
-                        <label for="paikka">
-                            Kilpailun paikka
+                        <label for="pvm">
+                            Päivämäärä
                         </label>
-                        <input type="text" class="form-control" id="paikka" th:required="required" th:field="*{paikka}" />
-                        <br />
+                        <select name="paiva" id="paiva">
+                            <option value="asd" selected>Päivä:</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="14">14</option>
+                        </select>
+
+                        <select name="kuukausi" id="kuukausi">
+                            <option value="asd" selected>Kuukausi:</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+
+                        <select name="vuosi" id="vuosi">
+                            <option value="asd" selected>Vuosi:</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="2018">2018</option>
+                        </select>
+
                     </div>
-                    
-                     <div class="form-group">
 
-                        <label for="testi">
-                            Onko testikilpailu?
-                        </label>
-                        <input type="radio" th:field="*{testi}" th:value="0" />
-							<label>Ei</label>
-						<input type="radio" th:field="*{testi}" th:value="1" />
-							<label>Kyllä</label>
-                        <br />
+                    <div class="form-group">
+                        <p>Kilpailun paikka</p>
+                        <input type="text" class="form-control" id="paikka" th:required="required" th:field="*{paikka}" />
+                    </div>
+
+                    <div class="form-group">
+                        <p>Onko testikilpailu?</p>
+                        <input type="radio" id="paikka1" name="paikka" th:required="required" th:field="*{testi}"
+                            th:value="0" />
+                        <label for="paikka1">Ei</label>
+                        <input type="radio" id="paikka2" name="paikka" th:required="required" th:field="*{testi}"
+                            th:value="1" />
+                        <label for="paikka2">Kyllä</label>
                     </div>
 
                     <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna" />

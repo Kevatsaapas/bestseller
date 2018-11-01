@@ -2,6 +2,10 @@ package com.syntaxterror.bestseller.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import java.util.List;
 
 @Entity
@@ -10,6 +14,7 @@ public class Lohko {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "lohko_id")
+    @NotFound(action=NotFoundAction.IGNORE)
     private Long lohkoId;
 
     @Column(name = "lohko_nro")
@@ -89,7 +94,6 @@ public class Lohko {
     public void setOstaja(Ostaja ostaja) {
         this.ostaja = ostaja;
     }
-
 
 	@Override
 	public String toString() {

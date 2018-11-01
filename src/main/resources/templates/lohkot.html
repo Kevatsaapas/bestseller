@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
 
-    <title>Bestseller - luo alkuerät</title>
+    <title>Bestseller - luo lohkot</title>
 </head>
 
 <body>
@@ -37,6 +37,7 @@
                         alt="logo-sm" class="logo-sm" /></a>
                 <h1 class="headertext">Luo alkuerät</h1>
             </div>
+
             <hr>
 
             <!-- Main -->
@@ -48,7 +49,8 @@
                         <label for="nimi">
                             Kilpailun nimi
                         </label>
-                        <input type="text" class="nimi" th:required="required" th:field="*{nimi}" />
+                        <input type="text" class="nimi" th:required="required" th:field="*{nimi}" oninvalid="this.setCustomValidity('Lisää kilpailun paikka')"
+                            oninput="setCustomValidity('')" />
                     </div>
 
 
@@ -57,15 +59,19 @@
                         <label for="paikka">
                             Kilpailun paikka
                         </label>
-                        <input type="text" class="form-control" id="paikka" th:required="required" th:field="*{paikka}" />
+                        <input type="text" class="custom-select" id="paikka" th:required="required" th:field="*{paikka}"
+                            oninvalid="this.setCustomValidity('Lisää kilpailun nimi')" oninput="setCustomValidity('')" />
                         <br />
 
                     </div>
-                    <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna" />
+                    <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna">
+                    </input>
                 </form>
             </div>
         </div>
+
     </div>
+
 </body>
 
 </html>

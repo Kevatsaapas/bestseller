@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.control;
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,7 +54,7 @@ public class ArviointiController {
         model.addAttribute("arviointi", new Arviointi());
        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
         model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
-        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
+        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
         model.addAttribute("lohko", lohkoRepository.findByLohkoId(lohkoId));
         List<Long> arvot = new ArrayList<Long>();
         for(int i=0; i<16; i++) {
@@ -64,14 +66,16 @@ public class ArviointiController {
         return "uusitest";
     }
 
-    @RequestMapping(value = "/tallenna/{kilpailuId}/{lohkoId}", method = RequestMethod.POST)
-    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId){
+    @RequestMapping(value = "/tallenna/{kilpailuId}/{lohkoId}/{tuomariId}", method = RequestMethod.POST)
+    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId, @PathVariable Long tuomariId){
         Date arviointipvm = new Date();
         arviointi.setArviointiPvm(arviointipvm);
         arviointi.setKilpailuId(kilpailuId);
+        Tuomari tuo = tuomariRepository.findByTuomariId(tuomariId);
+        arviointi.setTuomari(tuo);
         Lohko loh = lohkoRepository.findByLohkoId(lohkoId);
         arviointi.setLohko(loh);
-        
+
         double painotettuAloitus = arviointi.getAloitus().getKokonaistulos() * 0.1;
         double painotettuKasittely = arviointi.getKysymystenKasittely().getKokonaistulos() * 0.3;
         double painotettuPaattaminen = arviointi.getPaattaminen().getKokonaistulos() * 0.25;
