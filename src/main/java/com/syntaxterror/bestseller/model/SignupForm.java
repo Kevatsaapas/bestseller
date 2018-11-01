@@ -1,7 +1,7 @@
 package com.syntaxterror.bestseller.model;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 
 public class SignupForm {
 
@@ -19,6 +19,9 @@ public class SignupForm {
 
     @NotEmpty
     private String role = "USER";
+    
+    @NotEmpty
+    private String rooli = "";
 
     public String getUsername() {
         return username;
@@ -51,6 +54,16 @@ public class SignupForm {
     public void setRole(String role) {
         this.role = role;
     }
+
+	public String getRooli() {
+		return rooli;
+	}
+
+	public void setRooli(String rooli) {
+		this.rooli = rooli;
+	}
+    
+    
 
 }
 

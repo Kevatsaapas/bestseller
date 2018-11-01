@@ -20,18 +20,23 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
     
-    @Column(name = "tuomari_id", nullable = true)
-    private Long tuomariId;
+    @Column(name = "rooli", nullable = true)
+    private String rooli;
+    
+    @Column(name = "rooli_id", nullable = true)
+    private Long rooliId;
+    
 
     public User() {
     }
 
-    public User(String username, String passwordHash, String role, Long tuomariId) {
+    public User(String username, String passwordHash, String role, String rooli, Long rooliId) {
         super();
         this.username = username;
         this.passwordHash = passwordHash;
         this.role = role;
-        this.tuomariId = tuomariId;
+        this.rooli=rooli;
+        this.rooliId = rooliId;
         
     }
 
@@ -67,13 +72,23 @@ public class User {
         this.role = role;
     }
 
-	public Long getTuomariId() {
-		return tuomariId;
+	public Long getrooliId() {
+		return rooliId;
 	}
 
-	public void setTuomariId(Long tuomariId) {
-		this.tuomariId = tuomariId;
+	public void setrooliId(Long rooliId) {
+		this.rooliId = rooliId;
 	}
+
+	public String getRooli() {
+		return rooli;
+	}
+
+	public void setRooli(String rooli) {
+		this.rooli = rooli;
+	}
+	
+	
 
     
 }

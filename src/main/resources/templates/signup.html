@@ -43,6 +43,12 @@
                             <label> Username :<input type="text" th:field="*{username}" class="form-control"/></label>
                             <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>
                         </div>
+                        
+                        <div>
+                            <label> Rooli :<input type="text" th:field="*{rooli}" class="form-control"/></label>
+                            <p th:if="${#fields.hasErrors('rooli')}" th:errors="*{rooli}">Rooli Error</p>
+                        </div>
+                        
                         <div>
                             <label> Password :<input type="password" th:field="*{password}" class="form-control"/></label>
                             <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
