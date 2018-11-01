@@ -13,6 +13,7 @@ import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -52,6 +53,7 @@ public class DataController {
 			"Heikkilä", "Kinnunen", "Salonen", "Turunen", "Salo", "Laitinen", "Tuominen", "Rantanen" };
 	private String[] spostit = { "haaga.helia@haaga-helia.com", "metro@polia.com",
 			"laurea.ammatti@korkea.com", "business.college@helsinki.com" };
+	private String[] koulunimet = {"Haaga-Helia", "Metropolia", "Laurea", "Turun AMK"};
 
 	@RequestMapping("/datat/{kilpailuId}")
 	public String dataa(@PathVariable Long kilpailuId, Model model) {
@@ -64,6 +66,7 @@ public class DataController {
 		model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
 		model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
 		model.addAttribute("koulut", kouluRepository.findByKilpailuId(kilpailuId));
+		System.out.println(kouluRepository.findByKilpailuId(kilpailuId));
 		return "datat";
 	}
 
@@ -99,22 +102,34 @@ public class DataController {
 	public void luoDatat(Kilpailu kilpailu) {
 		Long kilpailuId = kilpailu.getkilpailuId();
 		int indeksi = 0;
+		List<Koulu> koulut = new ArrayList<Koulu>();
+		
+		for(int luku=0; luku<koulunimet.length; luku++) {
+			Koulu uusikoulu = new Koulu(koulunimet[luku], "kaupunki", kilpailuId);
+			System.out.println(uusikoulu);
+			koulut.add(uusikoulu);
+			kouluRepository.save(uusikoulu);
+		}
+		
 		for(int u=1; u<5; u++){
 		String lohkonro = String.valueOf(u);
 		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
-		List<Koulu> koulut = kouluRepository.findByKilpailuId(kilpailuId);
+		
 		for (int i = 0; i < 6; i++) {
 			int kohta = indeksi+i;
-			int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
+			int randomNum = ThreadLocalRandom.current().nextInt(0, koulunimet.length);
 			Koulu koulu = koulut.get(randomNum);
 			String posti = spostit[randomNum];
 			Kilpailija kilpailija = new Kilpailija(etunimet[kohta], sukunimet[kohta], 0, koulu, posti, lohko, kilpailuId);
 			kilpailijaRepository.save(kilpailija);
 		}
 		for(int luku=1; luku<3; luku++){
-			Tuomari tuomari = new Tuomari("Tuomari "+luku, lohkonro, kilpailuId);
+			int randomNum = ThreadLocalRandom.current().nextInt(0, 15 + 1);
+			int randomNumm = ThreadLocalRandom.current().nextInt(0, 15 + 1);
+			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId);
 			tuomariRepository.save(tuomari);
 		}
+		
 		indeksi+=5;
 		}
 

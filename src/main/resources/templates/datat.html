@@ -176,7 +176,6 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
-                        <th scope="col"></th>
 
                     </thead>
                     <tbody>
@@ -185,7 +184,6 @@
                             <td>Koulun Nimi</td>
                             <td>Koulun Kaupunki</td>
                             <td>Edit</td>
-                            <td>Delete</td>
                         </tr>
 
                         <tr th:each="koulu:${koulut}">
@@ -195,11 +193,6 @@
                             <td>
                                 <form th:action="@{'/editkoulu/'+${koulu.kouluId}}">
                                     <button class="btn btn-sm btn-warning">Muokkaa</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form th:action="@{'/poistakoulu/'+${koulu.kouluId}}">
-                                    <button class="btn btn-sm btn-danger">Poista</button>
                                 </form>
                             </td>
                         </tr>
@@ -222,10 +215,14 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Id</td>
+                            <td>Etunimi</td>
+                            <td>Sukunimi</td>
                             <td>tuomarinumero</td>
                             <td>Alkuerä</td>
                             <td></td>
@@ -234,6 +231,8 @@
 
                         <tr th:each="tuomari:${tuomarit}">
                             <td th:text="${tuomari.tuomariId}"></td>
+                            <td th:text="${tuomari.etunimi}"></td>
+                            <td th:text="${tuomari.sukunimi}"></td>
                             <td th:text="${tuomari.tuomariNro}"></td>
                             <td th:text="${tuomari.lohkoNro}"></td>
                             <td>
@@ -242,7 +241,7 @@
                                 </form>
                             </td>
                             <td>
-                                <form th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
+                                <form  onSubmit="if(!confirm('Haluatko varmasti poistaa tuomarin?')){return false;}" th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
                                     <button class="btn btn-sm btn-danger">Poista</button>
                                 </form>
                             </td>
@@ -288,7 +287,7 @@
                             </form>
                         </td>
                         <td>
-                            <form th:action="@{'/poistaarviointi/'+${arviointi.arviointiId}}">
+                            <form  onSubmit="if(!confirm('Haluatko varmasti poistaa arvioinnin?')){return false;}" th:action="@{'/poistaarviointi/'+${arviointi.arviointiId}}">
                                 <button class="btn btn-sm btn-danger">Poista</button>
                             </form>
                         </td>
