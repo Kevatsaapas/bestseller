@@ -57,7 +57,8 @@
                             </form>
                         </td>
                         <td>
-                            <form th:action="@{'/poistakilpailu/'+${kilpailu.kilpailuId}}">
+                            <form onSubmit="if(!confirm('Haluatko varmasti poistaa kilpailun?')){return false;}"
+                                th:action="@{'/poistakilpailu/'+${kilpailu.kilpailuId}}">
                                 <button class="btn btn-sm btn-danger">Poista</button>
                             </form>
                         </td>
