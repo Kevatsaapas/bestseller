@@ -133,8 +133,6 @@
                 <form th:action="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">
                     <button class="btn btn-sm btn-info">Lisää uusi</button>
                 </form>
-
-
             </div>
             <hr>
 
@@ -164,10 +162,10 @@
                 </table>
             </div>
             <hr>
-            
-            
+
+
             <!-- Koulut data -->
-            
+
             <div class="row padding">
                 <table class="table">
                     <thead class="thead-custom">
@@ -198,7 +196,8 @@
                                 </form>
                             </td>
                             <td>
-                                <form th:action="@{'/poistakoulu/'+${koulu.kouluId}}">
+                                <form onSubmit="if(!confirm('Haluatko varmasti poistaa koulun?')){return false;}"
+                                    th:action="@{'/poistakoulu/'+${koulu.kouluId}}">
                                     <button class="btn btn-sm btn-danger">Poista</button>
                                 </form>
                             </td>
@@ -210,7 +209,7 @@
                 </form>
             </div>
             <hr>
-            
+
 
             <!-- Tuomarit data -->
 
@@ -242,7 +241,8 @@
                                 </form>
                             </td>
                             <td>
-                                <form th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
+                                <form onSubmit="if(!confirm('Haluatko varmasti poistaa tuomarin?')){return false;}"
+                                    th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
                                     <button class="btn btn-sm btn-danger">Poista</button>
                                 </form>
                             </td>
@@ -288,7 +288,8 @@
                             </form>
                         </td>
                         <td>
-                            <form th:action="@{'/poistaarviointi/'+${arviointi.arviointiId}}">
+                            <form onSubmit="if(!confirm('Haluatko varmasti poistaa arvioinnin?')){return false;}"
+                                th:action="@{'/poistaarviointi/'+${arviointi.arviointiId}}">
                                 <button class="btn btn-sm btn-danger">Poista</button>
                             </form>
                         </td>
