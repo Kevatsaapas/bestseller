@@ -2,12 +2,14 @@ package com.syntaxterror.bestseller.control;
 
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
@@ -38,15 +40,16 @@ public class DataController {
 
     @Autowired
     public ArviointiRepository arviointiRepository;
-
+    
+    @Autowired
+    public KouluRepository kouluRepository;
+    
 	private String[] etunimet = { "Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli",
 			"Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari",
 			"Sofia", "Tupu", "Hupu", "Lupu", "Aku" };
 	private String[] sukunimet = { "Korhonen", "Virtanen", "Mäkinen", "Nieminen", "Mäkelä", "Hämäläinen", "Laine",
 			"Heikkinen", "Koskinen", "Järvinen", "Lehtonen", "Lehtinen", "Saarinen", "Salminen", "Heinonen", "Niemi",
 			"Heikkilä", "Kinnunen", "Salonen", "Turunen", "Salo", "Laitinen", "Tuominen", "Rantanen" };
-	private String[] koulut = { "Haaga-Helia Ammattikorkeakoulu", "Metropolia Ammattikorkeakoulu",
-			"Laurea Ammattikorkeakoulu", "Helsinki Business College" };
 	private String[] spostit = { "haaga.helia@haaga-helia.com", "metro@polia.com",
 			"laurea.ammatti@korkea.com", "business.college@helsinki.com" };
 
@@ -60,6 +63,7 @@ public class DataController {
 		model.addAttribute("lohkot", lohkot);
 		model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
 		model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
+		model.addAttribute("koulut", kouluRepository.findByKilpailuId(kilpailuId));
 		return "datat";
 	}
 
@@ -98,10 +102,11 @@ public class DataController {
 		for(int u=1; u<5; u++){
 		String lohkonro = String.valueOf(u);
 		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
+		List<Koulu> koulut = kouluRepository.findByKilpailuId(kilpailuId);
 		for (int i = 0; i < 6; i++) {
 			int kohta = indeksi+i;
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
-			String koulu = koulut[randomNum];
+			Koulu koulu = koulut.get(randomNum);
 			String posti = spostit[randomNum];
 			Kilpailija kilpailija = new Kilpailija(etunimet[kohta], sukunimet[kohta], 0, koulu, posti, lohko, kilpailuId);
 			kilpailijaRepository.save(kilpailija);

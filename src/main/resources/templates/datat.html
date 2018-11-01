@@ -114,7 +114,7 @@
                             <td th:text="${kilpailija.etunimi}"></td>
                             <td th:text="${kilpailija.sukunimi}"></td>
                             <td th:text="${kilpailija.sposti}"></td>
-                            <td th:text="${kilpailija.koulu}"></td>
+                            <td th:text="${kilpailija.koulu.kouluNimi}"></td>
                             <td th:text="${kilpailija.lohko.lohkoNro}"></td>
                             <td>
                                 <form th:action="@{'/editkilpailija/'+${kilpailija.kilpailijaId}}">
@@ -164,6 +164,53 @@
                 </table>
             </div>
             <hr>
+            
+            
+            <!-- Koulut data -->
+            
+            <div class="row padding">
+                <table class="table">
+                    <thead class="thead-custom">
+                        <th scope="col">Koulut</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Koulun Id</td>
+                            <td>Koulun Nimi</td>
+                            <td>Koulun Kaupunki</td>
+                            <td>Edit</td>
+                            <td>Delete</td>
+                        </tr>
+
+                        <tr th:each="koulu:${koulut}">
+                            <td th:text="${koulu.kouluId}"></td>
+                            <td th:text="${koulu.kouluNimi}"></td>
+                            <td th:text="${koulu.kouluKaupunki}"></td>
+                            <td>
+                                <form th:action="@{'/editkoulu/'+${koulu.kouluId}}">
+                                    <button class="btn btn-sm btn-warning">Muokkaa</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form th:action="@{'/poistakoulu/'+${koulu.kouluId}}">
+                                    <button class="btn btn-sm btn-danger">Poista</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <form th:action="@{'/luokoulu/'+${kilpailu.kilpailuId}}">
+                    <button class="btn btn-sm btn-info">Lisää uusi</button>
+                </form>
+            </div>
+            <hr>
+            
 
             <!-- Tuomarit data -->
 
