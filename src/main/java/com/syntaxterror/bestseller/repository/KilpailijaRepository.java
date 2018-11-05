@@ -12,7 +12,7 @@ import com.syntaxterror.bestseller.model.Lohko;
 @Transactional
 public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	Kilpailija findByKilpailijaId(Long kilpailijaId);
-	Iterable<Kilpailija> findByKilpailuId(Long kilpailuId);
+	List<Kilpailija> findByKilpailuId(Long kilpailuId);
 	List<Kilpailija> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
 	Iterable<Kilpailija>deleteByKilpailuId(Long kilpailuId);
 	List<Kilpailija> findByLohko(Lohko lohko);

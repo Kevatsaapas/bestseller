@@ -70,11 +70,6 @@ public class ArviointiService {
     	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
     	List<Long> arvot = new ArrayList<Long>();
     	for(int i =0; i<4; i++) {
-    		for(int u=0; u<16; u++) {
-            	int randomNum = ThreadLocalRandom.current().nextInt(0, 6 + 1);
-            	Long arvo = new Long(randomNum+1);
-            	arvot.add(arvo);
-            }
     		String lohkonro = Integer.toString(i+1);
     		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
     		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkonro);
@@ -83,6 +78,11 @@ public class ArviointiService {
     		System.out.println(kilpailijat.toString());
     		for(Tuomari tuomari:tuomarit) {
     			for(Kilpailija kilpailija:kilpailijat) {
+    				for(int u=0; u<16; u++) {
+    	            	int randomNum = ThreadLocalRandom.current().nextInt(0, 6 + 1);
+    	            	Long arvo = new Long(randomNum+1);
+    	            	arvot.add(arvo);
+    	            }
     				Arviointi arviointi= new Arviointi();
     				Date arviointipvm = new Date();
     				arviointi.setKilpailija(kilpailija);
@@ -130,9 +130,10 @@ public class ArviointiService {
     		        arviointi.setKokonaistulos(kokonaistulos);
     		        arviointiRepository.save(arviointi);
     		        System.out.println("arviointi onnistui");
+    		        arvot.clear();
     			}
     		}
-    		arvot.clear();
+    		
     	}
     		
     	}
