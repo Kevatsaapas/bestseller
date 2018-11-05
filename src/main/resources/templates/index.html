@@ -43,59 +43,47 @@
 </head>
 
 <body>
-	<div class="indexbody h-100">
+    <div class="indexbody h-100">
 
-		<div class="site-wrapper">
-			<div class="site-wrapper-inner">
-				<div class="cover-container">
-					<div class="masthead clearfix"></div>
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+                    <div class="masthead clearfix">
+                    </div>
 
-					<div class="inner cover">
-						<img th:src="@{./img/BSC_sinetti_logo.png}"
-							src="../static/img/BSC_sinetti_logo.png" class="logo" alt="logo" />
-						<h3>Tervetuloa!</h3>
-						<h3 th:inline="text">Olet kirjautunut sisään nimellä:
-							[[${#httpServletRequest.remoteUser}]]</h3>
+                    <div class="inner cover">
+                        <h1 class="cover-heading" th:text="${kilpailu.nimi}"></h1>
 
-						<p class="lead">Valitse kilpailu:
-						<div class="row">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th></th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="kilpailu:${kilpailut}">
-										<td style="font-size: 1.5em; font-weight: bold; width: 70%"
-											th:text="${kilpailu.nimi}"></td>
-										<td>
-											<form th:action="@{/kilpailuvalittu/}" method="POST">
-												<span th:if="${kilpailu.testi == 1}">TESTIKILPAILU</span> <input
-													type="hidden" name="kilpailuId"
-													th:value="${kilpailu.kilpailuId}" />
-												<button class="btn btn-sm btn-success" type="submit">Valitse</button>
-											</form>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="row" sec:authorize="hasAuthority('ADMIN')">
-							<form th:action="@{/testaus}">
-								<button class="btn btn-md btn-custom btn-danger">Admin</button>
-							</form>
-						</div>
-						<form th:action="@{/logout}" method="post">
-							<input type="submit" value="Kirjaudu ulos" />
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <h3 th:text="'Alkuerä: '+${lohko.lohkoNro}"></h3>
 
+                        <p class="lead">Valitse roolisi:
+
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <form th:action="@{/tuomarointi/}" method="POST">
+                                <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}"/>
+                                <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}"/>
+                                <input type="hidden" name="tuomariId" th:value="${tuomari.tuomariId}"/>
+                                    <button class="btn btn-lg btn-info" type="submit">Arvioi Suoritus</button>
+                                </form>
+
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-4">
+                                <form th:action="@{/logout}", method="post">
+                                    <button class="btn btn-lg btn-danger" type="submit">Kirjaudu ulos</a></button>
+                                </form>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

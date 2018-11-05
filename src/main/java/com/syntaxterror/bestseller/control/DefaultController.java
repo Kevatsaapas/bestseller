@@ -1,8 +1,13 @@
 package com.syntaxterror.bestseller.control;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,11 +20,14 @@ import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.model.User;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.repository.UserRepository;
+import com.syntaxterror.bestseller.service.TuomariService;
 
 @Controller
 public class DefaultController {
@@ -33,12 +41,34 @@ public class DefaultController {
     public LohkoRepository lohkoRepository;
     @Autowired
     private UserRepository urepository;
+    @Autowired
+    private TuomariService tuomariService;
+    
+    
 
     @RequestMapping("/")
     public String index(Model model) {
+    	Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+    	String username = auth.getName();
+    	User user = urepository.findByUsername(username);
+    	Long rooliId = user.getrooliId();
+    	String role = user.getRole();
+    	String admin = "ADMIN";
+    	if(role.equals(admin)) {
     	model.addAttribute("kilpailut", kilpailuRepository.findAll());
     	model.addAttribute("users", urepository.findAll());
-        return "index";
+        return "adminindex";
+    	}else if(rooliId!=null){
+    		Tuomari tuo = tuomarirepository.findByTuomariId(rooliId);
+    		Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(tuo.getKilpailuId());
+    		model.addAttribute("kilpailu", kilpailu);
+        	model.addAttribute("tuomari", tuo);
+        	model.addAttribute("lohko", lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro()));
+            return "index";
+    	}else {
+    		return "norole";
+    		
+    	}
     }
     
     @RequestMapping(value = "/login")
@@ -68,22 +98,43 @@ public class DefaultController {
     @RequestMapping("/testaus")
     public String testaus(Model model) {
         model.addAttribute("kilpailut", kilpailuRepository.findAll());
+		model.addAttribute("users", urepository.findAll());
         return "testaus";
     }
     
     
     @RequestMapping(value = "/tuomarointi/", method = RequestMethod.POST)
-    public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId){
+    public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId){
+    	Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+    	String username = auth.getName();
+    	User user = urepository.findByUsername(username);
+    	String role = user.getRole();
+    	String admin = "ADMIN";
+    	
     	Lohko lohko=lohkoRepository.findByLohkoId(lohkoId);
+    	Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
     	System.out.println(lohkoId);
         model.addAttribute("lohko", lohko);
     	model.addAttribute("arviointi", new Arviointi());
     	model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-        model.addAttribute("kilpailijat", kilpailijarepository.findByLohko(lohko));
-        model.addAttribute("tuomarit", tuomarirepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohko.getLohkoNro()));
+        model.addAttribute("usertuomari", tuomari);
         
-
-        return "tuomarointisivu";
+        
+    	if(role.equals(admin)) {
+    		List<Long> arvot = new ArrayList<Long>();
+            for(int i=0; i<16; i++) {
+            	int randomNum = ThreadLocalRandom.current().nextInt(0, 6 + 1);
+            	Long arvo = new Long(randomNum+1);
+            	arvot.add(arvo);
+            }
+            model.addAttribute("kilpailijat", kilpailijarepository.findByKilpailuIdAndLohko(kilpailuId, lohko));
+            model.addAttribute("arvot", arvot);
+            model.addAttribute("tuomarit", tuomarirepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohko.getLohkoNro()));
+            return "uusitest";
+    	}else {
+    		model.addAttribute("kilpailijat", tuomariService.haeKilpailijatTuomarille(tuomari, lohko));
+    		return "tuomarointisivu";
+    	}
     }
 
     @RequestMapping("/ostaja")

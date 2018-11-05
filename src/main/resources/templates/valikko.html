@@ -41,6 +41,7 @@
                                 <form th:action="@{/tuomarointi/}" method="POST">
                                 <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}"/>
                                 <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}"/>
+                                <input type="hidden" name="tuomariId" th:value="${kilpailu.kilpailuId}"/>
                                     <button class="btn btn-lg btn-info" type="submit">Tuomari</button>
                                 </form>
 

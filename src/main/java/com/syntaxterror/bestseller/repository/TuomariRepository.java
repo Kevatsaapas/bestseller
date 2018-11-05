@@ -12,4 +12,5 @@ public interface TuomariRepository extends CrudRepository<Tuomari, Long> {
 	Iterable<Tuomari> findByKilpailuId(Long kilpailuId);
 	Iterable<Tuomari> findByLohkoNro(Long lohkoNro);
 	Iterable<Tuomari> findByKilpailuIdAndLohkoNro(Long kilpailuId, String lohkoNro);
+	Iterable<Tuomari> findByValittu(Long valittu);
 }

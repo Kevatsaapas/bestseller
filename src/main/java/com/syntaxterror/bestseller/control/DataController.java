@@ -12,6 +12,7 @@ import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
+import com.syntaxterror.bestseller.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -44,6 +45,9 @@ public class DataController {
     
     @Autowired
     public KouluRepository kouluRepository;
+    
+    @Autowired
+    public UserRepository userRepository;
     
 	private String[] etunimet = { "Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli",
 			"Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari",
@@ -126,7 +130,7 @@ public class DataController {
 		for(int luku=1; luku<3; luku++){
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 15 + 1);
 			int randomNumm = ThreadLocalRandom.current().nextInt(0, 15 + 1);
-			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId);
+			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId, new Long(0));
 			tuomariRepository.save(tuomari);
 		}
 		

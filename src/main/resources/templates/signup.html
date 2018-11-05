@@ -45,11 +45,6 @@
                         </div>
                         
                         <div>
-                            <label> Rooli :<input type="text" th:field="*{rooli}" class="form-control"/></label>
-                            <p th:if="${#fields.hasErrors('rooli')}" th:errors="*{rooli}">Rooli Error</p>
-                        </div>
-                        
-                        <div>
                             <label> Password :<input type="password" th:field="*{password}" class="form-control"/></label>
                             <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
                         </div>
@@ -57,7 +52,20 @@
                             <label> Re-type Password: <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
                             <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>
                         </div>
-
+						
+						<div class="form-group">
+                        <p>Valitse Rooli:</p>
+                        <input type="radio" id="rooli1" name="rooli" th:required="required" th:field="*{rooli}"
+                            th:value="tuomari" />
+                        <label for="rooli1">Tuomari</label>
+                        <input type="radio" id="rooli2" name="rooli" th:required="required" th:field="*{rooli}"
+                            th:value="ostaja" />
+                        <label for="rooli2">Ostaja</label>
+                        <input type="radio" id="rooli3" name="rooli" th:required="required" th:field="*{rooli}"
+                            th:value="valmentaja" />
+                        <label for="rooli3">Valmentaja</label>
+                    </div>
+						
                         <input type="submit" class="btn btn-success" value="Signup"></input>
                     </form>
                 </div>

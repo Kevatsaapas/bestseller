@@ -21,10 +21,10 @@ public class User {
     private String role;
     
     @Column(name = "rooli", nullable = true)
-    private String rooli;
+    public String rooli;
     
     @Column(name = "rooli_id", nullable = true)
-    private Long rooliId;
+    public Long rooliId;
     
 
     public User() {
