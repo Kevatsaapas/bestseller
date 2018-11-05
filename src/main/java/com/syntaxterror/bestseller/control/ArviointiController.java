@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.control;
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,14 +66,39 @@ public class ArviointiController {
         return "uusitest";
     }
 
-    @RequestMapping(value = "/tallenna/{kilpailuId}/{lohkoId}", method = RequestMethod.POST)
-    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId){
+    @RequestMapping(value = "/tallenna/{kilpailuId}/{lohkoId}/{tuomariId}", method = RequestMethod.POST)
+    public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId, @PathVariable Long tuomariId){
         Date arviointipvm = new Date();
+        arviointi.setArviointiPvm(arviointipvm);
+        arviointi.setKilpailuId(kilpailuId);
+        Tuomari tuo = tuomariRepository.findByTuomariId(tuomariId);
+        arviointi.setTuomari(tuo);
+        Lohko loh = lohkoRepository.findByLohkoId(lohkoId);
+        arviointi.setLohko(loh);
+
+        double painotettuAloitus = arviointi.getAloitus().getKokonaistulos() * 0.1;
+        double painotettuKasittely = arviointi.getKysymystenKasittely().getKokonaistulos() * 0.3;
+        double painotettuPaattaminen = arviointi.getPaattaminen().getKokonaistulos() * 0.25;
+        double painotettuRatkaisu = arviointi.getRatkaisu().getKokonaistulos() * 0.1;
+        double painotettuTarvekartoitus = arviointi.getTarvekartoitus().getKokonaistulos() * 0.1;
+        double painotettuYleisvaikutelma = arviointi.getYleisvaikutelma().getKokonaistulos() * 0.1;
+
+        double kokonaistulos = painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
+        arviointi.setKokonaistulos(kokonaistulos);
+        System.out.println(arviointi.getLohko());
+        System.out.println(arviointi.getKokonaistulos());
+        arviointiRepository.save(arviointi);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/tallenna2/{kilpailuId}/{lohkoId}", method = RequestMethod.POST)
+    public String tallennaArviointi2(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId){
+    	Date arviointipvm = new Date();
         arviointi.setArviointiPvm(arviointipvm);
         arviointi.setKilpailuId(kilpailuId);
         Lohko loh = lohkoRepository.findByLohkoId(lohkoId);
         arviointi.setLohko(loh);
-
+        
         double painotettuAloitus = arviointi.getAloitus().getKokonaistulos() * 0.1;
         double painotettuKasittely = arviointi.getKysymystenKasittely().getKokonaistulos() * 0.3;
         double painotettuPaattaminen = arviointi.getPaattaminen().getKokonaistulos() * 0.25;

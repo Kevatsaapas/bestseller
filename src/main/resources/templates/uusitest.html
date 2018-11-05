@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <form id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}/{lohkoId}(kilpailuId = ${kilpailu.kilpailuId}, lohkoId=${lohko.lohkoId})}" th:object="${arviointi}"
+    <form id="arvform" th:action="@{/arviointi/tallenna2/{kilpailuId}/{lohkoId}(kilpailuId = ${kilpailu.kilpailuId}, lohkoId=${lohko.lohkoId})}" th:object="${arviointi}"
         method="POST">
         <div class="standard h-auto">
             <div class="container tuom">
