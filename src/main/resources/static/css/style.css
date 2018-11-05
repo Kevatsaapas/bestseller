@@ -45,8 +45,8 @@ textarea {
 
 textarea {
     padding-top: 10px;
-    
-    
+
+
 }
 
 
@@ -133,7 +133,7 @@ body {
     padding: 10px 20px;
     font-weight: bold;
     border-radius: 8px;
-    width: 180px;
+    /* width: 180px; */
     height: 150px;
     color: #fff;
     font-size: 23pt;
