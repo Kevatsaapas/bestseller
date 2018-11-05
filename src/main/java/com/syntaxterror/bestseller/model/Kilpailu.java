@@ -25,9 +25,8 @@ public class Kilpailu {
 	@NotNull
 	private String nimi;
 
-    @Temporal(TemporalType.DATE)
 	@Column(name = "kilpailu_pvm")
-	private Date pvm;
+	private String pvm;
 
 	@Column(name = "kilpailu_paikka")
 	@NotNull
@@ -60,7 +59,7 @@ public class Kilpailu {
 		this.vuosi = null;
 	}
 
-	public Kilpailu(String nimi, Date pvm, String paikka, Long paiva, Long kuukausi, Long vuosi, Long testi) {
+	public Kilpailu(String nimi, String pvm, String paikka, Long paiva, Long kuukausi, Long vuosi, Long testi) {
 		super();
 		this.paiva = paiva;
 		this.kuukausi = kuukausi;
@@ -113,11 +112,11 @@ public class Kilpailu {
 		this.nimi = nimi;
 	}
 
-	public Date getPvm() {
+	public String getPvm() {
 		return pvm;
 	}
 
-	public void setPvm(Date pvm) {
+	public void setPvm(String pvm) {
 		this.pvm = pvm;
 	}
 

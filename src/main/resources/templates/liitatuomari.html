@@ -42,19 +42,16 @@
 				<table class="table">
 					<thead class="thead-custom">
 						<tr class="table-info">
+							<th scope="col">id</th>
 							<th scope="col">Etunimi</th>
 							<th scope="col">Sukunimi</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Etunimi</td>
-							<td>Sukunimi</td>
-							<td></td>
-						</tr>
 
 						<tr th:each="tuomari:${tuomarit}">
+							<td th:text="${tuomari.tuomariId}"></td>
 							<td th:text="${tuomari.etunimi}"></td>
 							<td th:text="${tuomari.sukunimi}"></td>
 							<td>

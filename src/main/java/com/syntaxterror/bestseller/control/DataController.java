@@ -13,6 +13,7 @@ import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.repository.UserRepository;
+import com.syntaxterror.bestseller.service.ArviointiService;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -30,6 +31,9 @@ public class DataController {
 
 	@Autowired
 	public KilpailuRepository kilpailuRepository;
+	
+	@Autowired
+	public ArviointiService arviointiService;
 
 	@Autowired
 	public LohkoRepository lohkoRepository;
@@ -89,18 +93,20 @@ public class DataController {
 	        return "redirect:/datat/"+kilid;
 	    }
 
+	 @RequestMapping("/luoarviot/{kilpailuId}")
+		public String luoArvioinnit(@PathVariable Long kilpailuId, Model model) {
+		 arviointiService.arvioi(kilpailuId);
+		 String kilid = kilpailuId.toString();
+		 return "redirect:/datat/"+kilid;
+	 }
+	 
+	 
 	@RequestMapping("/luodatat/{kilpailuId}")
 	public String luoDataa(@PathVariable Long kilpailuId, Model model) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
-		model.addAttribute("kilpailu", kilpailu);
 		luoDatat(kilpailu);
-		Iterable<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuId(kilpailuId);
-		model.addAttribute("kilpailijat", kilpailijat);
-		Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
-		model.addAttribute("lohkot", lohkot);
-		model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
-		model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
-		return "datat";
+		String kilid = kilpailuId.toString();
+		return "redirect:/datat/"+kilid;
 	}
 
 	public void luoDatat(Kilpailu kilpailu) {
