@@ -42,6 +42,9 @@
                 <form th:action="@{'/luodatat/'+${kilpailu.kilpailuId}}">
                     <button class="btn btn-sm btn-danger">Lisää Testidata</button>
                 </form>
+                <form th:action="@{'/luoarviot/'+${kilpailu.kilpailuId}}">
+                    <button class="btn btn-sm btn-info">ArvioiKaikki</button>
+                </form>
             </div>
             <hr>
 

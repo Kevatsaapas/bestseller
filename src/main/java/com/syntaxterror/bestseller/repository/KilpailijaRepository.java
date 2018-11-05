@@ -1,5 +1,7 @@
 package com.syntaxterror.bestseller.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,7 @@ import com.syntaxterror.bestseller.model.Lohko;
 public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	Kilpailija findByKilpailijaId(Long kilpailijaId);
 	Iterable<Kilpailija> findByKilpailuId(Long kilpailuId);
-	Iterable<Kilpailija> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
+	List<Kilpailija> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
 	Iterable<Kilpailija>deleteByKilpailuId(Long kilpailuId);
-	Iterable<Kilpailija> findByLohko(Lohko lohko);
+	List<Kilpailija> findByLohko(Lohko lohko);
 }
