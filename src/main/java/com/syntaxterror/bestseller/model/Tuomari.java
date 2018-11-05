@@ -14,10 +14,10 @@ public class Tuomari {
     @Column(name = "tuomari_nro")
     @NotNull
     private String tuomariNro;
-
+    
     @Column(name = "etunimi")
     private String etunimi;
-
+    
     @Column(name = "sukunimi")
     private String sukunimi;
 
@@ -27,6 +27,10 @@ public class Tuomari {
     
     @Column(name = "kilpailu_id")
     private Long kilpailuId;
+    
+    @Column(name = "valittu")
+    private Long valittu;
+
 
 
     public Tuomari() {
@@ -47,7 +51,7 @@ public class Tuomari {
 		this.sukunimi = sukunimi;
 		this.lohkoNro = lohkoNro;
 		this.kilpailuId=kilpailuId;
-		this.valittu=valittu;
+        this.valittu=valittu;
 	}
 
 	
@@ -61,6 +65,11 @@ public class Tuomari {
 	public void setKilpailuId(Long kilpailuId) {
 		this.kilpailuId = kilpailuId;
 	}
+
+
+
+	
+
 
 	public String getEtunimi() {
 		return etunimi;
@@ -132,5 +141,8 @@ public class Tuomari {
 		return "Tuomari [tuomariId=" + tuomariId + ", tuomariNro=" + tuomariNro + ", etunimi=" + etunimi + ", sukunimi="
 				+ sukunimi + ", lohkoNro=" + lohkoNro + ", kilpailuId=" + kilpailuId + ", valittu=" + valittu + "]";
 	}
+
+
+
 
 }

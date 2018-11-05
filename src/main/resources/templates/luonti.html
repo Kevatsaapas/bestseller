@@ -19,9 +19,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+
     <!-- Fontit -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+
+    <!-- Date picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.fi.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.fn.datepicker.defaults.language = 'fi';
+        });
+
+        $(document).ready(function () {
+            $('#picker input').datepicker();
+        });
+    </script>
 
     <title>Bestseller - luo kilpailu</title>
 </head>
@@ -55,31 +75,10 @@
                         <label for="pvm">
                             Päivämäärä
                         </label>
-                        <select name="paiva" id="paiva">
-                            <option value="asd" selected>Päivä:</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="14">14</option>
-                        </select>
-
-                        <select name="kuukausi" id="kuukausi">
-                            <option value="asd" selected>Kuukausi:</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-
-                        <select name="vuosi" id="vuosi">
-                            <option value="asd" selected>Vuosi:</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="2018">2018</option>
-                        </select>
-
+                        <div id="picker" class="input-group date" data-provide="datepicker">
+                            <input type="text" class="form-control">
+                            <span class="input-group-addon"><i class="far fa-calendar-alt fa-2x"></i></span>
+                        </div>
                     </div>
 
                     <div class="form-group">

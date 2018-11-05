@@ -42,6 +42,7 @@ public class DefaultController {
 
     @Autowired
     private UserRepository urepository;
+
     @Autowired
     private TuomariService tuomariService;
 
@@ -71,12 +72,12 @@ public class DefaultController {
 
     	}
     }
-
+    
     @RequestMapping(value = "/login")
 	public String showLogin() {
 		return "login";
 	}
-
+    
     @RequestMapping(value="/kilpailuvalittu/", method=RequestMethod.POST)
     public String dataa(@RequestParam("kilpailuId")Long kilpailuId, Model model) {
     	System.out.println(kilpailuId);
@@ -102,8 +103,8 @@ public class DefaultController {
 		model.addAttribute("users", urepository.findAll());
         return "testaus";
     }
-
-
+    
+    
     @RequestMapping(value = "/tuomarointi/", method = RequestMethod.POST)
     public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId){
     	Authentication auth=SecurityContextHolder.getContext().getAuthentication();

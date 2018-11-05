@@ -58,6 +58,7 @@ public class KilpailijaController {
         model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
         model.addAttribute("kilpailu", kilpailu);
         model.addAttribute("kilpailija", kilpailija);
+        model.addAttribute("koulut",kouluRepository.findByKilpailuId(kilpailija.getKilpailuId()));
         return "editkilpailija";
 
     }

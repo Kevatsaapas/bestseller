@@ -42,7 +42,7 @@ public class DataController {
 
     @Autowired
     public ArviointiRepository arviointiRepository;
-
+    
     @Autowired
     public KouluRepository kouluRepository;
 
@@ -55,8 +55,6 @@ public class DataController {
 	private String[] sukunimet = { "Korhonen", "Virtanen", "Mäkinen", "Nieminen", "Mäkelä", "Hämäläinen", "Laine",
 			"Heikkinen", "Koskinen", "Järvinen", "Lehtonen", "Lehtinen", "Saarinen", "Salminen", "Heinonen", "Niemi",
 			"Heikkilä", "Kinnunen", "Salonen", "Turunen", "Salo", "Laitinen", "Tuominen", "Rantanen" };
-	private String[] koulut = { "Haaga-Helia Ammattikorkeakoulu", "Metropolia Ammattikorkeakoulu",
-			"Laurea Ammattikorkeakoulu", "Helsinki Business College" };
 	private String[] spostit = { "haaga.helia@haaga-helia.com", "metro@polia.com",
 			"laurea.ammatti@korkea.com", "business.college@helsinki.com" };
 	private String[] koulunimet = {"Haaga-Helia", "Metropolia", "Laurea", "Turun AMK"};
@@ -109,17 +107,18 @@ public class DataController {
 		Long kilpailuId = kilpailu.getkilpailuId();
 		int indeksi = 0;
 		List<Koulu> koulut = new ArrayList<Koulu>();
-
+		
 		for(int luku=0; luku<koulunimet.length; luku++) {
 			Koulu uusikoulu = new Koulu(koulunimet[luku], "kaupunki", kilpailuId);
 			System.out.println(uusikoulu);
 			koulut.add(uusikoulu);
 			kouluRepository.save(uusikoulu);
 		}
-
+		
 		for(int u=1; u<5; u++){
 		String lohkonro = String.valueOf(u);
 		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
+		
 		for (int i = 0; i < 6; i++) {
 			int kohta = indeksi+i;
 			int randomNum = ThreadLocalRandom.current().nextInt(0, koulunimet.length);
@@ -129,12 +128,12 @@ public class DataController {
 			kilpailijaRepository.save(kilpailija);
 		}
 		for(int luku=1; luku<3; luku++){
-            int randomNum = ThreadLocalRandom.current().nextInt(0, 15 + 1);
-            int randomNumm = ThreadLocalRandom.current().nextInt(0, 15 + 1);
-            Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId);
-            tuomariRepository.save(tuomari);
+			int randomNum = ThreadLocalRandom.current().nextInt(0, 15 + 1);
+			int randomNumm = ThreadLocalRandom.current().nextInt(0, 15 + 1);
+			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId, new Long(0));
+			tuomariRepository.save(tuomari);
 		}
-
+		
 		indeksi+=5;
 		}
 

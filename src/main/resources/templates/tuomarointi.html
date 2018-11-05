@@ -19,7 +19,6 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script src="LocalStorage.js"></script>
 
     <!-- Fontit -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -29,14 +28,14 @@
 </head>
 
 <body>
-    <div th:if="${kilpailu.testi == 1}">'
-        <form th:action="@{/arviointi/uusitest/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
-            <button class="btn btn-lg btn-danger">TÄYTÄ</button>
-        </form>
-    </div>
+	<div th:if="${kilpailu.testi == 1}">'
+                    <form th:action="@{/arviointi/uusitest/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
+                                    <button class="btn btn-lg btn-danger">TÄYTÄ</button>
+                                </form>
+                    </div>
 
-    <form class="was-validated" id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}/{lohkoId}/{tuomariId}(kilpailuId = ${kilpailu.kilpailuId}, lohkoId=${lohko.lohkoId}, tuomariId=${usertuomari.tuomariId})}"
-        th:object="${arviointi}" method="POST">
+    <form id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}/{lohkoId}(kilpailuId = ${kilpailu.kilpailuId}, lohkoId=${lohko.lohkoId})}" th:object="${arviointi}"
+        method="POST">
         <div class="standard h-auto">
             <div class="container tuom">
                 <div class="row padding">
@@ -45,13 +44,13 @@
                     <h1 class="headertext" th:text="${kilpailu.nimi}"></h1>
                     <hr>
                     <h1 class="headertext" th:text="'Alkuerä: '+${lohko.lohkoNro}"></h1>
+                    
                 </div>
                 <div class="row padding">
                     <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
                         Kilpailija:
-                        <select class="custom-select" th:field="*{kilpailija}" name="kilpailija" id="kilpailijaId"
-                            required oninvalid="this.setCustomValidity('Lisää kilpailijan numero')" oninput="setCustomValidity('')">
-                            <option value="" selected>Valitse:</option>
+                        <select th:field="*{kilpailija}" name="kilpailija11" id="kilpailijaId">
+                            <option value="kilpailijaId" selected>Valitse:</option>
                             <ul>
                                 <li th:each="kilpailija:${kilpailijat}">
                                     <option th:value="${kilpailija.kilpailijaId}">
@@ -61,10 +60,21 @@
                                 </li>
                             </ul>
                         </select>
-
                     </div>
                     <input type="hidden" th:field="*{kokonaistulos}" th:value=0 value=0 />
-                    <input type="hidden" th:field="*{lohko}" th:value="${lohko.lohkoId}" />
+                    <input type="hidden" th:field="*{lohko}" th:value="${lohko.lohkoId}"  />
+                    <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                        Tuomarin nro: <select name="tuomari" id="tuomari">
+                            <option value="asd" selected>Valitse:</option>
+                            <ul>
+                                <li th:each="tuomari:${tuomarit}">
+                                    <option th:value="${tuomari.tuomariId}">
+                                        <p th:text="${tuomari.tuomariNro}"></p>
+                                    </option>
+                                </li>
+                            </ul>
+                        </select>
+                    </div>
                 </div>
                 <hr>
                 <div class="row padding">
@@ -81,11 +91,8 @@
                                 <tr>
                                     <td>Selkeä esittäytyminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{aloitus.selkeaEsittaytyminenPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-
-                                            <option value="">Valitse:</option>
+                                        <select th:field="*{aloitus.selkeaEsittaytyminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -94,18 +101,14 @@
                                             <option value="5">5</option>
                                             <option value="6">6</option>
                                             <option value="7">7</option>
-                                        </select>
-                                        <br>
-
+                                        </select> <br>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{aloitus.tapaamisenLahtotilannePist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{aloitus.tapaamisenLahtotilannePist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -120,10 +123,8 @@
                                 <tr>
                                     <td>Tapaamisen ajankäytöstä sopiminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{aloitus.tapaamisenAjankayttoPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{aloitus.tapaamisenAjankayttoPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -142,8 +143,7 @@
                 <div class="row padding">
                     <div class="col-xs-12">
                         Vapaa palaute: <br>
-                        <textarea form="arvform" th:field="*{aloitus.aloitusVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </textarea>
+                        <textarea form="arvform" th:field="*{aloitus.aloitusVapaaPalaute}" row paddings="2" cols="70"></textarea>
                     </div>
                 </div>
                 <hr>
@@ -161,10 +161,9 @@
                                 <tr>
                                     <td>Perustietojen selvitys:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{tarvekartoitus.perustietojenSelvitysPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{tarvekartoitus.perustietojenSelvitysPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -180,10 +179,8 @@
                                     <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien
                                         kartoittaminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{tarvekartoitus.asiakkaanNykytilaPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{tarvekartoitus.asiakkaanNykytilaPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -198,10 +195,8 @@
                                 <tr>
                                     <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{tarvekartoitus.tarpeenKehittaminenPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{tarvekartoitus.tarpeenKehittaminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -216,10 +211,9 @@
                                 <tr>
                                     <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston selvittäminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{tarvekartoitus.paatoksentekoprosessiPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{tarvekartoitus.paatoksentekoprosessiPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -239,8 +233,7 @@
                     <div class="col-xs-12">
                         Vapaa palaute: <br>
                         <textarea form="arvform" th:field="*{tarvekartoitus.tarvekartoitusVapaaPalaute}" row paddings="2"
-                            cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    </textarea>
+                            cols="70"></textarea>
                     </div>
                 </div>
                 <hr>
@@ -258,10 +251,8 @@
                                 <tr>
                                     <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{ratkaisu.haasteYhteenvetoPist}" name="arvosana"
-                                            id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{ratkaisu.haasteYhteenvetoPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -278,10 +269,8 @@
                                         tapaamisiin
                                         perustuen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{ratkaisu.ratkaisunEsittaminenPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{ratkaisu.ratkaisunEsittaminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -296,10 +285,8 @@
                                 <tr>
                                     <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{ratkaisu.hyotyjenEsilletuontiPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{ratkaisu.hyotyjenEsilletuontiPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -318,8 +305,7 @@
                 <div class="row padding">
                     <div class="col-xs-12">
                         Vapaa palaute: <br>
-                        <textarea form="arvform" th:field="*{ratkaisu.ratkaisuVapaaPalaute}" row paddings="2" cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    </textarea>
+                        <textarea form="arvform" th:field="*{ratkaisu.ratkaisuVapaaPalaute}" row paddings="2" cols="70"></textarea>
                     </div>
                 </div>
                 <hr>
@@ -337,10 +323,9 @@
                                 <tr>
                                     <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{kysymystenKasittely.vastavaitteidenYmmartaminenPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{kysymystenKasittely.vastavaitteidenYmmartaminenPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -355,10 +340,9 @@
                                 <tr>
                                     <td>Asiakkaan huolenaiheiden käsittely:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{kysymystenKasittely.huolenaiheidenKasittelyPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{kysymystenKasittely.huolenaiheidenKasittelyPist}" name="arvosana"
+                                            id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -378,8 +362,7 @@
                     <div class="col-xs-12">
                         Vapaa palaute: <br>
                         <textarea form="arvform" th:field="*{kysymystenKasittely.kasittelyVapaaPalaute}" row paddings="2"
-                            cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </textarea>
+                            cols="70"></textarea>
                     </div>
                 </div>
                 <hr>
@@ -397,10 +380,8 @@
                                 <tr>
                                     <td>Sopivan sitoutumisen perusteltu ehdottaminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{paattaminen.sitoutumisenEhdotusPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{paattaminen.sitoutumisenEhdotusPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -417,10 +398,8 @@
                                         jatkotoimenpiteistä
                                         sopiminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{paattaminen.sitoutumisenSaaminenPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{paattaminen.sitoutumisenSaaminenPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -440,8 +419,7 @@
                     <div class="col-xs-12">
                         Vapaa palaute: <br>
                         <textarea form="arvform" th:field="*{paattaminen.paattaminenVapaaPalaute}" row paddings="2"
-                            cols="70">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    </textarea>
+                            cols="70"></textarea>
                     </div>
                 </div>
                 <hr>
@@ -459,10 +437,8 @@
                                 <tr>
                                     <td>Aktiivinen kuuntelu ja läsnäolo:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{yleisvaikutelma.aktiivinenKuunteluPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{yleisvaikutelma.aktiivinenKuunteluPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -477,10 +453,8 @@
                                 <tr>
                                     <td>Tilannetaju ja erilaisuuden huomioiminen:</td>
                                     <td>
-                                        <select class="custom-select" th:field="*{yleisvaikutelma.tilannetajuPist}"
-                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
-                                            oninput="setCustomValidity('')" required>
-                                            <option value="" selected>Valitse:</option>
+                                        <select th:field="*{yleisvaikutelma.tilannetajuPist}" name="arvosana" id="arvosana">
+                                            <option value="99" selected>Valitse:</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -500,8 +474,7 @@
                     <div class="col-xs-12">
                         Vapaa palaute: <br>
                         <textarea form="arvform" th:field="*{yleisvaikutelma.yleisvaikutelmaVapaaPalaute}" row paddings="2"
-                            cols="70">
-                                    </textarea>
+                            cols="70"></textarea>
                     </div>
                 </div>
                 <hr>

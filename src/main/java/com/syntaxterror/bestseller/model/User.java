@@ -22,7 +22,7 @@ public class User {
     
     @Column(name = "rooli", nullable = true)
     public String rooli;
-
+    
     @Column(name = "rooli_id", nullable = true)
     public Long rooliId;
     
