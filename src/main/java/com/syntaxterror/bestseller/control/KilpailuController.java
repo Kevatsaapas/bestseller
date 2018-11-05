@@ -54,8 +54,7 @@ public class KilpailuController {
     @RequestMapping("/updatekilpailu")
     public String updateKilpailu(Model model, Kilpailu kilpailu) {
         kilpailuRepository.save(kilpailu);
-        model.addAttribute("kilpailut", kilpailuRepository.findAll());
-        return "testaus";
+        return "redirect:testaus/";
     }
 
     private void luoLohkot(Long kilpailuId) {
