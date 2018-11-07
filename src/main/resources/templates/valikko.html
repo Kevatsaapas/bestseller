@@ -1,7 +1,6 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:fragment="htmlhead">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -47,9 +46,9 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4">
                                 <form th:action="@{/tuomarointi/}" method="POST">
-                                <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}"/>
-                                <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}"/>
-                                <input type="hidden" name="tuomariId" th:value="${kilpailu.kilpailuId}"/>
+                                    <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}" />
+                                    <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}" />
+                                    <input type="hidden" name="tuomariId" th:value="${kilpailu.kilpailuId}" />
                                     <button class="btn btn-lg btn-info" type="submit">Tuomari</button>
                                 </form>
 
@@ -65,10 +64,15 @@
                                     <button class="btn btn-lg btn-danger">Poistu</a></button>
                                 </form>
                             </div>
+
                         </div>
                     </div>
+
+                </div>
+
             </div>
         </div>
+    </div>
 </body>
 
 </html>

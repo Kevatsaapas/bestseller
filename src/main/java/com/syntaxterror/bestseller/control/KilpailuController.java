@@ -7,7 +7,10 @@ import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.service.ArviointiService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +35,9 @@ public class KilpailuController {
 
     @Autowired
     public KilpailijaRepository kilpailijaRepository;
+    
+    @Autowired
+    public ArviointiService arviointiservice;
 
     @RequestMapping("/luokilpailu")
     public String luoKilpailu(Model model, Kilpailu kilpailu) {
@@ -47,11 +53,8 @@ public class KilpailuController {
 
     @RequestMapping("/updatekilpailu")
     public String updateKilpailu(Model model, Kilpailu kilpailu) {
-    	Date pvm = new Date();
-        kilpailu.setPvm(pvm);
         kilpailuRepository.save(kilpailu);
-        model.addAttribute("kilpailut", kilpailuRepository.findAll());
-        return "testaus";
+        return "redirect:testaus/";
     }
 
     private void luoLohkot(Long kilpailuId) {
@@ -72,41 +75,6 @@ public class KilpailuController {
     @Transactional
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss.SSSZ")
     public String tallennaKilpailu(Kilpailu kilpailu) throws ParseException {
-    	Long paiva=kilpailu.getPaiva();
-        Long kuukausi=kilpailu.getKuukausi();
-        Long vuosi=kilpailu.getVuosi();
-        
-        String pai=null;
-        String kk=null;
-        String vuo =null;
-        
-        if (paiva <10) {
-        	pai = "0"+paiva.toString();
-        }
-        else {
-        	pai=paiva.toString();
-        }
-        if (kuukausi <10) {
-        	kk="0"+kuukausi.toString();
-        }
-        else {
-        	kk=kuukausi.toString();
-        }
-        
-        if (vuosi <10) {
-        	vuo="0"+vuosi.toString();
-        }
-        else {
-        	vuo=vuosi.toString();
-        }
-        
-    	String pvm = pai+"/"+kk+"/"+vuo;
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		kilpailu.setPvm(dateFormat.parse(pvm));
-    	
-		//Date menee väärinpäin mut toimii muuten
-        System.out.println(kilpailu.getPvm());
-       
         kilpailuRepository.save(kilpailu);
         luoLohkot(kilpailu.getKilpailuId());
         System.out.println(kilpailu);
@@ -116,10 +84,7 @@ public class KilpailuController {
     @RequestMapping(value = "/poistakilpailu/{kilpailuId}", method = RequestMethod.GET)
     @Transactional
     public String poistaKilpailu(@PathVariable Long kilpailuId) {
-        kilpailijaRepository.deleteByKilpailuId(kilpailuId);
-        Kilpailu kilpailu= kilpailuRepository.findByKilpailuId(kilpailuId);
-        lohkoRepository.deleteByKilpailu(kilpailu);
-        kilpailuRepository.deleteById(kilpailuId);
+    	arviointiservice.nuke(kilpailuId);
         return "redirect:/testaus";
     }
 

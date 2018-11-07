@@ -43,19 +43,18 @@
 </head>
 
 <body>
-	<div class="indexbody h-100">
+    <div class="indexbody h-100">
 
-		<div class="site-wrapper">
-			<div class="site-wrapper-inner">
-				<div class="cover-container">
-					<div class="masthead clearfix"></div>
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+                    <div class="masthead clearfix">
+                    </div>
 
-					<div class="inner cover">
-						<img th:src="@{./img/BSC_sinetti_logo.png}"
-							src="../static/img/BSC_sinetti_logo.png" class="logo" alt="logo" />
-						<h3>Tervetuloa!</h3>
-						<h3 th:inline="text">Olet kirjautunut sisään nimellä:
-							[[${#httpServletRequest.remoteUser}]]</h3>
+                    <div class="inner cover">
+                        <h1 class="cover-heading" th:text="${kilpailu.nimi}"></h1>
+
+                        <h3 th:text="'Alkuerä: '+${lohko.lohkoNro}"></h3>
 
                         <p class="lead">Valitse roolisi:
 
@@ -71,12 +70,12 @@
 
                             </div>
 
-                            <div class="col-lg-4 col-md-4">
-                                <form th:action="@{/logout}", method="post">
+                            <div class="col-lg-6 col-md-6">
+                                <form th:action="@{/logout}" , method="post">
                                     <button class="btn btn-lg btn-danger" type="submit">Kirjaudu ulos</a></button>
                                 </form>
                             </div>
-
+                           
                         </div>
                     </div>
 

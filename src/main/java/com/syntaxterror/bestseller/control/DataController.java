@@ -13,6 +13,8 @@ import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.repository.UserRepository;
+import com.syntaxterror.bestseller.service.ArviointiService;
+import com.syntaxterror.bestseller.service.LeaderboardService;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -30,7 +32,13 @@ public class DataController {
 
 	@Autowired
 	public KilpailuRepository kilpailuRepository;
+	
+	@Autowired
+	public ArviointiService arviointiService;
 
+	@Autowired
+	public LeaderboardService leaderboardService;
+	
 	@Autowired
 	public LohkoRepository lohkoRepository;
 
@@ -89,18 +97,26 @@ public class DataController {
 	        return "redirect:/datat/"+kilid;
 	    }
 
+	 @RequestMapping("/luoarviot/{kilpailuId}")
+		public String luoArvioinnit(@PathVariable Long kilpailuId, Model model) {
+		 arviointiService.arvioi(kilpailuId);
+		 String kilid = kilpailuId.toString();
+		 return "redirect:/datat/"+kilid;
+	 }
+	 
+	 @RequestMapping("/kokonaistulokset/{kilpailuId}")
+		public String luoKokonaistulokset(@PathVariable Long kilpailuId, Model model) {
+		 leaderboardService.laskeLopputulokset(kilpailuId);
+		 String kilid = kilpailuId.toString();
+		 return "redirect:/datat/"+kilid;
+	 }
+	 
 	@RequestMapping("/luodatat/{kilpailuId}")
 	public String luoDataa(@PathVariable Long kilpailuId, Model model) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
-		model.addAttribute("kilpailu", kilpailu);
 		luoDatat(kilpailu);
-		Iterable<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuId(kilpailuId);
-		model.addAttribute("kilpailijat", kilpailijat);
-		Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
-		model.addAttribute("lohkot", lohkot);
-		model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
-		model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
-		return "datat";
+		String kilid = kilpailuId.toString();
+		return "redirect:/datat/"+kilid;
 	}
 
 	public void luoDatat(Kilpailu kilpailu) {
@@ -124,7 +140,7 @@ public class DataController {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, koulunimet.length);
 			Koulu koulu = koulut.get(randomNum);
 			String posti = spostit[randomNum];
-			Kilpailija kilpailija = new Kilpailija(etunimet[kohta], sukunimet[kohta], 0, koulu, posti, lohko, kilpailuId);
+			Kilpailija kilpailija = new Kilpailija(etunimet[kohta], sukunimet[kohta], 0, koulu, posti, lohko, kilpailuId,0);
 			kilpailijaRepository.save(kilpailija);
 		}
 		for(int luku=1; luku<3; luku++){
