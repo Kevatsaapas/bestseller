@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content=""></meta>
+<meta name="author" content=""></meta>
+<link rel="shortcut icon" type="image/png"
+	th:href="@{/images/favicon.png}"></link>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<title>Bestseller - Muokkaa koulua</title>
+</head>
+<body>
+	<h2>Muokkaa koulun nimeä: </h2>
+		<form role="form" th:object="${koulu}"
+		th:action="@{/tallennakoulu}" action="#" method="post">
+		<input type="hidden" th:required="required" th:field="*{kouluId}" />
+		<div class="form-group">
+		<div class="col-lg-6 col-sm-6 col-xs-12" >
+			<label for="kouluNimi">Koulun Nimi: </label><input type="text" class="form-control is-invalid"
+				th:required="required" th:field="*{kouluNimi}" />
+		</div>
+		</div>
+		
+		<h2>Muokkaa paikkakuntaa</h2>
+		<div class="form-group">
+		<div class="col-lg-6 col-sm-6 col-xs-12" >
+			<label for="kouluNimi">Koulun Paikkakunta: </label><input type="text" class="form-control is-invalid"
+				th:required="required" th:field="*{kouluKaupunki}" />
+		</div>
+		</div>
+		<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
+			th:value="${kilpailuId}" /> <input id="addButton" type="submit"
+			class="btn btn-primary" value="Tallenna">
+		</form>
+
+
+</body>
+</html>
