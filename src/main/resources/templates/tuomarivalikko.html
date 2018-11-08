@@ -12,13 +12,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
+        crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 
     <!-- Fontit -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -28,45 +28,45 @@
 </head>
 
 <body>
-<div class="indexbody h-100">
+    <div class="indexbody">
 
-    <div class="site-wrapper">
-        <div class="site-wrapper-inner">
-            <div class="cover-container">
-                <div class="masthead clearfix">
-                </div>
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+                    <div class="masthead clearfix">
+                    </div>
 
-                <div class="inner cover">
-                    <img th:src="@{/img/BSC_sinetti_logo.png}" src="../static/img/BSC_sinetti_logo.png" class="logo"
-                         alt="logo" />
-                    <h2>Tuomarit:</h2>
-                    <div class="row">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="tuomari:${tuomarit}">
-                                <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${lohko.lohkoNro}">asdasd</td>
-                                <td>
-                                    <form th:action="@{/valikko/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
-                                        <button class="btn btn-sm btn-success">Valitse</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <div class="inner cover">
+                        <img th:src="@{/img/BSC_sinetti_logo.png}" src="../static/img/BSC_sinetti_logo.png" class="logo"
+                            alt="logo" />
+                        <h2>Tuomarit:</h2>
+                        <div class="row">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="tuomari:${tuomarit}">
+                                        <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${lohko.lohkoNro}">asdasd</td>
+                                        <td>
+                                            <form th:action="@{/valikko/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
+                                                <button class="btn btn-sm btn-success">Valitse</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>

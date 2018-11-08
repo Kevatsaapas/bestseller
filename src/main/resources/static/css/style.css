@@ -19,12 +19,6 @@
     margin-top: 20px;
 }
 
-.standard {
-    background-color: #cecbcb;
-    background-image: url("../img/arches.png");
-    background-repeat: repeat;
-}
-
 textarea {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -45,13 +39,10 @@ textarea {
 
 textarea {
     padding-top: 10px;
-
-
 }
 
-
 .indexbody {
-
+    height: 100vh;
     color: #fff;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
@@ -79,12 +70,11 @@ a:hover {
 
 html,
 body {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
-    height: 100%;
+    height: 100vh;
+    background-color: #cecbcb !important;
+    background-image: url("../img/arches.png");
+    background-repeat: repeat;
+    margin: 0;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
