@@ -1,14 +1,12 @@
 package com.syntaxterror.bestseller.model;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 
 @EnableAutoConfiguration
@@ -42,11 +40,7 @@ public class Kilpailu {
 	@OneToMany
 	private List<Arviointi> arvioinnit;
 
-	private Long paiva;
 
-	private Long kuukausi;
-
-	private Long vuosi;
 
 	public Kilpailu() {
 		super();
@@ -54,16 +48,11 @@ public class Kilpailu {
 		this.pvm = null;
 		this.paikka = null;
 		this.testi=null;
-		this.paiva= null;
-		this.kuukausi = null;
-		this.vuosi = null;
+
 	}
 
-	public Kilpailu(String nimi, String pvm, String paikka, Long paiva, Long kuukausi, Long vuosi, Long testi) {
+	public Kilpailu(String nimi, String pvm, String paikka, Long testi) {
 		super();
-		this.paiva = paiva;
-		this.kuukausi = kuukausi;
-		this.vuosi = vuosi;
 		this.nimi = nimi;
 		this.pvm = pvm;
 		this.paikka = paikka;
@@ -72,29 +61,6 @@ public class Kilpailu {
 
 
 
-	public Long getPaiva() {
-		return paiva;
-	}
-
-	public void setPaiva(Long paiva) {
-		this.paiva = paiva;
-	}
-
-	public Long getKuukausi() {
-		return kuukausi;
-	}
-
-	public void setKuukausi(Long kuukausi) {
-		this.kuukausi = kuukausi;
-	}
-
-	public Long getVuosi() {
-		return vuosi;
-	}
-
-	public void setVuosi(Long vuosi) {
-		this.vuosi = vuosi;
-	}
 
 	public Long getkilpailuId() {
 		return kilpailuId;
@@ -151,10 +117,11 @@ public class Kilpailu {
 
 	@Override
 	public String toString() {
-		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + ", testi=" + testi
-				+ ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + ", paiva=" + paiva + ", kuukausi=" + kuukausi
-				+ ", vuosi=" + vuosi + "]";
+		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka
+				+ ", testi=" + testi + ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + "]";
 	}
+
+	
 	
 	
 }
