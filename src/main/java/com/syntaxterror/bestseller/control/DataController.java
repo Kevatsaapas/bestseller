@@ -66,6 +66,7 @@ public class DataController {
 	private String[] spostit = { "haaga.helia@haaga-helia.com", "metro@polia.com",
 			"laurea.ammatti@korkea.com", "business.college@helsinki.com" };
 	private String[] koulunimet = {"Haaga-Helia", "Metropolia", "Laurea", "Turun AMK"};
+	private int tuonro = 1;
 
 	@RequestMapping("/datat/{kilpailuId}")
 	public String dataa(@PathVariable Long kilpailuId, Model model) {
@@ -146,10 +147,10 @@ public class DataController {
 		for(int luku=1; luku<3; luku++){
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 15 + 1);
 			int randomNumm = ThreadLocalRandom.current().nextInt(0, 15 + 1);
-			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId, new Long(0));
+			Tuomari tuomari = new Tuomari("Tuomari "+tuonro,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId, new Long(0));
 			tuomariRepository.save(tuomari);
+			tuonro++;
 		}
-		
 		indeksi+=5;
 		}
 

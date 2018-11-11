@@ -57,39 +57,22 @@
 						<h3 th:inline="text">Olet kirjautunut sisään nimellä:
 							[[${#httpServletRequest.remoteUser}]]</h3>
 
-						<p class="lead">Valitse kilpailu:
+						<br/>
+						
 						<div class="row">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th></th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="kilpailu:${kilpailut}">
-										<td style="font-size: 1.5em; font-weight: bold; width: 70%"
-											th:text="${kilpailu.nimi}"></td>
-										<td>
-											<form th:action="@{/kilpailuvalittu/}" method="POST">
-												<span th:if="${kilpailu.testi == 1}">TESTIKILPAILU</span> <input
-													type="hidden" name="kilpailuId"
-													th:value="${kilpailu.kilpailuId}" />
-												<button class="btn btn-sm btn-success" type="submit">Valitse</button>
-											</form>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="row" sec:authorize="hasAuthority('ADMIN')">
-							<form th:action="@{/testaus}">
-								<button class="btn btn-md btn-custom btn-danger">Admin</button>
-							</form>
-						</div>
-						<form th:action="@{/logout}" method="post">
-							<input type="submit" value="Kirjaudu ulos" />
-						</form>
+						<div class="col">
+                                <form th:action="@{/testaus}" sec:authorize="hasAuthority('ADMIN')">
+                                    <button class="btn btn-lg btn-success">Kilpailujen Hallinta</a></button>
+                                </form>
+                         </div>
+                         <div class="col">
+                                <form th:action="@{/logout}" method="post">
+                                    <button class="btn btn-lg btn-danger">Kirjaudu Ulos</a></button>
+                                </form>
+                            </div>
+                            </div>
+                            
+						
 					</div>
 				</div>
 			</div>

@@ -233,3 +233,34 @@ Date deit = new Date();
 </body>
 
 </html>
+
+
+
+
+
+
+<div class="row">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="kilpailu:${kilpailut}">
+										<td style="font-size: 1.5em; font-weight: bold; width: 70%"
+											th:text="${kilpailu.nimi}"></td>
+										<td>
+											<form th:action="@{/kilpailuvalittu/}" method="POST">
+												<span th:if="${kilpailu.testi == 1}">TESTIKILPAILU</span> <input
+													type="hidden" name="kilpailuId"
+													th:value="${kilpailu.kilpailuId}" />
+												<button class="btn btn-sm btn-success" type="submit">Valitse</button>
+											</form>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+

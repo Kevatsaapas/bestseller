@@ -98,7 +98,6 @@ public class DefaultController {
     @RequestMapping("/testaus")
     public String testaus(Model model) {
         model.addAttribute("kilpailut", kilpailuRepository.findAll());
-		model.addAttribute("users", urepository.findAll());
         return "testaus";
     }
     
