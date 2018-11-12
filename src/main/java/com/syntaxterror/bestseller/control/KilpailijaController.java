@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.control;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Koulu;
+import com.syntaxterror.bestseller.model.SignupForm;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
@@ -108,11 +109,24 @@ public class KilpailijaController {
     }
 
     @RequestMapping(value = "/tallennatuomari", method = RequestMethod.POST)
-    public String tallennaTuomari(Tuomari tuomari) {
+    public String tallennaTuomari(Model model, Tuomari tuomari) {
         tuomariRepository.save(tuomari);
+        model.addAttribute("tuomariId", tuomari.getTuomariId());
         System.out.println(tuomari);
-        String redirect = "redirect:/datat/"+ Long.toString(tuomari.getKilpailuId());
+        String redirect = "redirect:/luotuouser/"+ Long.toString(tuomari.getTuomariId());
         return redirect;
+    }
+    
+    @RequestMapping(value = "/luotuouser/{tuomariId}")
+    public String luoTuomarilleKayttaja(Model model, @PathVariable Long tuomariId){
+    	SignupForm siform = new SignupForm();
+    	String rooli="tuomari";
+    	siform.setRooli(rooli);
+    	siform.setRooliId(tuomariId);
+    	System.out.println(siform.getRooli());
+    	System.out.println(siform.getRooliId());
+        model.addAttribute("signupform",siform);
+        return "signup";
     }
     
     @RequestMapping("/luokoulu/{kilpailuId}")

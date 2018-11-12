@@ -20,10 +20,10 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
     
-    @Column(name = "rooli", nullable = true)
+    @Column(name = "rooli")
     public String rooli;
     
-    @Column(name = "rooli_id", nullable = true)
+    @Column(name = "rooli_id")
     public Long rooliId;
     
 
