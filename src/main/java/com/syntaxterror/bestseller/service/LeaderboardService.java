@@ -79,6 +79,8 @@ public class LeaderboardService {
 		double yleisvaikutelmaKa1=0;
 		List<Integer> yleisvaikutelma2= new ArrayList<Integer>();
 		double yleisvaikutelmaKa2=0;
+		List<Integer> yleisvaikutelma3= new ArrayList<Integer>();
+		double yleisvaikutelmaKa3=0;
 		double yleisvaikutelma = 0;
 		double kokonaistulos=0;
     	
@@ -102,6 +104,7 @@ public class LeaderboardService {
     				tarvekartoitus4.add(Integer.parseInt(arviointi.getTarvekartoitus().getTarpeenKehittaminenPist()));
     				yleisvaikutelma1.add(Integer.parseInt(arviointi.getYleisvaikutelma().getAktiivinenKuunteluPist()));
     				yleisvaikutelma2.add(Integer.parseInt(arviointi.getYleisvaikutelma().getTilannetajuPist()));
+    				yleisvaikutelma3.add(Integer.parseInt(arviointi.getYleisvaikutelma().getOmaKayttaytyminenPist()));
     			}
     			for(int luku : aloitus1) {	aloitusKa1+=luku;}
     			aloitusKa1 = aloitusKa1/aloitus1.size();
@@ -145,7 +148,9 @@ public class LeaderboardService {
     			yleisvaikutelmaKa1 = yleisvaikutelmaKa1/aloitus1.size();
     			for(int luku : yleisvaikutelma2) {	yleisvaikutelmaKa2+=luku;}
     			yleisvaikutelmaKa2 = yleisvaikutelmaKa2/aloitus1.size();
-    			yleisvaikutelma=(yleisvaikutelmaKa1+yleisvaikutelmaKa2)/2;
+    			for(int luku : yleisvaikutelma3) {	yleisvaikutelmaKa3+=luku;}
+    			yleisvaikutelmaKa3 = yleisvaikutelmaKa3/aloitus1.size();
+    			yleisvaikutelma=(yleisvaikutelmaKa1+yleisvaikutelmaKa2+yleisvaikutelmaKa3)/3;
     			
     			kokonaistulos = (aloitus*0.1)+(tarvekartoitus*0.3)+(ratkaisu*0.25)+(kysymystenKasittely*0.1)+(paattaminen*0.1)+(yleisvaikutelma*0.1);
     			kilpailija.setKokonaistulos(kokonaistulos);
@@ -159,7 +164,7 @@ public class LeaderboardService {
 			paattaminen1.clear();paattaminen2.clear();paattaminenKa1=0;paattaminenKa2=0;paattaminen=0;
 			ratkaisu1.clear();ratkaisu2.clear();ratkaisu3.clear();ratkaisuKa1=0;ratkaisuKa2=0;ratkaisuKa3=0;ratkaisu=0;
 			tarvekartoitus1.clear();tarvekartoitus2.clear();tarvekartoitus3.clear();tarvekartoitus4.clear();tarvekartoitusKa1=0;tarvekartoitusKa2=0;tarvekartoitusKa3=0;tarvekartoitusKa4=0;tarvekartoitus=0;
-			yleisvaikutelma1.clear();yleisvaikutelma2.clear();yleisvaikutelmaKa1=0;yleisvaikutelmaKa2=0;yleisvaikutelma=0;
+			yleisvaikutelma1.clear();yleisvaikutelma2.clear();yleisvaikutelma3.clear();yleisvaikutelmaKa1=0;yleisvaikutelmaKa2=0;yleisvaikutelmaKa3=0;yleisvaikutelma=0;
 			kokonaistulos=0;
     	}
     }

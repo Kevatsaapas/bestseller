@@ -119,6 +119,7 @@ public class ArviointiService {
     		        arviointi.getTarvekartoitus().setTarpeenKehittaminenPist(arvot.get(12).toString());
     		        arviointi.getYleisvaikutelma().setAktiivinenKuunteluPist(arvot.get(13).toString());
     		        arviointi.getYleisvaikutelma().setTilannetajuPist(arvot.get(13).toString());
+    		        arviointi.getYleisvaikutelma().setOmaKayttaytyminenPist(arvot.get(13).toString());
     		        double painotettuAloitus = arviointi.getAloitus().getKokonaistulos() * 0.1;
     		        double painotettuKasittely = arviointi.getKysymystenKasittely().getKokonaistulos() * 0.3;
     		        double painotettuPaattaminen = arviointi.getPaattaminen().getKokonaistulos() * 0.25;

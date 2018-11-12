@@ -91,7 +91,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Selkeä esittäytyminen:</td>
+                                    <td>Selkeä esittäytyminen ja luonteva aloitus:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{aloitus.selkeaEsittaytyminenPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -110,7 +110,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
+                                    <td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen tarkoituksen täsmentäminen:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{aloitus.tapaamisenLahtotilannePist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -135,14 +135,8 @@
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
                                             oninput="setCustomValidity('')" required>
                                             <option value="" selected>Valitse:</option>
-                                            <option value="0">0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
+                                            <option value="0">Ei</option>
+                                            <option value="7">Kyllä</option>
                                         </select>
                                         <br>
                                     </td>
@@ -173,7 +167,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Perustietojen selvitys:</td>
+                                    <td>Perustietojen selvitys ja asiakkaan tavoitteiden selvittäminen:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{tarvekartoitus.perustietojenSelvitysPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -192,7 +186,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien
+                                    <td>Asiakasyrityksen nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien
                                         kartoittaminen:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{tarvekartoitus.asiakkaanNykytilaPist}"
@@ -212,7 +206,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle:</td>
+                                    <td>Muutostarpeen kehittäminen ja asiakasarvon tunnistaminen:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{tarvekartoitus.tarpeenKehittaminenPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -276,7 +270,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista:</td>
+                                    <td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen pohjalta (haasteet ja mahdollisuudet):</td>
                                     <td>
                                         <select class="custom-select" th:field="*{ratkaisu.haasteYhteenvetoPist}" name="arvosana"
                                             id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -295,9 +289,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin
-                                        tapaamisiin
-                                        perustuen:</td>
+                                    <td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja asiakkaan tavoitteita tukien (miten ratkaisu auttaa asiakasta saavuttamaan tavoitteensa):</td>
                                     <td>
                                         <select class="custom-select" th:field="*{ratkaisu.ratkaisunEsittaminenPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -316,7 +308,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan:</td>
+                                    <td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä asiakas voisi saavuttaa verrattuna nykytilanteeseensa):</td>
                                     <td>
                                         <select class="custom-select" th:field="*{ratkaisu.hyotyjenEsilletuontiPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -360,7 +352,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely:</td>
+                                    <td>Asiakkaan vastaväitteiden huomiointi ja käsittely:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{kysymystenKasittely.vastavaitteidenYmmartaminenPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -379,7 +371,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Asiakkaan huolenaiheiden käsittely:</td>
+                                    <td>Asiakkaan huolenaiheiden huomiointi ja käsittely:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{kysymystenKasittely.huolenaiheidenKasittelyPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -424,7 +416,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Sopivan sitoutumisen perusteltu ehdottaminen:</td>
+                                    <td>Sopivan etenemisen ehdottaminen asiakkaalle:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{paattaminen.sitoutumisenEhdotusPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -443,9 +435,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja
-                                        jatkotoimenpiteistä
-                                        sopiminen:</td>
+                                    <td>Asiakkaan sitoutumisen varmistaminen ja jatkotoimenpiteistä sopiminen:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{paattaminen.sitoutumisenSaaminenPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -490,7 +480,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Aktiivinen kuuntelu ja läsnäolo:</td>
+                                    <td>Keskustelun edistäminen asiakasta kuunnellen:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{yleisvaikutelma.aktiivinenKuunteluPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -509,7 +499,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Tilannetaju ja erilaisuuden huomioiminen:</td>
+                                    <td>Selkeä suullinen ilmaisu:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{yleisvaikutelma.tilannetajuPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -527,6 +517,27 @@
                                         <br>
                                     </td>
                                 </tr>
+                                
+                                <tr>
+                                    <td>Oman käyttäytymisen sopeuttaminen asiakkaan tyyliin sopien:</td>
+                                    <td>
+                                        <select class="custom-select" th:field="*{yleisvaikutelma.omaKayttaytyminenPist}"
+                                            name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
+                                            oninput="setCustomValidity('')" required>
+                                            <option value="" selected>Valitse:</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                        <br>
+                                    </td>
+                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>

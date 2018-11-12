@@ -68,12 +68,12 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Selkeä esittäytyminen:</td>
+                            <td>Selkeä esittäytyminen ja luonteva aloitus:</td>
                             <td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Tapaamisen lähtötilanteen ja tarkoituksen kuvaaminen:</td>
+                            <td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen tarkoituksen täsmentäminen:</td>
                             <td th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
                         </tr>
 
@@ -100,23 +100,23 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Perustietojen selvitys: </td>
+                            <td>Perustietojen selvitys ja asiakkaan tavoitteiden selvittäminen: </td>
                             <td th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Asiakkaan nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien kartoittaminen:
+                            <td>Asiakasyrityksen nykytilanteeseen liittyvien haasteiden ja mahdollisuuksien tunnistaminen:
                             </td>
                             <td th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Asiakkaan tarpeen kehittäminen ja arvo asiakkaalle: </td>
+                            <td>Muutostarpeen kehittäminen ja asiakasarvon tunnistaminen: </td>
                             <td th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkostonselvittäminen: </td>
+                            <td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston selvittäminen: </td>
                             <td th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
                         </tr>
 
@@ -138,18 +138,17 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Yhteenveto asiakkaan haasteista ja mahdollisuuksista: </td>
+                            <td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen pohjalta (haasteet ja mahdollisuudet): </td>
                             <td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Ratkaisun esittäminen tarvekartoitukseen ja mahdollisiin aikaisempiin tapaamisiin
-                                perustuen: </td>
+                            <td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja asiakkaan tavoitteita tukien (miten ratkaisu auttaa asiakasta saavuttamaan tavoitteensa): </td>
                             <td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Ratkaisun asiakashyötyjen esilletuonti ominaisuuksien sijaan: </td>
+                            <td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä asiakas voisi saavuttaa verrattuna nykytilanteeseensa): </td>
                             <td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
                         </tr>
 
@@ -171,12 +170,12 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Asiakkaan kysymysten ja mahdollisten vastaväitteiden ymmärtäminen ja käsittely: </td>
+                            <td>Asiakkaan vastaväitteiden huomiointi ja käsittely: </td>
                             <td th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Asiakkaan huolenaiheiden käsittely: </td>
+                            <td>Asiakkaan huolenaiheiden huomiointi ja käsittely: </td>
                             <td th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
                         </tr>
 
@@ -198,13 +197,12 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Sopivan sitoutumisen perusteltu ehdottaminen: </td>
+                            <td>Sopivan ettenemisen ehdottaminen asiakkaalle: </td>
                             <td th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Asiakkaan sitoutumisen saaminen ehdotettuun etenemistapaan ja jatkotoimenpiteistä
-                                sopiminen: </td>
+                            <td>Asiakkaan sitoutumisen varmistaminen ja jatkotoimenpiteistä sopiminen: </td>
                             <td th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
                         </tr>
 
@@ -222,17 +220,22 @@
             <!-- Päättäminen -->
 
             <div class="row padding">
-                <h2>Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot (10%)</h2>
+                <h2>Yleisvaikutelma (10%)</h2>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Aktiivinen kuuntelu ja läsnäolo: </td>
+                            <td>Keskustelun edistäminen asiakasta kuunnellen: </td>
                             <td th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
                         </tr>
 
                         <tr>
-                            <td>Tilannetaju ja erilaisuuden huomioiminen: </td>
+                            <td>Selkeä suullinen ilmaisu: </td>
                             <td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Oman käyttäytymisen sopeuttaminen asiakkaan tyyliin sopien: </td>
+                            <td th:text="${arviointi.yleisvaikutelma.omaKayttaytyminenPist}+'/7'"></td>
                         </tr>
 
                         <tr>
