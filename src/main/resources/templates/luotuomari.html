@@ -68,6 +68,17 @@
 						</li>
 					</ul>
 					</div>
+					
+					<div class="form-group">
+                        <p>Onko tämä tuomari myös finaalissa?</p>
+                        <input type="radio" id="finaali1" name="finaaliin" th:required="required" th:field="*{finaaliin}"
+                            th:value="0" />
+                        <label for="finaali1">Ei</label>
+                        <input type="radio" id="finaali2" name="finaaliin" th:required="required" th:field="*{finaaliin}"
+                            th:value="1" />
+                        <label for="finaali2">Kyllä</label>
+                    </div>
+					
 					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton"
 					 type="submit" class="btn btn-primary" value="Tallenna">
 				</form>

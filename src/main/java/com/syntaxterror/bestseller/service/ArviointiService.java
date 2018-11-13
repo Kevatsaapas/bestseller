@@ -65,6 +65,21 @@ public class ArviointiService {
 		jdbctemplate.execute(sql);
         kilpailuRepository.deleteById(kilpailuId);
     }
+    
+    public int laskeArviointienSumma(Long kilpailuId) {
+    	int maara = 0;
+    	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
+    	List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+    	for(Lohko lohko: lohkot) {
+    		String lohkonro = lohko.getLohkoNro();
+    		if(lohkonro!="finaali") {
+    			List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkonro);
+    			List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId, lohko);
+    			maara+= tuomarit.size()*kilpailijat.size();
+    		}
+    	}
+    	return maara;
+    }
 
     public void arvioi(Long kilpailuId){
     	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);

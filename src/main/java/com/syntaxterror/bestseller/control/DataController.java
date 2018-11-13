@@ -1,5 +1,6 @@
 package com.syntaxterror.bestseller.control;
 
+import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Koulu;
@@ -71,14 +72,27 @@ public class DataController {
 	public String dataa(@PathVariable Long kilpailuId, Model model) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("kilpailu", kilpailu);
-		Iterable<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuId(kilpailuId);
+		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("kilpailijat", kilpailijat);
+		model.addAttribute("kilpailijaLkm", kilpailijat.size());
 		Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
 		model.addAttribute("lohkot", lohkot);
-		model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
-		model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
-		model.addAttribute("koulut", kouluRepository.findByKilpailuId(kilpailuId));
-		System.out.println(kouluRepository.findByKilpailuId(kilpailuId));
+		List<Tuomari> tuomarit=tuomariRepository.findByKilpailuId(kilpailuId);
+		model.addAttribute("tuomarit", tuomarit);
+		model.addAttribute("tuomariLkm", tuomarit.size());
+		List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuId(kilpailuId);
+		model.addAttribute("arvioinnit", arvioinnit);
+		model.addAttribute("arviointiLkm", arvioinnit.size());
+		List<Koulu> koulut = kouluRepository.findByKilpailuId(kilpailuId);
+		model.addAttribute("koulut", koulut);
+		model.addAttribute("kouluLkm", koulut.size());
+		int arviointiTotal = arviointiService.laskeArviointienSumma(kilpailuId);
+		model.addAttribute("arviointiTotal", arviointiTotal);
+		if(arviointiTotal==arvioinnit.size() && kilpailu.getFinaali()==0 && arvioinnit.size()>0) {
+			model.addAttribute("luofinaali", 1);
+		}else {
+			model.addAttribute("luofinaali", 0);
+		}
 		return "datat";
 	}
 

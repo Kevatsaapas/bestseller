@@ -118,15 +118,6 @@
                             <td th:if="${kayt.role == 'USER'}">EI</td>
                             <td th:if="${kayt.role == 'ADMIN'}">KYLLÄ</td>
                             <td th:text="${kayt.rooli}"></td>
-                            <div th:if="${kayt.rooliId == null}">
-                            <td th:if="${kayt.rooli=='tuomari'}">
-								<form th:action="@{'/liitatuomari/'+${kayt.username}}">
-                    			<button class="btn btn-lg btn-success">Liitä Tuomari</button>
-                				</form>
-							</td>
-                            <td th:if="${kayt.rooli=='ostaja'}">LIITÄ OSTAJA</td>
-                            <td th:if="${kayt.rooli=='valmentaja'}">LIITÄ VALMENTAJA</td>
-                            </div>
                             <td th:text="${kayt.rooliId}"></td>
                             
 						</tr>

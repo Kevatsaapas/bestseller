@@ -11,8 +11,8 @@ import com.syntaxterror.bestseller.model.Tuomari;
 @Repository
 public interface TuomariRepository extends CrudRepository<Tuomari, Long> {
 	Tuomari findByTuomariId(Long tuomariId);
-	Iterable<Tuomari> findByKilpailuId(Long kilpailuId);
+	List<Tuomari> findByKilpailuId(Long kilpailuId);
 	Iterable<Tuomari> findByLohkoNro(String lohkoNro);
 	List<Tuomari> findByKilpailuIdAndLohkoNro(Long kilpailuId, String lohkoNro);
-	Iterable<Tuomari> findByValittu(Long valittu);
+	List<Tuomari> findByKilpailuIdAndFinaaliin(Long kilpailuId, Long finaaliin);
 }

@@ -39,7 +39,6 @@ public class LeaderboardController {
     		if(i<5) {
     		String nimi = "lohko"+Integer.toString(i);
     		model.addAttribute(nimi, lohko);
-    		System.out.println(nimi);
     		i++;
     		}
     	}

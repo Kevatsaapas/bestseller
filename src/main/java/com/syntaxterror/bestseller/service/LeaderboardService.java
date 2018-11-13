@@ -2,9 +2,13 @@ package com.syntaxterror.bestseller.service;
 
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.util.Tarvekartoitus;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +26,12 @@ public class LeaderboardService {
     
     @Autowired
     private KilpailijaRepository kilpailijaRepository;
+    
+    @Autowired
+    private KilpailuRepository kilpailuRepository;
+    
+    @Autowired
+    private LohkoRepository lohkoRepository;
 
 
     public List<Kilpailija> palautaParhaastaHuonoimpaan(Long kilpailuId){
@@ -32,11 +42,35 @@ public class LeaderboardService {
             @Override
             public int compare(Kilpailija kilpailija2, Kilpailija kilpailija1)
             {
-
                 return  Double.compare(kilpailija1.getKokonaistulos(), kilpailija2.getKokonaistulos());
             }
         });
         return kilpailijat;
+    }
+    
+    public List<Kilpailija> palautaFinalistit(Long kilpailuId){
+    	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
+    	List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+    	List<Kilpailija> finalistit = new ArrayList<Kilpailija>();
+    	for(Lohko lohko:lohkot) {
+    		String lohkonro = lohko.getLohkoNro();
+    		if(lohkonro!="finaali") {
+    			List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId, lohko);
+    			Collections.sort(kilpailijat, new Comparator<Kilpailija>() {
+    	            @Override
+    	            public int compare(Kilpailija kilpailija2, Kilpailija kilpailija1)
+    	            {
+    	                return  Double.compare(kilpailija1.getKokonaistulos(), kilpailija2.getKokonaistulos());
+    	            }
+    	        });
+    			if(kilpailijat.size()>0) {
+    			finalistit.add(kilpailijat.get(0));
+    			}
+    			kilpailijat.clear();
+    		}
+    	}
+    	System.out.println(finalistit);
+        return finalistit;
     }
     
     public void laskeLopputulokset(Long kilpailuId){

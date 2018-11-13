@@ -82,6 +82,8 @@
 							testikilpailu? </label> <input type="radio" th:field="*{testi}" th:value="0" /> <label>Ei</label> <input type="radio"
 						 th:field="*{testi}" th:value="1" /> <label>Kyllä</label> <br />
 					</div>
+					<input type="hidden" th:field="*{auki}"/>
+					<input type="hidden" th:field="*{finaali}"/>
 					<input id="addButton" type="submit" class="btn btn-primary" value="Tallenna" />
 				</form>
 			</div>
