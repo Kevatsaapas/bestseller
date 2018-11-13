@@ -42,15 +42,22 @@
                         <h2 th:text="'Tervetuloa, ' + ${tuomari.etunimi} + ' ' +${tuomari.sukunimi}"></h2>
                         <h2 th:text="'Alkuerä: '+${lohko.lohkoNro}"></h2>
 
+                        <div th:if="${kilpailu.auki==1}">
                         <p class="lead">Valitse toiminto:</p>
+                        </div>
+                        <div th:if="${kilpailu.auki==0}">
+                        <p class="lead">Kilpailu on suljettu tällä hetkellä.</p>
+                        </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
+                            	<div th:if="${kilpailu.auki==1}">
                                 <form th:action="@{/tuomarointi/}" method="POST">
                                     <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}" />
                                     <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}" />
                                     <input type="hidden" name="tuomariId" th:value="${tuomari.tuomariId}" />
                                     <button class="btn btn-lg btn-info" type="submit">Arvioi Suoritus</button>
                                 </form>
+                                </div>
 
                             </div>
 

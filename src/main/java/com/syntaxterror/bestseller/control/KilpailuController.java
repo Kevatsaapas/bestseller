@@ -45,6 +45,22 @@ public class KilpailuController {
         return "luonti";
     }
     
+    @RequestMapping("/avaa/{kilpailuId}")
+    public String avaaKilpailu(@PathVariable Long kilpailuId) {
+        Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+        kilpailu.setAuki(new Long(1));
+        kilpailuRepository.save(kilpailu);
+        return "redirect:/testaus/";
+    }
+    
+    @RequestMapping("/sulje/{kilpailuId}")
+    public String suljeKilpailu(@PathVariable Long kilpailuId) {
+        Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+        kilpailu.setAuki(new Long(0));
+        kilpailuRepository.save(kilpailu);
+        return "redirect:/testaus/";
+    }
+    
     @RequestMapping("/editkilpailu/{kilpailuId}")
     public String editKilpailu(Model model, @PathVariable Long kilpailuId) {
         model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
@@ -75,6 +91,9 @@ public class KilpailuController {
     @Transactional
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss.SSSZ")
     public String tallennaKilpailu(Kilpailu kilpailu) throws ParseException {
+    	Long nolla = new Long(0);
+    	kilpailu.setAuki(nolla);
+    	kilpailu.setFinaali(nolla);
         kilpailuRepository.save(kilpailu);
         luoLohkot(kilpailu.getKilpailuId());
         System.out.println(kilpailu);
