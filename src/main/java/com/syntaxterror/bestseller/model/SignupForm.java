@@ -2,6 +2,7 @@ package com.syntaxterror.bestseller.model;
 import javax.validation.constraints.Size;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class SignupForm {
 
@@ -22,6 +23,9 @@ public class SignupForm {
     
     @NotEmpty
     private String rooli = "";
+    
+    @NotNull
+    private Long rooliId;
 
     public String getUsername() {
         return username;
@@ -61,6 +65,14 @@ public class SignupForm {
 
 	public void setRooli(String rooli) {
 		this.rooli = rooli;
+	}
+
+	public Long getRooliId() {
+		return rooliId;
+	}
+
+	public void setRooliId(Long rooliId) {
+		this.rooliId = rooliId;
 	}
     
     

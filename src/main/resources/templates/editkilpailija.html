@@ -45,11 +45,11 @@
                 <form role="form" class="was-validated" th:object="${kilpailija}" th:action="@{/tallennakilpailija}"
                     action="#" method="post">
                     <div class="form-group">
+
                         <div class="col-lg-6 col-sm-6 col-xs-12">
                             <label for="etunimi">Etunimi</label> <input class="form-control is-invalid" id="etunimi"
                                 type="text" required oninvalid="this.setCustomValidity('Etunimi puuttuu')" oninput="setCustomValidity('')"
                                 th:field="*{etunimi}" />
-
                         </div>
 
                         <div class="form-group">
@@ -58,7 +58,6 @@
                                     id="sukunimi" th:required="required" oninvalid="this.setCustomValidity('Sukunimi puuttuu')"
                                     oninput="setCustomValidity('')" th:field="*{sukunimi}" />
                             </div>
-
                         </div>
 
                         <div class="form-group">
@@ -67,20 +66,19 @@
                         </div>
 
                         <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
-				Koulu:
-				<select class="custom-select" th:field="*{koulu}" name="koulu" id="kouluId" required oninvalid="this.setCustomValidity('valitse koulun nimi')"
-				 oninput="setCustomValidity('')">
-					<option value="" selected>Valitse:</option>
-					<ul>
-						<li th:each="koulu:${koulut}">
-							<option th:value="${koulu.kouluId}">
-								<p th:text="${koulu.kouluNimi}"></p>
-							</option>
-						</li>
-					</ul>
-				</select>
-
-			</div>
+                            Koulu:
+                            <select class="custom-select" th:field="*{koulu}" name="koulu" id="kouluId" required
+                                oninvalid="this.setCustomValidity('valitse koulun nimi')" oninput="setCustomValidity('')">
+                                <option value="" selected>Valitse:</option>
+                                <ul>
+                                    <li th:each="koulu:${koulut}">
+                                        <option th:value="${koulu.kouluId}">
+                                            <p th:text="${koulu.kouluNimi}"></p>
+                                        </option>
+                                    </li>
+                                </ul>
+                            </select>
+                        </div>
 
                         <h2>Valitse Lohkonumero:</h2>
                         <div class="custom-control custom-radio">
@@ -94,6 +92,7 @@
                         <input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" />
                         <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna">
                     </div>
+
                 </form>
             </div>
         </div>

@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.service.ArviointiService;
+import com.syntaxterror.bestseller.service.LeaderboardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +26,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class KilpailuController {
@@ -37,12 +41,34 @@ public class KilpailuController {
     public KilpailijaRepository kilpailijaRepository;
     
     @Autowired
+    public TuomariRepository tuomariRepository;
+    
+    @Autowired
     public ArviointiService arviointiservice;
+    
+    @Autowired
+    public LeaderboardService leaderboardService;
 
     @RequestMapping("/luokilpailu")
     public String luoKilpailu(Model model, Kilpailu kilpailu) {
         model.addAttribute(kilpailu);
         return "luonti";
+    }
+    
+    @RequestMapping("/avaa/{kilpailuId}")
+    public String avaaKilpailu(@PathVariable Long kilpailuId) {
+        Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+        kilpailu.setAuki(new Long(1));
+        kilpailuRepository.save(kilpailu);
+        return "redirect:/testaus/";
+    }
+    
+    @RequestMapping("/sulje/{kilpailuId}")
+    public String suljeKilpailu(@PathVariable Long kilpailuId) {
+        Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+        kilpailu.setAuki(new Long(0));
+        kilpailuRepository.save(kilpailu);
+        return "redirect:/testaus/";
     }
     
     @RequestMapping("/editkilpailu/{kilpailuId}")
@@ -55,6 +81,27 @@ public class KilpailuController {
     public String updateKilpailu(Model model, Kilpailu kilpailu) {
         kilpailuRepository.save(kilpailu);
         return "redirect:testaus/";
+    }
+    
+    @RequestMapping("/siirryfinaaliin/{kilpailuId}")
+    public String siirryFinaaliin(@PathVariable Long kilpailuId) {
+    	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+    	leaderboardService.laskeLopputulokset(kilpailuId);
+        List<Kilpailija> kilpailijat = leaderboardService.palautaFinalistit(kilpailuId);
+        List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
+        Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+        for(Kilpailija kilpailija:kilpailijat) {
+        	kilpailija.setLohko(finaalilohko);
+        	kilpailijaRepository.save(kilpailija);
+        }
+        for(Tuomari tuomari:tuomarit) {
+        	tuomari.setLohkoNro("finaali");
+        	tuomariRepository.save(tuomari);
+        }
+        kilpailu.setFinaali(new Long(1));
+        kilpailu.setAuki(new Long(0));
+        kilpailuRepository.save(kilpailu);
+        return "redirect:/testaus/";
     }
 
     private void luoLohkot(Long kilpailuId) {
@@ -75,6 +122,9 @@ public class KilpailuController {
     @Transactional
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss.SSSZ")
     public String tallennaKilpailu(Kilpailu kilpailu) throws ParseException {
+    	Long nolla = new Long(0);
+    	kilpailu.setAuki(nolla);
+    	kilpailu.setFinaali(nolla);
         kilpailuRepository.save(kilpailu);
         luoLohkot(kilpailu.getKilpailuId());
         System.out.println(kilpailu);

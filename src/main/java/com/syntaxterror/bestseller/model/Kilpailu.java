@@ -1,14 +1,12 @@
 package com.syntaxterror.bestseller.model;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 
 @EnableAutoConfiguration
@@ -35,6 +33,12 @@ public class Kilpailu {
 	@Column(name = "testi")
 	@NotNull
 	private Long testi;
+	
+	@Column(name = "finaali")
+	private Long finaali;
+	
+	@Column(name = "auki")
+	private Long auki;
 
 	@OneToMany
 	private List<Lohko> lohkot;
@@ -42,11 +46,7 @@ public class Kilpailu {
 	@OneToMany
 	private List<Arviointi> arvioinnit;
 
-	private Long paiva;
 
-	private Long kuukausi;
-
-	private Long vuosi;
 
 	public Kilpailu() {
 		super();
@@ -54,47 +54,22 @@ public class Kilpailu {
 		this.pvm = null;
 		this.paikka = null;
 		this.testi=null;
-		this.paiva= null;
-		this.kuukausi = null;
-		this.vuosi = null;
+		this.finaali=null;
+		this.auki=null;
 	}
 
-	public Kilpailu(String nimi, String pvm, String paikka, Long paiva, Long kuukausi, Long vuosi, Long testi) {
+	public Kilpailu(String nimi, String pvm, String paikka, Long testi, Long finaali, Long auki) {
 		super();
-		this.paiva = paiva;
-		this.kuukausi = kuukausi;
-		this.vuosi = vuosi;
 		this.nimi = nimi;
 		this.pvm = pvm;
 		this.paikka = paikka;
 		this.testi = testi;
+		this.finaali = finaali;
+		this.auki = auki;
 	}
 
 
 
-	public Long getPaiva() {
-		return paiva;
-	}
-
-	public void setPaiva(Long paiva) {
-		this.paiva = paiva;
-	}
-
-	public Long getKuukausi() {
-		return kuukausi;
-	}
-
-	public void setKuukausi(Long kuukausi) {
-		this.kuukausi = kuukausi;
-	}
-
-	public Long getVuosi() {
-		return vuosi;
-	}
-
-	public void setVuosi(Long vuosi) {
-		this.vuosi = vuosi;
-	}
 
 	public Long getkilpailuId() {
 		return kilpailuId;
@@ -136,6 +111,24 @@ public class Kilpailu {
 	public void setTesti(Long testi) {
 		this.testi = testi;
 	}
+	
+	
+
+	public Long getFinaali() {
+		return finaali;
+	}
+
+	public void setFinaali(Long finaali) {
+		this.finaali = finaali;
+	}
+
+	public Long getAuki() {
+		return auki;
+	}
+
+	public void setAuki(Long auki) {
+		this.auki = auki;
+	}
 
 	public Long getKilpailuId() { return kilpailuId; }
 
@@ -151,10 +144,14 @@ public class Kilpailu {
 
 	@Override
 	public String toString() {
-		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka + ", testi=" + testi
-				+ ", lohkot=" + lohkot + ", arvioinnit=" + arvioinnit + ", paiva=" + paiva + ", kuukausi=" + kuukausi
-				+ ", vuosi=" + vuosi + "]";
+		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka
+				+ ", testi=" + testi + ", finaali=" + finaali + ", auki=" + auki + ", lohkot=" + lohkot
+				+ ", arvioinnit=" + arvioinnit + "]";
 	}
+
+	
+
+	
 	
 	
 }

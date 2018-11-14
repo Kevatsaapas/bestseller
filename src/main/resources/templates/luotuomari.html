@@ -47,13 +47,38 @@
 						<label for="tuomariNro">Tuomarinumero:</label> <input type="text" class="form-control is-invalid" th:required="required"
 						 oninvalid="this.setCustomValidity('Lisää tuomarin numero')" oninput="setCustomValidity('')" th:field="*{tuomariNro}" />
 					</div>
-
+					
+					<div class="form-group">
+						<label for="tuomariNro">Etunimi:</label> <input type="text" class="form-control is-invalid" th:required="required"
+						 oninvalid="this.setCustomValidity('Lisää tuomarin etunimi')" oninput="setCustomValidity('')" th:field="*{etunimi}" />
+					</div>
+					
+					<div class="form-group">
+						<label for="tuomariNro">Sukunimi:</label> <input type="text" class="form-control is-invalid" th:required="required"
+						 oninvalid="this.setCustomValidity('Lisää tuomarin sukunimi')" oninput="setCustomValidity('')" th:field="*{sukunimi}" />
+					</div>
+					
+					
+					<div class="form-group">
+					<label for="lohkoNro">Alkuerän numero:</label>
 					<ul>
 						<li th:each="lohko:${lohkot}"><input type="radio" th:required="required" oninvalid="this.setCustomValidity('Valitse lohkonumero')"
-							 oninput="setCustomValidity('')" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" /> <label th:for="${lohkoNro}"
-							 th:text="${lohko.lohkoNro}">Alkuerä:</label>
+							 oninput="setCustomValidity('')" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" /> 
+							 <label for="lohkoNro" th:text="${lohko.lohkoNro}">Alkuerä:</label>
 						</li>
 					</ul>
+					</div>
+					
+					<div class="form-group">
+                        <p>Onko tämä tuomari myös finaalissa?</p>
+                        <input type="radio" id="finaali1" name="finaaliin" th:required="required" th:field="*{finaaliin}"
+                            th:value="0" />
+                        <label for="finaali1">Ei</label>
+                        <input type="radio" id="finaali2" name="finaaliin" th:required="required" th:field="*{finaaliin}"
+                            th:value="1" />
+                        <label for="finaali2">Kyllä</label>
+                    </div>
+					
 					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton"
 					 type="submit" class="btn btn-primary" value="Tallenna">
 				</form>

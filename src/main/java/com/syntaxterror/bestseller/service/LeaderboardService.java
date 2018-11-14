@@ -2,9 +2,13 @@ package com.syntaxterror.bestseller.service;
 
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.util.Tarvekartoitus;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +26,12 @@ public class LeaderboardService {
     
     @Autowired
     private KilpailijaRepository kilpailijaRepository;
+    
+    @Autowired
+    private KilpailuRepository kilpailuRepository;
+    
+    @Autowired
+    private LohkoRepository lohkoRepository;
 
 
     public List<Kilpailija> palautaParhaastaHuonoimpaan(Long kilpailuId){
@@ -32,11 +42,35 @@ public class LeaderboardService {
             @Override
             public int compare(Kilpailija kilpailija2, Kilpailija kilpailija1)
             {
-
                 return  Double.compare(kilpailija1.getKokonaistulos(), kilpailija2.getKokonaistulos());
             }
         });
         return kilpailijat;
+    }
+    
+    public List<Kilpailija> palautaFinalistit(Long kilpailuId){
+    	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
+    	List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+    	List<Kilpailija> finalistit = new ArrayList<Kilpailija>();
+    	for(Lohko lohko:lohkot) {
+    		String lohkonro = lohko.getLohkoNro();
+    		if(lohkonro!="finaali") {
+    			List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId, lohko);
+    			Collections.sort(kilpailijat, new Comparator<Kilpailija>() {
+    	            @Override
+    	            public int compare(Kilpailija kilpailija2, Kilpailija kilpailija1)
+    	            {
+    	                return  Double.compare(kilpailija1.getKokonaistulos(), kilpailija2.getKokonaistulos());
+    	            }
+    	        });
+    			if(kilpailijat.size()>0) {
+    			finalistit.add(kilpailijat.get(0));
+    			}
+    			kilpailijat.clear();
+    		}
+    	}
+    	System.out.println(finalistit);
+        return finalistit;
     }
     
     public void laskeLopputulokset(Long kilpailuId){
@@ -79,6 +113,8 @@ public class LeaderboardService {
 		double yleisvaikutelmaKa1=0;
 		List<Integer> yleisvaikutelma2= new ArrayList<Integer>();
 		double yleisvaikutelmaKa2=0;
+		List<Integer> yleisvaikutelma3= new ArrayList<Integer>();
+		double yleisvaikutelmaKa3=0;
 		double yleisvaikutelma = 0;
 		double kokonaistulos=0;
     	
@@ -102,6 +138,7 @@ public class LeaderboardService {
     				tarvekartoitus4.add(Integer.parseInt(arviointi.getTarvekartoitus().getTarpeenKehittaminenPist()));
     				yleisvaikutelma1.add(Integer.parseInt(arviointi.getYleisvaikutelma().getAktiivinenKuunteluPist()));
     				yleisvaikutelma2.add(Integer.parseInt(arviointi.getYleisvaikutelma().getTilannetajuPist()));
+    				yleisvaikutelma3.add(Integer.parseInt(arviointi.getYleisvaikutelma().getOmaKayttaytyminenPist()));
     			}
     			for(int luku : aloitus1) {	aloitusKa1+=luku;}
     			aloitusKa1 = aloitusKa1/aloitus1.size();
@@ -145,7 +182,9 @@ public class LeaderboardService {
     			yleisvaikutelmaKa1 = yleisvaikutelmaKa1/aloitus1.size();
     			for(int luku : yleisvaikutelma2) {	yleisvaikutelmaKa2+=luku;}
     			yleisvaikutelmaKa2 = yleisvaikutelmaKa2/aloitus1.size();
-    			yleisvaikutelma=(yleisvaikutelmaKa1+yleisvaikutelmaKa2)/2;
+    			for(int luku : yleisvaikutelma3) {	yleisvaikutelmaKa3+=luku;}
+    			yleisvaikutelmaKa3 = yleisvaikutelmaKa3/aloitus1.size();
+    			yleisvaikutelma=(yleisvaikutelmaKa1+yleisvaikutelmaKa2+yleisvaikutelmaKa3)/3;
     			
     			kokonaistulos = (aloitus*0.1)+(tarvekartoitus*0.3)+(ratkaisu*0.25)+(kysymystenKasittely*0.1)+(paattaminen*0.1)+(yleisvaikutelma*0.1);
     			kilpailija.setKokonaistulos(kokonaistulos);
@@ -159,7 +198,7 @@ public class LeaderboardService {
 			paattaminen1.clear();paattaminen2.clear();paattaminenKa1=0;paattaminenKa2=0;paattaminen=0;
 			ratkaisu1.clear();ratkaisu2.clear();ratkaisu3.clear();ratkaisuKa1=0;ratkaisuKa2=0;ratkaisuKa3=0;ratkaisu=0;
 			tarvekartoitus1.clear();tarvekartoitus2.clear();tarvekartoitus3.clear();tarvekartoitus4.clear();tarvekartoitusKa1=0;tarvekartoitusKa2=0;tarvekartoitusKa3=0;tarvekartoitusKa4=0;tarvekartoitus=0;
-			yleisvaikutelma1.clear();yleisvaikutelma2.clear();yleisvaikutelmaKa1=0;yleisvaikutelmaKa2=0;yleisvaikutelma=0;
+			yleisvaikutelma1.clear();yleisvaikutelma2.clear();yleisvaikutelma3.clear();yleisvaikutelmaKa1=0;yleisvaikutelmaKa2=0;yleisvaikutelmaKa3=0;yleisvaikutelma=0;
 			kokonaistulos=0;
     	}
     }

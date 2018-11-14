@@ -14,6 +14,9 @@ public class Yleisvaikutelma {
 
     @Column
     private String yleisvaikutelmaVapaaPalaute;
+    
+    @Column
+    private String omaKayttaytyminenPist;
 
     public String getAktiivinenKuunteluPist(){
         return aktiivinenKuunteluPist;
@@ -39,7 +42,17 @@ public class Yleisvaikutelma {
         this.yleisvaikutelmaVapaaPalaute = yleisvaikutelmaVapaaPalaute;
     }
 
-    public int getKokonaistulos(){
+    
+    
+    public String getOmaKayttaytyminenPist() {
+		return omaKayttaytyminenPist;
+	}
+
+	public void setOmaKayttaytyminenPist(String omaKayttaytyminenPist) {
+		this.omaKayttaytyminenPist = omaKayttaytyminenPist;
+	}
+
+	public int getKokonaistulos(){
         return Integer.parseInt(aktiivinenKuunteluPist) + Integer.parseInt(tilannetajuPist);
     }
 }

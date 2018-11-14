@@ -28,10 +28,10 @@ public class Tuomari {
     @Column(name = "kilpailu_id")
     private Long kilpailuId;
     
-    @Column(name = "valittu")
-    private Long valittu;
-
-
+    @Column(name = "finaaliin")
+    public Long finaaliin;
+    
+    
 
     public Tuomari() {
     	this.tuomariNro = null;
@@ -39,19 +39,19 @@ public class Tuomari {
     	this.sukunimi=null;
     	this.lohkoNro = null;
     	this.kilpailuId=null;
-    	this.valittu=null;
+    	this.finaaliin=null;
     }
 
 
 
-	public Tuomari(String tuomariNro,String etunimi, String sukunimi, String lohkoNro, Long kilpailuId, Long valittu) {
+	public Tuomari(String tuomariNro,String etunimi, String sukunimi, String lohkoNro, Long kilpailuId, Long finaaliin) {
 		super();
 		this.tuomariNro = tuomariNro;
 		this.etunimi = etunimi;
 		this.sukunimi = sukunimi;
 		this.lohkoNro = lohkoNro;
 		this.kilpailuId=kilpailuId;
-        this.valittu=valittu;
+		this.finaaliin=finaaliin;
 	}
 
 	
@@ -123,15 +123,16 @@ public class Tuomari {
         this.tuomariNro = tuomariNro;
     }
 
+    
 
-	public Long getValittu() {
-		return valittu;
+	public Long getfinaaliin() {
+		return finaaliin;
 	}
 
 
 
-	public void setValittu(Long valittu) {
-		this.valittu = valittu;
+	public void setfinaaliin(Long finaaliin) {
+		this.finaaliin = finaaliin;
 	}
 
 
@@ -139,9 +140,11 @@ public class Tuomari {
 	@Override
 	public String toString() {
 		return "Tuomari [tuomariId=" + tuomariId + ", tuomariNro=" + tuomariNro + ", etunimi=" + etunimi + ", sukunimi="
-				+ sukunimi + ", lohkoNro=" + lohkoNro + ", kilpailuId=" + kilpailuId + ", valittu=" + valittu + "]";
+				+ sukunimi + ", lohkoNro=" + lohkoNro + ", kilpailuId=" + kilpailuId + ", finaaliin=" + finaaliin + "]";
 	}
 
+
+	
 
 
 

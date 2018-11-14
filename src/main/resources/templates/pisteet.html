@@ -45,15 +45,13 @@
 				<table class="table">
 					<thead class="thead-custom">
 						<tr class="table-info">
-							<th scope="col">Etunimi</th>
-							<th scope="col">Sukunimi</th>
+							<th scope="col">Nimi</th>
 							<th scope="col">Kokonaistulos</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="kilpailija:${lohko1}">
-							<td th:text="${kilpailija.etunimi}"></td>
-							<td th:text="${kilpailija.sukunimi}"></td>
+							<td th:text="${kilpailija.etunimi+' '+kilpailija.sukunimi}"></td>
 							<td th:text="${kilpailija.kokonaistulos}"></td>
 						</tr>
 					</tbody>
@@ -68,15 +66,13 @@
 				<table class="table">
 					<thead class="thead-custom">
 						<tr class="table-info">
-							<th scope="col">Etunimi</th>
-							<th scope="col">Sukunimi</th>
+							<th scope="col">Nimi</th>
 							<th scope="col">Kokonaistulos</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="kilpailija:${lohko2}">
-							<td th:text="${kilpailija.etunimi}"></td>
-							<td th:text="${kilpailija.sukunimi}"></td>
+							<td th:text="${kilpailija.etunimi+' '+kilpailija.sukunimi}"></td>
 							<td th:text="${kilpailija.kokonaistulos}"></td>
 						</tr>
 					</tbody>
@@ -91,15 +87,13 @@
 				<table class="table">
 					<thead class="thead-custom">
 						<tr class="table-info">
-							<th scope="col">Etunimi</th>
-							<th scope="col">Sukunimi</th>
+							<th scope="col">Nimi</th>
 							<th scope="col">Kokonaistulos</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="kilpailija:${lohko3}">
-							<td th:text="${kilpailija.etunimi}"></td>
-							<td th:text="${kilpailija.sukunimi}"></td>
+							<td th:text="${kilpailija.etunimi+' '+kilpailija.sukunimi}"></td>
 							<td th:text="${kilpailija.kokonaistulos}"></td>
 						</tr>
 					</tbody>
@@ -113,15 +107,13 @@
 				<table class="table">
 					<thead class="thead-custom">
 						<tr class="table-info">
-							<th scope="col">Etunimi</th>
-							<th scope="col">Sukunimi</th>
+							<th scope="col">Nimi</th>
 							<th scope="col">Kokonaistulos</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="kilpailija:${lohko4}">
-							<td th:text="${kilpailija.etunimi}"></td>
-							<td th:text="${kilpailija.sukunimi}"></td>
+							<td th:text="${kilpailija.etunimi+' '+kilpailija.sukunimi}"></td>
 							<td th:text="${kilpailija.kokonaistulos}"></td>
 						</tr>
 					</tbody>
@@ -136,15 +128,13 @@
 				<table class="table">
 					<thead class="thead-custom">
 						<tr class="table-info">
-							<th scope="col">Etunimi</th>
-							<th scope="col">Sukunimi</th>
+							<th scope="col">Nimi</th>
 							<th scope="col">Kokonaistulos</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="kilpailija:${finaali}">
-							<td th:text="${kilpailija.etunimi}"></td>
-							<td th:text="${kilpailija.sukunimi}"></td>
+							<td th:text="${kilpailija.etunimi+' '+kilpailija.sukunimi}"></td>
 							<td th:text="${kilpailija.kokonaistulos}"></td>
 						</tr>
 					</tbody>

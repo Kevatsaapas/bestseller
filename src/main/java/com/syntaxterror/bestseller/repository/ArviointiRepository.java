@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.Tuomari;
 
 @Repository
@@ -16,4 +17,6 @@ public interface ArviointiRepository extends CrudRepository<Arviointi, Long> {
 	Arviointi deleteByArviointiId(Long arviointiId);
 	List<Arviointi> findByTuomari(Tuomari tuomari);
 	List<Arviointi> findByKilpailija(Kilpailija kilpailija);
+	List<Arviointi> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
+	List<Arviointi> deleteByTuomari(Tuomari tuomari);
 }
