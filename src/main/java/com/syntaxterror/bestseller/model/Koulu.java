@@ -18,7 +18,6 @@ public class Koulu {
 	private String kouluNimi;
 	
 	@Column(name = "koulu_kaupunki")
-	@NotNull
 	private String kouluKaupunki;
 	
 	@Column(name = "kilpailu_id")

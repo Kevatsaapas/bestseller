@@ -44,6 +44,9 @@
 			<div class="padding col-5">
 				<form role="form" class="was-validated" th:object="${tuomari}" th:action="@{/tallennatuomariedit}" action="#"
 				 method="post">
+				 
+				 <input type="hidden" th:field="*{tuomariId}" />
+				 
 					<div class="form-group">
 						<label for="tuomariNro">Tuomarinumero:</label> <input type="text" class="form-control is-invalid" th:required="required"
 						 oninvalid="this.setCustomValidity('Lisää tuomarin numero')" oninput="setCustomValidity('')" th:field="*{tuomariNro}" />

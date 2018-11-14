@@ -44,6 +44,8 @@
             <div class="padding col-5">
                 <form role="form" class="was-validated" th:object="${kilpailija}" th:action="@{/tallennakilpailija}"
                     action="#" method="post">
+                    
+                 <input type="hidden" th:field="*{kilpailijaId}" />
                     <div class="form-group">
                         <div>
                             <label for="etunimi">Etunimi</label>
