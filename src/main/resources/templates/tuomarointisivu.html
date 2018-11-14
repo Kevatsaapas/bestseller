@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/formit.css" th:href="@{/css/formit.css}" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -110,7 +110,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen tarkoituksen täsmentäminen:</td>
+                                    <td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen tarkoituksen
+                                        täsmentäminen:</td>
                                     <td>
                                         <select class="custom-select" th:field="*{aloitus.tapaamisenLahtotilannePist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -270,7 +271,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen pohjalta (haasteet ja mahdollisuudet):</td>
+                                    <td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen pohjalta (haasteet ja
+                                        mahdollisuudet):</td>
                                     <td>
                                         <select class="custom-select" th:field="*{ratkaisu.haasteYhteenvetoPist}" name="arvosana"
                                             id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -289,7 +291,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja asiakkaan tavoitteita tukien (miten ratkaisu auttaa asiakasta saavuttamaan tavoitteensa):</td>
+                                    <td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja asiakkaan tavoitteita
+                                        tukien (miten ratkaisu auttaa asiakasta saavuttamaan tavoitteensa):</td>
                                     <td>
                                         <select class="custom-select" th:field="*{ratkaisu.ratkaisunEsittaminenPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -308,7 +311,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä asiakas voisi saavuttaa verrattuna nykytilanteeseensa):</td>
+                                    <td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä asiakas voisi saavuttaa
+                                        verrattuna nykytilanteeseensa):</td>
                                     <td>
                                         <select class="custom-select" th:field="*{ratkaisu.hyotyjenEsilletuontiPist}"
                                             name="arvosana" id="arvosana" oninvalid="this.setCustomValidity('Arviointi puuttuu')"
@@ -517,7 +521,7 @@
                                         <br>
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>Oman käyttäytymisen sopeuttaminen asiakkaan tyyliin sopien:</td>
                                     <td>
@@ -537,7 +541,7 @@
                                         <br>
                                     </td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>

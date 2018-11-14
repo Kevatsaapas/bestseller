@@ -1,0 +1,42 @@
+html,
+body {
+    height: 100vh;
+    background-color: #cecbcb !important;
+    background-image: url("../img/arches.png");
+    background-repeat: repeat;
+    margin: 0;
+}
+
+.padding {
+    padding: 10px 10px 10px 10px;
+}
+
+.tuom {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #cbdadb;
+    opacity: 0.8;
+}
+
+textarea {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.headertext {
+    font-family: 'Changa One', cursive;
+    font-size: 3em;
+    margin-top: 20px;
+}
+
+.logo-sm {
+    height: 100px;
+    margin-right: 10px;
+}
+
+.table thead th {
+    background-color: #96ceb4;
+    border-style: none;
+}
