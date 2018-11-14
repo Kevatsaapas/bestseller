@@ -100,7 +100,7 @@ public class KilpailuController {
         kilpailu.setFinaali(new Long(1));
         kilpailu.setAuki(new Long(0));
         kilpailuRepository.save(kilpailu);
-        return "redirect:/testaus/";
+        return "redirect:/datat/"+kilpailuId.toString();
     }
     
     @RequestMapping("/arvioifinaali/{kilpailuId}")
@@ -109,7 +109,7 @@ public class KilpailuController {
     	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
     	kilpailu.setAuki(new Long(0));
     	kilpailuRepository.save(kilpailu);
-    	return "redirect:/testaus/";
+    	return "redirect:/finaalidatat/"+kilpailuId.toString();
     }
 
     private void luoLohkot(Long kilpailuId) {

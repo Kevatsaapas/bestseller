@@ -89,9 +89,9 @@
                             <td></td>
                         </tr>
                         <tr th:each="kilpailija:${kilpailijat}">
-                        	<td th:if="${kilpailija.finaaliKokonaistulos == kilpailijat[0].finaaliKokonaistulos}"><img src="../static/img/kruunu.png" th:src="@{/img/kruunu.png}"
+                        	<td th:if="${kilpailija.finaaliKokonaistulos == kilpailijat[0].finaaliKokonaistulos && kilpailija.finaaliKokonaistulos>0}"><img src="../static/img/kruunu.png" th:src="@{/img/kruunu.png}"
                         alt="kruunu-sm" /></td>
-                        	<td th:if="${kilpailija.finaaliKokonaistulos < kilpailijat[0].finaaliKokonaistulos}"></td>
+                        	<td th:if="${kilpailija.finaaliKokonaistulos < kilpailijat[0].finaaliKokonaistulos || kilpailija.finaaliKokonaistulos==0}"></td>
                             <td th:text="${kilpailija.etunimi}"></td>
                             <td th:text="${kilpailija.sukunimi}"></td>
                             <td th:text="${kilpailija.sposti}"></td>
