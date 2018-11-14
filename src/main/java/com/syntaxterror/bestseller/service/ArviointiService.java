@@ -80,6 +80,13 @@ public class ArviointiService {
     	}
     	return maara;
     }
+    
+    public int laskeFinaaliArviointienSumma(Long kilpailuId) {
+    			List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
+    			List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, new Long(1));
+    			int maara= tuomarit.size()*kilpailijat.size();
+    	return maara;
+    }
 
     public void arvioi(Long kilpailuId){
     	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
@@ -88,9 +95,7 @@ public class ArviointiService {
     		String lohkonro = Integer.toString(i+1);
     		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
     		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkonro);
-    		System.out.println(tuomarit.toString());
     		List<Kilpailija> kilpailijat = kilpailijaRepository.findByLohko(lohko);
-    		System.out.println(kilpailijat.toString());
     		for(Tuomari tuomari:tuomarit) {
     			for(Kilpailija kilpailija:kilpailijat) {
     				for(int u=0; u<16; u++) {
@@ -145,7 +150,6 @@ public class ArviointiService {
     		        double kokonaistulos = painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
     		        arviointi.setKokonaistulos(kokonaistulos);
     		        arviointiRepository.save(arviointi);
-    		        System.out.println("arviointi onnistui");
     		        arvot.clear();
     			}
     		}

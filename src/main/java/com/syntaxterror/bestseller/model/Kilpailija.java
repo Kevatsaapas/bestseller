@@ -38,6 +38,12 @@ public class Kilpailija  {
 
 	@Column(name = "kilpailija_kokonaistulos")
 	public double kokonaistulos;
+	
+	@Column(name = "kilpailija_finaalissa")
+	public Long finaalissa;
+	
+	@Column(name = "finaali_kokonaistulos")
+	public double finaaliKokonaistulos;
 
 	@ManyToOne
 	private Lohko lohko;
@@ -54,6 +60,8 @@ public class Kilpailija  {
 		this.lohko = null;
 		this.kilpailuId = null;
 		this.kokonaistulos=0;
+		this.finaalissa=null;
+		this.finaaliKokonaistulos=0;
 	}
 
 	public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, Koulu koulu, String sposti, Lohko lohko,
@@ -67,6 +75,7 @@ public class Kilpailija  {
 		this.lohko = lohko;
 		this.kilpailuId = kilpailuId;
 		this.kokonaistulos=kokonaistulos;
+		this.finaalissa=new Long(0);
 	}
 	
 	
@@ -150,14 +159,34 @@ public class Kilpailija  {
 	public void setKokonaistulos(double kokonaistulos) {
 		this.kokonaistulos = kokonaistulos;
 	}
-
 	
+	
+	
+	public double getFinaalissa() {
+		return finaalissa;
+	}
+
+	public void setFinaalissa(Long finaalissa) {
+		this.finaalissa = finaalissa;
+	}
+
+	public double getFinaaliKokonaistulos() {
+		return finaaliKokonaistulos;
+	}
+
+	public void setFinaaliKokonaistulos(double finaaliKokonaistulos) {
+		this.finaaliKokonaistulos = finaaliKokonaistulos;
+	}
+
 	@Override
 	public String toString() {
 		return "Kilpailija [kilpailijaId=" + kilpailijaId + ", etunimi=" + etunimi + ", sukunimi=" + sukunimi
 				+ ", kilpailijaNro=" + kilpailijaNro + ", koulu=" + koulu + ", sposti=" + sposti + ", kilpailuId="
-				+ kilpailuId + ", kokonaistulos=" + kokonaistulos + ", lohko=" + lohko + ", arvioinnit=" + arvioinnit
+				+ kilpailuId + ", kokonaistulos=" + kokonaistulos + ", finaalissa=" + finaalissa
+				+ ", finaaliKokonaistulos=" + finaaliKokonaistulos + ", lohko=" + lohko + ", arvioinnit=" + arvioinnit
 				+ "]";
 	}
+
+	
 
 }

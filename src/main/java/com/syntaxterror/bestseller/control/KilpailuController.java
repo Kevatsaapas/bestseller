@@ -89,15 +89,14 @@ public class KilpailuController {
     	leaderboardService.laskeLopputulokset(kilpailuId);
         List<Kilpailija> kilpailijat = leaderboardService.palautaFinalistit(kilpailuId);
         List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
-        Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
         for(Kilpailija kilpailija:kilpailijat) {
-        	kilpailija.setLohko(finaalilohko);
+        	kilpailija.setFinaalissa(new Long(1));
         	kilpailijaRepository.save(kilpailija);
         }
-        for(Tuomari tuomari:tuomarit) {
+        /*for(Tuomari tuomari:tuomarit) {
         	tuomari.setLohkoNro("finaali");
         	tuomariRepository.save(tuomari);
-        }
+        }*/
         kilpailu.setFinaali(new Long(1));
         kilpailu.setAuki(new Long(0));
         kilpailuRepository.save(kilpailu);

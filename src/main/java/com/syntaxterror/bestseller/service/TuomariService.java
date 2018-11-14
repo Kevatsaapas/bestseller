@@ -30,10 +30,32 @@ public class TuomariService {
 
     public List<Kilpailija> haeKilpailijatTuomarille(Tuomari tuomari, Lohko lohko){
 
-        Iterable<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndLohko(tuomari.getKilpailuId(), lohko);
+        List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndLohko(tuomari.getKilpailuId(), lohko);
         List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
         List<Arviointi> arvioinnit= arviointiRepository.findByTuomari(tuomari);
-        kilp.forEach(kilpailija ->{
+        for(Kilpailija kilpailija:kilp){
+        	Boolean match = false;
+        	for(int i=0; i<arvioinnit.size(); i++) {
+        		Arviointi arviointi = arvioinnit.get(i);
+        		Lohko loh = arviointi.getLohko();
+        		if(kilpailija.equals(arviointi.getKilpailija()) && loh.equals(kilpailija.getLohko())) {
+        			match=true;
+        		}
+        	}
+        	if(!match) {
+        		kilpailijat.add(kilpailija);
+        	}
+        };
+        System.out.println(kilpailijat.size());
+        return kilpailijat;
+    }
+    
+    public List<Kilpailija> haeFinalistitTuomarille(Tuomari tuomari, Lohko lohko){
+
+        List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndFinaalissa(tuomari.getKilpailuId(), new Long(1));
+        List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
+        List<Arviointi> arvioinnit= arviointiRepository.findByTuomariAndLohko(tuomari, lohko);
+        for(Kilpailija kilpailija:kilp){
         	Boolean match = false;
         	for(int i=0; i<arvioinnit.size(); i++) {
         		Arviointi arviointi = arvioinnit.get(i);
@@ -44,7 +66,8 @@ public class TuomariService {
         	if(!match) {
         		kilpailijat.add(kilpailija);
         	}
-        });
+        };
+        System.out.println(kilpailijat.size());
         return kilpailijat;
     }
 

@@ -117,10 +117,11 @@ public class LeaderboardService {
 		double yleisvaikutelmaKa3=0;
 		double yleisvaikutelma = 0;
 		double kokonaistulos=0;
-    	
+		Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
+    	if(kilpailu.getFinaali().equals(new Long(0))) {
     	for(Kilpailija kilpailija : kaikkikilpailijat) {
     		List<Arviointi> arvioinnit = arviointiRepository.findByKilpailija(kilpailija);
-    		if(arvioinnit.size()>0) {
+    		if(arvioinnit.size()>0 ) {
     			for(Arviointi arviointi:arvioinnit) {
     				aloitus1.add(Integer.parseInt(arviointi.getAloitus().getSelkeaEsittaytyminenPist()));
     				aloitus2.add(Integer.parseInt(arviointi.getAloitus().getTapaamisenAjankayttoPist()));
@@ -201,6 +202,9 @@ public class LeaderboardService {
 			yleisvaikutelma1.clear();yleisvaikutelma2.clear();yleisvaikutelma3.clear();yleisvaikutelmaKa1=0;yleisvaikutelmaKa2=0;yleisvaikutelmaKa3=0;yleisvaikutelma=0;
 			kokonaistulos=0;
     	}
+    }else {
+		System.out.println("finaalissa ollaan");
+	}
     }
 
 }
