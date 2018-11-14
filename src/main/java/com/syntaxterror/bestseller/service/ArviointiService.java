@@ -157,4 +157,74 @@ public class ArviointiService {
     	}
     		
     	}
-    }
+    
+    
+    public void arvioiFinaali(Long kilpailuId){
+    	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
+    	List<Long> arvot = new ArrayList<Long>();
+    		String lohkonro = "finaali";
+    		Long yksi = new Long(1);
+    		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
+    		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, yksi);
+    		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, yksi);
+    		for(Tuomari tuomari:tuomarit) {
+    			for(Kilpailija kilpailija:kilpailijat) {
+    				for(int u=0; u<16; u++) {
+    	            	int randomNum = ThreadLocalRandom.current().nextInt(0, 6 + 1);
+    	            	Long arvo = new Long(randomNum+1);
+    	            	arvot.add(arvo);
+    	            }
+    				Arviointi arviointi= new Arviointi();
+    				Date arviointipvm = new Date();
+    				arviointi.setKilpailija(kilpailija);
+    		        arviointi.setArviointiPvm(arviointipvm);
+    		        arviointi.setKilpailuId(kilpailuId);
+    		        arviointi.setLohko(lohko);
+    		        arviointi.setTuomari(tuomari);
+    		        Aloitus aloitus=new Aloitus();
+    		        arviointi.setAloitus(aloitus);
+    		        KysymystenKasittely kysymystenKasittely = new KysymystenKasittely();
+    		        arviointi.setKysymystenKasittely(kysymystenKasittely);
+    		        Paattaminen paattaminen = new Paattaminen();
+    		        arviointi.setPaattaminen(paattaminen);
+    		        Ratkaisu ratkaisu = new Ratkaisu();
+    		        arviointi.setRatkaisu(ratkaisu);
+    		        Tarvekartoitus tarvekartoitus = new Tarvekartoitus();
+    		        arviointi.setTarvekartoitus(tarvekartoitus);
+    		        Yleisvaikutelma yleisvaikutelma = new Yleisvaikutelma();
+    		        arviointi.setYleisvaikutelma(yleisvaikutelma);
+    		        
+    		        arviointi.getAloitus().setSelkeaEsittaytyminenPist(arvot.get(0).toString());
+    		        arviointi.getAloitus().setTapaamisenAjankayttoPist(arvot.get(1).toString());
+    		        arviointi.getAloitus().setTapaamisenLahtotilannePist(arvot.get(2).toString());
+    		        arviointi.getKysymystenKasittely().setHuolenaiheidenKasittelyPist(arvot.get(3).toString());
+    		        arviointi.getKysymystenKasittely().setVastavaitteidenYmmartaminenPist(arvot.get(4).toString());
+    		        arviointi.getPaattaminen().setSitoutumisenEhdotusPist(arvot.get(5).toString());
+    		        arviointi.getPaattaminen().setSitoutumisenSaaminenPist(arvot.get(6).toString());
+    		        arviointi.getRatkaisu().setHaasteYhteenvetoPist(arvot.get(7).toString());
+    		        arviointi.getRatkaisu().setHyotyjenEsilletuontiPist(arvot.get(8).toString());
+    		        arviointi.getRatkaisu().setRatkaisunEsittaminenPist(arvot.get(9).toString());
+    		        arviointi.getTarvekartoitus().setAsiakkaanNykytilaPist(arvot.get(10).toString());
+    		        arviointi.getTarvekartoitus().setPaatoksentekoprosessiPist(arvot.get(11).toString());
+    		        arviointi.getTarvekartoitus().setPerustietojenSelvitysPist(arvot.get(12).toString());
+    		        arviointi.getTarvekartoitus().setTarpeenKehittaminenPist(arvot.get(12).toString());
+    		        arviointi.getYleisvaikutelma().setAktiivinenKuunteluPist(arvot.get(13).toString());
+    		        arviointi.getYleisvaikutelma().setTilannetajuPist(arvot.get(13).toString());
+    		        arviointi.getYleisvaikutelma().setOmaKayttaytyminenPist(arvot.get(13).toString());
+    		        double painotettuAloitus = arviointi.getAloitus().getKokonaistulos() * 0.1;
+    		        double painotettuKasittely = arviointi.getKysymystenKasittely().getKokonaistulos() * 0.3;
+    		        double painotettuPaattaminen = arviointi.getPaattaminen().getKokonaistulos() * 0.25;
+    		        double painotettuRatkaisu = arviointi.getRatkaisu().getKokonaistulos() * 0.1;
+    		        double painotettuTarvekartoitus = arviointi.getTarvekartoitus().getKokonaistulos() * 0.1;
+    		        double painotettuYleisvaikutelma = arviointi.getYleisvaikutelma().getKokonaistulos() * 0.1;
+    		        
+    		        double kokonaistulos = painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
+    		        arviointi.setKokonaistulos(kokonaistulos);
+    		        arviointiRepository.save(arviointi);
+    		        arvot.clear();
+    			}
+    		}
+    		
+    	}
+    		
+    	}

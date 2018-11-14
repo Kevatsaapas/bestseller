@@ -40,10 +40,8 @@
                         alt="logo-sm" class="logo-sm" /></a>
                 <h1 class="headertext" th:text="${kilpailu.nimi}+' - Data'"></h1>
                 <div class="row padding" th:if="${kilpailu.testi==1}">
-                    <form th:action="@{'/luodatat/'+${kilpailu.kilpailuId}}">
-                        <button class="btn btn-sm btn-danger">Lisää Testidata</button>
-                    </form>
-                    <form th:action="@{'/luoarviot/'+${kilpailu.kilpailuId}}">
+                    
+                    <form th:action="@{'/luofinaaliarviot/'+${kilpailu.kilpailuId}}">
                         <button class="btn btn-sm btn-info">Lisää Arvioinnit</button>
                     </form>
                 </div>
@@ -53,6 +51,12 @@
 			<div class="row padding">
                 <form th:action="@{'/datat/'+${kilpailu.kilpailuId}}">
                     <button class="btn btn-sm btn-danger">Takaisin kilpailun tietoihin</button>
+                </form>
+            </div>
+            
+            <div th:if="${arvioifinaali==1}" class="row padding">
+                <form th:action="@{'/arvioifinaali/'+${kilpailu.kilpailuId}}">
+                    <button class="btn btn-sm btn-success">Laske finaalin voittaja</button>
                 </form>
             </div>
 
@@ -71,6 +75,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                        	<td></td>
                             <td>Etunimi</td>
                             <td>Sukunimi</td>
                             <td>Sähköposti</td>
@@ -84,13 +89,14 @@
                             <td></td>
                         </tr>
                         <tr th:each="kilpailija:${kilpailijat}">
-                            <td th:text="${kilpailija.kilpailijaId}"></td>
+                        	<td th:if="${kilpailija.finaaliKokonaistulos == kilpailijat[0].finaaliKokonaistulos}"><img src="../static/img/kruunu.png" th:src="@{/img/kruunu.png}"
+                        alt="kruunu-sm" /></td>
+                        	<td th:if="${kilpailija.finaaliKokonaistulos < kilpailijat[0].finaaliKokonaistulos}"></td>
                             <td th:text="${kilpailija.etunimi}"></td>
                             <td th:text="${kilpailija.sukunimi}"></td>
                             <td th:text="${kilpailija.sposti}"></td>
                             <td th:text="${kilpailija.koulu.kouluNimi}"></td>
-                            <td th:if="${kilpailija.finaalissa==0}" th:text="${kilpailija.lohko.lohkoNro}"></td>
-                            <td th:if="${kilpailija.finaalissa==1}" th:text="${kilpailija.lohko.lohkoNro+', finaalissa'}"></td>
+                            <td th:text="${kilpailija.lohko.lohkoNro}"></td>
                             <td th:text="${kilpailija.finaaliKokonaistulos}"></td>
                         </tr>
                     </tbody>

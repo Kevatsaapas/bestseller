@@ -102,6 +102,15 @@ public class KilpailuController {
         kilpailuRepository.save(kilpailu);
         return "redirect:/testaus/";
     }
+    
+    @RequestMapping("/arvioifinaali/{kilpailuId}")
+    public String arvioiFinaali(@PathVariable Long kilpailuId) {
+    	leaderboardService.laskeFinaalinLopputulokset(kilpailuId);
+    	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+    	kilpailu.setAuki(new Long(0));
+    	kilpailuRepository.save(kilpailu);
+    	return "redirect:/testaus/";
+    }
 
     private void luoLohkot(Long kilpailuId) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);

@@ -17,6 +17,7 @@ public interface ArviointiRepository extends CrudRepository<Arviointi, Long> {
 	Arviointi deleteByArviointiId(Long arviointiId);
 	List<Arviointi> findByTuomari(Tuomari tuomari);
 	List<Arviointi> findByKilpailija(Kilpailija kilpailija);
+	List<Arviointi> findByKilpailijaAndLohko(Kilpailija kilpailija, Lohko lohko);
 	List<Arviointi> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
 	List<Arviointi> deleteByTuomari(Tuomari tuomari);
 	List<Arviointi> findByTuomariAndLohko(Tuomari tuomari, Lohko lohko);
