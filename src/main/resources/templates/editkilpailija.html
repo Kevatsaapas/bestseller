@@ -41,7 +41,7 @@
 
             <!-- Main -->
 
-            <div class="row padding">
+            <div class="padding col-5">
                 <form role="form" class="was-validated" th:object="${kilpailija}" th:action="@{/tallennakilpailija}"
                     action="#" method="post">
                     <div class="form-group">
@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="form-check mb-3">
-                        <h3>Valitse alkuerä johon kilpailija osallistuu:</h3>
+                        <h4>Valitse alkuerä johon kilpailija osallistuu:</h4>
                         <div>
                             <ul class="list-group">
                                 <li class="list-group-item" th:each="lohko:${lohkot}"><input type="radio" th:required="required"
