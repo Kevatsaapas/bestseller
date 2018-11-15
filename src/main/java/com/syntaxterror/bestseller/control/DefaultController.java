@@ -138,6 +138,19 @@ public class DefaultController {
     		return "tuomarointisivu";
     	}
     }
+    
+    @RequestMapping(value = "/finaalituomarointi/", method = RequestMethod.POST)
+    public String palautaFinaalinArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId){ 	
+    	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+    	Lohko lohko=lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+    	Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
+        model.addAttribute("lohko", lohko);
+    	model.addAttribute("arviointi", new Arviointi());
+    	model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+        model.addAttribute("usertuomari", tuomari);
+    		model.addAttribute("kilpailijat", tuomariService.haeFinalistitTuomarille(tuomari, lohko));
+    		return "tuomarointisivu";
+    	}
 
     @RequestMapping("/ostaja")
     public String ostaja(){

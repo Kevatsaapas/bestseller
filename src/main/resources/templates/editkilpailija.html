@@ -41,57 +41,65 @@
 
             <!-- Main -->
 
-            <div class="row padding">
+            <div class="padding col-5">
                 <form role="form" class="was-validated" th:object="${kilpailija}" th:action="@{/tallennakilpailija}"
                     action="#" method="post">
+                    
+                 <input type="hidden" th:field="*{kilpailijaId}" />
                     <div class="form-group">
-
-                        <div class="col-lg-6 col-sm-6 col-xs-12">
-                            <label for="etunimi">Etunimi</label> <input class="form-control is-invalid" id="etunimi"
-                                type="text" required oninvalid="this.setCustomValidity('Etunimi puuttuu')" oninput="setCustomValidity('')"
-                                th:field="*{etunimi}" />
+                        <div>
+                            <label for="etunimi">Etunimi</label>
+                            <input class="form-control is-invalid" id="etunimi" type="text" required oninvalid="this.setCustomValidity('Etunimi puuttuu')"
+                                oninput="setCustomValidity('')" th:field="*{etunimi}" />
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                                <label for="sukunimi">Sukunimi</label> <input type="text" class="form-control is-invalid"
-                                    id="sukunimi" th:required="required" oninvalid="this.setCustomValidity('Sukunimi puuttuu')"
-                                    oninput="setCustomValidity('')" th:field="*{sukunimi}" />
-                            </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="sukunimi">Sukunimi</label>
+                            <input type="text" class="form-control is-invalid" id="sukunimi" th:required="required"
+                                oninvalid="this.setCustomValidity('Sukunimi puuttuu')" oninput="setCustomValidity('')"
+                                th:field="*{sukunimi}" />
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="sukunimi">Sähköposti:</label> <input type="text" id="sahkoposti" th:required="required"
-                                th:field="*{sposti}" />
-                        </div>
+                    <div class="form-group">
+                        <label for="sahkoposti">Sähköposti:</label>
+                        <input type="text" class="form-control is-invalid" id="sahkoposti" th:required="required"
+                            oninvalid="this.setCustomValidity('Sähköposti puuttuu')" oninput="setCustomValidity('')"
+                            th:field="*{sposti}" />
+                    </div>
 
-                        <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
-                            Koulu:
-                            <select class="custom-select" th:field="*{koulu}" name="koulu" id="kouluId" required
-                                oninvalid="this.setCustomValidity('valitse koulun nimi')" oninput="setCustomValidity('')">
-                                <option value="" selected>Valitse:</option>
-                                <ul>
-                                    <li th:each="koulu:${koulut}">
-                                        <option th:value="${koulu.kouluId}">
-                                            <p th:text="${koulu.kouluNimi}"></p>
-                                        </option>
-                                    </li>
-                                </ul>
-                            </select>
-                        </div>
-
-                        <h2>Valitse Lohkonumero:</h2>
-                        <div class="custom-control custom-radio">
+                    <div id="form-group" class="mb-3">
+                        <label for="kouluId">Koulu:</label>
+                        <select class="custom-select" th:field="*{koulu}" name="koulu" id="kouluId" required oninvalid="this.setCustomValidity('valitse koulun nimi')"
+                            oninput="setCustomValidity('')">
+                            <option value="" selected>Valitse:</option>
                             <ul>
-                                <li th:each="lohko:${lohkot}"><input type="radio" th:required="required" oninvalid="this.setCustomValidity('Valitse lohkonumero')"
-                                        oninput="setCustomValidity('')" th:field="*{lohko}" th:value="${lohko.lohkoId}" />
-                                    <label th:for="${#ids.prev('lohko')}" th:text="${lohko.lohkoNro}">Lohkonro</label>
+                                <li th:each="koulu:${koulut}">
+                                    <option th:value="${koulu.kouluId}">
+                                        <p th:text="${koulu.kouluNimi}"></p>
+                                    </option>
+                                </li>
+                            </ul>
+                        </select>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <h4>Valitse alkuerä johon kilpailija osallistuu:</h4>
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item" th:each="lohko:${lohkot}"><input type="radio" th:required="required"
+                                        oninvalid="this.setCustomValidity('Valitse lohkonumero')" oninput="setCustomValidity('')"
+                                        th:field="*{lohko}" th:value="${lohko.lohkoId}" />
+                                    <label th:for="${#ids.prev('lohko')}" th:text="${lohko.lohkoNro}">Alkuerän numero</label>
                                 </li>
                             </ul>
                         </div>
-                        <input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" />
-                        <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna">
                     </div>
+
+                    <input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" />
+                    <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna">
 
                 </form>
             </div>

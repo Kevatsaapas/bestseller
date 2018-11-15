@@ -81,8 +81,10 @@ public class DataController {
 		model.addAttribute("tuomarit", tuomarit);
 		model.addAttribute("tuomariLkm", tuomarit.size());
 		List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuId(kilpailuId);
+		Lohko finaalilohko= lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+		List<Arviointi> finaaliarvioinnit = arviointiRepository.findByKilpailuIdAndLohko(kilpailuId, finaalilohko);
 		model.addAttribute("arvioinnit", arvioinnit);
-		model.addAttribute("arviointiLkm", arvioinnit.size());
+		model.addAttribute("arviointiLkm", arvioinnit.size()-finaaliarvioinnit.size());
 		List<Koulu> koulut = kouluRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("koulut", koulut);
 		model.addAttribute("kouluLkm", koulut.size());
@@ -94,6 +96,30 @@ public class DataController {
 			model.addAttribute("luofinaali", 0);
 		}
 		return "datat";
+	}
+	
+	@RequestMapping("/finaalidatat/{kilpailuId}")
+	public String finaalidataa(@PathVariable Long kilpailuId, Model model) {
+		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+		model.addAttribute("kilpailu", kilpailu);
+		List<Kilpailija> kilpailijat = leaderboardService.palautaFinalistitParhaastaHuonoimpaan(kilpailuId);
+		model.addAttribute("kilpailijat", kilpailijat);
+		model.addAttribute("kilpailijaLkm", kilpailijat.size());
+		List<Tuomari> tuomarit=tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
+		model.addAttribute("tuomarit", tuomarit);
+		model.addAttribute("tuomariLkm", tuomarit.size());
+		Lohko finaalilohko=lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+		List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuIdAndLohko(kilpailuId, finaalilohko);
+		int arviointiTotal=arviointiService.laskeFinaaliArviointienSumma(kilpailuId);
+		model.addAttribute("arvioinnit", arvioinnit);
+		model.addAttribute("arviointiLkm", arvioinnit.size());
+		model.addAttribute("arviointiTotal", arviointiTotal);
+		if(arviointiTotal==arvioinnit.size() && kilpailu.getFinaali()==1 && arvioinnit.size()>0) {
+			model.addAttribute("arvioifinaali", 1);
+		}else {
+			model.addAttribute("arvioifinaali", 0);
+		}
+		return "finaalidatat";
 	}
 
 	@RequestMapping("/tarkastelu/{arviointiId}")
@@ -118,6 +144,13 @@ public class DataController {
 		 return "redirect:/datat/"+kilid;
 	 }
 	 
+	 @RequestMapping("/luofinaaliarviot/{kilpailuId}")
+		public String luoFinaaliArvioinnit(@PathVariable Long kilpailuId, Model model) {
+		 arviointiService.arvioiFinaali(kilpailuId);
+		 String kilid = kilpailuId.toString();
+		 return "redirect:/finaalidatat/"+kilid;
+	 }
+	 
 	 @RequestMapping("/kokonaistulokset/{kilpailuId}")
 		public String luoKokonaistulokset(@PathVariable Long kilpailuId, Model model) {
 		 leaderboardService.laskeLopputulokset(kilpailuId);
@@ -134,6 +167,7 @@ public class DataController {
 	}
 
 	public void luoDatat(Kilpailu kilpailu) {
+		Long finaaliin=new Long(0);
 		Long kilpailuId = kilpailu.getkilpailuId();
 		int indeksi = 0;
 		List<Koulu> koulut = new ArrayList<Koulu>();
@@ -160,7 +194,12 @@ public class DataController {
 		for(int luku=1; luku<3; luku++){
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 15 + 1);
 			int randomNumm = ThreadLocalRandom.current().nextInt(0, 15 + 1);
-			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId, new Long(0));
+			if(randomNum>7) {
+				finaaliin=new Long(1);
+			}else {
+				finaaliin=new Long(0);
+			}
+			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId, finaaliin);
 			tuomariRepository.save(tuomari);
 		}
 		

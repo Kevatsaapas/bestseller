@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/formit.css" th:href="@{/css/formit.css}" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -61,20 +61,15 @@
 
             <!-- Main -->
 
-            <div class="row padding">
+            <div class="padding col-5">
                 <form role="form" th:object="${kilpailu}" th:action="@{/tallennakilpailu}" action="#" method="post">
                     <div class="form-group">
-
-                        <label for="nimi">
-                            Kilpailun nimi
-                        </label>
-                        <input type="text" class="nimi" th:required="required" th:field="*{nimi}" />
+                        <label for="nimi">Kilpailun nimi</label>
+                        <input type="text" class="form-control" id="nimi" th:required="required" th:field="*{nimi}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="pvm">
-                            Päivämäärä
-                        </label>
+                        <label for="pvm">Päivämäärä</label>
                         <div id="picker" class="input-group date" data-provide="datepicker">
                             <input type="text" class="form-control" th:field="*{pvm}">
                             <span class="input-group-addon"><i class="far fa-calendar-alt fa-2x"></i></span>
@@ -82,18 +77,26 @@
                     </div>
 
                     <div class="form-group">
-                        <p>Kilpailun paikka</p>
+                        <label for="paikka"> Kilpailun paikka</label>
                         <input type="text" class="form-control" id="paikka" th:required="required" th:field="*{paikka}" />
                     </div>
 
                     <div class="form-group">
-                        <p>Onko testikilpailu?</p>
-                        <input type="radio" id="paikka1" name="paikka" th:required="required" th:field="*{testi}"
-                            th:value="0" />
-                        <label for="paikka1">Ei</label>
-                        <input type="radio" id="paikka2" name="paikka" th:required="required" th:field="*{testi}"
-                            th:value="1" />
-                        <label for="paikka2">Kyllä</label>
+                        <h4>Onko testikilpailu?</h4>
+                        <div class="form-check ml-3">
+                            <input class="form-check-input" type="radio" name="testiRadiot" id="testiRadiot1" value="option1"
+                                th:field="*{testi}" th:value="0" checked>
+                            <label class="form-check-label" for="testiRadiot1">
+                                Ei
+                            </label>
+                        </div>
+                        <div class="form-check ml-3">
+                            <input class="form-check-input" type="radio" name="testiRadiot" id="testiRadiot2" value="option2"
+                                th:field="*{testi}" th:value="1">
+                            <label class="form-check-label" for="testiRadiot2">
+                                Kyllä
+                            </label>
+                        </div>
                     </div>
 
                     <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna" />

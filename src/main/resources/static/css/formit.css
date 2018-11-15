@@ -7,6 +7,11 @@ body {
     margin: 0;
 }
 
+.list-group-item {
+    background-color: transparent !important;
+    border: none !important;
+}
+
 .padding {
     padding: 10px 10px 10px 10px;
 }

@@ -16,4 +16,5 @@ public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	List<Kilpailija> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
 	List<Kilpailija>deleteByKilpailuId(Long kilpailuId);
 	List<Kilpailija> findByLohko(Lohko lohko);
+	List<Kilpailija> findByKilpailuIdAndFinaalissa(Long kilpailuId, Long finaalissa);
 }
