@@ -1,0 +1,148 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/formit.css" th:href="@{/css/formit.css}" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- Fontit -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+
+    <title>Bestseller - index</title>
+</head>
+
+<body>
+    <div class="standard h-100">
+        <div class="container tuom">
+            <div class="row padding">
+                <a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
+                        alt="logo-sm" class="logo-sm" /></a>
+                <h1 class="headertext">Best Seller Admin</h1>
+
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Olemassa olevat kilpailut</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="kilpailu:${kilpailut}">
+                        <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}"></td>
+                        <td th:text="${kilpailu.kilpailuId}"></td>
+                        <td><span th:if="${kilpailu.finaali == 1}">FINAALI</span></td>
+                        <td><span th:if="${kilpailu.auki == 1}">AUKI</span></td>
+                        <td><span th:if="${kilpailu.auki == 0}">SULJETTU</span></td>
+                        <td><span th:if="${kilpailu.testi == 1}">TESTIKILPAILU</span></td>
+                        <td th:if="${kilpailu.auki==0}">
+                            <form th:action="@{'/avaa/'+${kilpailu.kilpailuId}}">
+                                <button class="btn btn-sm btn-success">Avaa</button>
+                            </form>
+                        </td>
+                        <td th:if="${kilpailu.auki==1}">
+                            <form th:action="@{'/sulje/'+${kilpailu.kilpailuId}}">
+                                <button class="btn btn-sm btn-danger">Sulje</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{'/datat/'+${kilpailu.kilpailuId}}">
+                                <button class="btn btn-sm btn-warning">Muokkaa</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{'/pisteet/'+${kilpailu.kilpailuId}}">
+                                <button class="btn btn-sm btn-info">Pisteet</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form onSubmit="if(!confirm('Haluatko varmasti poistaa kilpailun?')){return false;}"
+                                th:action="@{'/poistakilpailu/'+${kilpailu.kilpailuId}}">
+                                <button class="btn btn-sm btn-danger">Poista</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Käyttäjädata -->
+
+            <div class="row padding">
+                <table class="table">
+                    <thead class="thead-custom">
+                        <tr class="table-info">
+                            <th scope="col">Käyttäjät</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td>käyttäjänimi</td>
+                            <td>Admin</td>
+                            <td>Rooli</td>
+                            <td>RooliId</td>
+                        </tr>
+
+                        <tr th:each="kayt:${users}">
+                            <td th:text="${kayt.id}"></td>
+                            <td th:text="${kayt.username}"></td>
+                            <td th:if="${kayt.role == 'USER'}">EI</td>
+                            <td th:if="${kayt.role == 'ADMIN'}">KYLLÄ</td>
+                            <td th:text="${kayt.rooli}"></td>
+                            <td th:text="${kayt.rooliId}"></td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <hr>
+
+            <!-- Footer -->
+
+            <div class="row padding">
+                <form th:action="@{/luokilpailu}">
+                    <button class="btn btn-lg btn-success">Luo kilpailu</button>
+                </form>
+                &emsp;
+                <form action="index.html" th:action="@{/}">
+                    <button class="btn btn-lg btn-info">Takaisin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
