@@ -35,6 +35,7 @@ public class ArviointiController {
 
     @Autowired
     public KilpailuRepository kilpailuRepository;
+
     @Autowired
     public LohkoRepository lohkoRepository;
 
@@ -42,8 +43,8 @@ public class ArviointiController {
     public String palautaArviointiLuontiSivu(Model model,@PathVariable Long kilpailuId, @PathVariable Long lohkoId){
         model.addAttribute("arviointi", new Arviointi());
        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId,lohkoRepository.findByLohkoId(lohkoId)));
-        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId,lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
+        model.addAttribute("kilpailijat", kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId, lohkoRepository.findByLohkoId(lohkoId)));
+        model.addAttribute("tuomarit", tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkoRepository.findByLohkoId(lohkoId).getLohkoNro()));
         model.addAttribute("lohko", lohkoRepository.findByLohkoId(lohkoId));
 
         return "tuomarointi";
@@ -89,6 +90,7 @@ public class ArviointiController {
         System.out.println(arviointi.getLohko());
         System.out.println(arviointi.getKokonaistulos());
         arviointiRepository.save(arviointi);
+
         return "redirect:/";
     }
 

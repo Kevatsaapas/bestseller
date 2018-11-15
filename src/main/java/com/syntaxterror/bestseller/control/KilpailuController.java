@@ -13,7 +13,7 @@ import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,22 +39,24 @@ public class KilpailuController {
 
     @Autowired
     public KilpailijaRepository kilpailijaRepository;
-    
+
     @Autowired
     public TuomariRepository tuomariRepository;
-    
+
     @Autowired
     public ArviointiService arviointiservice;
-    
+
     @Autowired
     public LeaderboardService leaderboardService;
 
+    @Secured("ADMIN")
     @RequestMapping("/luokilpailu")
     public String luoKilpailu(Model model, Kilpailu kilpailu) {
         model.addAttribute(kilpailu);
         return "luonti";
     }
-    
+
+    @Secured("ADMIN")
     @RequestMapping("/avaa/{kilpailuId}")
     public String avaaKilpailu(@PathVariable Long kilpailuId) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
@@ -62,7 +64,8 @@ public class KilpailuController {
         kilpailuRepository.save(kilpailu);
         return "redirect:/testaus/";
     }
-    
+
+    @Secured("ADMIN")
     @RequestMapping("/sulje/{kilpailuId}")
     public String suljeKilpailu(@PathVariable Long kilpailuId) {
         Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
@@ -70,19 +73,21 @@ public class KilpailuController {
         kilpailuRepository.save(kilpailu);
         return "redirect:/testaus/";
     }
-    
+
+    @Secured("ADMIN")
     @RequestMapping("/editkilpailu/{kilpailuId}")
     public String editKilpailu(Model model, @PathVariable Long kilpailuId) {
         model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
         return "editkilpailu";
     }
 
+    @Secured("ADMIN")
     @RequestMapping("/updatekilpailu")
     public String updateKilpailu(Model model, Kilpailu kilpailu) {
         kilpailuRepository.save(kilpailu);
         return "redirect:testaus/";
     }
-    
+
     @RequestMapping("/siirryfinaaliin/{kilpailuId}")
     public String siirryFinaaliin(@PathVariable Long kilpailuId) {
     	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);

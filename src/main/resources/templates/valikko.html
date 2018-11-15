@@ -55,8 +55,11 @@
                             </div>
 
                             <div class="col-lg-4 col-md-4">
-                                <form th:action="@{/ostaja}">
-                                    <button class="btn btn-lg btn-success">Ostaja</a></button>
+                                <form th:action="@{/ostaja/}" method="POST">
+                                    <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}"/>
+                                    <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}"/>
+                                    <input type="hidden" name="ostajaId" th:value="${kilpailu.kilpailuId}"/>
+                                    <button class="btn btn-lg btn-success" type="submit">Ostaja</button>
                                 </form>
                             </div>
                             <div class="col-lg-4 col-md-4">
@@ -64,12 +67,9 @@
                                     <button class="btn btn-lg btn-danger">Poistu</a></button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

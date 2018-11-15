@@ -5,7 +5,7 @@ import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.Lohko;
-import com.syntaxterror.bestseller.repository.ArviointiRepository;
+import com.syntaxterror.bestseller.repository.*;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
@@ -58,6 +58,9 @@ public class DataController {
     @Autowired
     public UserRepository userRepository;
 
+    @Autowired
+    public OstajaRepository ostajaRepository;
+
 	private String[] etunimet = { "Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli",
 			"Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari",
 			"Sofia", "Tupu", "Hupu", "Lupu", "Aku" };
@@ -95,6 +98,11 @@ public class DataController {
 		}else {
 			model.addAttribute("luofinaali", 0);
 		}
+		model.addAttribute("tuomarit", tuomariRepository.findByKilpailuId(kilpailuId));
+		model.addAttribute("ostajat", ostajaRepository.findByKilpailuId(kilpailuId));
+		model.addAttribute("arvioinnit", arviointiRepository.findByKilpailuId(kilpailuId));
+		model.addAttribute("koulut", kouluRepository.findByKilpailuId(kilpailuId));
+		System.out.println(kouluRepository.findByKilpailuId(kilpailuId));
 		return "datat";
 	}
 	
@@ -202,8 +210,9 @@ public class DataController {
 			Tuomari tuomari = new Tuomari("Tuomari "+luku,etunimet[randomNum],sukunimet[randomNumm], lohkonro, kilpailuId, finaaliin);
 			tuomariRepository.save(tuomari);
 		}
-		
-		indeksi+=5;
+
+		indeksi += 5;
+
 		}
 
 	}

@@ -1,12 +1,10 @@
 package com.syntaxterror.bestseller.service;
 
-import com.syntaxterror.bestseller.model.Arviointi;
-import com.syntaxterror.bestseller.model.Kilpailija;
-import com.syntaxterror.bestseller.model.Lohko;
-import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.model.*;
 import com.syntaxterror.bestseller.model.util.Tarvekartoitus;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,9 @@ public class TuomariService {
     
     @Autowired
     private ArviointiRepository arviointiRepository;
+
+    @Autowired
+    private OstajaArviointiRepository ostajaArviointiRepository;
 
     public List<Kilpailija> haeKilpailijatTuomarille(Tuomari tuomari, Lohko lohko){
 
@@ -67,6 +68,28 @@ public class TuomariService {
         		kilpailijat.add(kilpailija);
         	}
         };
+        System.out.println(kilpailijat.size());
+        return kilpailijat;
+    }
+
+    public List<Kilpailija> haeKilpailijatOstajalle(Ostaja ostaja, Lohko lohko){
+
+        List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndLohko(ostaja.getKilpailuId(), lohko);
+        List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
+        List<OstajaArviointi> ostarvioinnit = ostajaArviointiRepository.findByOstaja(ostaja);
+        for(Kilpailija kilpailija:kilp){
+            Boolean match = false;
+            for(int i=0; i < ostarvioinnit.size(); i++) {
+                OstajaArviointi ostajaArviointi = ostarvioinnit.get(i);
+                Lohko loh = ostajaArviointi.getLohko();
+                if(kilpailija.equals(ostajaArviointi.getKilpailija()) && loh.equals(kilpailija.getLohko())) {
+                    match=true;
+                }
+            }
+            if(!match) {
+                kilpailijat.add(kilpailija);
+            }
+        }
         System.out.println(kilpailijat.size());
         return kilpailijat;
     }

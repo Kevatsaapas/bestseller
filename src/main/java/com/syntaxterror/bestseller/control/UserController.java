@@ -27,10 +27,10 @@ public class UserController {
     
     @Autowired
     private TuomariRepository tuomariRepository;
-    
+
     @Autowired
     private KilpailuRepository kilpailuRepository;
-    
+
 
     @RequestMapping(value = "signup")
     public String addStudent(Model model){
