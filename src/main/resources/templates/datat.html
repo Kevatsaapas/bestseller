@@ -312,7 +312,7 @@
                 <table class="table">
                     <thead class="thead-custom">
                     <th scope="col">Ostajat</th>
-                    <th scope="col" th:text="${ostajatLkm}+' kpl'"></th>
+                    <th scope="col" th:text="${ostajaLkm}+' kpl'"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -404,7 +404,47 @@
 					</tr>
 				</table>
 				<br>
-
+				</div>
+				
+				<!--Ostaja-arvioinnin valinta -->
+				<div class="row padding">
+				<table class="table">
+					<thead class="thead-custom">
+						<th scope="col">Ostaja-arvioinnit</th>
+						<th scope="col"
+							th:text="${ostajaArviointiLkm+' kpl / '+ostajaArviointiTotal+' kpl'}"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</thead>
+					<tr>
+						<td>Id</td>
+						<td>Kilpailijan nimi</td>
+						<td>Tuomarinumero</td>
+						<td>Pvm</td>
+						<td>Alkuerä</td>
+					</tr>
+					<tr th:each="arviointi:${ostajaArvioinnit}">
+						<td th:text="${arviointi.ostajaArviointiId}"></td>
+						<td
+							th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
+						<td th:text="${arviointi.ostaja.ostajaEtunimi+arviointi.ostaja.ostajaSukunimi}"></td>
+						<td th:text="${arviointi.arviointiPvm}"></td>
+						<td th:text="${arviointi.lohko.lohkoNro}"></td>
+						<td>
+							
+						</td>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<br>
+				</div>
+				
+				
 				<!-- Footer -->
 
 				<div class="row padding">
@@ -414,7 +454,7 @@
 						</button>
 					</form>
 				</div>
-			</div>
+			
 		</div>
 	</div>
 </body>

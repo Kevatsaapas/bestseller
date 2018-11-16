@@ -4,11 +4,13 @@ import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.OstajaArviointi;
 import com.syntaxterror.bestseller.model.util.Tarvekartoitus;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class LeaderboardService {
 
     @Autowired
     private ArviointiRepository arviointiRepository;
+    
+    @Autowired
+    private OstajaArviointiRepository ostajaArviointiRepository;
     
     @Autowired
     private KilpailijaRepository kilpailijaRepository;
@@ -130,11 +135,16 @@ public class LeaderboardService {
 		List<Integer> yleisvaikutelma3= new ArrayList<Integer>();
 		double yleisvaikutelmaKa3=0;
 		double yleisvaikutelma = 0;
+		
+		List<Integer> ostajanArviot = new ArrayList<Integer>();
+		double ostajanArvioKa = 0;
+		double ostajanArvio = 0;
 		double kokonaistulos=0;
 		Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
     	if(kilpailu.getFinaali().equals(new Long(0))) {
     	for(Kilpailija kilpailija : kaikkikilpailijat) {
     		List<Arviointi> arvioinnit = arviointiRepository.findByKilpailija(kilpailija);
+    		List<OstajaArviointi> osarvioinnit = ostajaArviointiRepository.findByKilpailija(kilpailija);
     		if(arvioinnit.size()>0 ) {
     			for(Arviointi arviointi:arvioinnit) {
     				aloitus1.add(Integer.parseInt(arviointi.getAloitus().getSelkeaEsittaytyminenPist()));
@@ -154,6 +164,9 @@ public class LeaderboardService {
     				yleisvaikutelma1.add(Integer.parseInt(arviointi.getYleisvaikutelma().getAktiivinenKuunteluPist()));
     				yleisvaikutelma2.add(Integer.parseInt(arviointi.getYleisvaikutelma().getTilannetajuPist()));
     				yleisvaikutelma3.add(Integer.parseInt(arviointi.getYleisvaikutelma().getOmaKayttaytyminenPist()));
+    			}
+    			for(OstajaArviointi ostajaArviointi:osarvioinnit) {
+    				ostajanArviot.add(Integer.parseInt(ostajaArviointi.getOstajanArvio().toString()));
     			}
     			for(int luku : aloitus1) {	aloitusKa1+=luku;}
     			aloitusKa1 = aloitusKa1/aloitus1.size();
@@ -200,8 +213,12 @@ public class LeaderboardService {
     			for(int luku : yleisvaikutelma3) {	yleisvaikutelmaKa3+=luku;}
     			yleisvaikutelmaKa3 = yleisvaikutelmaKa3/aloitus1.size();
     			yleisvaikutelma=(yleisvaikutelmaKa1+yleisvaikutelmaKa2+yleisvaikutelmaKa3)/3;
+    			for(int luku: ostajanArviot) {
+    				ostajanArvioKa+=luku;
+    			}
+    			ostajanArvio=ostajanArvioKa/ostajanArviot.size();
     			
-    			kokonaistulos = (aloitus*0.05)+(tarvekartoitus*0.3)+(ratkaisu*0.25)+(kysymystenKasittely*0.1)+(paattaminen*0.1)+(yleisvaikutelma*0.15);
+    			kokonaistulos = (aloitus*0.05)+(tarvekartoitus*0.3)+(ratkaisu*0.25)+(kysymystenKasittely*0.1)+(paattaminen*0.1)+(yleisvaikutelma*0.15)+(ostajanArvio*0.05);
     			kilpailija.setKokonaistulos(kokonaistulos);
     			kilpailijaRepository.save(kilpailija);
     			//System.out.println(kilpailija.getKilpailijaId()+"Kilpailija: "+(kilpailija.getEtunimi()+" "+kilpailija.getSukunimi())+" lohko: "+kilpailija.getLohko().getLohkoNro()+" kokonaistulos: "+kokonaistulos);
@@ -214,7 +231,7 @@ public class LeaderboardService {
 			ratkaisu1.clear();ratkaisu2.clear();ratkaisu3.clear();ratkaisuKa1=0;ratkaisuKa2=0;ratkaisuKa3=0;ratkaisu=0;
 			tarvekartoitus1.clear();tarvekartoitus2.clear();tarvekartoitus3.clear();tarvekartoitus4.clear();tarvekartoitusKa1=0;tarvekartoitusKa2=0;tarvekartoitusKa3=0;tarvekartoitusKa4=0;tarvekartoitus=0;
 			yleisvaikutelma1.clear();yleisvaikutelma2.clear();yleisvaikutelma3.clear();yleisvaikutelmaKa1=0;yleisvaikutelmaKa2=0;yleisvaikutelmaKa3=0;yleisvaikutelma=0;
-			kokonaistulos=0;
+			kokonaistulos=0;ostajanArviot.clear();ostajanArvioKa=0;ostajanArvio=0;
     	}
     }else {
 		System.out.println("finaalissa ollaan");

@@ -4,6 +4,8 @@ import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Ostaja;
+import com.syntaxterror.bestseller.model.OstajaArviointi;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.model.util.Aloitus;
 import com.syntaxterror.bestseller.model.util.KysymystenKasittely;
@@ -15,6 +17,8 @@ import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
+import com.syntaxterror.bestseller.repository.OstajaRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +38,16 @@ public class ArviointiService {
     private TuomariRepository tuomariRepository;
     
     @Autowired
+    private OstajaRepository ostajaRepository;
+    
+    @Autowired
     private KilpailijaRepository kilpailijaRepository;
     
     @Autowired
     private ArviointiRepository arviointiRepository;
+    
+    @Autowired
+    private OstajaArviointiRepository ostajaArviointiRepository;
     
     @Autowired
     private LohkoRepository lohkoRepository;
@@ -81,6 +91,21 @@ public class ArviointiService {
     	return maara;
     }
     
+    public int laskeOstajaArviointienSumma(Long kilpailuId) {
+    	int maara = 0;
+    	Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(kilpailuId);
+    	List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+    	for(Lohko lohko: lohkot) {
+    		String lohkonro = lohko.getLohkoNro();
+    		if(lohkonro!="finaali") {
+    			List<Ostaja> ostajat = ostajaRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkonro);
+    			List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndLohko(kilpailuId, lohko);
+    			maara+= ostajat.size()*kilpailijat.size();
+    		}
+    	}
+    	return maara;
+    }
+    
     public int laskeFinaaliArviointienSumma(Long kilpailuId) {
     			List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
     			List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, new Long(1));
@@ -95,6 +120,7 @@ public class ArviointiService {
     		String lohkonro = Integer.toString(i+1);
     		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
     		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkonro);
+    		List<Ostaja> ostajat = ostajaRepository.findByKilpailuIdAndLohkoNro(kilpailuId, lohkonro);
     		List<Kilpailija> kilpailijat = kilpailijaRepository.findByLohko(lohko);
     		for(Tuomari tuomari:tuomarit) {
     			for(Kilpailija kilpailija:kilpailijat) {
@@ -153,6 +179,24 @@ public class ArviointiService {
     		        arvot.clear();
     			}
     		}
+    		
+    		for(Ostaja ostaja:ostajat) {
+    			for(Kilpailija kilpailija:kilpailijat) {
+    	            int randomNum = ThreadLocalRandom.current().nextInt(0, 6 + 1);
+    	            Long rannum = new Long(randomNum);
+    				OstajaArviointi osarviointi= new OstajaArviointi();
+    				Date arviointipvm = new Date();
+    				osarviointi.setKilpailija(kilpailija);
+    		        osarviointi.setArviointiPvm(arviointipvm);
+    		        osarviointi.setKilpailuId(kilpailuId);
+    		        osarviointi.setLohko(lohko);
+    		        osarviointi.setOstaja(ostaja);
+    		        osarviointi.setOstajanArvio(rannum);
+    		        ostajaArviointiRepository.save(osarviointi);
+    		        arvot.clear();
+    			}
+    		}
+    		
     		
     	}
     		
