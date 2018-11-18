@@ -73,6 +73,8 @@ public class ArviointiService {
 		jdbctemplate.execute(sql);
 		sql = "DELETE FROM valmentaja WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
+		sql = "DELETE FROM ostaja_arviointi WHERE kilpailu_id=" + kilpailuId.toString() + ";";
+		jdbctemplate.execute(sql);
         kilpailuRepository.deleteById(kilpailuId);
     }
     
@@ -111,6 +113,13 @@ public class ArviointiService {
     			List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, new Long(1));
     			int maara= tuomarit.size()*kilpailijat.size();
     	return maara;
+    }
+    
+    public int laskeFinaaliOstajaArviointienSumma(Long kilpailuId) {
+		List<Ostaja> ostajat = ostajaRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
+		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, new Long(1));
+		int maara= ostajat.size()*kilpailijat.size();
+		return maara;
     }
 
     public void arvioi(Long kilpailuId){
@@ -265,6 +274,24 @@ public class ArviointiService {
     		        double kokonaistulos = painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu + painotettuTarvekartoitus + painotettuYleisvaikutelma;
     		        arviointi.setKokonaistulos(kokonaistulos);
     		        arviointiRepository.save(arviointi);
+    		        arvot.clear();
+    			}
+    		}
+    		
+    		List<Ostaja> ostajat = ostajaRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
+    		for(Ostaja ostaja:ostajat) {
+    			for(Kilpailija kilpailija:kilpailijat) {
+    	            int randomNum = ThreadLocalRandom.current().nextInt(0, 6 + 1);
+    	            Long rannum = new Long(randomNum);
+    				OstajaArviointi osarviointi= new OstajaArviointi();
+    				Date arviointipvm = new Date();
+    				osarviointi.setKilpailija(kilpailija);
+    		        osarviointi.setArviointiPvm(arviointipvm);
+    		        osarviointi.setKilpailuId(kilpailuId);
+    		        osarviointi.setLohko(lohko);
+    		        osarviointi.setOstaja(ostaja);
+    		        osarviointi.setOstajanArvio(rannum);
+    		        ostajaArviointiRepository.save(osarviointi);
     		        arvot.clear();
     			}
     		}

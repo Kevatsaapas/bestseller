@@ -56,6 +56,21 @@ public class OstajaController {
         model.addAttribute("kilpailijat", tuomariService.haeKilpailijatOstajalle(ostaja, lohko));
         return "ostaja";
     }
+    
+    @RequestMapping(value = "/finaaliarviointi/", method = RequestMethod.POST)
+    public String palautaOstajaFinaaliArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("ostajaId") Long ostajaId){
+    	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+        Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+        Ostaja ostaja = ostajaRepository.findByOstajaId(ostajaId);
+        model.addAttribute("lohko", lohko);
+        model.addAttribute("ostajaArviointi", new OstajaArviointi());
+        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+        model.addAttribute("userostaja", ostaja);
+
+        model.addAttribute("kilpailijat", tuomariService.haeFinalistitOstajalle(ostaja, lohko));
+        return "ostaja";
+    }
+    
 
     @RequestMapping(value = "/tallenna/{kilpailuId}/{lohkoId}/{ostajaId}", method = RequestMethod.POST)
     public String tallennaOstajaArviointi(OstajaArviointi ostajaArviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId, @PathVariable Long ostajaId){

@@ -68,7 +68,26 @@ public class TuomariService {
         		kilpailijat.add(kilpailija);
         	}
         };
-        System.out.println(kilpailijat.size());
+        return kilpailijat;
+    }
+    
+    public List<Kilpailija> haeFinalistitOstajalle(Ostaja ostaja, Lohko lohko){
+
+        List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndFinaalissa(ostaja.getKilpailuId(), new Long(1));
+        List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
+        List<OstajaArviointi> arvioinnit= ostajaArviointiRepository.findByOstajaAndLohko(ostaja, lohko);
+        for(Kilpailija kilpailija:kilp){
+        	Boolean match = false;
+        	for(int i=0; i<arvioinnit.size(); i++) {
+        		OstajaArviointi arviointi = arvioinnit.get(i);
+        		if(kilpailija.equals(arviointi.getKilpailija())) {
+        			match=true;
+        		}
+        	}
+        	if(!match) {
+        		kilpailijat.add(kilpailija);
+        	}
+        };
         return kilpailijat;
     }
 

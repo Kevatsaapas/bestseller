@@ -108,12 +108,6 @@ public class DefaultController {
     
     @RequestMapping(value = "/tuomarointi/", method = RequestMethod.POST)
     public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId){
-    	Authentication auth=SecurityContextHolder.getContext().getAuthentication();
-    	String username = auth.getName();
-    	User user = urepository.findByUsername(username);
-    	String role = user.getRole();
-    	String admin = "ADMIN";
-
     	Lohko lohko=lohkoRepository.findByLohkoId(lohkoId);
     	Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
     	System.out.println(lohkoId);

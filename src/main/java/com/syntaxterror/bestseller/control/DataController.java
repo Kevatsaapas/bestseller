@@ -138,7 +138,7 @@ public class DataController {
 		model.addAttribute("arviointiTotal", arviointiTotal);
 		
 		List<OstajaArviointi> ostajaArvioinnit = ostajaArviointiRepository.findByKilpailuIdAndLohko(kilpailuId, finaalilohko);
-		int ostajaArviointiTotal=arviointiService.laskeFinaaliArviointienSumma(kilpailuId);
+		int ostajaArviointiTotal=arviointiService.laskeFinaaliOstajaArviointienSumma(kilpailuId);
 		model.addAttribute("ostajaArvioinnit", ostajaArvioinnit);
 		model.addAttribute("ostajaArviointiLkm", ostajaArvioinnit.size());
 		model.addAttribute("ostajaArviointiTotal", ostajaArviointiTotal);

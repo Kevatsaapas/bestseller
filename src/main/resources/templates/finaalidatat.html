@@ -81,10 +81,7 @@
                             <td>Sähköposti</td>
                             <td>Koulu</td>
                             <td>Alkuerä</td>
-                            <td>Kokonaistulos <form th:action="@{'/kokonaistulokset/'+${kilpailu.kilpailuId}}">
-                                    <button class="btn btn-sm btn-info">Päivitä</button>
-                                </form>
-                            </td>
+                            <td>Kokonaistulos</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -141,6 +138,38 @@
                 </table>
             </div>
             <hr>
+            
+            
+            <!-- Ostajat data -->
+
+            <div class="row padding">
+                <table class="table">
+                    <thead class="thead-custom">
+                        <th scope="col">Finaalin Ostajat</th>
+                        <th scope="col" th:text="${ostajaLkm}+' kpl'"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td>Etunimi</td>
+                            <td>Sukunimi</td>
+                            <td>Alkuerä</td>
+                        </tr>
+                        <tr th:each="ostaja:${ostajat}">
+                            <td th:text="${ostaja.ostajaId}"></td>
+                            <td th:text="${ostaja.ostajaEtunimi}"></td>
+                            <td th:text="${ostaja.ostajaSukunimi}"></td>
+                            <td th:text="${ostaja.lohkoNro}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
 
 
             <!-- Arvioinnin valinta -->
@@ -150,6 +179,7 @@
                     <thead class="thead-custom">
                         <th scope="col">Finaalin Arvioinnit</th>
                         <th scope="col" th:text="${arviointiLkm+' kpl / '+arviointiTotal+' kpl'}"></th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -170,6 +200,37 @@
                             <form th:action="@{'/tarkastelu/'+${arviointi.arviointiId}}">
                                 <button class="btn btn-sm btn-warning">Tarkastele</button>
                             </form>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                
+                
+                <!-- Ostaja-Arvioinnin valinta -->
+
+            <div class="row padding">
+                <table class="table">
+                    <thead class="thead-custom">
+                        <th scope="col">Finaalin Ostaja-Arvioinnit</th>
+                        <th scope="col" th:text="${ostajaArviointiLkm+' kpl / '+ostajaArviointiTotal+' kpl'}"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Kilpailijan nimi</td>
+                        <td>Tuomarinumero</td>
+                        <td>Pvm</td>
+                    </tr>
+                    <tr th:each="arviointi:${ostajaArvioinnit}">
+                        <td th:text="${arviointi.ostajaArviointiId}"></td>
+                        <td th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
+                        <td th:text="${arviointi.ostaja.ostajaEtunimi+' '+arviointi.ostaja.ostajaSukunimi}"></td>
+                        <td th:text="${arviointi.ArviointiPvm}"></td>
+                        <td th:text="${arviointi.lohko.lohkoNro}"></td>
+                        <td>
                         </td>
                     </tr>
                 </table>

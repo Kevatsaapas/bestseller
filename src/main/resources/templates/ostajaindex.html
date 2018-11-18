@@ -60,7 +60,7 @@
                             </div>
 
                             <div th:if="${kilpailu.auki==1 && kilpailu.finaali==1 && ostaja.finaaliin==1}">
-                                <form th:action="@{/finaalituomarointi/}" method="POST">
+                                <form th:action="@{/ostaja/finaaliarviointi/}" method="POST">
                                     <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}" />
                                     <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}" />
                                     <input type="hidden" name="ostajaId" th:value="${ostaja.ostajaId}" />
