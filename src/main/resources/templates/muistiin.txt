@@ -1,3 +1,20 @@
+KYSYMYKSET 26.11.
+
+- Mitä sähköpostiin ja kenelle lähtee
+- Valmentaja: Koko koulun yhteyshenkilö?
+
+
+
+
+
+
+
+
+
+
+
+
+
 spring.jpa.show-sql=true
 
 

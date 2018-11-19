@@ -3,8 +3,15 @@ package com.syntaxterror.bestseller.control;
 
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Koulu;
+import com.syntaxterror.bestseller.model.OstajaArviointi;
+import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.KouluRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
+import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
 
 import java.util.ArrayList;
@@ -18,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LeaderboardController {
@@ -25,9 +33,17 @@ public class LeaderboardController {
     @Autowired
     public LeaderboardService leaderboardService;
     @Autowired
+    public ArviointiService arviointiService;
+    @Autowired
     public KilpailuRepository kilpailuRepository;
     @Autowired
     public KilpailijaRepository kilpailijaRepository;
+    @Autowired
+    public ArviointiRepository arviointiRepository;
+    @Autowired
+    public OstajaArviointiRepository ostajaArviointiRepository;
+    @Autowired
+    public KouluRepository kouluRepository;
 
 
     @RequestMapping("/pisteet/{kilpailuId}")
@@ -44,6 +60,57 @@ public class LeaderboardController {
     	}
     	model.addAttribute("finaali", tulokset.get(4));
         return "pisteet";
+    }
+    
+    
+    @RequestMapping("/seuranta")
+    private String Seuranta(Model model){
+    	List<Kilpailu> kilpailut = kilpailuRepository.findByAuki(new Long(1));
+    	if(kilpailut.size()>0) {
+    		model.addAttribute("kilpailut", kilpailut);
+            return "seurantavalikko";
+    	}else {
+        return "eiseurattavaa";
+    	}
+    }
+    
+    @RequestMapping("/sahkopostivalmentaja/{kilpailuId}")
+    private String Seuranta(@PathVariable Long kilpailuId, Model model){
+    	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+    	Koulu koulu = kouluRepository.findByKouluId(new Long(297));
+    	List<Kilpailija> kilpailijat = kilpailijaRepository.findByKoulu(koulu);
+    	model.addAttribute("kilpailu", kilpailu);
+    	model.addAttribute("kilpailijat", kilpailijat);
+        return "sahkoposti_valmentaja";
+    	
+    }
+    
+    @RequestMapping("/seuraa")
+    private String Seuraaa(@RequestParam("kilpailuId")Long kilpailuId, Model model){
+    	Kilpailu kilpailu =  kilpailuRepository.findByKilpailuId(kilpailuId);
+    	model.addAttribute("kilpailu",kilpailu);
+    	if(kilpailu.getFinaali().equals(new Long(0))) {
+    	List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuId(kilpailuId);
+    	int arviointiLkm = arvioinnit.size();
+    	int arviointiTotal = arviointiService.laskeArviointienSumma(kilpailuId);
+    	model.addAttribute("arviointiLkm", arviointiLkm);
+    	model.addAttribute("arviointiTotal", arviointiTotal);
+    	int arpro = (arviointiLkm/arviointiTotal)*100;
+    	String arviointiProsentti = arpro+"%";
+    	model.addAttribute("arviointiProsentti", arviointiProsentti);
+    	
+    	List<OstajaArviointi> ostajaArvioinnit = ostajaArviointiRepository.findByKilpailuId(kilpailuId);
+    	int ostajaArviointiLkm = ostajaArvioinnit.size();
+    	int ostajaArviointiTotal = arviointiService.laskeOstajaArviointienSumma(kilpailuId);
+    	model.addAttribute("ostajaArviointiLkm", ostajaArviointiLkm);
+    	model.addAttribute("ostajaArviointiTotal", ostajaArviointiTotal);
+    	int ostajaArviointiProsenttii = (ostajaArviointiLkm/ostajaArviointiTotal)*100;
+    	String ostajaArviointiProsentti = ostajaArviointiProsenttii+"%";
+    	model.addAttribute("ostajaArviointiProsentti", ostajaArviointiProsentti);
+    	
+    	model.addAttribute("totalProsentti", (arviointiLkm+ostajaArviointiLkm)/(arviointiTotal+ostajaArviointiTotal)*100+"%");
+    	}
+        return "seuranta";
     }
     
     private List<List<Kilpailija>> jaaTulokset(Long kilpailuId){
