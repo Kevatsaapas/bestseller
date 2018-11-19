@@ -4,7 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Automatic Email</title>
+    <title>Best Seller Competition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
@@ -38,15 +38,16 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 10px 0 10px 0; font-family: Avenir, sans-serif; font-size: 16px;">
+                                    <td style="padding: 10px 0 10px 0; font-family: Avenir, sans-serif; font-size: 16px; text-align: center;">
                                         <table width="100%" style="border: 3px solid #cbdadb; border-radius: 5px;">
                                             <tr>
                                                 <th>Kilpailija</th>
                                                 <th>Kokonaispisteet</th>
                                             </tr>
                                             <tr th:each="kilpailija:${kilpailijat}">
-                                                <td th:text="${kilpailija.etunimi + ' ' + kilpailija.sukunimi}"></td>
-                                                <td th:text="${kilpailija.kokonaistulos}"></td>
+                                                <td th:text="${kilpailija.etunimi + ' ' + kilpailija.sukunimi}">Mikki
+                                                    Hiiri</td>
+                                                <td th:text="${kilpailija.kokonaistulos}">666</td>
                                             </tr>
                                         </table>
                                     </td>
