@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/style.css" th:href="@{/css/style.css}" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+    <!-- Fontit -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+
+    <title>Bestseller Competition</title>
+</head>
+
+<body>
+<div class="indexbody h-100">
+
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+                <div class="masthead clearfix">
+                </div>
+
+                <div class="inner cover">
+                    <h3>Luo tunnukset</h3>
+                    <form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+                        <div>
+                            <label> Username :<input type="text" th:field="*{username}" class="form-control"/></label>
+                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>
+                        </div>
+                        
+                        <div>
+                            <label> Password :<input type="password" th:field="*{password}" class="form-control"/></label>
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
+                        </div>
+                        <div>
+                            <label> Re-type Password: <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
+                            <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>
+                        </div>
+						<input type="hidden" th:field="*{rooli}" th:value="tuomari"></input>
+						<input type="hidden" th:field="*{rooliId}" th:value="${signupform.rooliId}"></input>
+
+						
+                        <input type="submit" class="btn btn-success" value="Signup"></input>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

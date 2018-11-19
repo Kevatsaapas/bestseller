@@ -1,0 +1,235 @@
+spring.jpa.show-sql=true
+
+
+
+
+Date deit = new Date();
+			Long ykönen = new Long(1);
+			Long viiskymppii = new Long(50);
+			Kilpailu kilpailu = new Kilpailu("Parasmyynti", deit, "stadi");
+			repo.save(kilpailu);
+			Lohko lohko1 = new Lohko("1", repo.findByKilpailuId(ykönen), null);
+			lore.save(lohko1);
+			Kilpailija kilpailija = new Kilpailija("Matti", "Mattinen", 1, "Heego-Holia");
+			kilrepo.save(kilpailija);
+			Tuomari tuomari = new Tuomari("420", lohko1);
+			Kriteeri kriteeri = new Kriteeri("miltä meno maistuu", 3);
+			OsaAlue osalue = new OsaAlue("Esittely", viiskymppii, ykönen);
+			ore.save(osalue);
+			
+			kripo.save(kriteeri);
+			tuore.save(tuomari);
+			
+			Arviointi arviointi = new Arviointi(deit, kilpailija, tuomari);
+			are.save(arviointi);
+		
+			System.out.println(repo.findAll());
+			System.out.println(kripo.findAll());
+			System.out.println(tuore.findAll());
+			System.out.println(lore.findAll());
+			System.out.println(ore.findAll());
+			};
+			
+			
+			<td><form th:action="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">
+<input type="hidden"  th:value="${kilpailija.kilpailijaId}">
+<input id="deleteButton" type="submit" class="btn btn-primary" value="Poista">
+</form></td>
+			
+			
+			<td><a th:href="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">Poista</a></td>
+			
+			
+			
+			
+			
+			<a th:href="@{/tuomarointi}">
+			
+			 <option value="asd" selected>Valitse:</option>
+			 
+			 
+			 
+			  <div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                Kilpailija:
+                <select name="kilpailija" id="kilpailija" th:each="kilpailija:${kilpailijat}">
+                    <option value="asd" selected>Valitse:</option>
+                    <option th:value="${kilpailija.sukunimi}"/><p th:text="${kilpailija.sukunimi}"></p></option>
+
+
+                </select>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            Date pvm = new Date();
+			
+			//Kilpailu
+			
+			Kilpailu bestseller = new Kilpailu("Bestseller 2019",pvm, "Turku" );
+			repo.save(bestseller);
+			
+			//Ostaja
+			Ostaja ostaja = new Ostaja("Tarja Halonen");
+			ostajaRepo.save(ostaja);
+			
+			//Lohkot
+			Lohko lohko1 = new Lohko("1", bestseller, ostaja);
+			lohkoRepo.save(lohko1);
+			Lohko lohko2 = new Lohko("2", bestseller, ostaja);
+			lohkoRepo.save(lohko2);
+			Lohko lohko3 = new Lohko("3", bestseller, ostaja);
+			lohkoRepo.save(lohko3);
+			Lohko lohko4 = new Lohko("4", bestseller, ostaja);
+			lohkoRepo.save(lohko4);
+			Lohko finaali = new Lohko("5", bestseller, ostaja);
+			lohkoRepo.save(finaali);
+			
+			//Osa-alueet
+			OsaAlue aloitus= new OsaAlue("Aloitus", "Myyntitapaamisen hyvä haltuunotto ja keskustelusuhteen luominen.", new Long(10), bestseller.getKilpailuId());
+			osaalueRepo.save(aloitus);
+			OsaAlue tarvekartoitus= new OsaAlue("Tarvekartoitus", "Saada tietoa asiakkaan tilanteesta ja tarpeista niin, että myyjä pystyy esittämään oman ratkaisunsa linkittyen asiakkaan tarpeisiin.", new Long(30), bestseller.getKilpailuId());
+			osaalueRepo.save(tarvekartoitus);
+			OsaAlue ratkaisu= new OsaAlue("Ratkaisun esittäminen", "Ratkaisun ja sen hyötyjen esittäminen.", new Long(25), bestseller.getKilpailuId());
+			osaalueRepo.save(ratkaisu);
+			OsaAlue asiakaskys= new OsaAlue("Asiakkaan kysymysten käsittely", "Asiakkaan esittämien kysymyksien käsittely sekä mahdollisten huolien ja epäilyjen poistaminen.", new Long(10), bestseller.getKilpailuId());
+			osaalueRepo.save(asiakaskys);
+			OsaAlue paattaminen= new OsaAlue("Päättäminen", "Ymmärtää, miten asian käsittely etenee ja missä päätöksenteon kannalta ollaan sekä sopia jatkosta.", new Long(10), bestseller.getKilpailuId());
+			osaalueRepo.save(paattaminen);
+			OsaAlue yleisvaikutelma= new OsaAlue("Yleisvaikutelma. Viestintä- ja vuorovaikutustaidot.", "", new Long(10), bestseller.getKilpailuId());
+			osaalueRepo.save(yleisvaikutelma);
+			
+			//kriteerit
+			
+			
+			
+			//kilpailijat
+			Kilpailija kil1 = new Kilpailija("Tiivi", "Taavi", 1, "Haaga-Helia", lohko1, new Long(1));
+			kilpailijaRepo.save(kil1);
+			Kilpailija kil2 = new Kilpailija("Hip", "Su", 2, "Haaga-Helia", lohko1, new Long(1));
+			kilpailijaRepo.save(kil2);
+			Kilpailija kil3 = new Kilpailija("Laa", "Laaa", 3, "Haaga-Helia", lohko2, new Long(1));
+			kilpailijaRepo.save(kil3);
+			Kilpailija kil4 = new Kilpailija("Pai", "Ai", 4, "Haaga-Helia", lohko2, new Long(1));
+			kilpailijaRepo.save(kil4);
+			
+			//tuomarit
+			Tuomari tuo1 = new Tuomari("1", "1", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo1);
+			Tuomari tuo2 = new Tuomari("2", "1", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo2);
+			Tuomari tuo3 = new Tuomari("3", "2", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo3);
+			Tuomari tuo4 = new Tuomari("4", "3", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo4);
+			Tuomari tuo5 = new Tuomari("5", "4", bestseller.getKilpailuId());
+			tuomarirepo.save(tuo5);
+			
+			
+			    public void luoKilpailijat(Kilpailu kilpailu){
+    	Long kilpailuId = kilpailu.getkilpailuId();
+    	Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "1");
+    		for(int i=0; i<5; i++){
+    			int randomNum = ThreadLocalRandom.current().nextInt(0, 4 + 1);
+    			String koulu = koulut[randomNum];
+    			Kilpailija kilpailija = new Kilpailija(etunimet[i], sukunimet[i], 0, koulu, lohko, kilpailuId);
+    			kilpailijaRepository.save(kilpailija);
+    	}
+    	}
+			
+			
+			private String[] etunimet = {"Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli", "Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari", "Sofia", "Tupu", "Hupu", "Lupu", "Aku"};
+	private String[] sukunimet= {"Korhonen", "Virtanen", "Mäkinen", "Nieminen", "Mäkelä", "Hämäläinen", "Laine", "Heikkinen", "Koskinen", "Järvinen", "Lehtonen", "Lehtinen", "Saarinen", "Salminen", "Heinonen", "Niemi", "Heikkilä", "Kinnunen", "Salonen", "Turunen", "Salo", "Laitinen", "Tuominen", "Rantanen"};
+	private String[] koulut = {"Haaga-Helia Ammattikorkeakoulu", "Metropolia Ammattikorkeakoulu", "Laurea Ammattikorkeakoulu", "Helsinki Business College"};
+	
+	
+	
+	
+	
+	
+	
+	liitatuomari.html - arkisto
+	<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../static/css/style.css" th:href="@{/css/style.css}" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	 crossorigin="anonymous"></script>
+
+	<!-- Fontit -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+
+	<title>Bestseller - index</title>
+</head>
+
+<body>
+	<div class="standard h-100">
+		<div class="container tuom">
+			<div class="row padding">
+				<a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
+					 alt="logo-sm" class="logo-sm" /></a>
+				<h1 class="headertext" th:text="'Liitä tuomari käyttäjälle '+${user.username}"></h1>
+
+			</div>
+
+			<!-- Tuomarit -->
+
+			<div class="row padding">
+				<table class="table">
+					<thead class="thead-custom">
+						<tr class="table-info">
+							<th scope="col">id</th>
+							<th scope="col">Etunimi</th>
+							<th scope="col">Sukunimi</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="tuomari:${tuomarit}">
+							<td th:text="${tuomari.tuomariId}"></td>
+							<td th:text="${tuomari.etunimi}"></td>
+							<td th:text="${tuomari.sukunimi}"></td>
+							<td>
+								<form th:action="@{'/valitsetuomariliitos/'+${user.username}+'/'+${tuomari.tuomariId}}">
+									<button class="btn btn-lg btn-info">VALITSE</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+			<hr>
+
+			<!-- Footer -->
+
+			<div class="row padding">
+				<form action="index.html" th:action="@{/testaus}">
+					<button class="btn btn-lg btn-info">Peruuta</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>
