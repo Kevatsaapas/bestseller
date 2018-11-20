@@ -345,7 +345,7 @@
                             </form>
                         </td>
                         <td>
-                            <form th:if="${kilpailu.auki==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa ostajan?')){return false;}" th:action="@{'/poistaostaja/'+${ostaja.ostajaId}}">
+                            <form th:if="${kilpailu.auki==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa ostajan?')){return false;}" th:action="@{'/ostaja/poistaostaja/'+${ostaja.ostajaId}}">
 
                                 <button class="btn btn-sm btn-danger">Poista</button>
                             </form>
@@ -422,22 +422,23 @@
 					<tr>
 						<td>Id</td>
 						<td>Kilpailijan nimi</td>
-						<td>Tuomarinumero</td>
+						<td>Ostajan nimi</td>
 						<td>Pvm</td>
 						<td>Alkuerä</td>
+						<td>Arvosana</td>
 					</tr>
 					<tr th:each="arviointi:${ostajaArvioinnit}">
 						<td th:text="${arviointi.ostajaArviointiId}"></td>
 						<td
 							th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
-						<td th:text="${arviointi.ostaja.ostajaEtunimi+arviointi.ostaja.ostajaSukunimi}"></td>
+						<td th:text="${arviointi.ostaja.ostajaEtunimi+' '+arviointi.ostaja.ostajaSukunimi}"></td>
 						<td th:text="${arviointi.arviointiPvm}"></td>
 						<td th:text="${arviointi.lohko.lohkoNro}"></td>
+						<td><h3 th:text="${arviointi.ostajanArvio}"></h3></td>
 						<td>
 							
 						</td>
 						<td>
-							
 						</td>
 					</tr>
 				</table>

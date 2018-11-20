@@ -8,6 +8,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,9 @@ public class OstajaController {
 
     @Autowired
     public OstajaArviointiRepository ostajaArviointiRepository;
+    
+    @Autowired
+    public ArviointiRepository arviointiRepository;
 
     @Autowired
     public TuomariService tuomariService;
@@ -89,11 +93,12 @@ public class OstajaController {
 
     @Secured("ADMIN")
     @RequestMapping(value = "/poistaostaja/{ostajaId}", method = RequestMethod.GET)
+    @Transactional
     public String poistaOstaja (@PathVariable Long ostajaId) {
         Ostaja ostaja = ostajaRepository.findByOstajaId(ostajaId);
-        ostajaRepository.delete(ostaja);
-
         String redirect = "redirect:/datat/" + Long.toString(ostaja.getKilpailuId());
+        ostajaArviointiRepository.deleteByOstaja(ostaja);
+        ostajaRepository.delete(ostaja);
         return redirect;
     }
 

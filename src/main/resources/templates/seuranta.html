@@ -6,8 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
+	<meta http-equiv="refresh" content="15" >
 	<link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../static/css/formit.css" th:href="@{/css/formit.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../static/css/style.css" th:href="@{/css/style.css}" />
 
 	<!-- Bootstrap CSS -->
 
@@ -37,9 +39,9 @@
 					 alt="logo-sm" class="logo-sm" /></a>
 				<h1 class="headertext" th:text="${kilpailu.nimi}+' - Seuranta'"></h1>
 			</div>
-			<p th:text="${'Kilpailun alkuerien arviointi on '+totalProsentti+' valmis.'}"></p>
-			<p th:text="${'Annettujen tuomariarviointien lukumäärä: '+arviointiLkm+' / '+arviointiTotal+', '+arviointiProsentti}"></p>
-			<p th:text="${'Annettujen ostaja-arviointien lukumäärä: '+ostajaArviointiLkm+' / '+ostajaArviointiTotal+', '+ostajaArviointiProsentti}"></p>
+			<p><span th:text="${status}"></span> suorituksista <span th:text="${#numbers.formatDecimal(totalProsentti, 0, 'COMMA', 2, 'POINT')}"></span>% on arvioitu.</p>
+			<p>Annettujen tuomariarviointien lukumäärä: <span th:text="${arviointiLkm+' / '+arviointiTotal+', '}"></span><span th:text="${#numbers.formatDecimal(arviointiProsentti, 0, 'COMMA', 2, 'POINT')}"></span>%</p>
+			<p>Annettujen ostaja-arviointien lukumäärä: <span th:text="${ostajaArviointiLkm+' / '+ostajaArviointiTotal+', '}"></span><span th:text="${#numbers.formatDecimal(ostajaArviointiProsentti, 0, 'COMMA', 2, 'POINT')}"></span>%</p>
 			
 
 

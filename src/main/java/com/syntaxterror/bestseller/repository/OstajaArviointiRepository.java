@@ -17,4 +17,5 @@ public interface OstajaArviointiRepository extends CrudRepository<OstajaArvioint
     List<OstajaArviointi> findByKilpailijaAndLohko(Kilpailija kilpailija, Lohko lohko);
     List<OstajaArviointi> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
     List<OstajaArviointi> findByOstajaAndLohko(Ostaja ostaja, Lohko lohko);
+    List<OstajaArviointi> deleteByOstaja(Ostaja ostaja);
 }

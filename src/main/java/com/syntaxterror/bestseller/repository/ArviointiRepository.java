@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Ostaja;
 import com.syntaxterror.bestseller.model.Tuomari;
 
 @Repository

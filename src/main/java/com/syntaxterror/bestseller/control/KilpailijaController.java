@@ -101,11 +101,9 @@ public class KilpailijaController {
     public String poistaTuomari(@PathVariable Long tuomariId) {
         Tuomari tuomari = tuomariRepository.findByTuomariId(tuomariId);
         arviointiRepository.deleteByTuomari(tuomari);
-        User user = userRepository.findByRooliId(tuomariId);
-        userRepository.delete(user);
-        tuomariRepository.deleteById(tuomariId);
-
         String redirect = "redirect:/datat/"+Long.toString(tuomari.getKilpailuId());
+        tuomariRepository.delete(tuomari);
+
         return redirect;
     }
 

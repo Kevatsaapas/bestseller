@@ -5,11 +5,13 @@ import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Koulu;
+import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.OstajaArviointi;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.KouluRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
@@ -44,6 +46,8 @@ public class LeaderboardController {
     public OstajaArviointiRepository ostajaArviointiRepository;
     @Autowired
     public KouluRepository kouluRepository;
+    @Autowired
+    public LohkoRepository lohkoRepository;
 
 
     @RequestMapping("/pisteet/{kilpailuId}")
@@ -85,9 +89,12 @@ public class LeaderboardController {
     	
     }
     
-    @RequestMapping("/seuraa")
-    private String Seuraaa(@RequestParam("kilpailuId")Long kilpailuId, Model model){
+    @RequestMapping("/seuraa/{kilpailuId}")
+    private String Seuraaa(@PathVariable("kilpailuId")Long kilpailuId, Model model){
     	Kilpailu kilpailu =  kilpailuRepository.findByKilpailuId(kilpailuId);
+    	if(kilpailu.getAuki().equals(new Long(0))) {
+    		return "redirect:/seuranta";
+    	}else {
     	model.addAttribute("kilpailu",kilpailu);
     	if(kilpailu.getFinaali().equals(new Long(0))) {
     	List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuId(kilpailuId);
@@ -95,22 +102,44 @@ public class LeaderboardController {
     	int arviointiTotal = arviointiService.laskeArviointienSumma(kilpailuId);
     	model.addAttribute("arviointiLkm", arviointiLkm);
     	model.addAttribute("arviointiTotal", arviointiTotal);
-    	int arpro = (arviointiLkm/arviointiTotal)*100;
-    	String arviointiProsentti = arpro+"%";
-    	model.addAttribute("arviointiProsentti", arviointiProsentti);
+    	double arpro = (double)arviointiLkm/arviointiTotal*100;
+    	model.addAttribute("arviointiProsentti", arpro);
     	
     	List<OstajaArviointi> ostajaArvioinnit = ostajaArviointiRepository.findByKilpailuId(kilpailuId);
     	int ostajaArviointiLkm = ostajaArvioinnit.size();
     	int ostajaArviointiTotal = arviointiService.laskeOstajaArviointienSumma(kilpailuId);
     	model.addAttribute("ostajaArviointiLkm", ostajaArviointiLkm);
     	model.addAttribute("ostajaArviointiTotal", ostajaArviointiTotal);
-    	int ostajaArviointiProsenttii = (ostajaArviointiLkm/ostajaArviointiTotal)*100;
-    	String ostajaArviointiProsentti = ostajaArviointiProsenttii+"%";
+    	double ostajaArviointiProsentti = (double)ostajaArviointiLkm/ostajaArviointiTotal*100;
     	model.addAttribute("ostajaArviointiProsentti", ostajaArviointiProsentti);
-    	
-    	model.addAttribute("totalProsentti", (arviointiLkm+ostajaArviointiLkm)/(arviointiTotal+ostajaArviointiTotal)*100+"%");
-    	}
+    	double totalProsentti = (double)(arviointiLkm+ostajaArviointiLkm)/(arviointiTotal+ostajaArviointiTotal)*100;
+    	model.addAttribute("totalProsentti", totalProsentti);
+    	model.addAttribute("status", "alkuerien");
         return "seuranta";
+    	}else {
+    		Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+    		List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuIdAndLohko(kilpailuId, finaalilohko);
+        	int arviointiLkm = arvioinnit.size();
+        	int arviointiTotal = arviointiService.laskeFinaaliArviointienSumma(kilpailuId);
+        	model.addAttribute("arviointiLkm", arviointiLkm);
+        	model.addAttribute("arviointiTotal", arviointiTotal);
+        	double arpro = (double)arviointiLkm/arviointiTotal*100;
+        	model.addAttribute("arviointiProsentti", arpro);
+        	
+        	List<OstajaArviointi> ostajaArvioinnit = ostajaArviointiRepository.findByKilpailuIdAndLohko(kilpailuId, finaalilohko);
+        	int ostajaArviointiLkm = ostajaArvioinnit.size();
+        	int ostajaArviointiTotal = arviointiService.laskeFinaaliOstajaArviointienSumma(kilpailuId);
+        	model.addAttribute("ostajaArviointiLkm", ostajaArviointiLkm);
+        	model.addAttribute("ostajaArviointiTotal", ostajaArviointiTotal);
+        	double ostajaArviointiProsentti = (double)ostajaArviointiLkm/ostajaArviointiTotal*100;
+        	model.addAttribute("ostajaArviointiProsentti", ostajaArviointiProsentti);
+        	double totalProsentti = (double)(arviointiLkm+ostajaArviointiLkm)/(arviointiTotal+ostajaArviointiTotal)*100;
+        	model.addAttribute("totalProsentti", totalProsentti);
+        	model.addAttribute("status", "finaalin");
+        	return "seuranta";
+    	}
+
+    	}
     }
     
     private List<List<Kilpailija>> jaaTulokset(Long kilpailuId){
