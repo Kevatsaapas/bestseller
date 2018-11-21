@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content=""></meta>
+<meta name="author" content=""></meta>
+<link rel="shortcut icon" type="image/png"
+	th:href="@{/images/favicon.png}"></link>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<title>Bestseller - luo Valmentaja</title>
+</head>
+<body>
+	<h2>Luo uusi Valmentaja</h2>
+
+	<form role="form"  class="was-validated" th:object="${valmentaja}"
+		  th:action="@{/tallennavalmentaja}" action="#" method="post">
+		<div class="form-group">
+			<div class="col-lg-6 col-sm-6 col-xs-12" >
+				<label for="etunimi">Etunimi</label> <input class="form-control is-invalid" id="etunimi" type="text"
+															required oninvalid="this.setCustomValidity('Etunimi puuttuu')" oninput="setCustomValidity('')" th:field="*{etunimi}" />
+
+			</div>
+
+			<div class="form-group">
+				<div class="col-lg-6 col-sm-6 col-xs-12">
+					<label for="sukunimi">Sukunimi</label> <input type="text" class="form-control is-invalid"
+																  id="sukunimi" th:required="required" oninvalid="this.setCustomValidity('Sukunimi puuttuu')" oninput="setCustomValidity('')" th:field="*{sukunimi}" />
+				</div>
+
+			</div>
+
+			<div class="form-group">
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<label for="sukunimi">Sähköposti:</label> <input type="text" class="form-control is-invalid"
+													 id="sahkoposti" th:required="required" oninvalid="this.setCustomValidity('Sukunimi puuttuu')" oninput="setCustomValidity('')" th:field="*{sposti}" />
+			</div>
+			</div>
+			
+
+			<div class="col-lg-6 col-sm-6 col-xs-12" id="header">
+                Koulu:
+                <select class="custom-select" th:field="*{koulu}" name="koulu" id="kouluId" required oninvalid="this.setCustomValidity('valitse koulun nimi')" oninput="setCustomValidity('')">
+                    <option value="" selected>Valitse:</option>
+                    <ul>
+                        <li th:each="koulu:${koulut}">
+                            <option th:value="${koulu.kouluId}" >
+                                <p th:text="${koulu.kouluNimi}"></p>
+                            </option>
+                        </li>
+                    </ul>
+                </select>
+
+            </div>
+
+			
+			<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
+				   th:value="${kilpailuId}" /> <input id="addButton" type="submit"
+													  class="btn btn-primary" value="Tallenna">
+		</div>
+	</form>
+
+</body>
+</html>

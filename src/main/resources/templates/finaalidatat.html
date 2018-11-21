@@ -41,7 +41,7 @@
                 <h1 class="headertext" th:text="${kilpailu.nimi}+' - Data'"></h1>
                 <div class="row padding" th:if="${kilpailu.testi==1}">
                     
-                    <form th:action="@{'/luofinaaliarviot/'+${kilpailu.kilpailuId}}">
+                    <form th:if="${arviointiLkm==0 && kilpailu.testi==1}" th:action="@{'/luofinaaliarviot/'+${kilpailu.kilpailuId}}">
                         <button class="btn btn-sm btn-info">Lisää Arvioinnit</button>
                     </form>
                 </div>

@@ -1,18 +1,6 @@
 package com.syntaxterror.bestseller.control;
 
-import com.syntaxterror.bestseller.model.Kilpailija;
-import com.syntaxterror.bestseller.model.Kilpailu;
-import com.syntaxterror.bestseller.model.Koulu;
-import com.syntaxterror.bestseller.model.SignupForm;
-import com.syntaxterror.bestseller.model.Tuomari;
-import com.syntaxterror.bestseller.model.User;
-import com.syntaxterror.bestseller.repository.ArviointiRepository;
-import com.syntaxterror.bestseller.repository.KilpailijaRepository;
-import com.syntaxterror.bestseller.repository.KilpailuRepository;
-import com.syntaxterror.bestseller.repository.KouluRepository;
-import com.syntaxterror.bestseller.repository.LohkoRepository;
-import com.syntaxterror.bestseller.repository.TuomariRepository;
-import com.syntaxterror.bestseller.repository.UserRepository;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -22,7 +10,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.transaction.Transactional;
+import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Koulu;
+import com.syntaxterror.bestseller.model.SignupForm;
+import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.repository.ArviointiRepository;
+import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.KouluRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
+import com.syntaxterror.bestseller.repository.UserRepository;
 
 @Controller
 public class KilpailijaController {

@@ -20,7 +20,6 @@ import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -65,6 +64,9 @@ public class DataController {
     
     @Autowired
     public OstajaArviointiRepository ostajaArviointiRepository;
+    
+    @Autowired
+    public ValmentajaRepository valmentajaRepository;
 
 	private String[] etunimet = { "Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli",
 			"Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari",
@@ -91,10 +93,11 @@ public class DataController {
 		List<Arviointi> arvioinnit = arviointiRepository.findByKilpailuId(kilpailuId);
 		Lohko finaalilohko= lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
 		List<Arviointi> finaaliarvioinnit = arviointiRepository.findByKilpailuIdAndLohko(kilpailuId, finaalilohko);
+		List<OstajaArviointi> finaaliostajaarvioinnit = ostajaArviointiRepository.findByKilpailuIdAndLohko(kilpailuId, finaalilohko);
 		model.addAttribute("arvioinnit", arvioinnit);
 		List<OstajaArviointi> ostajaArvioinnit = ostajaArviointiRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("ostajaArvioinnit", ostajaArvioinnit);
-		model.addAttribute("ostajaArviointiLkm", ostajaArvioinnit.size());
+		model.addAttribute("ostajaArviointiLkm", ostajaArvioinnit.size()-finaaliostajaarvioinnit.size());
 		model.addAttribute("arviointiLkm", arvioinnit.size()-finaaliarvioinnit.size());
 		List<Koulu> koulut = kouluRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("koulut", koulut);
@@ -111,7 +114,7 @@ public class DataController {
 		List<Ostaja> ostajat = ostajaRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("ostajaLkm", ostajat.size());
 		model.addAttribute("ostajat", ostajat);
-		System.out.println(kouluRepository.findByKilpailuId(kilpailuId));
+		model.addAttribute("valmentajat", valmentajaRepository.findByKilpailuId(kilpailuId));
 		return "datat";
 	}
 	
@@ -143,7 +146,7 @@ public class DataController {
 		model.addAttribute("ostajaArviointiLkm", ostajaArvioinnit.size());
 		model.addAttribute("ostajaArviointiTotal", ostajaArviointiTotal);
 		
-		if(kilpailu.getFinaali()==1 && arviointiTotal==arvioinnit.size() &&  arvioinnit.size()>0 && ostajaArviointiTotal==ostajaArvioinnit.size() &&  ostajaArvioinnit.size()>0) {
+		if(kilpailu.getFinaali()==1 && arviointiTotal==arvioinnit.size() &&  arvioinnit.size()>0 && ostajaArviointiTotal==ostajaArvioinnit.size() &&  ostajaArvioinnit.size()>0 && kilpailu.getValmis().equals(new Long(0))) {
 			model.addAttribute("arvioifinaali", 1);
 		}else {
 			model.addAttribute("arvioifinaali", 0);

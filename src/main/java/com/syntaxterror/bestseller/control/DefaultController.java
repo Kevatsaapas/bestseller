@@ -1,23 +1,26 @@
 package com.syntaxterror.bestseller.control;
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
-import com.syntaxterror.bestseller.model.*;
-import com.syntaxterror.bestseller.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.syntaxterror.bestseller.model.Arviointi;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Ostaja;
+import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.model.User;
+import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.OstajaRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
+import com.syntaxterror.bestseller.repository.UserRepository;
 import com.syntaxterror.bestseller.service.TuomariService;
 
 @Controller

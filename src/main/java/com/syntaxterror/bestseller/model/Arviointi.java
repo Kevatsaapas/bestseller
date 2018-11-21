@@ -1,16 +1,27 @@
 package com.syntaxterror.bestseller.model;
 
-import com.syntaxterror.bestseller.model.util.*;
+import java.util.Date;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
-import java.text.DecimalFormat;
-import java.util.Date;
-import java.util.List;
+import com.syntaxterror.bestseller.model.util.Aloitus;
+import com.syntaxterror.bestseller.model.util.KysymystenKasittely;
+import com.syntaxterror.bestseller.model.util.Paattaminen;
+import com.syntaxterror.bestseller.model.util.Ratkaisu;
+import com.syntaxterror.bestseller.model.util.Tarvekartoitus;
+import com.syntaxterror.bestseller.model.util.Yleisvaikutelma;
 
 @Entity
 public class Arviointi implements Comparable{

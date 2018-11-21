@@ -1,12 +1,9 @@
 package com.syntaxterror.bestseller.control;
 
-import com.syntaxterror.bestseller.model.*;
-import com.syntaxterror.bestseller.repository.*;
-import com.syntaxterror.bestseller.service.TuomariService;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -15,10 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Ostaja;
+import com.syntaxterror.bestseller.model.OstajaArviointi;
+import com.syntaxterror.bestseller.model.SignupForm;
+import com.syntaxterror.bestseller.repository.ArviointiRepository;
+import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
+import com.syntaxterror.bestseller.repository.OstajaRepository;
+import com.syntaxterror.bestseller.service.TuomariService;
 
 
 @RequestMapping(value = "/ostaja")

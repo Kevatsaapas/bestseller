@@ -39,6 +39,9 @@ public class Kilpailu {
 	
 	@Column(name = "auki")
 	private Long auki;
+	
+	@Column(name = "valmis")
+	private Long valmis;
 
 	@OneToMany
 	private List<Lohko> lohkot;
@@ -56,9 +59,10 @@ public class Kilpailu {
 		this.testi=null;
 		this.finaali=null;
 		this.auki=null;
+		this.valmis=null;
 	}
 
-	public Kilpailu(String nimi, String pvm, String paikka, Long testi, Long finaali, Long auki) {
+	public Kilpailu(String nimi, String pvm, String paikka, Long testi, Long finaali, Long auki, Long valmis) {
 		super();
 		this.nimi = nimi;
 		this.pvm = pvm;
@@ -66,6 +70,7 @@ public class Kilpailu {
 		this.testi = testi;
 		this.finaali = finaali;
 		this.auki = auki;
+		this.valmis = valmis;
 	}
 
 
@@ -130,6 +135,16 @@ public class Kilpailu {
 		this.auki = auki;
 	}
 
+	
+	
+	public Long getValmis() {
+		return valmis;
+	}
+
+	public void setValmis(Long valmis) {
+		this.valmis = valmis;
+	}
+
 	public Long getKilpailuId() { return kilpailuId; }
 
 	public void setKilpailuId(Long kilpailuId) { this.kilpailuId = kilpailuId; }
@@ -137,6 +152,7 @@ public class Kilpailu {
     public List<Lohko> getLohkot() {
         return lohkot;
     }
+    
 
     public void setLohkot(List<Lohko> lohkot) {
         this.lohkot = lohkot;
@@ -145,9 +161,11 @@ public class Kilpailu {
 	@Override
 	public String toString() {
 		return "Kilpailu [kilpailuId=" + kilpailuId + ", nimi=" + nimi + ", pvm=" + pvm + ", paikka=" + paikka
-				+ ", testi=" + testi + ", finaali=" + finaali + ", auki=" + auki + ", lohkot=" + lohkot
-				+ ", arvioinnit=" + arvioinnit + "]";
+				+ ", testi=" + testi + ", finaali=" + finaali + ", auki=" + auki + ", valmis=" + valmis + ", lohkot="
+				+ lohkot + ", arvioinnit=" + arvioinnit + "]";
 	}
+
+	
 
 	
 

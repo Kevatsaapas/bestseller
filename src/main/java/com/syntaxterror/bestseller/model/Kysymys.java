@@ -1,7 +1,11 @@
 package com.syntaxterror.bestseller.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Kysymys {
@@ -22,7 +26,7 @@ public class Kysymys {
         this.vastausPisteet = vastausPisteet;
     }
 
-    public Kysymys(String kysymysTekstii){
+    public Kysymys(String kysymysTeksti){
         this.kysymysTeksti = kysymysTeksti;
     }
 

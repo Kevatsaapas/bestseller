@@ -1,5 +1,14 @@
 package com.syntaxterror.bestseller.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
+
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
@@ -20,16 +29,6 @@ import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 import com.syntaxterror.bestseller.repository.OstajaRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class ArviointiService {
@@ -217,6 +216,8 @@ public class ArviointiService {
     	List<Long> arvot = new ArrayList<Long>();
     		String lohkonro = "finaali";
     		Long yksi = new Long(1);
+    		kilpailu.setValmis(yksi);
+    		kilpailuRepository.save(kilpailu);
     		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
     		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, yksi);
     		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, yksi);

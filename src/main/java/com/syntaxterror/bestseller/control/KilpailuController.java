@@ -1,16 +1,9 @@
 package com.syntaxterror.bestseller.control;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.syntaxterror.bestseller.model.Kilpailija;
-import com.syntaxterror.bestseller.model.Kilpailu;
-import com.syntaxterror.bestseller.model.Lohko;
-import com.syntaxterror.bestseller.model.Tuomari;
-import com.syntaxterror.bestseller.repository.KilpailijaRepository;
-import com.syntaxterror.bestseller.repository.KilpailuRepository;
-import com.syntaxterror.bestseller.repository.LohkoRepository;
-import com.syntaxterror.bestseller.repository.TuomariRepository;
-import com.syntaxterror.bestseller.service.ArviointiService;
-import com.syntaxterror.bestseller.service.LeaderboardService;
+import java.text.ParseException;
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -20,13 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.transaction.Transactional;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
+import com.syntaxterror.bestseller.service.ArviointiService;
+import com.syntaxterror.bestseller.service.LeaderboardService;
 
 @Controller
 public class KilpailuController {
@@ -93,15 +89,10 @@ public class KilpailuController {
     	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
     	leaderboardService.laskeLopputulokset(kilpailuId);
         List<Kilpailija> kilpailijat = leaderboardService.palautaFinalistit(kilpailuId);
-        List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, new Long(1));
         for(Kilpailija kilpailija:kilpailijat) {
         	kilpailija.setFinaalissa(new Long(1));
         	kilpailijaRepository.save(kilpailija);
         }
-        /*for(Tuomari tuomari:tuomarit) {
-        	tuomari.setLohkoNro("finaali");
-        	tuomariRepository.save(tuomari);
-        }*/
         kilpailu.setFinaali(new Long(1));
         kilpailu.setAuki(new Long(0));
         kilpailuRepository.save(kilpailu);
@@ -138,6 +129,7 @@ public class KilpailuController {
     	Long nolla = new Long(0);
     	kilpailu.setAuki(nolla);
     	kilpailu.setFinaali(nolla);
+    	kilpailu.setValmis(nolla);
         kilpailuRepository.save(kilpailu);
         luoLohkot(kilpailu.getKilpailuId());
         System.out.println(kilpailu);

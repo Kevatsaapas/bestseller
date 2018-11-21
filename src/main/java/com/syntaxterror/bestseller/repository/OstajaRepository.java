@@ -2,7 +2,6 @@ package com.syntaxterror.bestseller.repository;
 
 import java.util.List;
 
-import com.syntaxterror.bestseller.model.Lohko;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

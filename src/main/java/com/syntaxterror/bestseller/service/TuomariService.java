@@ -1,18 +1,21 @@
 package com.syntaxterror.bestseller.service;
 
-import com.syntaxterror.bestseller.model.*;
-import com.syntaxterror.bestseller.model.util.Tarvekartoitus;
-import com.syntaxterror.bestseller.repository.ArviointiRepository;
-import com.syntaxterror.bestseller.repository.KilpailijaRepository;
-import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
-import com.syntaxterror.bestseller.repository.TuomariRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.syntaxterror.bestseller.model.Arviointi;
+import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Ostaja;
+import com.syntaxterror.bestseller.model.OstajaArviointi;
+import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.repository.ArviointiRepository;
+import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
 
 @Service
 public class TuomariService {
@@ -109,7 +112,6 @@ public class TuomariService {
                 kilpailijat.add(kilpailija);
             }
         }
-        System.out.println(kilpailijat.size());
         return kilpailijat;
     }
 
