@@ -146,7 +146,7 @@ public class DataController {
 		model.addAttribute("ostajaArviointiLkm", ostajaArvioinnit.size());
 		model.addAttribute("ostajaArviointiTotal", ostajaArviointiTotal);
 		
-		if(kilpailu.getFinaali()==1 && arviointiTotal==arvioinnit.size() &&  arvioinnit.size()>0 && ostajaArviointiTotal==ostajaArvioinnit.size() &&  ostajaArvioinnit.size()>0 && kilpailu.getValmis().equals(new Long(0))) {
+		if(kilpailu.getFinaali()==1 && kilpailu.getValmis()==0 && arviointiTotal==arvioinnit.size() &&  arvioinnit.size()>0 && ostajaArviointiTotal==ostajaArvioinnit.size() &&  ostajaArvioinnit.size()>0) {
 			model.addAttribute("arvioifinaali", 1);
 		}else {
 			model.addAttribute("arvioifinaali", 0);
@@ -206,7 +206,6 @@ public class DataController {
 		
 		for(int luku=0; luku<koulunimet.length; luku++) {
 			Koulu uusikoulu = new Koulu(koulunimet[luku], "kaupunki", kilpailuId);
-			System.out.println(uusikoulu);
 			koulut.add(uusikoulu);
 			kouluRepository.save(uusikoulu);
 		}

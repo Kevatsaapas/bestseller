@@ -30,13 +30,6 @@
 
 <body>
 
-    <!-- Autofill -->
-
-    <div th:if="${kilpailu.testi == 1}">'
-        <form th:action="@{/arviointi/uusitest/{kilpailuId}/{lohkoId}(kilpailuId=${kilpailu.kilpailuId},lohkoId=${lohko.lohkoId})}">
-            <button class="btn btn-lg btn-danger">TÄYTÄ</button>
-        </form>
-    </div>
 
     <form class="was-validated" id="arvform" th:action="@{/arviointi/tallenna/{kilpailuId}/{lohkoId}/{tuomariId}(kilpailuId = ${kilpailu.kilpailuId}, lohkoId=${lohko.lohkoId}, tuomariId=${usertuomari.tuomariId})}"
         th:object="${arviointi}" method="POST">

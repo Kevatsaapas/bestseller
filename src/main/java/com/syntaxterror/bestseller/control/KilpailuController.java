@@ -113,12 +113,10 @@ public class KilpailuController {
         for (int i = 1; i < 5; i++) {
             Lohko loh = new Lohko((Integer.toString(i)), kilpailu, null);
             lohkoRepository.save(loh);
-            System.out.println(loh);
         }
 
         Lohko loh = new Lohko("finaali", kilpailu, null);
         lohkoRepository.save(loh);
-        System.out.println(loh);
         kilpailuRepository.save(kilpailu);
     }
 
@@ -132,7 +130,6 @@ public class KilpailuController {
     	kilpailu.setValmis(nolla);
         kilpailuRepository.save(kilpailu);
         luoLohkot(kilpailu.getKilpailuId());
-        System.out.println(kilpailu);
         return "redirect:/testaus";
     }
 

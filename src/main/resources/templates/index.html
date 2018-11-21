@@ -42,15 +42,18 @@
                         <h2 th:text="'Tervetuloa, ' + ${tuomari.etunimi} + ' ' +${tuomari.sukunimi}"></h2>
                         <h2 th:text="'Alkuerä: '+${lohko.lohkoNro}"></h2>
 
-                        <div th:if="${kilpailu.auki==1}">
+                        <div th:if="${kilpailu.auki==1 && valmis==0}">
                         <p class="lead">Valitse toiminto:</p>
+                        </div>
+                        <div th:if="${kilpailu.auki==1 && valmis==1}">
+                        <p class="lead">Olet antanut kaikki arvioinnit. Kiitos!</p>
                         </div>
                         <div th:if="${kilpailu.auki==0}">
                         <p class="lead">Kilpailu on suljettu tällä hetkellä.</p>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
-                            	<div th:if="${kilpailu.auki==1 && kilpailu.finaali==0}">
+                            	<div th:if="${kilpailu.auki==1 && kilpailu.finaali==0 && valmis==0}">
                                 <form th:action="@{/tuomarointi/}" method="POST">
                                     <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}" />
                                     <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}" />
@@ -59,7 +62,7 @@
                                 </form>
                                 </div>
                                 
-                                <div th:if="${kilpailu.auki==1 && kilpailu.finaali==1 && tuomari.finaaliin==1}">
+                                <div th:if="${kilpailu.auki==1 && kilpailu.finaali==1 && tuomari.finaaliin==1 && valmis==0}">
                                 <form th:action="@{/finaalituomarointi/}" method="POST">
                                     <input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}" />
                                     <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}" />

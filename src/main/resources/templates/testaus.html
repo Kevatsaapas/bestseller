@@ -33,7 +33,9 @@
                 <a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
                         alt="logo-sm" class="logo-sm" /></a>
                 <h1 class="headertext">Best Seller Admin</h1>
-
+				<form th:action="@{/logout}" method="post">
+							<input type="submit" value="Kirjaudu ulos" />
+						</form>
             </div>
 
             <table class="table table-striped">
@@ -49,13 +51,12 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="kilpailu:${kilpailut}">
-                        <td style="font-size: 1.5em; font-weight: bold; width: 70%" th:text="${kilpailu.nimi}"></td>
-                        <td th:text="${kilpailu.kilpailuId}"></td>
+                        <td style="font-size: 1.5em; font-weight: bold; width: 30%" th:text="${kilpailu.nimi}"></td>
+                        <td style="width:50%" th:text="${kilpailu.pvm}"></td>
                         <td><span th:if="${kilpailu.finaali == 1}">FINAALI</span></td>
                         <td><span th:if="${kilpailu.auki == 1}">AUKI</span></td>
                         <td><span th:if="${kilpailu.auki == 0}">SULJETTU</span></td>
@@ -90,7 +91,9 @@
                     </tr>
                 </tbody>
             </table>
-
+			<form th:action="@{/luokilpailu}">
+                    <button class="btn btn-lg btn-success">Luo kilpailu</button>
+                </form>
             <!-- Käyttäjädata -->
 
             <div class="row padding">
@@ -128,20 +131,10 @@
                 </table>
             </div>
             <hr>
-
-            <!-- Footer -->
-
-            <div class="row padding">
-                <form th:action="@{/luokilpailu}">
-                    <button class="btn btn-lg btn-success">Luo kilpailu</button>
-                </form>
-                &emsp;
-                <form action="index.html" th:action="@{/}">
-                    <button class="btn btn-lg btn-info">Takaisin</button>
-                </form>
-            </div>
+		<form th:action="@{/logout}" method="post">
+							<input type="submit" value="Kirjaudu ulos" />
+						</form>
         </div>
-    </div>
     </div>
 </body>
 

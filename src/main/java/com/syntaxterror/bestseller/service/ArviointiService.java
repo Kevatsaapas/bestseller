@@ -216,8 +216,6 @@ public class ArviointiService {
     	List<Long> arvot = new ArrayList<Long>();
     		String lohkonro = "finaali";
     		Long yksi = new Long(1);
-    		kilpailu.setValmis(yksi);
-    		kilpailuRepository.save(kilpailu);
     		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, lohkonro);
     		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuIdAndFinaaliin(kilpailuId, yksi);
     		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, yksi);

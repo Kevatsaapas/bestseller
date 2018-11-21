@@ -92,7 +92,6 @@ public class OstajaController {
         ostajaArviointi.setLohko(lohko);
 
         ostajaArviointiRepository.save(ostajaArviointi);
-        System.out.println(ostajaArviointi);
         return "redirect:/";
     }
 
@@ -144,8 +143,6 @@ public class OstajaController {
         String rooli = "ostaja";
         siform.setRooli(rooli);
         siform.setRooliId(ostajaId);
-        System.out.println(siform.getRooli());
-        System.out.println(siform.getRooliId());
         model.addAttribute("ostajasignupform", siform);
         return "ostajasignup";
     }

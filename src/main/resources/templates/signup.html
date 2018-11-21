@@ -33,6 +33,11 @@
     <div class="site-wrapper">
         <div class="site-wrapper-inner">
             <div class="cover-container">
+            <form onSubmit="if(!confirm('Haluatko varmasti poistua?')){return false;}"
+									th:action="@{'/poistatuomari/'+${signupform.rooliId}}">
+
+									<button class="btn btn-sm btn-danger">Peruuta</button>
+								</form>
                 <div class="masthead clearfix">
                 </div>
 
@@ -40,23 +45,23 @@
                     <h3>Luo tunnukset</h3>
                     <form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
                         <div>
-                            <label> Username :<input type="text" th:field="*{username}" class="form-control"/></label>
-                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>
+                            <label> Käyttäjänimi :<input type="text" th:field="*{username}" class="form-control"/></label>
+                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Virhe Käyttäjänimessä</p>
                         </div>
                         
                         <div>
-                            <label> Password :<input type="password" th:field="*{password}" class="form-control"/></label>
-                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
+                            <label> Salasana :<input type="password" th:field="*{password}" class="form-control"/></label>
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Virhe Salasanassa</p>
                         </div>
                         <div>
-                            <label> Re-type Password: <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
-                            <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>
+                            <label> Kirjoita Salasana Uudelleen: <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
+                            <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Salasanat Eivät Täsmää</p>
                         </div>
 						<input type="hidden" th:field="*{rooli}" th:value="tuomari"></input>
 						<input type="hidden" th:field="*{rooliId}" th:value="${signupform.rooliId}"></input>
 
 						
-                        <input type="submit" class="btn btn-success" value="Signup"></input>
+                        <input type="submit" class="btn btn-success" value="Luo käyttäjä"></input>
                     </form>
                 </div>
             </div>

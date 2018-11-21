@@ -42,15 +42,15 @@
                     <h3>Kirjaudu sisään </h3>
 
                     <div class="alert alert-danger" th:if="${param.error}">
-                        Invalid username and password.
+                        Käyttäjänimi tai salasana ei kelpaa.
                     </div>
                     <div class="alert alert-warning" th:if="${param.logout}">
-                        You have been logged out.
+                        Olet kirjautunut ulos.
                     </div>
                     <form th:action="@{/login}" method="post">
-                        <div><label> User Name : <input type="text" name="username" class="form-control"/> </label></div>
-                        <div><label> Password: <input type="password" name="password" class="form-control"/> </label></div>
-                        <div><input type="submit" value="Login"/></div>
+                        <div><label> Käyttäjänimi : <input type="text" name="username" class="form-control"/> </label></div>
+                        <div><label> Salasana : <input type="password" name="password" class="form-control"/> </label></div>
+                        <div><input type="submit" value="Kirjaudu sisään"/></div>
                     </form>
                 </div>
             </div>

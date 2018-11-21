@@ -56,20 +56,34 @@ public class DefaultController {
     	if(role.equals(admin)) {
     	model.addAttribute("kilpailut", kilpailuRepository.findAll());
     	model.addAttribute("users", urepository.findAll());
-        return "adminindex";
+        return "redirect:/testaus";
     	}else if(rooliId != null && rooli.equals("tuomari")){
     		Tuomari tuo = tuomarirepository.findByTuomariId(rooliId);
     		Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(tuo.getKilpailuId());
     		model.addAttribute("kilpailu", kilpailu);
         	model.addAttribute("tuomari", tuo);
-        	model.addAttribute("lohko", lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro()));
+        	Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro());
+        	model.addAttribute("lohko", lohko);
+        	Boolean valmis = tuomariService.onkotuomariValmis(tuo, lohko);
+        	if(valmis) {
+        		model.addAttribute("valmis", 1);
+        	}else {
+        		model.addAttribute("valmis", 0);
+        	}
             return "index";
     	}else if(rooliId != null && rooli.equals("ostaja")){
             Ostaja ost = ostajaRepository.findByOstajaId(rooliId);
             Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(ost.getKilpailuId());
             model.addAttribute("kilpailu", kilpailu);
             model.addAttribute("ostaja", ost);
-            model.addAttribute("lohko", lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, ost.getLohkoNro()));
+            Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, ost.getLohkoNro());
+        	model.addAttribute("lohko", lohko);
+            Boolean valmis = tuomariService.onkoOstajaValmis(ost, lohko);
+        	if(valmis) {
+        		model.addAttribute("valmis", 1);
+        	}else {
+        		model.addAttribute("valmis", 0);
+        	}
             return "ostajaindex";
         } else {
     		return "norole";
@@ -84,7 +98,6 @@ public class DefaultController {
     
     @RequestMapping(value="/kilpailuvalittu/", method=RequestMethod.POST)
     public String dataa(@RequestParam("kilpailuId")Long kilpailuId, Model model) {
-    	System.out.println(kilpailuId);
     	Kilpailu valittukilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
         model.addAttribute("kilpailu", valittukilpailu);
         Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(valittukilpailu);
@@ -96,7 +109,6 @@ public class DefaultController {
     public String valikko(Model model, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("lohkoId") Long lohkoId) {
         model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
         Lohko valittulohko = lohkoRepository.findByLohkoId(lohkoId);
-        System.out.println(valittulohko);
         model.addAttribute("lohko", valittulohko);
         return "valikko";
     }
@@ -113,7 +125,6 @@ public class DefaultController {
     public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId){
     	Lohko lohko=lohkoRepository.findByLohkoId(lohkoId);
     	Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
-    	System.out.println(lohkoId);
         model.addAttribute("lohko", lohko);
     	model.addAttribute("arviointi", new Arviointi());
     	model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));

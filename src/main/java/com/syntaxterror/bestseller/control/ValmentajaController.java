@@ -41,7 +41,6 @@ public class ValmentajaController {
 	@Transactional
 	public String tallennaValmentaja(Valmentaja valmentaja) {
 		valmentajaRepository.save(valmentaja);
-		System.out.println(valmentaja);
 		String redirect = "redirect:/datat/" + Long.toString(valmentaja.getKilpailuId());
 		return redirect;
 	}

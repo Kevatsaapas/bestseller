@@ -79,7 +79,6 @@ public class KilpailijaController {
     @Transactional
     public String tallennaKilpailija(Kilpailija kilpailija) {
         kilpailijaRepository.save(kilpailija);
-        System.out.println(kilpailija);
         String redirect = "redirect:/datat/"+ Long.toString(kilpailija.getKilpailuId());
         return redirect;
     }
@@ -149,8 +148,6 @@ public class KilpailijaController {
     	String rooli="tuomari";
     	siform.setRooli(rooli);
     	siform.setRooliId(tuomariId);
-    	System.out.println(siform.getRooli());
-    	System.out.println(siform.getRooliId());
         model.addAttribute("signupform",siform);
         return "signup";
     }

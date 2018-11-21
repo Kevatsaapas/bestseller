@@ -65,6 +65,7 @@
 			</div>
 
 			<hr>
+			
 
 			<!-- Kilpailudata -->
 
@@ -119,7 +120,48 @@
 				</table>
 			</div>
 			<hr>
+			
+			
+			<!-- Koulut data -->
 
+			<div class="row padding">
+				<table class="table">
+					<thead class="thead-custom">
+						<th scope="col">Koulut</th>
+						<th scope="col" th:text="${kouluLkm}+' kpl'"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Koulun Id</td>
+							<td>Koulun Nimi</td>
+							<td>Koulun Kaupunki</td>
+							<td></td>
+						</tr>
+						<tr th:each="koulu:${koulut}">
+							<td th:text="${koulu.kouluId}"></td>
+							<td th:text="${koulu.kouluNimi}"></td>
+							<td th:text="${koulu.kouluKaupunki}"></td>
+							<td>
+								<form th:if="${kilpailu.auki==0}"
+									th:action="@{'/editkoulu/'+${koulu.kouluId}}">
+									<button class="btn btn-sm btn-warning">Muokkaa</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}"
+					th:action="@{'/luokoulu/'+${kilpailu.kilpailuId}}">
+					<button class="btn btn-sm btn-info">Lisää uusi</button>
+				</form>
+			</div>
+
+			<hr>
+			
+			
 			<!-- Kilpailijat data -->
 
 			<div class="row padding">
@@ -174,7 +216,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<form th:if="${kilpailu.auki==0}"
+				<form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0 && kouluLkm>0}"
 					th:action="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">
 					<button class="btn btn-sm btn-info">Lisää uusi</button>
 				</form>
@@ -187,20 +229,17 @@
 			<div class="row padding">
 				<table class="table">
 					<thead class="thead-custom">
-						<th scope="col">Alkuerät</th>
-						<th scope="col"></th>
+						<th scope="col">Erät</th>
 						<th scope="col"></th>
 					</thead>
 					<tbody>
 						<tr>
 							<td>Id</td>
 							<td>Alkuerä</td>
-							<td>Kilpailun Id</td>
 						</tr>
 						<tr th:each="lohko:${lohkot}">
 							<td th:text="${lohko.lohkoId}"></td>
 							<td th:text="${lohko.lohkoNro}"></td>
-							<td th:text="${lohko.kilpailu.kilpailuId}"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -208,44 +247,7 @@
 
 			<hr>
 
-			<!-- Koulut data -->
-
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Koulut</th>
-						<th scope="col" th:text="${kouluLkm}+' kpl'"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Koulun Id</td>
-							<td>Koulun Nimi</td>
-							<td>Koulun Kaupunki</td>
-							<td></td>
-						</tr>
-						<tr th:each="koulu:${koulut}">
-							<td th:text="${koulu.kouluId}"></td>
-							<td th:text="${koulu.kouluNimi}"></td>
-							<td th:text="${koulu.kouluKaupunki}"></td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									th:action="@{'/editkoulu/'+${koulu.kouluId}}">
-									<button class="btn btn-sm btn-warning">Muokkaa</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<form th:if="${kilpailu.auki==0}"
-					th:action="@{'/luokoulu/'+${kilpailu.kilpailuId}}">
-					<button class="btn btn-sm btn-info">Lisää uusi</button>
-				</form>
-			</div>
-
-			<hr>
+			
 
 			<!-- Tuomarit data -->
 
@@ -289,7 +291,7 @@
 								</form>
 							</td>
 							<td>
-								<form th:if="${kilpailu.auki==0}"
+								<form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}"
 									onSubmit="if(!confirm('Haluatko varmasti poistaa tuomarin?')){return false;}"
 									th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
 
@@ -353,7 +355,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <form th:if="${kilpailu.auki==0}" th:action="@{'/ostaja/luoostaja/'+${kilpailu.kilpailuId}}">
+                <form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}" th:action="@{'/ostaja/luoostaja/'+${kilpailu.kilpailuId}}">
                     <button class="btn btn-sm btn-info">Lisää uusi</button>
                 </form>
             </div>
@@ -404,7 +406,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <form th:action="@{'/luovalmentaja/'+${kilpailu.kilpailuId}}">
+                <form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0 && kouluLkm>0}" th:action="@{'/luovalmentaja/'+${kilpailu.kilpailuId}}">
                     <button class="btn btn-sm btn-info">Lisää uusi</button>
                 </form>
 

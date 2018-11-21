@@ -83,7 +83,6 @@ public class LeaderboardService {
 				kilpailijat.clear();
 			}
 		}
-		System.out.println(finalistit);
 		return finalistit;
 	}
 
@@ -317,10 +316,12 @@ public class LeaderboardService {
 	}
 
 	public void laskeFinaalinLopputulokset(Long kilpailuId) {
-
+		Long yksi = new Long(1);
 		List<Kilpailija> kaikkikilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId,
-				new Long(1));
+				yksi);
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+		kilpailu.setValmis(yksi);
+		kilpailuRepository.save(kilpailu);
 		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
 		List<Integer> aloitus1 = new ArrayList<Integer>();
 		double aloitusKa1 = 0;
