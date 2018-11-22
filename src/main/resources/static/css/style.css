@@ -129,6 +129,16 @@ body {
     font-size: 23pt;
 }
 
+.cover .btn-custom {
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    /* width: 180px; */
+    height: 110px;
+    color: #fff;
+    font-size: 23pt;
+}
+
 .cover-heading {
     font-size: 62pt;
 }
