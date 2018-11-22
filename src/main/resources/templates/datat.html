@@ -422,7 +422,7 @@
 					</tbody>
 				</table>
 				<form
-					th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0 && kouluLkm>0}"
+					th:if="${kilpailu.auki==0  && kouluLkm>0}"
 					th:action="@{'/luovalmentaja/'+${kilpailu.kilpailuId}}">
 					<button class="btn btn-sm btn-info">Lisää uusi</button>
 				</form>
