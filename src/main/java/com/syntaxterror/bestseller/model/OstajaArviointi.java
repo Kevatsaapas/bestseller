@@ -34,17 +34,21 @@ public class OstajaArviointi {
 	@Column
 	private Long kilpailuId;
 
-	@Column
+	@Column(name="arvosana")
 	private Long ostajanArvio;
+	
+	@Column(name="vapaa_palaute")
+	private String ostajanVapaaPalaute;
 
 	public OstajaArviointi(Date arviointiPvm, Kilpailija kilpailija, Ostaja ostaja, Lohko lohko, Long kilpailuId,
-			Long ostajanArvio) {
+			Long ostajanArvio, String ostajanVapaaPalaute) {
 		this.arviointiPvm = arviointiPvm;
 		this.kilpailija = kilpailija;
 		this.ostaja = ostaja;
 		this.lohko = lohko;
 		this.kilpailuId = kilpailuId;
 		this.ostajanArvio = ostajanArvio;
+		this.ostajanVapaaPalaute = ostajanVapaaPalaute;
 	}
 
 	public OstajaArviointi() {
@@ -106,12 +110,24 @@ public class OstajaArviointi {
 	public void setOstajanArvio(Long ostajanArvio) {
 		this.ostajanArvio = ostajanArvio;
 	}
+	
+	
+
+	public String getOstajanVapaaPalaute() {
+		return ostajanVapaaPalaute;
+	}
+
+	public void setOstajanVapaaPalaute(String ostajanVapaaPalaute) {
+		this.ostajanVapaaPalaute = ostajanVapaaPalaute;
+	}
 
 	@Override
 	public String toString() {
-		return "OstajaArviointi{" + "ostajaArviointiId=" + ostajaArviointiId + ", arviointiPvm=" + arviointiPvm
+		return "OstajaArviointi [ostajaArviointiId=" + ostajaArviointiId + ", arviointiPvm=" + arviointiPvm
 				+ ", kilpailija=" + kilpailija + ", ostaja=" + ostaja + ", lohko=" + lohko + ", kilpailuId="
-				+ kilpailuId + ", ostajanArvio=" + ostajanArvio + '}';
+				+ kilpailuId + ", ostajanArvio=" + ostajanArvio + ", ostajanVapaaPalaute=" + ostajanVapaaPalaute + "]";
 	}
+
+	
 
 }
