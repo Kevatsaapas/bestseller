@@ -156,7 +156,10 @@ public class DataController {
 
 	@RequestMapping("/tarkastelu/{arviointiId}")
 	public String tarkastelu(@PathVariable Long arviointiId, Model model) {
-		model.addAttribute("arviointi", arviointiRepository.findByArviointiId(arviointiId));
+		Arviointi arviointi = arviointiRepository.findByArviointiId(arviointiId);
+		model.addAttribute("arviointi", arviointi);
+		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(arviointi.getKilpailuId()));
+		
 		return "tarkastelu";
 	}
 	

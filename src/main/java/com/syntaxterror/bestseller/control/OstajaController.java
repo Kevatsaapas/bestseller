@@ -1,6 +1,7 @@
 package com.syntaxterror.bestseller.control;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -17,12 +18,14 @@ import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.Ostaja;
 import com.syntaxterror.bestseller.model.OstajaArviointi;
 import com.syntaxterror.bestseller.model.SignupForm;
+import com.syntaxterror.bestseller.model.User;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 import com.syntaxterror.bestseller.repository.OstajaRepository;
+import com.syntaxterror.bestseller.repository.UserRepository;
 import com.syntaxterror.bestseller.service.TuomariService;
 
 
@@ -41,6 +44,9 @@ public class OstajaController {
 
     @Autowired
     public OstajaRepository ostajaRepository;
+    
+    @Autowired
+    public UserRepository userRepository;
 
     @Autowired
     public OstajaArviointiRepository ostajaArviointiRepository;
@@ -101,6 +107,12 @@ public class OstajaController {
     public String poistaOstaja (@PathVariable Long ostajaId) {
         Ostaja ostaja = ostajaRepository.findByOstajaId(ostajaId);
         String redirect = "redirect:/datat/" + Long.toString(ostaja.getKilpailuId());
+        List<User> userit = userRepository.findByRooli("ostaja");
+        for(User user:userit) {
+			if(user.getrooliId().equals(ostaja.getOstajaId())) {
+				userRepository.delete(user);
+			}
+		}
         ostajaArviointiRepository.deleteByOstaja(ostaja);
         ostajaRepository.delete(ostaja);
         return redirect;

@@ -64,7 +64,8 @@
             <!-- Aloitus -->
 
             <div class="row padding">
-                <h2>Aloitus (10%)</h2>
+                <h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Aloitus (10%)</h2>
+                <h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Aloitus (5%)</h2>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -96,7 +97,8 @@
             <!-- Tarvekartoitus -->
 
             <div class="row padding">
-                <h2>Tarvekartoitus (30%)</h2>
+                <h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Tarvekartoitus (25%)</h2>
+                <h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Tarvekartoitus (30%)</h2>
                 <table class="table">
                     <tbody>
                         <tr>

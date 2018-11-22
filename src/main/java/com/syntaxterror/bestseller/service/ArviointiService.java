@@ -16,6 +16,7 @@ import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.Ostaja;
 import com.syntaxterror.bestseller.model.OstajaArviointi;
 import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.model.User;
 import com.syntaxterror.bestseller.model.util.Aloitus;
 import com.syntaxterror.bestseller.model.util.KysymystenKasittely;
 import com.syntaxterror.bestseller.model.util.Paattaminen;
@@ -29,6 +30,7 @@ import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 import com.syntaxterror.bestseller.repository.OstajaRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
+import com.syntaxterror.bestseller.repository.UserRepository;
 
 @Service
 public class ArviointiService {
@@ -55,17 +57,40 @@ public class ArviointiService {
     private KilpailuRepository kilpailuRepository;
     
     @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
     public JdbcTemplate jdbctemplate;
     
     public void nuke(Long kilpailuId) {
     	String sql = "DELETE FROM kilpailija WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
+		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuId(kilpailuId);
+		List<User> userit = userRepository.findByRooli("tuomari");
+		for(Tuomari tuomari : tuomarit) {
+			for(User user:userit) {
+				if(user.getrooliId().equals(tuomari.getTuomariId())) {
+					userRepository.delete(user);
+				}
+			}
+		}
 		sql = "DELETE FROM tuomari WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
 		sql = "DELETE FROM lohko WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
 		sql = "DELETE FROM koulu WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
+		
+		List<Ostaja> ostajat = ostajaRepository.findByKilpailuId(kilpailuId);
+		List<User> userit2 = userRepository.findByRooli("ostaja");
+		for(Ostaja ostaja : ostajat) {
+			for(User user:userit2) {
+				if(user.getrooliId().equals(ostaja.getOstajaId())) {
+					userRepository.delete(user);
+				}
+			}
+		}
+		
 		sql = "DELETE FROM ostaja WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
 		sql = "DELETE FROM arviointi WHERE kilpailu_id=" + kilpailuId.toString() + ";";
@@ -74,6 +99,7 @@ public class ArviointiService {
 		jdbctemplate.execute(sql);
 		sql = "DELETE FROM ostaja_arviointi WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
+		
         kilpailuRepository.deleteById(kilpailuId);
     }
     

@@ -1,5 +1,7 @@
 package com.syntaxterror.bestseller.control;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.SignupForm;
 import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.model.User;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
@@ -100,6 +103,12 @@ public class KilpailijaController {
         Tuomari tuomari = tuomariRepository.findByTuomariId(tuomariId);
         arviointiRepository.deleteByTuomari(tuomari);
         String redirect = "redirect:/datat/"+Long.toString(tuomari.getKilpailuId());
+        List<User> userit = userRepository.findByRooli("tuomari");
+        for(User user:userit) {
+			if(user.getrooliId().equals(tuomari.getTuomariId())) {
+				userRepository.delete(user);
+			}
+		}
         tuomariRepository.delete(tuomari);
 
         return redirect;
