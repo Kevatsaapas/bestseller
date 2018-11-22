@@ -18,11 +18,16 @@ import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.repository.UserRepository;
 import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
+import com.syntaxterror.bestseller.service.MailClient;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +39,9 @@ public class DataController {
 
 	@Autowired
 	public KilpailuRepository kilpailuRepository;
+	
+	@Autowired
+	public MailClient mailClient;
 	
 	@Autowired
 	public ArviointiService arviointiService;
@@ -192,6 +200,23 @@ public class DataController {
 		 String kilid = kilpailuId.toString();
 		 return "redirect:/datat/"+kilid;
 	 }
+	 
+	 
+	 //mail toimii kovakoodattuna :D
+	 @RequestMapping("/sendMail/{kilpailuId}")
+		public String sendMail(@PathVariable Long kilpailuId, Model model) throws EmailException {
+		 
+		 	String recipient = "Tähän oma sähköposti :D";
+		    String message = "testi1111111111111";
+		 	mailClient.prepareAndSend(recipient, message);
+		 	
+			String kilid = kilpailuId.toString();
+			System.out.println("mentiin emailin läpi käy kattoo sposti");
+			return "redirect:/datat/"+kilid;
+		 	
+		 
+		}
+
 	 
 	@RequestMapping("/luodatat/{kilpailuId}")
 	public String luoDataa(@PathVariable Long kilpailuId, Model model) {

@@ -63,6 +63,9 @@
 						th:action="@{'/luoarviot/'+${kilpailu.kilpailuId}}">
 						<button class="btn btn-sm btn-info">Lisää Arvioinnit</button>
 					</form>
+					<form th:action="@{'/sendMail/'+${kilpailu.kilpailuId}}">
+                    <button class="btn btn-sm btn-info">Send Mail</button>
+                </form>
 				</div>
 			</div>
 
