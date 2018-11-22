@@ -25,126 +25,127 @@ import com.syntaxterror.bestseller.service.TuomariService;
 
 @Controller
 public class DefaultController {
-    @Autowired
-    public KilpailuRepository kilpailuRepository;
-    @Autowired
-    public KilpailijaRepository kilpailijarepository;
-    @Autowired
-    public TuomariRepository tuomarirepository;
-    @Autowired
-    public LohkoRepository lohkoRepository;
+	@Autowired
+	public KilpailuRepository kilpailuRepository;
+	@Autowired
+	public KilpailijaRepository kilpailijarepository;
+	@Autowired
+	public TuomariRepository tuomarirepository;
+	@Autowired
+	public LohkoRepository lohkoRepository;
 
-    @Autowired
-    private UserRepository urepository;
+	@Autowired
+	private UserRepository urepository;
 
-    @Autowired
-    private TuomariService tuomariService;
+	@Autowired
+	private TuomariService tuomariService;
 
-    @Autowired
-    private OstajaRepository ostajaRepository;
+	@Autowired
+	private OstajaRepository ostajaRepository;
 
+	@RequestMapping("/")
+	public String index(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		User user = urepository.findByUsername(username);
+		Long rooliId = user.getrooliId();
+		String rooli = user.getRooli();
+		String role = user.getRole();
+		String admin = "ADMIN";
+		if (role.equals(admin)) {
+			model.addAttribute("kilpailut", kilpailuRepository.findAll());
+			model.addAttribute("users", urepository.findAll());
+			return "redirect:/testaus";
+		} else if (rooliId != null && rooli.equals("tuomari")) {
+			Tuomari tuo = tuomarirepository.findByTuomariId(rooliId);
+			Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(tuo.getKilpailuId());
+			model.addAttribute("kilpailu", kilpailu);
+			model.addAttribute("tuomari", tuo);
+			Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro());
+			model.addAttribute("lohko", lohko);
+			Boolean valmis = tuomariService.onkotuomariValmis(tuo, lohko);
+			if (valmis) {
+				model.addAttribute("valmis", 1);
+			} else {
+				model.addAttribute("valmis", 0);
+			}
+			return "index";
+		} else if (rooliId != null && rooli.equals("ostaja")) {
+			Ostaja ost = ostajaRepository.findByOstajaId(rooliId);
+			Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(ost.getKilpailuId());
+			model.addAttribute("kilpailu", kilpailu);
+			model.addAttribute("ostaja", ost);
+			Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, ost.getLohkoNro());
+			model.addAttribute("lohko", lohko);
+			Boolean valmis = tuomariService.onkoOstajaValmis(ost, lohko);
+			if (valmis) {
+				model.addAttribute("valmis", 1);
+			} else {
+				model.addAttribute("valmis", 0);
+			}
+			return "ostajaindex";
+		} else {
+			return "norole";
 
-    @RequestMapping("/")
-    public String index(Model model) {
-    	Authentication auth=SecurityContextHolder.getContext().getAuthentication();
-    	String username = auth.getName();
-    	User user = urepository.findByUsername(username);
-    	Long rooliId = user.getrooliId();
-    	String rooli = user.getRooli();
-    	String role = user.getRole();
-    	String admin = "ADMIN";
-    	if(role.equals(admin)) {
-    	model.addAttribute("kilpailut", kilpailuRepository.findAll());
-    	model.addAttribute("users", urepository.findAll());
-        return "redirect:/testaus";
-    	}else if(rooliId != null && rooli.equals("tuomari")){
-    		Tuomari tuo = tuomarirepository.findByTuomariId(rooliId);
-    		Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(tuo.getKilpailuId());
-    		model.addAttribute("kilpailu", kilpailu);
-        	model.addAttribute("tuomari", tuo);
-        	Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro());
-        	model.addAttribute("lohko", lohko);
-        	Boolean valmis = tuomariService.onkotuomariValmis(tuo, lohko);
-        	if(valmis) {
-        		model.addAttribute("valmis", 1);
-        	}else {
-        		model.addAttribute("valmis", 0);
-        	}
-            return "index";
-    	}else if(rooliId != null && rooli.equals("ostaja")){
-            Ostaja ost = ostajaRepository.findByOstajaId(rooliId);
-            Kilpailu kilpailu=kilpailuRepository.findByKilpailuId(ost.getKilpailuId());
-            model.addAttribute("kilpailu", kilpailu);
-            model.addAttribute("ostaja", ost);
-            Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, ost.getLohkoNro());
-        	model.addAttribute("lohko", lohko);
-            Boolean valmis = tuomariService.onkoOstajaValmis(ost, lohko);
-        	if(valmis) {
-        		model.addAttribute("valmis", 1);
-        	}else {
-        		model.addAttribute("valmis", 0);
-        	}
-            return "ostajaindex";
-        } else {
-    		return "norole";
+		}
+	}
 
-    	}
-    }
-    
-    @RequestMapping(value = "/login")
+	@RequestMapping(value = "/login")
 	public String showLogin() {
 		return "login";
 	}
-    
-    @RequestMapping(value="/kilpailuvalittu/", method=RequestMethod.POST)
-    public String dataa(@RequestParam("kilpailuId")Long kilpailuId, Model model) {
-    	Kilpailu valittukilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
-        model.addAttribute("kilpailu", valittukilpailu);
-        Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(valittukilpailu);
-        model.addAttribute("lohkot", lohkot);
-        return "valitselohko";
-    }
 
-    @RequestMapping(value = "/lohkovalittu/", method = RequestMethod.POST)
-    public String valikko(Model model, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("lohkoId") Long lohkoId) {
-        model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-        Lohko valittulohko = lohkoRepository.findByLohkoId(lohkoId);
-        model.addAttribute("lohko", valittulohko);
-        return "valikko";
-    }
+	@RequestMapping(value = "/kilpailuvalittu/", method = RequestMethod.POST)
+	public String dataa(@RequestParam("kilpailuId") Long kilpailuId, Model model) {
+		Kilpailu valittukilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+		model.addAttribute("kilpailu", valittukilpailu);
+		Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(valittukilpailu);
+		model.addAttribute("lohkot", lohkot);
+		return "valitselohko";
+	}
 
-    @RequestMapping("/testaus")
-    public String testaus(Model model) {
-        model.addAttribute("kilpailut", kilpailuRepository.findAll());
-        model.addAttribute("users", urepository.findAll());
-        return "testaus";
-    }
-    
-    
-    @RequestMapping(value = "/tuomarointi/", method = RequestMethod.POST)
-    public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId){
-    	Lohko lohko=lohkoRepository.findByLohkoId(lohkoId);
-    	Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
-        model.addAttribute("lohko", lohko);
-    	model.addAttribute("arviointi", new Arviointi());
-    	model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-        model.addAttribute("usertuomari", tuomari);
+	@RequestMapping(value = "/lohkovalittu/", method = RequestMethod.POST)
+	public String valikko(Model model, @RequestParam("kilpailuId") Long kilpailuId,
+			@RequestParam("lohkoId") Long lohkoId) {
+		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+		Lohko valittulohko = lohkoRepository.findByLohkoId(lohkoId);
+		model.addAttribute("lohko", valittulohko);
+		return "valikko";
+	}
 
-        model.addAttribute("kilpailijat", tuomariService.haeKilpailijatTuomarille(tuomari, lohko));
-        return "tuomarointisivu";
-    }
-    
-    @RequestMapping(value = "/finaalituomarointi/", method = RequestMethod.POST)
-    public String palautaFinaalinArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId, @RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId){ 	
-    	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
-    	Lohko lohko=lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
-    	Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
-        model.addAttribute("lohko", lohko);
-    	model.addAttribute("arviointi", new Arviointi());
-    	model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-        model.addAttribute("usertuomari", tuomari);
-    		model.addAttribute("kilpailijat", tuomariService.haeFinalistitTuomarille(tuomari, lohko));
-    		return "tuomarointisivu";
-    	}
+	@RequestMapping("/testaus")
+	public String testaus(Model model) {
+		model.addAttribute("kilpailut", kilpailuRepository.findAll());
+		model.addAttribute("users", urepository.findAll());
+		return "testaus";
+	}
+
+	@RequestMapping(value = "/tuomarointi/", method = RequestMethod.POST)
+	public String palautaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId,
+			@RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId) {
+		Lohko lohko = lohkoRepository.findByLohkoId(lohkoId);
+		Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
+		model.addAttribute("lohko", lohko);
+		model.addAttribute("arviointi", new Arviointi());
+		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+		model.addAttribute("usertuomari", tuomari);
+
+		model.addAttribute("kilpailijat", tuomariService.haeKilpailijatTuomarille(tuomari, lohko));
+		return "tuomarointisivu";
+	}
+
+	@RequestMapping(value = "/finaalituomarointi/", method = RequestMethod.POST)
+	public String palautaFinaalinArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId,
+			@RequestParam("kilpailuId") Long kilpailuId, @RequestParam("tuomariId") Long tuomariId) {
+		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
+		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+		Tuomari tuomari = tuomarirepository.findByTuomariId(tuomariId);
+		model.addAttribute("lohko", lohko);
+		model.addAttribute("arviointi", new Arviointi());
+		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+		model.addAttribute("usertuomari", tuomari);
+		model.addAttribute("kilpailijat", tuomariService.haeFinalistitTuomarille(tuomari, lohko));
+		return "tuomarointisivu";
+	}
 
 }

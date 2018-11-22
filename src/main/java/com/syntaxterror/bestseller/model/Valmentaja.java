@@ -12,50 +12,47 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Valmentaja {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "valmentaja_id")
-    private Long valmentajaId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "valmentaja_id")
+	private Long valmentajaId;
 
-    @Column(name = "valmentaja_etunimi")
-    @NotNull
-    private String etunimi;
+	@Column(name = "valmentaja_etunimi")
+	@NotNull
+	private String etunimi;
 
-    @Column(name = "valmentaja_sukunimi")
-    @NotNull
-    private String sukunimi;
+	@Column(name = "valmentaja_sukunimi")
+	@NotNull
+	private String sukunimi;
 
+	@OneToOne
+	@JoinColumn(name = "koulu_Id")
+	private Koulu koulu;
 
-    @OneToOne
-    @JoinColumn(name = "koulu_Id")
-    private Koulu koulu;
+	@Column(name = "valmentaja_sahkoposti")
+	@NotNull
+	private String sposti;
 
-    @Column(name = "valmentaja_sahkoposti")
-    @NotNull
-    private String sposti;
+	@Column(name = "kilpailu_Id")
+	@NotNull
+	private Long kilpailuId;
 
-    @Column(name = "kilpailu_Id")
-    @NotNull
-    private Long kilpailuId;
+	public Valmentaja() {
+		this.etunimi = null;
+		this.sukunimi = null;
+		this.koulu = null;
+		this.sposti = null;
+		this.kilpailuId = null;
+	}
 
-   
-
-    public Valmentaja() {
-        this.etunimi = null;
-        this.sukunimi = null;
-        this.koulu = null;
-        this.sposti = null;
-        this.kilpailuId = null;
-    }
-
-    public Valmentaja(String etunimi, String sukunimi, Koulu koulu,String sposti, Long kilpailuId) {
-        super();
-        this.etunimi = etunimi;
-        this.sukunimi = sukunimi; 
-        this.koulu = koulu;
-        this.sposti = sposti;
-        this.kilpailuId = kilpailuId;
-    }
+	public Valmentaja(String etunimi, String sukunimi, Koulu koulu, String sposti, Long kilpailuId) {
+		super();
+		this.etunimi = etunimi;
+		this.sukunimi = sukunimi;
+		this.koulu = koulu;
+		this.sposti = sposti;
+		this.kilpailuId = kilpailuId;
+	}
 
 	public Long getValmentajaId() {
 		return valmentajaId;
@@ -112,6 +109,3 @@ public class Valmentaja {
 	}
 
 }
-
-   
-

@@ -1,100 +1,117 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="htmlhead">
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/formit.css" th:href="@{/css/formit.css}" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="shortcut icon" type="image/png"
+	th:href="@{/images/favicon.png}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../static/css/formit.css" th:href="@{/css/formit.css}" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
 
-    <!-- Fontit -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+<!-- Fontit -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Changa+One"
+	rel="stylesheet">
 
-    <title>Best Seller - Luo uusi ostaja</title>
+<title>Best Seller - Luo uusi ostaja</title>
 </head>
 
 <body>
-    <div class="standard h-100">
-        <div class="container tuom">
+	<div class="standard h-100">
+		<div class="container tuom">
 
-            <!-- Header -->
+			<!-- Header -->
 
-            <div class="row padding">
-                <a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
-                        alt="logo-sm" class="logo-sm" /></a>
-                <h1 class="headertext">Luo uusi ostaja</h1>
-            </div>
-            <hr>
+			<div class="row padding">
+				<a href="index.html" th:href="@{/}"> <img
+					src="../static/img/BSC_sinetti_logo.png"
+					th:src="@{/img/BSC_sinetti_logo.png}" alt="logo-sm" class="logo-sm" /></a>
+				<h1 class="headertext">Luo uusi ostaja</h1>
+			</div>
+			<hr>
 
-            <!-- Main -->
+			<!-- Main -->
 
-            <div class="padding col-5">
-                <form role="form" class="was-validated" th:object="${ostaja}" th:action="@{/ostaja/tallennaostaja}"
-                    action="#" method="post">
+			<div class="padding col-5">
+				<form role="form" class="was-validated" th:object="${ostaja}"
+					th:action="@{/ostaja/tallennaostaja}" action="#" method="post">
 
-                    <div class="form-group">
-                        <label for="ostajaId">Etunimi:</label> <input type="text" class="form-control is-invalid"
-                            th:required="required" oninvalid="this.setCustomValidity('Lisää ostajan etunimi')" oninput="setCustomValidity('')"
-                            th:field="*{ostajaEtunimi}" />
-                    </div>
+					<div class="form-group">
+						<label for="ostajaId">Etunimi:</label> <input type="text"
+							class="form-control is-invalid" th:required="required"
+							oninvalid="this.setCustomValidity('Lisää ostajan etunimi')"
+							oninput="setCustomValidity('')" th:field="*{ostajaEtunimi}" />
+					</div>
 
-                    <div class="form-group">
-                        <label for="ostajaId">Sukunimi:</label> <input type="text" class="form-control is-invalid"
-                            th:required="required" oninvalid="this.setCustomValidity('Lisää ostajan sukunimi')" oninput="setCustomValidity('')"
-                            th:field="*{ostajaSukunimi}" />
-                    </div>
+					<div class="form-group">
+						<label for="ostajaId">Sukunimi:</label> <input type="text"
+							class="form-control is-invalid" th:required="required"
+							oninvalid="this.setCustomValidity('Lisää ostajan sukunimi')"
+							oninput="setCustomValidity('')" th:field="*{ostajaSukunimi}" />
+					</div>
 
 
-                    <div class="form-group">
-                        <h4>Alkuerä johon ostaja osallistuu:</h4>
-                        <div>
-                            <ul class="list-group">
-                                <li class="list-group-item" th:each="lohko:${lohkot}">
-                                    <input type="radio" th:required="required" oninvalid="this.setCustomValidity('Valitse lohkonumero')"
-                                        oninput="setCustomValidity('')" th:field="*{lohkoNro}" th:value="${lohko.lohkoNro}" />
-                                    <label for="lohkoNro" th:text="${lohko.lohkoNro}">Alkuerän numero:</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+					<div class="form-group">
+						<h4>Alkuerä johon ostaja osallistuu:</h4>
+						<div>
+							<ul class="list-group">
+								<li class="list-group-item" th:each="lohko:${lohkot}"><input
+									type="radio" th:required="required"
+									oninvalid="this.setCustomValidity('Valitse lohkonumero')"
+									oninput="setCustomValidity('')" th:field="*{lohkoNro}"
+									th:value="${lohko.lohkoNro}" /> <label for="lohkoNro"
+									th:text="${lohko.lohkoNro}">Alkuerän numero:</label></li>
+							</ul>
+						</div>
+					</div>
 
-                    <div class="form-group">
-                        <h4>Onko tämä ostaja myös finaalissa?</h4>
-                        <div class="form-check ml-3">
-                            <input class="form-check-input" type="radio" th:required="required" name="finaaliinRadiot"
-                                id="finaaliinRadiot1" value="option1" th:field="*{finaaliin}" th:value="0" checked>
-                            <label for="finaaliinRadiot1">
-                                Ei
-                            </label>
-                        </div>
-                        <div class="form-check ml-3">
-                            <input class="form-check-input" type="radio" th:required="required" name="finaaliinRadiot"
-                                id="finaaliinRadiot2" value="option2" th:field="*{finaaliin}" th:value="1">
-                            <label for="finaaliinRadiot2">
-                                Kyllä
-                            </label>
-                        </div>
-                    </div>
+					<div class="form-group">
+						<h4>Onko tämä ostaja myös finaalissa?</h4>
+						<div class="form-check ml-3">
+							<input class="form-check-input" type="radio"
+								th:required="required" name="finaaliinRadiot"
+								id="finaaliinRadiot1" value="option1" th:field="*{finaaliin}"
+								th:value="0" checked> <label for="finaaliinRadiot1">
+								Ei </label>
+						</div>
+						<div class="form-check ml-3">
+							<input class="form-check-input" type="radio"
+								th:required="required" name="finaaliinRadiot"
+								id="finaaliinRadiot2" value="option2" th:field="*{finaaliin}"
+								th:value="1"> <label for="finaaliinRadiot2">
+								Kyllä </label>
+						</div>
+					</div>
 
-                    <input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" />
-                    <input id="addButton" type="submit" class="btn btn-primary" value="Tallenna">
-                </form>
-            </div>
-        </div>
-    </div>
+					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
+						th:value="${kilpailuId}" /> <input id="addButton" type="submit"
+						class="btn btn-primary" value="Tallenna">
+				</form>
+			</div>
+		</div>
+	</div>
 
 </body>
 

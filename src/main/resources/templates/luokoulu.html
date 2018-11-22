@@ -1,29 +1,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="htmlhead">
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../static/css/formit.css" th:href="@{/css/formit.css}" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="shortcut icon" type="image/png"
+	th:href="@{/images/favicon.png}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../static/css/formit.css" th:href="@{/css/formit.css}" />
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	 crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	 crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	 crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
 
-	<!-- Fontit -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+<!-- Fontit -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Changa+One"
+	rel="stylesheet">
 
-	<title>Bestseller - Luo Koulu</title>
+<title>Bestseller - Luo Koulu</title>
 </head>
 
 <body>
@@ -33,8 +45,9 @@
 			<!-- Header -->
 
 			<div class="row padding">
-				<a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
-					 alt="logo-sm" class="logo-sm" /></a>
+				<a href="index.html" th:href="@{/}"> <img
+					src="../static/img/BSC_sinetti_logo.png"
+					th:src="@{/img/BSC_sinetti_logo.png}" alt="logo-sm" class="logo-sm" /></a>
 				<h1 class="headertext">Lisää uusi koulu</h1>
 			</div>
 			<hr>
@@ -42,15 +55,18 @@
 			<!-- Main -->
 
 			<div class="padding col-5">
-				<form role="form" th:object="${koulu}" th:action="@{/tallennakoulu}" action="#" method="post">
+				<form role="form" th:object="${koulu}" th:action="@{/tallennakoulu}"
+					action="#" method="post">
 					<input type="hidden" th:required="required" th:field="*{kouluId}" />
 					<div class="form-group">
-						<label for="kouluNimi">Koulun nimi:</label>
-						<input type="text" id="kouluNimi" class="form-control is-invalid" th:required="required" th:field="*{kouluNimi}" />
+						<label for="kouluNimi">Koulun nimi:</label> <input type="text"
+							id="kouluNimi" class="form-control is-invalid"
+							th:required="required" th:field="*{kouluNimi}" />
 					</div>
 
-					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}" th:value="${kilpailuId}" /> <input id="addButton"
-					 type="submit" class="btn btn-primary" value="Tallenna">
+					<input type="hidden" id="kilpailuId" th:field="*{kilpailuId}"
+						th:value="${kilpailuId}" /> <input id="addButton" type="submit"
+						class="btn btn-primary" value="Tallenna">
 				</form>
 			</div>
 

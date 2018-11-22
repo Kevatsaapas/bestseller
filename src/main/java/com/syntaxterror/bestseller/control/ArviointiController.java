@@ -40,7 +40,6 @@ public class ArviointiController {
 	@Autowired
 	public LohkoRepository lohkoRepository;
 
-	
 	//
 	@RequestMapping(value = "/uusi/{kilpailuId}/{lohkoId}", method = RequestMethod.GET)
 	public String palautaArviointiLuontiSivu(Model model, @PathVariable Long kilpailuId, @PathVariable Long lohkoId) {

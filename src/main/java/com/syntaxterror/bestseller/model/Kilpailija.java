@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Kilpailija  {
+public class Kilpailija {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,10 +38,10 @@ public class Kilpailija  {
 
 	@Column(name = "kilpailija_kokonaistulos")
 	public double kokonaistulos;
-	
+
 	@Column(name = "kilpailija_finaalissa")
 	public Long finaalissa;
-	
+
 	@Column(name = "finaali_kokonaistulos")
 	public double finaaliKokonaistulos;
 
@@ -59,9 +59,9 @@ public class Kilpailija  {
 		this.sposti = null;
 		this.lohko = null;
 		this.kilpailuId = null;
-		this.kokonaistulos=0;
-		this.finaalissa=null;
-		this.finaaliKokonaistulos=0;
+		this.kokonaistulos = 0;
+		this.finaalissa = null;
+		this.finaaliKokonaistulos = 0;
 	}
 
 	public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, Koulu koulu, String sposti, Lohko lohko,
@@ -74,11 +74,9 @@ public class Kilpailija  {
 		this.sposti = sposti;
 		this.lohko = lohko;
 		this.kilpailuId = kilpailuId;
-		this.kokonaistulos=kokonaistulos;
-		this.finaalissa=new Long(0);
+		this.kokonaistulos = kokonaistulos;
+		this.finaalissa = new Long(0);
 	}
-	
-	
 
 	public String getSposti() {
 		return sposti;
@@ -159,9 +157,7 @@ public class Kilpailija  {
 	public void setKokonaistulos(double kokonaistulos) {
 		this.kokonaistulos = kokonaistulos;
 	}
-	
-	
-	
+
 	public double getFinaalissa() {
 		return finaalissa;
 	}
@@ -186,7 +182,5 @@ public class Kilpailija  {
 				+ ", finaaliKokonaistulos=" + finaaliKokonaistulos + ", lohko=" + lohko + ", arvioinnit=" + arvioinnit
 				+ "]";
 	}
-
-	
 
 }

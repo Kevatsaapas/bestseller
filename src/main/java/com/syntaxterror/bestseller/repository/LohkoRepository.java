@@ -13,7 +13,10 @@ import com.syntaxterror.bestseller.model.Lohko;
 @Repository
 public interface LohkoRepository extends CrudRepository<Lohko, Long> {
 	Lohko findByLohkoId(Long lohkoId);
+
 	List<Lohko> findByKilpailu(Kilpailu kilpailu);
-	List<Lohko>deleteByKilpailu(Kilpailu kilpailu);
+
+	List<Lohko> deleteByKilpailu(Kilpailu kilpailu);
+
 	Lohko findByKilpailuAndLohkoNro(Kilpailu kilpailu, String lohkoNro);
 }

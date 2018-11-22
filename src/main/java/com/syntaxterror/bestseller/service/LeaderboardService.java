@@ -317,8 +317,7 @@ public class LeaderboardService {
 
 	public void laskeFinaalinLopputulokset(Long kilpailuId) {
 		Long yksi = new Long(1);
-		List<Kilpailija> kaikkikilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId,
-				yksi);
+		List<Kilpailija> kaikkikilpailijat = kilpailijaRepository.findByKilpailuIdAndFinaalissa(kilpailuId, yksi);
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
 		kilpailu.setValmis(yksi);
 		kilpailuRepository.save(kilpailu);
@@ -363,7 +362,7 @@ public class LeaderboardService {
 		List<Integer> yleisvaikutelma3 = new ArrayList<Integer>();
 		double yleisvaikutelmaKa3 = 0;
 		double yleisvaikutelma = 0;
-		
+
 		List<Integer> ostajanArviot = new ArrayList<Integer>();
 		double ostajanArvioKa = 0;
 		double ostajanArvio = 0;
@@ -394,11 +393,11 @@ public class LeaderboardService {
 					yleisvaikutelma2.add(Integer.parseInt(arviointi.getYleisvaikutelma().getTilannetajuPist()));
 					yleisvaikutelma3.add(Integer.parseInt(arviointi.getYleisvaikutelma().getOmaKayttaytyminenPist()));
 				}
-				
+
 				for (OstajaArviointi ostajaArviointi : osarvioinnit) {
 					ostajanArviot.add(Integer.parseInt(ostajaArviointi.getOstajanArvio().toString()));
 				}
-				
+
 				for (int luku : aloitus1) {
 					aloitusKa1 += luku;
 				}
@@ -478,14 +477,15 @@ public class LeaderboardService {
 				}
 				yleisvaikutelmaKa3 = yleisvaikutelmaKa3 / aloitus1.size();
 				yleisvaikutelma = (yleisvaikutelmaKa1 + yleisvaikutelmaKa2 + yleisvaikutelmaKa3) / 3;
-				
+
 				for (int luku : ostajanArviot) {
 					ostajanArvioKa += luku;
 				}
 				ostajanArvio = ostajanArvioKa / ostajanArviot.size();
-				
+
 				kokonaistulos = (aloitus * 0.1) + (tarvekartoitus * 0.25) + (ratkaisu * 0.25)
-						+ (kysymystenKasittely * 0.1) + (paattaminen * 0.1) + (yleisvaikutelma * 0.15) + (ostajanArvio*0.05);
+						+ (kysymystenKasittely * 0.1) + (paattaminen * 0.1) + (yleisvaikutelma * 0.15)
+						+ (ostajanArvio * 0.05);
 				kilpailija.setFinaaliKokonaistulos(kokonaistulos);
 				kilpailijaRepository.save(kilpailija);
 				// System.out.println(kilpailija.getKilpailijaId()+"Kilpailija:

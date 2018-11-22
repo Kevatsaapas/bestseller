@@ -5,72 +5,71 @@ import javax.persistence.*;
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, updatable = false)
+	private Long id;
 
-    // Username with unique constraint
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+	// Username with unique constraint
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 
-    @Column(name = "password", nullable = false)
-    private String passwordHash;
+	@Column(name = "password", nullable = false)
+	private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    @Column(name = "rooli")
-    public String rooli;
-    
-    @Column(name = "rooli_id")
-    public Long rooliId;
-    
+	@Column(name = "role", nullable = false)
+	private String role;
 
-    public User() {
-    }
+	@Column(name = "rooli")
+	public String rooli;
 
-    public User(String username, String passwordHash, String role, String rooli, Long rooliId) {
-        super();
-        this.username = username;
-        this.passwordHash = passwordHash;
-        this.role = role;
-        this.rooli=rooli;
-        this.rooliId = rooliId;
-        
-    }
+	@Column(name = "rooli_id")
+	public Long rooliId;
 
-    public Long getId() {
-        return id;
-    }
+	public User() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public User(String username, String passwordHash, String role, String rooli, Long rooliId) {
+		super();
+		this.username = username;
+		this.passwordHash = passwordHash;
+		this.role = role;
+		this.rooli = rooli;
+		this.rooliId = rooliId;
 
-    public String getUsername() {
-        return username;
-    }
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getPasswordHash() {
-        return passwordHash;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getRole() {
-        return role;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public Long getrooliId() {
 		return rooliId;
@@ -87,8 +86,5 @@ public class User {
 	public void setRooli(String rooli) {
 		this.rooli = rooli;
 	}
-	
-	
 
-    
 }

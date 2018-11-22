@@ -6,45 +6,43 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Yleisvaikutelma {
 
-    @Column
-    private String aktiivinenKuunteluPist;
+	@Column
+	private String aktiivinenKuunteluPist;
 
-    @Column
-    private String tilannetajuPist;
+	@Column
+	private String tilannetajuPist;
 
-    @Column
-    private String yleisvaikutelmaVapaaPalaute;
-    
-    @Column
-    private String omaKayttaytyminenPist;
+	@Column
+	private String yleisvaikutelmaVapaaPalaute;
 
-    public String getAktiivinenKuunteluPist(){
-        return aktiivinenKuunteluPist;
-    }
+	@Column
+	private String omaKayttaytyminenPist;
 
-    public void setAktiivinenKuunteluPist(String aktiivinenKuunteluPist) {
-        this.aktiivinenKuunteluPist = aktiivinenKuunteluPist;
-    }
+	public String getAktiivinenKuunteluPist() {
+		return aktiivinenKuunteluPist;
+	}
 
-    public String getTilannetajuPist() {
-        return tilannetajuPist;
-    }
+	public void setAktiivinenKuunteluPist(String aktiivinenKuunteluPist) {
+		this.aktiivinenKuunteluPist = aktiivinenKuunteluPist;
+	}
 
-    public void setTilannetajuPist(String tilannetajuPist) {
-        this.tilannetajuPist = tilannetajuPist;
-    }
+	public String getTilannetajuPist() {
+		return tilannetajuPist;
+	}
 
-    public String getYleisvaikutelmaVapaaPalaute() {
-        return yleisvaikutelmaVapaaPalaute;
-    }
+	public void setTilannetajuPist(String tilannetajuPist) {
+		this.tilannetajuPist = tilannetajuPist;
+	}
 
-    public void setYleisvaikutelmaVapaaPalaute(String yleisvaikutelmaVapaaPalaute) {
-        this.yleisvaikutelmaVapaaPalaute = yleisvaikutelmaVapaaPalaute;
-    }
+	public String getYleisvaikutelmaVapaaPalaute() {
+		return yleisvaikutelmaVapaaPalaute;
+	}
 
-    
-    
-    public String getOmaKayttaytyminenPist() {
+	public void setYleisvaikutelmaVapaaPalaute(String yleisvaikutelmaVapaaPalaute) {
+		this.yleisvaikutelmaVapaaPalaute = yleisvaikutelmaVapaaPalaute;
+	}
+
+	public String getOmaKayttaytyminenPist() {
 		return omaKayttaytyminenPist;
 	}
 
@@ -52,7 +50,7 @@ public class Yleisvaikutelma {
 		this.omaKayttaytyminenPist = omaKayttaytyminenPist;
 	}
 
-	public int getKokonaistulos(){
-        return Integer.parseInt(aktiivinenKuunteluPist) + Integer.parseInt(tilannetajuPist);
-    }
+	public int getKokonaistulos() {
+		return Integer.parseInt(aktiivinenKuunteluPist) + Integer.parseInt(tilannetajuPist);
+	}
 }

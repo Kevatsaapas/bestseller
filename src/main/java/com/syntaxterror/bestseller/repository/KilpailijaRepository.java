@@ -13,10 +13,16 @@ import com.syntaxterror.bestseller.model.Lohko;
 @Transactional
 public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	Kilpailija findByKilpailijaId(Long kilpailijaId);
+
 	List<Kilpailija> findByKilpailuId(Long kilpailuId);
+
 	List<Kilpailija> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
-	List<Kilpailija>deleteByKilpailuId(Long kilpailuId);
+
+	List<Kilpailija> deleteByKilpailuId(Long kilpailuId);
+
 	List<Kilpailija> findByLohko(Lohko lohko);
+
 	List<Kilpailija> findByKilpailuIdAndFinaalissa(Long kilpailuId, Long finaalissa);
+
 	List<Kilpailija> findByKoulu(Koulu koulu);
 }
