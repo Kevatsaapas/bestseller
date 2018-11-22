@@ -4,6 +4,12 @@
 
 <head>
 	<meta charset="utf-8" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#4286f4">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#4286f4">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#4286f4">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
@@ -79,15 +85,15 @@
 								<div th:if="${kilpailu.auki==1 && kilpailu.finaali==1 && tuomari.finaaliin==0}">
 									<p class="lead">Hei, kilpailu on siirtynyt finaaliin. Kiitos
 										arvioinnista!</p>
-									
+
 								</div>
 							</div>
 						</div>
 						<form th:action="@{/logout}" , method="post">
-										<button class="btn btn-custom btn-danger" type="submit">
-											Kirjaudu ulos</a>
-										</button>
-									</form>
+							<button class="btn btn-custom btn-danger" type="submit">
+								Kirjaudu ulos</a>
+							</button>
+						</form>
 					</div>
 				</div>
 			</div>
