@@ -6,6 +6,8 @@
 
 Projektin tarkoituksena on luoda verkossa toimiva arviointityökalu, joka mahdollistaa [Best Seller Competition](http://www.bestsellercompetition.fi)-kilpailun arvioimisen vertailussa sekä tehtyjen arviointien tarkastelun kilpailu- ja kilpailijakohtaisesti.
 
+[Heroku-versio:](https://bestsellercompetition.herokuapp.com)
+
 ### Tekijät
 
 - [Elina Rajala](https://github.com/Nebularlion)
