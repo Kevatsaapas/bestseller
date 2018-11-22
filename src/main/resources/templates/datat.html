@@ -1,46 +1,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="htmlhead">
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<link rel="shortcut icon" type="image/png"
-	th:href="@{/images/favicon.png}" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="../static/css/formit.css" th:href="@{/css/formit.css}" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../static/css/formit.css" th:href="@{/css/formit.css}" />
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	crossorigin="anonymous"></script>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	 crossorigin="anonymous"></script>
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
-<!-- Fontit -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Changa+One"
-	rel="stylesheet">
+	<!-- Fontit -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
 
-<title>Best Seller - Datat</title>
+	<title>Best Seller - Datat</title>
 </head>
 
 <body>
@@ -50,17 +36,14 @@
 			<!-- Header -->
 
 			<div class="row padding">
-				<a href="index.html" th:href="@{/testaus}"> <img
-					src="../static/img/BSC_sinetti_logo.png"
-					th:src="@{/img/BSC_sinetti_logo.png}" alt="logo-sm" class="logo-sm" /></a>
+				<a href="index.html" th:href="@{/testaus}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
+					 alt="logo-sm" class="logo-sm" /></a>
 				<h1 class="headertext" th:text="${kilpailu.nimi}+' - Data'"></h1>
 				<div class="row padding" th:if="${kilpailu.testi==1}">
-					<form th:if="${kouluLkm==0}"
-						th:action="@{'/luodatat/'+${kilpailu.kilpailuId}}">
+					<form th:if="${kouluLkm==0}" th:action="@{'/luodatat/'+${kilpailu.kilpailuId}}">
 						<button class="btn btn-sm btn-danger">Lisää Testidata</button>
 					</form>
-					<form th:if="${arviointiLkm==0}"
-						th:action="@{'/luoarviot/'+${kilpailu.kilpailuId}}">
+					<form th:if="${arviointiLkm==0}" th:action="@{'/luoarviot/'+${kilpailu.kilpailuId}}">
 						<button class="btn btn-sm btn-info">Lisää Arvioinnit</button>
 					</form>
 				</div>
@@ -72,105 +55,114 @@
 			<!-- Kilpailudata -->
 
 			<div class="row padding">
-				<form th:if="${luofinaali==1 && kilpailu.auki==0}"
-					th:action="@{'/siirryfinaaliin/'+${kilpailu.kilpailuId}}">
+				<form th:if="${luofinaali==1 && kilpailu.auki==0}" th:action="@{'/siirryfinaaliin/'+${kilpailu.kilpailuId}}">
 					<button class="btn btn-sm btn-danger">Siirry
 						finaalivaiheeseen</button>
 				</form>
 			</div>
 
 			<div class="row padding">
-				<form th:if="${kilpailu.finaali==1}"
-					th:action="@{'/finaalidatat/'+${kilpailu.kilpailuId}}">
+				<form th:if="${kilpailu.finaali==1}" th:action="@{'/finaalidatat/'+${kilpailu.kilpailuId}}">
 					<button class="btn btn-sm btn-danger">Näytä finaalin
 						tiedot</button>
 				</form>
 			</div>
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+					 aria-controls="collapseExample" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+					 aria-controls="collapseExample">
 						<tr class="table-info">
-							<th scope="col">Kilpailu</th>
+							<th scope="col">
+								Kilpailu
+							</th>
 							<th scope="col"></th>
 							<th scope="col"></th>
 							<th scope="col"></th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Id</td>
-							<td>Nimi</td>
-							<td>Pvm</td>
-							<td>Sijainti</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td th:text="${kilpailu.kilpailuId}"></td>
-							<td th:text="${kilpailu.nimi}"></td>
-							<td th:text="${kilpailu.pvm}"></td>
-							<td th:text="${kilpailu.paikka}"></td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									th:action="@{'/editkilpailu/'+${kilpailu.kilpailuId}}">
-									<button class="btn btn-sm btn-warning">Muokkaa</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
 				</table>
+				<div class="collapse show" id="collapseExample">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td>Nimi</td>
+								<td>Pvm</td>
+								<td>Sijainti</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td th:text="${kilpailu.kilpailuId}"></td>
+								<td th:text="${kilpailu.nimi}"></td>
+								<td th:text="${kilpailu.pvm}"></td>
+								<td th:text="${kilpailu.paikka}"></td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" th:action="@{'/editkilpailu/'+${kilpailu.kilpailuId}}">
+										<button class="btn btn-sm btn-warning">Muokkaa</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<hr>
 
-
 			<!-- Koulut data -->
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Koulut</th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false"
+					 aria-controls="collapseExample2">
+						<th scope="col">
+							Koulut
+						</th>
 						<th scope="col" th:text="${kouluLkm}+' kpl'"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Koulun Id</td>
-							<td>Koulun Nimi</td>
-							<td>Koulun Kaupunki</td>
-							<td></td>
-						</tr>
-						<tr th:each="koulu:${koulut}">
-							<td th:text="${koulu.kouluId}"></td>
-							<td th:text="${koulu.kouluNimi}"></td>
-							<td th:text="${koulu.kouluKaupunki}"></td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									th:action="@{'/editkoulu/'+${koulu.kouluId}}">
-									<button class="btn btn-sm btn-warning">Muokkaa</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
 				</table>
-				<form
-					th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}"
-					th:action="@{'/luokoulu/'+${kilpailu.kilpailuId}}">
-					<button class="btn btn-sm btn-info">Lisää uusi</button>
-				</form>
+				<div class="collapse" id="collapseExample2">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Koulun Id</td>
+								<td>Koulun Nimi</td>
+								<td>Koulun Kaupunki</td>
+								<td></td>
+							</tr>
+							<tr th:each="koulu:${koulut}">
+								<td th:text="${koulu.kouluId}"></td>
+								<td th:text="${koulu.kouluNimi}"></td>
+								<td th:text="${koulu.kouluKaupunki}"></td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" th:action="@{'/editkoulu/'+${koulu.kouluId}}">
+										<button class="btn btn-sm btn-warning">Muokkaa</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}" th:action="@{'/luokoulu/'+${kilpailu.kilpailuId}}">
+						<button class="btn btn-sm btn-info">Lisää uusi</button>
+					</form>
+				</div>
 			</div>
-
 			<hr>
-
 
 			<!-- Kilpailijat data -->
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Kilpailijat</th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false"
+					 aria-controls="collapseExample3">
+						<th scope="col">
+							Kilpailijat
+						</th>
 						<th scope="col" th:text="${kilpailijaLkm}+' kpl'"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -180,85 +172,89 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td>Etunimi</td>
-							<td>Sukunimi</td>
-							<td>Sähköposti</td>
-							<td>Koulu</td>
-							<td>Alkuerä</td>
-							<td>Kokonaistulos</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr th:each="kilpailija:${kilpailijat}">
-							<td th:if="${kilpailija.finaalissa==0}"></td>
-							<td th:if="${kilpailija.finaalissa == 1}"><img
-								src="../static/img/kruunu.png" th:src="@{/img/kruunu.png}"
-								alt="kruunu-sm" /></td>
-							<td th:text="${kilpailija.etunimi}"></td>
-							<td th:text="${kilpailija.sukunimi}"></td>
-							<td th:text="${kilpailija.sposti}"></td>
-							<td th:text="${kilpailija.koulu.kouluNimi}"></td>
-							<td th:text="${kilpailija.lohko.lohkoNro}"></td>
-							<td th:text="${kilpailija.kokonaistulos}"></td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									th:action="@{'/editkilpailija/'+${kilpailija.kilpailijaId}}">
-									<button class="btn btn-sm btn-warning">Muokkaa</button>
-								</form>
-							</td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									onSubmit="if(!confirm('Haluatko varmasti poistaa kilpailijan?')){return false;}"
-									th:action="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">
-									<button class="btn btn-sm btn-danger">Poista</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
 				</table>
-				<form
-					th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0 && kouluLkm>0}"
-					th:action="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">
-					<button class="btn btn-sm btn-info">Lisää uusi</button>
-				</form>
+				<div class="collapse" id="collapseExample3">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td></td>
+								<td>Etunimi</td>
+								<td>Sukunimi</td>
+								<td>Sähköposti</td>
+								<td>Koulu</td>
+								<td>Alkuerä</td>
+								<td>Kokonaistulos</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr th:each="kilpailija:${kilpailijat}">
+								<td th:if="${kilpailija.finaalissa==0}"></td>
+								<td th:if="${kilpailija.finaalissa == 1}"><img src="../static/img/kruunu.png" th:src="@{/img/kruunu.png}" alt="kruunu-sm" /></td>
+								<td th:text="${kilpailija.etunimi}"></td>
+								<td th:text="${kilpailija.sukunimi}"></td>
+								<td th:text="${kilpailija.sposti}"></td>
+								<td th:text="${kilpailija.koulu.kouluNimi}"></td>
+								<td th:text="${kilpailija.lohko.lohkoNro}"></td>
+								<td th:text="${kilpailija.kokonaistulos}"></td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" th:action="@{'/editkilpailija/'+${kilpailija.kilpailijaId}}">
+										<button class="btn btn-sm btn-warning">Muokkaa</button>
+									</form>
+								</td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa kilpailijan?')){return false;}"
+									 th:action="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">
+										<button class="btn btn-sm btn-danger">Poista</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0 && kouluLkm>0}" th:action="@{'/luokilpailija/'+${kilpailu.kilpailuId}}">
+						<button class="btn btn-sm btn-info">Lisää uusi</button>
+					</form>
+				</div>
 			</div>
-
 			<hr>
 
 			<!-- Lohkot data -->
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Erät</th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false"
+					 aria-controls="collapseExample4">
+						<th scope="col">
+							Erät
+						</th>
 						<th scope="col"></th>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Id</td>
-							<td>Alkuerä</td>
-						</tr>
-						<tr th:each="lohko:${lohkot}">
-							<td th:text="${lohko.lohkoId}"></td>
-							<td th:text="${lohko.lohkoNro}"></td>
-						</tr>
-					</tbody>
 				</table>
+				<div class="collapse" id="collapseExample4">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td>Alkuerä</td>
+							</tr>
+							<tr th:each="lohko:${lohkot}">
+								<td th:text="${lohko.lohkoId}"></td>
+								<td th:text="${lohko.lohkoNro}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-
 			<hr>
-
-
 
 			<!-- Tuomarit data -->
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Tuomarit</th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample5" aria-expanded="false"
+					 aria-controls="collapseExample5">
+						<th scope="col">
+							Tuomarit
+						</th>
 						<th scope="col" th:text="${tuomariLkm}+' kpl'"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -267,58 +263,61 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Id</td>
-							<td>Etunimi</td>
-							<td>Sukunimi</td>
-							<td>Tuomarinumero</td>
-							<td>Alkuerä</td>
-							<td>Finaalin Tuomari</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr th:each="tuomari:${tuomarit}">
-							<td th:text="${tuomari.tuomariId}"></td>
-							<td th:text="${tuomari.etunimi}"></td>
-							<td th:text="${tuomari.sukunimi}"></td>
-							<td th:text="${tuomari.tuomariNro}"></td>
-							<td th:text="${tuomari.lohkoNro}"></td>
-							<td>
-								<p th:if="${tuomari.finaaliin==0}">EI</p>
-								<p th:if="${tuomari.finaaliin==1}">KYLLÄ</p>
-							</td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									th:action="@{'/edittuomari/'+${tuomari.tuomariId}}">
-									<button class="btn btn-sm btn-warning">Muokkaa</button>
-								</form>
-							</td>
-							<td>
-								<form
-									th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}"
-									onSubmit="if(!confirm('Haluatko varmasti poistaa tuomarin?')){return false;}"
-									th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
-
-									<button class="btn btn-sm btn-danger">Poista</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
 				</table>
-				<form th:if="${kilpailu.auki==0}"
-					th:action="@{'/luotuomari/'+${kilpailu.kilpailuId}}">
-					<button class="btn btn-sm btn-info">Lisää uusi</button>
-				</form>
+				<div class="collapse" id="collapseExample5">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td>Etunimi</td>
+								<td>Sukunimi</td>
+								<td>Tuomarinumero</td>
+								<td>Alkuerä</td>
+								<td>Finaalin Tuomari</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr th:each="tuomari:${tuomarit}">
+								<td th:text="${tuomari.tuomariId}"></td>
+								<td th:text="${tuomari.etunimi}"></td>
+								<td th:text="${tuomari.sukunimi}"></td>
+								<td th:text="${tuomari.tuomariNro}"></td>
+								<td th:text="${tuomari.lohkoNro}"></td>
+								<td>
+									<p th:if="${tuomari.finaaliin==0}">EI</p>
+									<p th:if="${tuomari.finaaliin==1}">KYLLÄ</p>
+								</td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" th:action="@{'/edittuomari/'+${tuomari.tuomariId}}">
+										<button class="btn btn-sm btn-warning">Muokkaa</button>
+									</form>
+								</td>
+								<td>
+									<form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa tuomarin?')){return false;}"
+									 th:action="@{'/poistatuomari/'+${tuomari.tuomariId}}">
+
+										<button class="btn btn-sm btn-danger">Poista</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<form th:if="${kilpailu.auki==0}" th:action="@{'/luotuomari/'+${kilpailu.kilpailuId}}">
+						<button class="btn btn-sm btn-info">Lisää uusi</button>
+					</form>
+				</div>
 			</div>
 			<hr>
 
 			<!-- Ostajat data -->
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Ostajat</th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample6" aria-expanded="false"
+					 aria-controls="collapseExample6">
+						<th scope="col">
+							Ostajat
+						</th>
 						<th scope="col" th:text="${ostajaLkm}+' kpl'"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -326,191 +325,202 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Id</td>
-							<td>Etunimi</td>
-							<td>Sukunimi</td>
-							<td>Alkuerä</td>
-							<td>Finaalin ostaja</td>
-							<td></td>
-							<td></td>
-						</tr>
-
-						<tr th:each="ostaja:${ostajat}">
-							<td th:text="${ostaja.ostajaId}"></td>
-							<td th:text="${ostaja.ostajaEtunimi}"></td>
-							<td th:text="${ostaja.ostajaSukunimi}"></td>
-							<td th:text="${ostaja.lohkoNro}"></td>
-							<td>
-								<p th:if="${ostaja.finaaliin==0}">EI</p>
-								<p th:if="${ostaja.finaaliin==1}">KYLLÄ</p>
-							</td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									th:action="@{'/editostaja/'+${ostaja.ostajaId}}">
-									<button class="btn btn-sm btn-warning">Muokkaa</button>
-								</form>
-							</td>
-							<td>
-								<form th:if="${kilpailu.auki==0}"
-									onSubmit="if(!confirm('Haluatko varmasti poistaa ostajan?')){return false;}"
-									th:action="@{'/ostaja/poistaostaja/'+${ostaja.ostajaId}}">
-
-									<button class="btn btn-sm btn-danger">Poista</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
 				</table>
-				<form
-					th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}"
-					th:action="@{'/ostaja/luoostaja/'+${kilpailu.kilpailuId}}">
-					<button class="btn btn-sm btn-info">Lisää uusi</button>
-				</form>
+				<div class="collapse" id="collapseExample6">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td>Etunimi</td>
+								<td>Sukunimi</td>
+								<td>Alkuerä</td>
+								<td>Finaalin ostaja</td>
+								<td></td>
+								<td></td>
+							</tr>
+
+							<tr th:each="ostaja:${ostajat}">
+								<td th:text="${ostaja.ostajaId}"></td>
+								<td th:text="${ostaja.ostajaEtunimi}"></td>
+								<td th:text="${ostaja.ostajaSukunimi}"></td>
+								<td th:text="${ostaja.lohkoNro}"></td>
+								<td>
+									<p th:if="${ostaja.finaaliin==0}">EI</p>
+									<p th:if="${ostaja.finaaliin==1}">KYLLÄ</p>
+								</td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" th:action="@{'/editostaja/'+${ostaja.ostajaId}}">
+										<button class="btn btn-sm btn-warning">Muokkaa</button>
+									</form>
+								</td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa ostajan?')){return false;}"
+									 th:action="@{'/ostaja/poistaostaja/'+${ostaja.ostajaId}}">
+
+										<button class="btn btn-sm btn-danger">Poista</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<form th:if="${kilpailu.auki==0 && arviointiLkm==0 && ostajaArviointiLkm==0}" th:action="@{'/ostaja/luoostaja/'+${kilpailu.kilpailuId}}">
+						<button class="btn btn-sm btn-info">Lisää uusi</button>
+					</form>
+				</div>
+
 			</div>
 			<hr>
 
 			<!-- Valmentajan dataa -->
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Valmentajat</th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample7" aria-expanded="false"
+					 aria-controls="collapseExample7">
+						<th scope="col">
+							Valmentajat
+						</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
-
 					</thead>
-					<tbody>
-						<tr>
-							<td>Id</td>
-							<td>Etunimi</td>
-							<td>Sukunimi</td>
-							<td>Sähköposti</td>
-							<td>Koulu</td>
-							<td></td>
-
-						</tr>
-
-						<tr th:each="valmentaja:${valmentajat}">
-							<td th:text="${valmentaja.valmentajaId}"></td>
-							<td th:text="${valmentaja.etunimi}"></td>
-							<td th:text="${valmentaja.sukunimi}"></td>
-							<td th:text="${valmentaja.sposti}"></td>
-							<td th:text="${valmentaja.koulu.kouluNimi}"></td>
-							<td>
-
-								<form
-									th:action="@{'/editvalmentaja/'+${valmentaja.valmentajaId}}">
-									<button class="btn btn-sm btn-warning">Muokkaa</button>
-								</form>
-							</td>
-							<td>
-								<form
-									th:action="@{'/poistavalmentaja/'+${valmentaja.valmentajaId}}">
-									<button class="btn btn-sm btn-danger">Poista</button>
-								</form>
-							</td>
-						</tr>
-					</tbody>
 				</table>
-				<form
-					th:if="${kilpailu.auki==0  && kouluLkm>0}"
-					th:action="@{'/luovalmentaja/'+${kilpailu.kilpailuId}}">
-					<button class="btn btn-sm btn-info">Lisää uusi</button>
-				</form>
-
-
+				<div class="collapse" id="collapseExample7">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td>Etunimi</td>
+								<td>Sukunimi</td>
+								<td>Sähköposti</td>
+								<td>Koulu</td>
+								<td></td>
+							</tr>
+							<tr th:each="valmentaja:${valmentajat}">
+								<td th:text="${valmentaja.valmentajaId}"></td>
+								<td th:text="${valmentaja.etunimi}"></td>
+								<td th:text="${valmentaja.sukunimi}"></td>
+								<td th:text="${valmentaja.sposti}"></td>
+								<td th:text="${valmentaja.koulu.kouluNimi}"></td>
+								<td>
+									<form th:action="@{'/editvalmentaja/'+${valmentaja.valmentajaId}}">
+										<button class="btn btn-sm btn-warning">Muokkaa</button>
+									</form>
+								</td>
+								<td>
+									<form th:action="@{'/poistavalmentaja/'+${valmentaja.valmentajaId}}">
+										<button class="btn btn-sm btn-danger">Poista</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<form th:if="${kilpailu.auki==0  && kouluLkm>0}" th:action="@{'/luovalmentaja/'+${kilpailu.kilpailuId}}">
+						<button class="btn btn-sm btn-info">Lisää uusi</button>
+					</form>
+				</div>
 			</div>
-
+			<hr>
 
 			<!-- Arvioinnin valinta -->
 
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Arvioinnit</th>
-						<th scope="col"
-							th:text="${arviointiLkm+' kpl / '+arviointiTotal+' kpl'}"></th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample8" aria-expanded="false"
+					 aria-controls="collapseExample8">
+						<th scope="col">
+							Arvioinnit
+						</th>
+						<th scope="col" th:text="${arviointiLkm+' kpl / '+arviointiTotal+' kpl'}"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</thead>
-					<tr>
-						<td>Id</td>
-						<td>Kilpailijan nimi</td>
-						<td>Tuomarinumero</td>
-						<td>Pvm</td>
-						<td>Alkuerä</td>
-					</tr>
-					<tr th:each="arviointi:${arvioinnit}">
-						<td th:text="${arviointi.arviointiId}"></td>
-						<td
-							th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
-						<td th:text="${arviointi.tuomari.tuomariNro}"></td>
-						<td th:text="${arviointi.arviointiPvm}"></td>
-						<td th:text="${arviointi.lohko.lohkoNro}"></td>
-						<td>
-							<form th:action="@{'/tarkastelu/'+${arviointi.arviointiId}}">
-								<button class="btn btn-sm btn-warning">Tarkastele</button>
-							</form>
-						</td>
-						<td>
-							<form th:if="${kilpailu.auki==0}"
-								onSubmit="if(!confirm('Haluatko varmasti poistaa arvioinnin?')){return false;}"
-								th:action="@{'/poistaarviointi/'+${arviointi.arviointiId}}">
-
-								<button class="btn btn-sm btn-danger">Poista</button>
-							</form>
-						</td>
-					</tr>
 				</table>
-				<br>
+				<div class="collapse" id="collapseExample8">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td>Kilpailijan nimi</td>
+								<td>Tuomarinumero</td>
+								<td>Pvm</td>
+								<td>Alkuerä</td>
+							</tr>
+							<tr th:each="arviointi:${arvioinnit}">
+								<td th:text="${arviointi.arviointiId}"></td>
+								<td th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
+								<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+								<td th:text="${arviointi.arviointiPvm}"></td>
+								<td th:text="${arviointi.lohko.lohkoNro}"></td>
+								<td>
+									<form th:action="@{'/tarkastelu/'+${arviointi.arviointiId}}">
+										<button class="btn btn-sm btn-warning">Tarkastele</button>
+									</form>
+								</td>
+								<td>
+									<form th:if="${kilpailu.auki==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa arvioinnin?')){return false;}"
+									 th:action="@{'/poistaarviointi/'+${arviointi.arviointiId}}">
+
+										<button class="btn btn-sm btn-danger">Poista</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
+			<hr>
 
 			<!--Ostaja-arvioinnin valinta -->
-			<div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<th scope="col">Ostaja-arvioinnit</th>
-						<th scope="col"
-							th:text="${ostajaArviointiLkm+' kpl / '+ostajaArviointiTotal+' kpl'}"></th>
+			<div>
+				<table class="nopadding table">
+					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample9" aria-expanded="false"
+					 aria-controls="collapseExample9">
+						<th scope="col">
+							Ostaja-arvioinnit
+						</th>
+						<th scope="col" th:text="${ostajaArviointiLkm+' kpl / '+ostajaArviointiTotal+' kpl'}"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</thead>
-					<tr>
-						<td>Id</td>
-						<td>Kilpailijan nimi</td>
-						<td>Ostajan nimi</td>
-						<td>Pvm</td>
-						<td>Alkuerä</td>
-						<td>Arvosana</td>
-					</tr>
-					<tr th:each="arviointi:${ostajaArvioinnit}">
-						<td th:text="${arviointi.ostajaArviointiId}"></td>
-						<td
-							th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
-						<td
-							th:text="${arviointi.ostaja.ostajaEtunimi+' '+arviointi.ostaja.ostajaSukunimi}"></td>
-						<td th:text="${arviointi.arviointiPvm}"></td>
-						<td th:text="${arviointi.lohko.lohkoNro}"></td>
-						<td><h3 th:text="${arviointi.ostajanArvio}"></h3></td>
-						<td></td>
-						<td></td>
-					</tr>
 				</table>
-				<br>
+				<div class="collapse" id="collapseExample9">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td>Kilpailijan nimi</td>
+								<td>Ostajan nimi</td>
+								<td>Pvm</td>
+								<td>Alkuerä</td>
+								<td>Arvosana</td>
+							</tr>
+							<tr th:each="arviointi:${ostajaArvioinnit}">
+								<td th:text="${arviointi.ostajaArviointiId}"></td>
+								<td th:text="${arviointi.kilpailija.etunimi}+' '+${arviointi.kilpailija.sukunimi}"></td>
+								<td th:text="${arviointi.ostaja.ostajaEtunimi+' '+arviointi.ostaja.ostajaSukunimi}"></td>
+								<td th:text="${arviointi.arviointiPvm}"></td>
+								<td th:text="${arviointi.lohko.lohkoNro}"></td>
+								<td>
+									<h3 th:text="${arviointi.ostajanArvio}"></h3>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-
+			<hr>
 
 			<!-- Footer -->
 

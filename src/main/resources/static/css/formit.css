@@ -45,3 +45,7 @@ textarea {
     background-color: #96ceb4;
     border-style: none;
 }
+
+.nopadding {
+    margin-bottom: 0 !important;
+}
