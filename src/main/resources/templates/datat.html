@@ -395,6 +395,7 @@
 							<td>Sukunimi</td>
 							<td>Sähköposti</td>
 							<td>Koulu</td>
+							<td>Tarkastele</td>
 							<td></td>
 
 						</tr>
@@ -416,6 +417,12 @@
 								<form
 									th:action="@{'/poistavalmentaja/'+${valmentaja.valmentajaId}}">
 									<button class="btn btn-sm btn-danger">Poista</button>
+								</form>
+							</td>
+							<td>
+								<form
+									th:action="@{'/tarkastelevalmentaja/'+${valmentaja.valmentajaId}}">
+									<button class="btn btn-sm btn-danger">Tarkastele</button>
 								</form>
 							</td>
 						</tr>

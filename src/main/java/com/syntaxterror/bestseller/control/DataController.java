@@ -90,6 +90,7 @@ public class DataController {
 	public String dataa(@PathVariable Long kilpailuId, Model model) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("kilpailu", kilpailu);
+		model.addAttribute("kilpailuId", kilpailu.getKilpailuId());
 		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("kilpailijat", kilpailijat);
 		model.addAttribute("kilpailijaLkm", kilpailijat.size());
@@ -206,7 +207,7 @@ public class DataController {
 	 @RequestMapping("/sendMail/{kilpailuId}")
 		public String sendMail(@PathVariable Long kilpailuId, Model model) throws EmailException {
 		 
-		 	String recipient = "Tähän oma sähköposti :D";
+		 	String recipient = "a1503030@myy.haaga-helia.fi";
 		    String message = "testi1111111111111";
 		 	mailClient.prepareAndSend(recipient, message);
 		 	

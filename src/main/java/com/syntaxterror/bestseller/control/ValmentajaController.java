@@ -1,5 +1,7 @@
 package com.syntaxterror.bestseller.control;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.Valmentaja;
+import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.ValmentajaRepository;
@@ -20,6 +25,9 @@ public class ValmentajaController {
 
 	@Autowired
 	public KilpailuRepository kilpailuRepository;
+	
+	@Autowired
+	public KilpailijaRepository kilpailijaRepository;
 
 	@Autowired
 	public KouluRepository kouluRepository;
@@ -64,6 +72,16 @@ public class ValmentajaController {
 		valmentajaRepository.deleteById(valmentajaId);
 		String redirect = "redirect:/datat/" + Long.toString(valmentaja.getKilpailuId());
 		return redirect;
+	}
+	
+	@RequestMapping(value = "/tarkastelevalmentaja/{valmentajaId}")
+	public String tarkasteleValmentaja(@PathVariable Long valmentajaId,Model model){
+		Valmentaja valmentaja = valmentajaRepository.findByValmentajaId(valmentajaId);
+		model.addAttribute("kilpailuId", valmentaja.getKilpailuId());
+		Koulu koulu = kouluRepository.findByKouluId(valmentaja.getKoulu().getKouluId());
+		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKoulu(koulu);
+		model.addAttribute("kilpailijat", kilpailijat);
+		return "tarkastelevalmentaja";
 	}
 
 }

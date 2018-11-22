@@ -24,7 +24,7 @@ public class MailClient {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom("bestsellertesteri@gmail.com");
             messageHelper.setTo(recipient);
-            messageHelper.setSubject("Sample mail subject");
+            messageHelper.setSubject("Finaalin suoritukset");
             String content = mailContentBuilder.build(message);
             messageHelper.setText(content, true);
         };

@@ -9,7 +9,7 @@ import com.syntaxterror.bestseller.model.Valmentaja;
 
 public interface ValmentajaRepository extends CrudRepository<Valmentaja, Long> {
 	Valmentaja findByValmentajaId(Long ValmentajaId);
-
 	List<Valmentaja> findByKilpailuId(Long kilpailuId);
+	
 
 }

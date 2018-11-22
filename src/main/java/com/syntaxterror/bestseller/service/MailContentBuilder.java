@@ -31,8 +31,8 @@ public class MailContentBuilder {
     public String build(String message) {
         Context context = new Context();
         context.setVariable("message", message);
-        context.setVariable("kilpailu", kilpailuRepository.findByKilpailuId(new Long(104)));
-        Koulu koulu = kouluRepository.findByKouluId(new Long(297));
+        context.setVariable("kilpailu", kilpailuRepository.findByKilpailuId(new Long(121)));
+        Koulu koulu = kouluRepository.findByKouluId(new Long(350));
         context.setVariable("kilpailijat", kilpailijaRepository.findByKoulu(koulu));
         return templateEngine.process("sahkoposti", context);
     }
