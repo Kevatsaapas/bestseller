@@ -78,7 +78,8 @@
                         <table class="table">
                             <thead class="thead-custom">
                                 <tr class="table-info">
-                                    <th scope="col">Aloitus (10%)</th>
+                                    <th th:if="${kilpailu.finaali==1} scope="col">Aloitus (10%)</th>
+                                    <th th:if="${kilpailu.finaali==0} scope="col">Aloitus (5%)</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -155,7 +156,8 @@
                         <table class="table">
                             <thead class="thead-custom">
                                 <tr class="table-info">
-                                    <th scope="col">Tarvekartoitus (30%)</th>
+                                    <th th:if="${kilpailu.finaali==1}" scope="col">Tarvekartoitus (25%)</th>
+                                    <th th:if="${kilpailu.finaali==0}" scope="col">Tarvekartoitus (30%)</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
