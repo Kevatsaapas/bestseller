@@ -158,7 +158,7 @@ public class Kilpailija {
 		this.kokonaistulos = kokonaistulos;
 	}
 
-	public double getFinaalissa() {
+	public Long getFinaalissa() {
 		return finaalissa;
 	}
 

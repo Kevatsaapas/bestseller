@@ -95,24 +95,6 @@ public class DefaultController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/kilpailuvalittu/", method = RequestMethod.POST)
-	public String dataa(@RequestParam("kilpailuId") Long kilpailuId, Model model) {
-		Kilpailu valittukilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
-		model.addAttribute("kilpailu", valittukilpailu);
-		Iterable<Lohko> lohkot = lohkoRepository.findByKilpailu(valittukilpailu);
-		model.addAttribute("lohkot", lohkot);
-		return "valitselohko";
-	}
-
-	@RequestMapping(value = "/lohkovalittu/", method = RequestMethod.POST)
-	public String valikko(Model model, @RequestParam("kilpailuId") Long kilpailuId,
-			@RequestParam("lohkoId") Long lohkoId) {
-		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
-		Lohko valittulohko = lohkoRepository.findByLohkoId(lohkoId);
-		model.addAttribute("lohko", valittulohko);
-		return "valikko";
-	}
-
 	@RequestMapping("/testaus")
 	public String testaus(Model model) {
 		model.addAttribute("kilpailut", kilpailuRepository.findAll());
