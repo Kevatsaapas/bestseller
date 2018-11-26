@@ -69,7 +69,7 @@
 			</div>
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
 					 aria-controls="collapseExample">
 						<tr class="table-info">
@@ -87,10 +87,10 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Id</td>
-								<td>Nimi</td>
-								<td>Pvm</td>
-								<td>Sijainti</td>
+								<td><strong>ID</strong></td>
+								<td><strong>Nimi</strong></td>
+								<td><strong>Pvm</strong></td>
+								<td><strong>Sijainti</strong></td>
 								<td></td>
 							</tr>
 							<tr>
@@ -113,7 +113,7 @@
 			<!-- Koulut data -->
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false"
 					 aria-controls="collapseExample2">
 						<th scope="col">
@@ -129,9 +129,9 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Koulun Id</td>
-								<td>Koulun Nimi</td>
-								<td>Koulun Kaupunki</td>
+								<td><strong>Koulun ID</strong> </td>
+								<td><strong>Koulun nimi</strong> </td>
+								<td><strong>Koulun kaupunki</strong></td>
 								<td></td>
 							</tr>
 							<tr th:each="koulu:${koulut}">
@@ -156,7 +156,7 @@
 			<!-- Kilpailijat data -->
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false"
 					 aria-controls="collapseExample3">
 						<th scope="col">
@@ -177,12 +177,12 @@
 						<tbody>
 							<tr>
 								<td></td>
-								<td>Etunimi</td>
-								<td>Sukunimi</td>
-								<td>Sähköposti</td>
-								<td>Koulu</td>
-								<td>Alkuerä</td>
-								<td>Kokonaistulos</td>
+								<td><strong>Etunimi</strong></td>
+								<td><strong>Sukunimi</strong></td>
+								<td><strong>Sähköposti</strong></td>
+								<td><strong>Koulu</strong></td>
+								<td><strong>Alkuerä</strong></td>
+								<td><strong>Kokonaistulos</strong></td>
 								<td></td>
 								<td></td>
 							</tr>
@@ -219,7 +219,7 @@
 			<!-- Lohkot data -->
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false"
 					 aria-controls="collapseExample4">
 						<th scope="col">
@@ -232,8 +232,8 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Id</td>
-								<td>Alkuerä</td>
+								<td><strong>ID</strong></td>
+								<td><strong>Alkuerä</strong></td>
 							</tr>
 							<tr th:each="lohko:${lohkot}">
 								<td th:text="${lohko.lohkoId}"></td>
@@ -248,7 +248,7 @@
 			<!-- Tuomarit data -->
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample5" aria-expanded="false"
 					 aria-controls="collapseExample5">
 						<th scope="col">
@@ -267,12 +267,12 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Id</td>
-								<td>Etunimi</td>
-								<td>Sukunimi</td>
-								<td>Tuomarinumero</td>
-								<td>Alkuerä</td>
-								<td>Finaalin Tuomari</td>
+								<td><strong>ID</strong></td>
+								<td><strong>Etunimi</strong></td>
+								<td><strong>Sukunimi</strong></td>
+								<td><strong>Tuomarinumero</strong></td>
+								<td><strong>Alkuerä</strong></td>
+								<td><strong>Finaalin tuomari</strong></td>
 								<td></td>
 								<td></td>
 							</tr>
@@ -311,7 +311,7 @@
 			<!-- Ostajat data -->
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample6" aria-expanded="false"
 					 aria-controls="collapseExample6">
 						<th scope="col">
@@ -329,11 +329,11 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Id</td>
-								<td>Etunimi</td>
-								<td>Sukunimi</td>
-								<td>Alkuerä</td>
-								<td>Finaalin ostaja</td>
+								<td><strong>ID</strong></td>
+								<td><strong>Etunimi</strong></td>
+								<td><strong>Sukunimi</strong></td>
+								<td><strong>Alkuerä</strong></td>
+								<td><strong>Finaalin ostaja</strong></td>
 								<td></td>
 								<td></td>
 							</tr>
@@ -373,7 +373,7 @@
 			<!-- Valmentajan dataa -->
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample7" aria-expanded="false"
 					 aria-controls="collapseExample7">
 						<th scope="col">
@@ -391,11 +391,11 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Id</td>
-								<td>Etunimi</td>
-								<td>Sukunimi</td>
-								<td>Sähköposti</td>
-								<td>Koulu</td>
+								<td><strong>ID</strong></td>
+								<td><strong>Etunimi</strong></td>
+								<td><strong>Sukunimi</strong></td>
+								<td><strong>Sähköposti</strong></td>
+								<td><strong>Koulu</strong></td>
 								<td></td>
 							</tr>
 							<tr th:each="valmentaja:${valmentajat}">
@@ -427,7 +427,7 @@
 			<!-- Arvioinnin valinta -->
 
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample8" aria-expanded="false"
 					 aria-controls="collapseExample8">
 						<th scope="col">
@@ -445,11 +445,11 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Id</td>
-								<td>Kilpailijan nimi</td>
-								<td>Tuomarinumero</td>
-								<td>Pvm</td>
-								<td>Alkuerä</td>
+								<td><strong>ID</strong></td>
+								<td><strong>Kilpailijan nimi</strong></td>
+								<td><strong>Tuomarinumero</strong></td>
+								<td><strong>Pvm</strong></td>
+								<td><strong>Alkuerä</strong></td>
 							</tr>
 							<tr th:each="arviointi:${arvioinnit}">
 								<td th:text="${arviointi.arviointiId}"></td>
@@ -478,7 +478,7 @@
 
 			<!--Ostaja-arvioinnin valinta -->
 			<div>
-				<table class="nopadding table">
+				<table class="nopadding table table-striped">
 					<thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample9" aria-expanded="false"
 					 aria-controls="collapseExample9">
 						<th scope="col">
@@ -496,12 +496,12 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Id</td>
-								<td>Kilpailijan nimi</td>
-								<td>Ostajan nimi</td>
-								<td>Pvm</td>
-								<td>Alkuerä</td>
-								<td>Arvosana</td>
+								<td><strong>ID</strong></td>
+								<td><strong>Kilpailijan nimi</strong></td>
+								<td><strong>Ostajan nimi</strong></td>
+								<td><strong>Pvm</strong></td>
+								<td><strong>Alkuerä</strong></td>
+								<td><strong>Arvosana</strong></td>
 							</tr>
 							<tr th:each="arviointi:${ostajaArvioinnit}">
 								<td th:text="${arviointi.ostajaArviointiId}"></td>
