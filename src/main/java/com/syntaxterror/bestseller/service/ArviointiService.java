@@ -63,7 +63,11 @@ public class ArviointiService {
 	public JdbcTemplate jdbctemplate;
 
 	public void nuke(Long kilpailuId) {
-		String sql = "DELETE FROM kilpailija WHERE kilpailu_id=" + kilpailuId.toString() + ";";
+		String sql = "DELETE FROM arviointi WHERE kilpailu_id=" + kilpailuId.toString() + ";";
+		jdbctemplate.execute(sql);
+		sql = "DELETE FROM valmentaja WHERE kilpailu_id=" + kilpailuId.toString() + ";";
+		jdbctemplate.execute(sql);
+		sql = "DELETE FROM ostaja_arviointi WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
 		List<Tuomari> tuomarit = tuomariRepository.findByKilpailuId(kilpailuId);
 		List<User> userit = userRepository.findByRooli("tuomari");
@@ -74,12 +78,11 @@ public class ArviointiService {
 				}
 			}
 		}
+		sql = "DELETE FROM kilpailija WHERE kilpailu_id=" + kilpailuId.toString() + ";";
+		jdbctemplate.execute(sql);
 		sql = "DELETE FROM tuomari WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
-		sql = "DELETE FROM lohko WHERE kilpailu_id=" + kilpailuId.toString() + ";";
-		jdbctemplate.execute(sql);
-		sql = "DELETE FROM koulu WHERE kilpailu_id=" + kilpailuId.toString() + ";";
-		jdbctemplate.execute(sql);
+		
 
 		List<Ostaja> ostajat = ostajaRepository.findByKilpailuId(kilpailuId);
 		List<User> userit2 = userRepository.findByRooli("ostaja");
@@ -90,15 +93,13 @@ public class ArviointiService {
 				}
 			}
 		}
-
+		sql = "DELETE FROM lohko WHERE kilpailu_id=" + kilpailuId.toString() + ";";
+		jdbctemplate.execute(sql);
+		sql = "DELETE FROM koulu WHERE kilpailu_id=" + kilpailuId.toString() + ";";
+		jdbctemplate.execute(sql);
 		sql = "DELETE FROM ostaja WHERE kilpailu_id=" + kilpailuId.toString() + ";";
 		jdbctemplate.execute(sql);
-		sql = "DELETE FROM arviointi WHERE kilpailu_id=" + kilpailuId.toString() + ";";
-		jdbctemplate.execute(sql);
-		sql = "DELETE FROM valmentaja WHERE kilpailu_id=" + kilpailuId.toString() + ";";
-		jdbctemplate.execute(sql);
-		sql = "DELETE FROM ostaja_arviointi WHERE kilpailu_id=" + kilpailuId.toString() + ";";
-		jdbctemplate.execute(sql);
+		
 
 		kilpailuRepository.deleteById(kilpailuId);
 	}
