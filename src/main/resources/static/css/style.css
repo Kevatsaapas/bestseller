@@ -134,11 +134,11 @@ body {
 .cover .btn-custom {
     padding: 10px 20px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 4px;
     /* width: 180px; */
-    height: 80px;
+    height: 60px;
     color: #fff;
-    font-size: 23pt;
+    font-size: 20pt;
 }
 
 .cover-heading {
