@@ -33,15 +33,15 @@
 				<a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
 					 alt="logo-sm" class="logo-sm" /></a>
 				<h1 class="headertext">Best Seller Admin</h1>
-				<form th:action="@{/logout}" method="post">
-					<input type="submit" value="Kirjaudu ulos" />
-				</form>
 			</div>
 
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Olemassa olevat kilpailut</th>
+						<th></th>
+						<th></th>
+						<th></th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -95,6 +95,7 @@
 			<form th:action="@{/luokilpailu}">
 				<button class="btn btn-lg btn-success">Luo kilpailu</button>
 			</form>
+
 			<!-- Käyttäjädata -->
 
 			<div class="row padding">
@@ -111,11 +112,11 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>Id</td>
-							<td>käyttäjänimi</td>
-							<td>Admin</td>
-							<td>Rooli</td>
-							<td>RooliId</td>
+							<td><strong>ID</strong></td>
+							<td><strong>Käyttäjänimi</strong></td>
+							<td><strong>Admin</strong></td>
+							<td><strong>Rooli</strong></td>
+							<td><strong>Rooli-ID</strong></td>
 						</tr>
 
 						<tr th:each="kayt:${users}">
@@ -132,9 +133,12 @@
 				</table>
 			</div>
 			<hr>
-			<form th:action="@{/logout}" method="post">
-				<input type="submit" value="Kirjaudu ulos" />
-			</form>
+			<div class="row padding mb-3">
+				<form th:action="@{/logout}" method="post">
+					<input class="btn btn-lg btn-danger" type="submit" value="Kirjaudu ulos" />
+				</form>
+			</div>
+
 		</div>
 	</div>
 </body>
