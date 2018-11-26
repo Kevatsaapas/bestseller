@@ -57,8 +57,7 @@
 							<p class="lead">Kilpailu on suljettu tällä hetkellä.</p>
 						</div>
 						<div class="row">
-
-							<div class="col-lg-6 col-md-6">
+							<div class="col-lg-12">
 								<div th:if="${kilpailu.auki==1 && kilpailu.finaali==0 && valmis==0}">
 									<form th:action="@{/tuomarointi/}" method="POST">
 										<input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}" /> <input type="hidden" name="kilpailuId"
@@ -68,8 +67,9 @@
 									</form>
 								</div>
 							</div>
-
-							<div class="col-lg-6 col-md-6">
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
 								<div th:if="${kilpailu.auki==1 && kilpailu.finaali==1 && tuomari.finaaliin==1 && valmis==0}">
 									<form th:action="@{/finaalituomarointi/}" method="POST">
 										<input type="hidden" name="lohkoId" th:value="${lohko.lohkoId}" /> <input type="hidden" name="kilpailuId"
@@ -79,26 +79,30 @@
 									</form>
 								</div>
 							</div>
+
 						</div>
 						<div class="row">
 							<div class="col-lg-12">
 								<div th:if="${kilpailu.auki==1 && kilpailu.finaali==1 && tuomari.finaaliin==0}">
 									<p class="lead">Hei, kilpailu on siirtynyt finaaliin. Kiitos
 										arvioinnista!</p>
-
 								</div>
 							</div>
 						</div>
-						<form th:action="@{/logout}" , method="post">
-							<button class="btn btn-custom btn-danger" type="submit">
-								Kirjaudu ulos</a>
-							</button>
-						</form>
+						<div class="row">
+							<div class="col-lg-12">
+								<form th:action="@{/logout}" , method="post">
+									<button class="btn btn-custom btn-danger" type="submit">
+										Kirjaudu ulos</a>
+									</button>
+								</form>
+							</div>
+
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </body>
 
