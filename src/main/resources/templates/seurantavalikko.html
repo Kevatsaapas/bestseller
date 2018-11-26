@@ -36,13 +36,16 @@
 
 <body>
 	<div class="indexbody h-100">
-
 		<div class="site-wrapper">
 			<div class="site-wrapper-inner">
 				<div class="cover-container">
 					<div class="masthead clearfix"></div>
+					<div class="inner cover">
 
-					<p class="lead">Valitse kilpailu:
+						<a href="login.html" th:href="@{/login}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
+							 alt="logo" class="logo" /></a>
+
+						<p class="lead">Valitse kilpailu:</p>
 						<div class="row">
 							<table class="table table-striped">
 								<thead>
@@ -66,15 +69,12 @@
 								</tbody>
 							</table>
 						</div>
-
+					</div>
 				</div>
 			</div>
-
 		</div>
+	</div>
 
-	</div>
-	</div>
-	</div>
 </body>
 
 </html>
