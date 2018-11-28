@@ -238,7 +238,7 @@ public class DataController {
 			public String sendMail(@PathVariable Long kilpailijaId, Model model) {
 			 	Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
 			 	Long kilpailuId = kilpailija.getKilpailuId();
-			 	String recipient = "urpo.pekka@gmail.com";
+			 	String recipient = kilpailija.getSposti();
 			    String message = "testi1111111111111";
 			 	mailClient.prepareAndSend(recipient, message, kilpailija.getKilpailuId(), kilpailija.getKilpailijaId());
 			 	

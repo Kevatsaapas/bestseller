@@ -12,11 +12,13 @@ import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.OstajaArviointi;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 
 @Service
 public class MailContentBuilder {
@@ -30,6 +32,9 @@ public class MailContentBuilder {
     
     @Autowired
     private ArviointiRepository arviointiRepository;
+    
+    @Autowired
+    private OstajaArviointiRepository ostajaArviointiRepository;
     
     @Autowired
     private KouluRepository kouluRepository;
@@ -63,7 +68,12 @@ public class MailContentBuilder {
     	Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
     	List<Arviointi> finaaliArvioinnit = arviointiRepository.findByKilpailijaAndLohko(kilpailija, finaalilohko);
     	context.setVariable("finaaliArvioinnit", finaaliArvioinnit);
-    	System.out.println(finaalilohko.getLohkoId());
+
+    	List<OstajaArviointi> ostajaArvioinnit = ostajaArviointiRepository.findByKilpailijaAndLohko(kilpailija, lohko);
+    	context.setVariable("ostajaArvioinnit", ostajaArvioinnit);
+    	
+    	List<OstajaArviointi> ostajaFinaaliArvioinnit = ostajaArviointiRepository.findByKilpailijaAndLohko(kilpailija, finaalilohko);
+    	context.setVariable("ostajaFinaaliArvioinnit", ostajaFinaaliArvioinnit);
     	return templateEngine.process("sahkoposti_kilpailija", context);
     }
 

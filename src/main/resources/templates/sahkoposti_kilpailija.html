@@ -512,6 +512,26 @@
 			</div>
 
                     </tr>
+                    
+                    <tr>
+                    <p>Ostajan arvio(t) alkuerästä: (Max 7p)</p>
+                    </tr>
+                    
+                    <tr th:each="arvio:${ostajaArvioinnit}">
+                    <td th:text="${arvio.ostajanArvio}"></td>
+                    </tr>
+                    <br/>
+                    
+                     <tr>
+                    <p>Ostajan arvio(t) finaalista: (Max 7p)</p>
+                    </tr>
+                    
+                    <tr th:each="arvio:${ostajaFinaaliArvioinnit}">
+                    <td th:text="${arvio.ostajanArvio}"></td>
+                    </tr>
+                    <br/>
+                    <br/>
+                    
 
                     <!-- Footer -->
 

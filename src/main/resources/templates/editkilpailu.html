@@ -64,6 +64,8 @@
 			<div class="padding col-5">
 				<form role="form" th:object="${kilpailu}" th:action="@{/updatekilpailu}" action="#" method="post">
 					<input type="hidden" class="nimi" th:required="required" th:field="*{kilpailuId}" />
+					<input type="hidden" class="nimi" th:required="required" th:field="*{valmis}" />
+					<input type="hidden" class="nimi" th:required="required" th:field="*{finaali}" />
 
 					<div class="form-group">
 						<label for="nimi">Kilpailun nimi:</label> <input type="text" class="form-control" id="nimi" th:required="required"
