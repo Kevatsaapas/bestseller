@@ -30,4 +30,6 @@ public interface ArviointiRepository extends CrudRepository<Arviointi, Long> {
 	List<Arviointi> deleteByTuomari(Tuomari tuomari);
 
 	List<Arviointi> findByTuomariAndLohko(Tuomari tuomari, Lohko lohko);
+
+	List<Arviointi> findByLohko(Lohko lohko);
 }

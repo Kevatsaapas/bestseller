@@ -17,6 +17,7 @@ import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
+import com.syntaxterror.bestseller.service.MailClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,9 @@ public class DataController {
     
     @Autowired
 	private ValmentajaRepository valmentajaRepository;
+    
+    @Autowired
+	private MailClient mailClient;
 
 	private String[] etunimet = { "Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli",
 			"Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari",
@@ -228,6 +232,22 @@ public class DataController {
 
 		 return "redirect:/datat/" + kilid;
 	 }
+	 
+	//mail toimii kovakoodattuna :D
+		 @RequestMapping("/sendMail/{kilpailijaId}")
+			public String sendMail(@PathVariable Long kilpailijaId, Model model) {
+			 	Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
+			 	Long kilpailuId = kilpailija.getKilpailuId();
+			 	String recipient = "urpo.pekka@gmail.com";
+			    String message = "testi1111111111111";
+			 	mailClient.prepareAndSend(recipient, message, kilpailija.getKilpailuId(), kilpailija.getKilpailijaId());
+			 	
+				String kilid = kilpailuId.toString();
+				System.out.println("mentiin emailin läpi käy kattoo sposti");
+				return "redirect:/datat/"+kilid;
+			 	
+			 
+			}
 	 
 	@RequestMapping("/luodatat/{kilpailuId}")
 	public String luoDataa(@PathVariable Long kilpailuId, Model model) {

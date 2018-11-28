@@ -201,11 +201,19 @@
 									</form>
 								</td>
 								<td>
-									<form th:if="${kilpailu.auki==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa kilpailijan?')){return false;}"
+									<form  th:if="${kilpailu.auki==0}" onSubmit="if(!confirm('Haluatko varmasti poistaa kilpailijan?')){return false;}"
 									 th:action="@{'/poistakilpailija/'+${kilpailija.kilpailijaId}}">
 										<button class="btn btn-sm btn-danger">Poista</button>
 									</form>
 								</td>
+								
+								<td>
+									<form th:if="${kilpailu.valmis==1}" onSubmit="if(!confirm('Haluatko varmasti lähettää tulokset kilpailijalle?')){return false;}"
+									 th:action="@{'/sendMail/'+${kilpailija.kilpailijaId}}">
+										<button class="btn btn-sm btn-info">Lähetä arvioinnit</button>
+									</form>
+								</td>
+								
 							</tr>
 						</tbody>
 					</table>
