@@ -1,13 +1,9 @@
 package com.syntaxterror.bestseller.control;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,35 +12,28 @@ import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
-import com.syntaxterror.bestseller.repository.KilpailijaRepository;
-import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 
 @Controller
 @RequestMapping(value = "/arviointi")
+@Transactional
 public class ArviointiController {
 
 	@Autowired
-	public ArviointiRepository arviointiRepository;
+	private ArviointiRepository arviointiRepository;
 
 	@Autowired
-	public KilpailijaRepository kilpailijaRepository;
+	private TuomariRepository tuomariRepository;
 
 	@Autowired
-	public TuomariRepository tuomariRepository;
-
-	@Autowired
-	public KilpailuRepository kilpailuRepository;
-
-	@Autowired
-	public LohkoRepository lohkoRepository;
+	private LohkoRepository lohkoRepository;
 
 	
 
 	@RequestMapping(value = "/tallenna/{kilpailuId}/{lohkoId}/{tuomariId}", method = RequestMethod.POST)
-	public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId,
-			@PathVariable Long tuomariId) {
+	public String tallennaArviointi(Arviointi arviointi, @PathVariable Long kilpailuId, @PathVariable Long lohkoId, @PathVariable Long tuomariId) {
+
 		Date arviointipvm = new Date();
 		arviointi.setArviointiPvm(arviointipvm);
 		arviointi.setKilpailuId(kilpailuId);
@@ -62,6 +51,7 @@ public class ArviointiController {
 
 		double kokonaistulos = painotettuAloitus + painotettuKasittely + painotettuPaattaminen + painotettuRatkaisu
 				+ painotettuTarvekartoitus + painotettuYleisvaikutelma;
+
 		arviointi.setKokonaistulos(kokonaistulos);
 		arviointiRepository.save(arviointi);
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,24 +28,32 @@ import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
 
 @Controller
+@Transactional
 public class LeaderboardController {
 
 	@Autowired
-	public LeaderboardService leaderboardService;
+    private LeaderboardService leaderboardService;
+
 	@Autowired
-	public ArviointiService arviointiService;
+    private ArviointiService arviointiService;
+
 	@Autowired
-	public KilpailuRepository kilpailuRepository;
+    private KilpailuRepository kilpailuRepository;
+
 	@Autowired
-	public KilpailijaRepository kilpailijaRepository;
+    private KilpailijaRepository kilpailijaRepository;
+
 	@Autowired
-	public ArviointiRepository arviointiRepository;
+    private ArviointiRepository arviointiRepository;
+
 	@Autowired
-	public OstajaArviointiRepository ostajaArviointiRepository;
+    private OstajaArviointiRepository ostajaArviointiRepository;
+
 	@Autowired
-	public KouluRepository kouluRepository;
+    private KouluRepository kouluRepository;
+
 	@Autowired
-	public LohkoRepository lohkoRepository;
+    private LohkoRepository lohkoRepository;
 
 	@RequestMapping("/pisteet/{kilpailuId}")
 	private String luoLeaderboard(@PathVariable Long kilpailuId, Model model) {

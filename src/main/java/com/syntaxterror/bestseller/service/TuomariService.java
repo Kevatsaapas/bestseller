@@ -19,8 +19,10 @@ import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class TuomariService {
 
 	@Autowired
@@ -46,6 +48,7 @@ public class TuomariService {
 		List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndLohko(tuomari.getKilpailuId(), lohko);
 		List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
 		List<Arviointi> arvioinnit = arviointiRepository.findByTuomari(tuomari);
+
 		for (Kilpailija kilpailija : kilp) {
 			Boolean match = false;
 			for (int i = 0; i < arvioinnit.size(); i++) {
@@ -59,7 +62,7 @@ public class TuomariService {
 				kilpailijat.add(kilpailija);
 			}
 		}
-		;
+
 		return kilpailijat;
 	}
 
@@ -69,6 +72,7 @@ public class TuomariService {
 				new Long(1));
 		List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
 		List<Arviointi> arvioinnit = arviointiRepository.findByTuomariAndLohko(tuomari, lohko);
+
 		for (Kilpailija kilpailija : kilp) {
 			Boolean match = false;
 			for (int i = 0; i < arvioinnit.size(); i++) {
@@ -90,6 +94,7 @@ public class TuomariService {
 		List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndFinaalissa(ostaja.getKilpailuId(), new Long(1));
 		List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
 		List<OstajaArviointi> arvioinnit = ostajaArviointiRepository.findByOstajaAndLohko(ostaja, lohko);
+
 		for (Kilpailija kilpailija : kilp) {
 			Boolean match = false;
 			for (int i = 0; i < arvioinnit.size(); i++) {
@@ -102,7 +107,7 @@ public class TuomariService {
 				kilpailijat.add(kilpailija);
 			}
 		}
-		;
+
 		return kilpailijat;
 	}
 
@@ -111,6 +116,7 @@ public class TuomariService {
 		List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndLohko(ostaja.getKilpailuId(), lohko);
 		List<Kilpailija> kilpailijat = new ArrayList<Kilpailija>();
 		List<OstajaArviointi> ostarvioinnit = ostajaArviointiRepository.findByOstaja(ostaja);
+
 		for (Kilpailija kilpailija : kilp) {
 			Boolean match = false;
 			for (int i = 0; i < ostarvioinnit.size(); i++) {
@@ -124,6 +130,7 @@ public class TuomariService {
 				kilpailijat.add(kilpailija);
 			}
 		}
+
 		return kilpailijat;
 	}
 
@@ -135,8 +142,10 @@ public class TuomariService {
 		if (kilpailu.getFinaali() == 0) {
 			List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndLohko(tuomari.getKilpailuId(), lohko);
 			List<Arviointi> arvioinnit = arviointiRepository.findByTuomari(tuomari);
+
 			for (Kilpailija kilpailija : kilp) {
 				Boolean match = false;
+
 				for (int i = 0; i < arvioinnit.size(); i++) {
 					Arviointi arviointi = arvioinnit.get(i);
 					Lohko loh = arviointi.getLohko();
@@ -149,23 +158,27 @@ public class TuomariService {
 				}
 			}
 		} else {
+
 			Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
 			List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndFinaalissa(tuomari.getKilpailuId(),
 					new Long(1));
 			List<Arviointi> arvioinnit = arviointiRepository.findByTuomariAndLohko(tuomari, finaalilohko);
 			for (Kilpailija kilpailija : kilp) {
 				Boolean match = false;
+
 				for (int i = 0; i < arvioinnit.size(); i++) {
 					Arviointi arviointi = arvioinnit.get(i);
 					if (kilpailija.equals(arviointi.getKilpailija())) {
 						match = true;
 					}
 				}
+
 				if (!match) {
 					kilpailijat.add(kilpailija);
 				}
 			}
 		}
+
 		if (kilpailijat.size() > 0) {
 			return false;
 		} else {
@@ -181,8 +194,10 @@ public class TuomariService {
 		if (kilpailu.getFinaali() == 0) {
 			List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndLohko(ostaja.getKilpailuId(), lohko);
 			List<OstajaArviointi> ostarvioinnit = ostajaArviointiRepository.findByOstaja(ostaja);
+
 			for (Kilpailija kilpailija : kilp) {
 				Boolean match = false;
+
 				for (int i = 0; i < ostarvioinnit.size(); i++) {
 					OstajaArviointi ostajaArviointi = ostarvioinnit.get(i);
 					Lohko loh = ostajaArviointi.getLohko();
@@ -199,6 +214,7 @@ public class TuomariService {
 			List<Kilpailija> kilp = kilpailijaRepository.findByKilpailuIdAndFinaalissa(ostaja.getKilpailuId(),
 					new Long(1));
 			List<OstajaArviointi> ostarvioinnit = ostajaArviointiRepository.findByOstajaAndLohko(ostaja, finaalilohko);
+
 			for (Kilpailija kilpailija : kilp) {
 				Boolean match = false;
 				for (int i = 0; i < ostarvioinnit.size(); i++) {
@@ -213,11 +229,12 @@ public class TuomariService {
 			}
 		}
 		if (kilpailijat.size() > 0) {
-			return false;
+
+		    return false;
+
 		} else {
+
 			return true;
 		}
-
 	}
-
 }

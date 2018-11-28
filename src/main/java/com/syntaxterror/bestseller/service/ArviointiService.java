@@ -31,6 +31,7 @@ import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 import com.syntaxterror.bestseller.repository.OstajaRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ArviointiService {

@@ -10,7 +10,6 @@ import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.Lohko;
 
 @Repository
-@Transactional
 public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	Kilpailija findByKilpailijaId(Long kilpailijaId);
 

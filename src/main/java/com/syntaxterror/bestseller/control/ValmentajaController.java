@@ -1,9 +1,9 @@
 package com.syntaxterror.bestseller.control;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,19 +16,19 @@ import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.ValmentajaRepository;
 
 @Controller
+@Transactional
 public class ValmentajaController {
 
 	@Autowired
-	public KilpailuRepository kilpailuRepository;
+	private KilpailuRepository kilpailuRepository;
 
 	@Autowired
-	public KouluRepository kouluRepository;
+	private KouluRepository kouluRepository;
 
 	@Autowired
-	public ValmentajaRepository valmentajaRepository;
+	private ValmentajaRepository valmentajaRepository;
 
 	@RequestMapping("/luovalmentaja/{kilpailuId}")
-	@Transactional
 	public String luoValmentaja(Model model, @PathVariable Long kilpailuId, Valmentaja valmentaja) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
 		model.addAttribute("kilpailu", kilpailu);
@@ -38,7 +38,6 @@ public class ValmentajaController {
 	}
 
 	@RequestMapping(value = "/tallennavalmentaja", method = RequestMethod.POST)
-	@Transactional
 	public String tallennaValmentaja(Valmentaja valmentaja) {
 		valmentajaRepository.save(valmentaja);
 		String redirect = "redirect:/datat/" + Long.toString(valmentaja.getKilpailuId());
@@ -46,7 +45,6 @@ public class ValmentajaController {
 	}
 
 	@RequestMapping("/editvalmentaja/{valmentajaId}")
-	@Transactional
 	public String editValmentaja(Model model, @PathVariable Long valmentajaId) {
 		Valmentaja valmentaja = valmentajaRepository.findByValmentajaId(valmentajaId);
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(valmentaja.getKilpailuId());
@@ -58,7 +56,6 @@ public class ValmentajaController {
 	}
 
 	@RequestMapping(value = "/poistavalmentaja/{valmentajaId}", method = RequestMethod.GET)
-	@Transactional
 	public String poistaKilpailija(@PathVariable Long valmentajaId) {
 		Valmentaja valmentaja = valmentajaRepository.findByValmentajaId(valmentajaId);
 		valmentajaRepository.deleteById(valmentajaId);

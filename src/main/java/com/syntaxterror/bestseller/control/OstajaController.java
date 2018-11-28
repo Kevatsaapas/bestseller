@@ -30,31 +30,26 @@ import com.syntaxterror.bestseller.service.TuomariService;
 
 @RequestMapping(value = "/ostaja")
 @Controller
+@Transactional
 public class OstajaController {
 
 	@Autowired
-	public LohkoRepository lohkoRepository;
+	private LohkoRepository lohkoRepository;
 
 	@Autowired
-	public KilpailuRepository kilpailuRepository;
+	private KilpailuRepository kilpailuRepository;
 
 	@Autowired
-	public KilpailijaRepository kilpailijaRepository;
+	private OstajaRepository ostajaRepository;
 
 	@Autowired
-	public OstajaRepository ostajaRepository;
+	private UserRepository userRepository;
 
 	@Autowired
-	public UserRepository userRepository;
+	private OstajaArviointiRepository ostajaArviointiRepository;
 
 	@Autowired
-	public OstajaArviointiRepository ostajaArviointiRepository;
-
-	@Autowired
-	public ArviointiRepository arviointiRepository;
-
-	@Autowired
-	public TuomariService tuomariService;
+	private TuomariService tuomariService;
 
 	@RequestMapping(value = "/ostajaarviointi/", method = RequestMethod.POST)
 	public String palautaOstajaArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId,
@@ -66,14 +61,15 @@ public class OstajaController {
 		model.addAttribute("ostajaArviointi", new OstajaArviointi());
 		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
 		model.addAttribute("userostaja", ostaja);
-
 		model.addAttribute("kilpailijat", tuomariService.haeKilpailijatOstajalle(ostaja, lohko));
+
 		return "ostaja";
 	}
 
 	@RequestMapping(value = "/finaaliarviointi/", method = RequestMethod.POST)
 	public String palautaOstajaFinaaliArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId,
 			@RequestParam("kilpailuId") Long kilpailuId, @RequestParam("ostajaId") Long ostajaId) {
+
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
 		Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
 		Ostaja ostaja = ostajaRepository.findByOstajaId(ostajaId);
@@ -83,6 +79,7 @@ public class OstajaController {
 		model.addAttribute("userostaja", ostaja);
 
 		model.addAttribute("kilpailijat", tuomariService.haeFinalistitOstajalle(ostaja, lohko));
+
 		return "ostaja";
 	}
 
@@ -96,25 +93,27 @@ public class OstajaController {
 		ostajaArviointi.setOstaja(ostaja);
 		Lohko lohko = lohkoRepository.findByLohkoId(lohkoId);
 		ostajaArviointi.setLohko(lohko);
-
 		ostajaArviointiRepository.save(ostajaArviointi);
+
 		return "redirect:/";
 	}
 
 	@Secured("ADMIN")
 	@RequestMapping(value = "/poistaostaja/{ostajaId}", method = RequestMethod.GET)
-	@Transactional
 	public String poistaOstaja(@PathVariable Long ostajaId) {
 		Ostaja ostaja = ostajaRepository.findByOstajaId(ostajaId);
 		String redirect = "redirect:/datat/" + Long.toString(ostaja.getKilpailuId());
 		List<User> userit = userRepository.findByRooli("ostaja");
+
 		for (User user : userit) {
 			if (user.getrooliId().equals(ostaja.getOstajaId())) {
 				userRepository.delete(user);
 			}
 		}
+
 		ostajaArviointiRepository.deleteByOstaja(ostaja);
 		ostajaRepository.delete(ostaja);
+
 		return redirect;
 	}
 
@@ -126,6 +125,7 @@ public class OstajaController {
 		model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
 		model.addAttribute("kilpailu", kilpailu);
 		model.addAttribute("ostaja", ostaja);
+
 		return "editostaja";
 	}
 
@@ -145,6 +145,7 @@ public class OstajaController {
 		ostajaRepository.save(ostaja);
 		model.addAttribute("ostajaId", ostaja.getOstajaId());
 		String redirect = "redirect:/ostaja/luoostuser/" + Long.toString(ostaja.getOstajaId());
+
 		return redirect;
 	}
 
@@ -156,6 +157,7 @@ public class OstajaController {
 		siform.setRooli(rooli);
 		siform.setRooliId(ostajaId);
 		model.addAttribute("ostajasignupform", siform);
+
 		return "ostajasignup";
 	}
 

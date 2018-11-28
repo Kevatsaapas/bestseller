@@ -9,6 +9,7 @@ import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.Tuomari;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface ArviointiRepository extends CrudRepository<Arviointi, Long> {

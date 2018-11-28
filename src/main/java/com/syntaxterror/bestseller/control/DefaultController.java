@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +16,6 @@ import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.Ostaja;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.model.User;
-import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaRepository;
@@ -24,15 +24,17 @@ import com.syntaxterror.bestseller.repository.UserRepository;
 import com.syntaxterror.bestseller.service.TuomariService;
 
 @Controller
+@Transactional
 public class DefaultController {
+
 	@Autowired
-	public KilpailuRepository kilpailuRepository;
+	private KilpailuRepository kilpailuRepository;
+
 	@Autowired
-	public KilpailijaRepository kilpailijarepository;
+	private TuomariRepository tuomarirepository;
+
 	@Autowired
-	public TuomariRepository tuomarirepository;
-	@Autowired
-	public LohkoRepository lohkoRepository;
+	private LohkoRepository lohkoRepository;
 
 	@Autowired
 	private UserRepository urepository;
@@ -52,11 +54,15 @@ public class DefaultController {
 		String rooli = user.getRooli();
 		String role = user.getRole();
 		String admin = "ADMIN";
+
 		if (role.equals(admin)) {
+
 			model.addAttribute("kilpailut", kilpailuRepository.findAll());
 			model.addAttribute("users", urepository.findAll());
 			return "redirect:/testaus";
+
 		} else if (rooliId != null && rooli.equals("tuomari")) {
+
 			Tuomari tuo = tuomarirepository.findByTuomariId(rooliId);
 			Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(tuo.getKilpailuId());
 			model.addAttribute("kilpailu", kilpailu);
@@ -64,12 +70,15 @@ public class DefaultController {
 			Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro());
 			model.addAttribute("lohko", lohko);
 			Boolean valmis = tuomariService.onkotuomariValmis(tuo, lohko);
+
 			if (valmis) {
 				model.addAttribute("valmis", 1);
 			} else {
 				model.addAttribute("valmis", 0);
 			}
+
 			return "index";
+
 		} else if (rooliId != null && rooli.equals("ostaja")) {
 			Ostaja ost = ostajaRepository.findByOstajaId(rooliId);
 			Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(ost.getKilpailuId());
@@ -78,6 +87,7 @@ public class DefaultController {
 			Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, ost.getLohkoNro());
 			model.addAttribute("lohko", lohko);
 			Boolean valmis = tuomariService.onkoOstajaValmis(ost, lohko);
+
 			if (valmis) {
 				model.addAttribute("valmis", 1);
 			} else {
@@ -86,7 +96,6 @@ public class DefaultController {
 			return "ostajaindex";
 		} else {
 			return "norole";
-
 		}
 	}
 
@@ -99,6 +108,7 @@ public class DefaultController {
 	public String testaus(Model model) {
 		model.addAttribute("kilpailut", kilpailuRepository.findAll());
 		model.addAttribute("users", urepository.findAll());
+
 		return "testaus";
 	}
 
@@ -113,6 +123,7 @@ public class DefaultController {
 		model.addAttribute("usertuomari", tuomari);
 
 		model.addAttribute("kilpailijat", tuomariService.haeKilpailijatTuomarille(tuomari, lohko));
+
 		return "tuomarointisivu";
 	}
 
@@ -127,6 +138,7 @@ public class DefaultController {
 		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
 		model.addAttribute("usertuomari", tuomari);
 		model.addAttribute("kilpailijat", tuomariService.haeFinalistitTuomarille(tuomari, lohko));
+
 		return "tuomarointisivu";
 	}
 

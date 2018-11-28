@@ -3,11 +3,11 @@ package com.syntaxterror.bestseller.control;
 import java.text.ParseException;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,25 +25,26 @@ import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
 
 @Controller
+@Transactional
 public class KilpailuController {
 
 	@Autowired
-	public KilpailuRepository kilpailuRepository;
+	private KilpailuRepository kilpailuRepository;
 
 	@Autowired
-	public LohkoRepository lohkoRepository;
+	private LohkoRepository lohkoRepository;
 
 	@Autowired
-	public KilpailijaRepository kilpailijaRepository;
+	private KilpailijaRepository kilpailijaRepository;
 
 	@Autowired
-	public TuomariRepository tuomariRepository;
+	private TuomariRepository tuomariRepository;
 
 	@Autowired
-	public ArviointiService arviointiservice;
+	private ArviointiService arviointiservice;
 
 	@Autowired
-	public LeaderboardService leaderboardService;
+	private LeaderboardService leaderboardService;
 
 	@Secured("ADMIN")
 	@RequestMapping("/luokilpailu")
@@ -121,7 +122,6 @@ public class KilpailuController {
 	}
 
 	@RequestMapping(value = "/tallennakilpailu", method = RequestMethod.POST)
-	@Transactional
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss.SSSZ")
 	public String tallennaKilpailu(Kilpailu kilpailu) throws ParseException {
 		Long nolla = new Long(0);
@@ -134,7 +134,6 @@ public class KilpailuController {
 	}
 
 	@RequestMapping(value = "/poistakilpailu/{kilpailuId}", method = RequestMethod.GET)
-	@Transactional
 	public String poistaKilpailu(@PathVariable Long kilpailuId) {
 		arviointiservice.nuke(kilpailuId);
 		return "redirect:/testaus";

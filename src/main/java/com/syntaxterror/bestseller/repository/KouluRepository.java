@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Koulu;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface KouluRepository extends CrudRepository<Koulu, Long> {
