@@ -42,9 +42,7 @@
 				<div class="row padding">
 					<a href="index.html" th:href="@{/}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
 						 alt="logo-sm" class="logo-sm" /></a>
-					<h1 class="headertext" th:text="${kilpailu.nimi}"></h1>
-					<br />
-					<h2 class="headertext" th:text="'Alkuerä: '+${lohko.lohkoNro}"></h2>
+					<h1 class="headertext" th:text="${kilpailu.nimi+'&emsp;Alkuerä: '+lohko.lohkoNro}"></h1>
 				</div>
 
 				<!-- Kilpailijan valinta -->
