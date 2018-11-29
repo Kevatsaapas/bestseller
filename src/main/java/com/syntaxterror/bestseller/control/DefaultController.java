@@ -75,14 +75,17 @@ public class DefaultController {
 			model.addAttribute("tuomari", tuo);
 			Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro());
 			Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
-			model.addAttribute("lohko", lohko);
+			
+			
 			Boolean valmis = tuomariService.onkotuomariValmis(tuo, lohko);
 			if(kilpailu.getFinaali()==0) {
 			List<Arviointi> arvioinnit = arviointiRepository.findByTuomariAndLohko(tuo, lohko);
 			model.addAttribute("arvioinnit", arvioinnit);
+			model.addAttribute("lohko", lohko);
 			}else {
 				List<Arviointi> arvioinnit = arviointiRepository.findByTuomariAndLohko(tuo, finaalilohko);
 				model.addAttribute("arvioinnit", arvioinnit);
+				model.addAttribute("lohko", finaalilohko);
 			}
 			if (valmis) {
 				model.addAttribute("valmis", 1);

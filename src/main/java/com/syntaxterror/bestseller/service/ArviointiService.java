@@ -184,9 +184,8 @@ public class ArviointiService {
 					arviointi.setTarvekartoitus(tarvekartoitus);
 					Yleisvaikutelma yleisvaikutelma = new Yleisvaikutelma();
 					arviointi.setYleisvaikutelma(yleisvaikutelma);
-
 					arviointi.getAloitus().setSelkeaEsittaytyminenPist(arvot.get(0).toString());
-					arviointi.getAloitus().setTapaamisenAjankayttoPist(arvot.get(1).toString());
+					arviointi.getAloitus().setTapaamisenAjankayttoPist(Integer.toString(7));
 					arviointi.getAloitus().setTapaamisenLahtotilannePist(arvot.get(2).toString());
 					arviointi.getKysymystenKasittely().setHuolenaiheidenKasittelyPist(arvot.get(3).toString());
 					arviointi.getKysymystenKasittely().setVastavaitteidenYmmartaminenPist(arvot.get(4).toString());
@@ -274,7 +273,7 @@ public class ArviointiService {
 				arviointi.setYleisvaikutelma(yleisvaikutelma);
 
 				arviointi.getAloitus().setSelkeaEsittaytyminenPist(arvot.get(0).toString());
-				arviointi.getAloitus().setTapaamisenAjankayttoPist(arvot.get(1).toString());
+				arviointi.getAloitus().setTapaamisenAjankayttoPist(Integer.toString(7));
 				arviointi.getAloitus().setTapaamisenLahtotilannePist(arvot.get(2).toString());
 				arviointi.getKysymystenKasittely().setHuolenaiheidenKasittelyPist(arvot.get(3).toString());
 				arviointi.getKysymystenKasittely().setVastavaitteidenYmmartaminenPist(arvot.get(4).toString());
