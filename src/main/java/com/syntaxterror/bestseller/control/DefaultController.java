@@ -1,5 +1,7 @@
 package com.syntaxterror.bestseller.control;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +18,7 @@ import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.Ostaja;
 import com.syntaxterror.bestseller.model.Tuomari;
 import com.syntaxterror.bestseller.model.User;
+import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaRepository;
@@ -35,6 +38,9 @@ public class DefaultController {
 
 	@Autowired
 	private LohkoRepository lohkoRepository;
+	
+	@Autowired
+	private ArviointiRepository arviointiRepository;
 
 	@Autowired
 	private UserRepository urepository;
@@ -68,9 +74,16 @@ public class DefaultController {
 			model.addAttribute("kilpailu", kilpailu);
 			model.addAttribute("tuomari", tuo);
 			Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, tuo.getLohkoNro());
+			Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
 			model.addAttribute("lohko", lohko);
 			Boolean valmis = tuomariService.onkotuomariValmis(tuo, lohko);
-
+			if(kilpailu.getFinaali()==0) {
+			List<Arviointi> arvioinnit = arviointiRepository.findByTuomariAndLohko(tuo, lohko);
+			model.addAttribute("arvioinnit", arvioinnit);
+			}else {
+				List<Arviointi> arvioinnit = arviointiRepository.findByTuomariAndLohko(tuo, finaalilohko);
+				model.addAttribute("arvioinnit", arvioinnit);
+			}
 			if (valmis) {
 				model.addAttribute("valmis", 1);
 			} else {
@@ -126,6 +139,21 @@ public class DefaultController {
 
 		return "tuomarointisivu";
 	}
+	
+	
+	@RequestMapping(value = "/editArviointi/", method = RequestMethod.POST)
+	public String palautaArviointiLuontiSivu(Model model, @RequestParam("arviointiId") Long arviointiId) {
+		Arviointi arviointi = arviointiRepository.findByArviointiId(arviointiId);
+		model.addAttribute("lohko", arviointi.getLohko());
+		model.addAttribute("arviointi", arviointi);
+		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(arviointi.getKilpailuId()));
+		model.addAttribute("usertuomari", arviointi.getTuomari());
+
+		model.addAttribute("kilpailija", arviointi.getKilpailija());
+
+		return "tuomarointieditsivu";
+	}
+	
 
 	@RequestMapping(value = "/finaalituomarointi/", method = RequestMethod.POST)
 	public String palautaFinaalinArviointiLuontiSivu(Model model, @RequestParam("lohkoId") Long lohkoId,
