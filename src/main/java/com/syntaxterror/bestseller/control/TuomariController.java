@@ -78,6 +78,9 @@ public class TuomariController {
     @Secured("ADMIN")
     @RequestMapping(value = "/tallennatuomari", method = RequestMethod.POST)
     public String tallennaTuomari(Model model, Tuomari tuomari) {
+    	if(tuomari.getfinaaliin()==0 && tuomari.getLohkoNro().equals("finaali")) {
+			tuomari.setfinaaliin(new Long(1));
+		}
         tuomariRepository.save(tuomari);
         model.addAttribute("tuomariId", tuomari.getTuomariId());
         String redirect = "redirect:/luotuouser/" + Long.toString(tuomari.getTuomariId());
@@ -87,6 +90,9 @@ public class TuomariController {
 
     @RequestMapping(value = "/tallennatuomariedit", method = RequestMethod.POST)
     public String tallennaTuomariEdit(Tuomari tuomari) {
+    	if(tuomari.getfinaaliin()==0 && tuomari.getLohkoNro().equals("finaali")) {
+			tuomari.setfinaaliin(new Long(1));
+		}
         tuomariRepository.save(tuomari);
         String redirect = "redirect:/datat/" + Long.toString(tuomari.getKilpailuId());
 

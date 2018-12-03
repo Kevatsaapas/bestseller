@@ -2,6 +2,8 @@ package com.syntaxterror.bestseller.control;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.KouluRepository;
@@ -38,7 +41,13 @@ public class KilpailijaController {
 	@RequestMapping("/luokilpailija/{kilpailuId}")
 	public String luoKilpailija(Model model, @PathVariable Long kilpailuId, Kilpailija kilpailija) {
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
-		model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
+		List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+		for(int i=0; i<lohkot.size(); i++) {
+			if(lohkot.get(i).getLohkoNro().equals("finaali")) {
+				lohkot.remove(i);
+			}
+		}
+		model.addAttribute("lohkot", lohkot);
 		model.addAttribute("kilpailu", kilpailu);
 		model.addAttribute("koulut", kouluRepository.findByKilpailuId(kilpailuId));
 
@@ -51,7 +60,13 @@ public class KilpailijaController {
 	public String editKilpailija(Model model, @PathVariable Long kilpailijaId) {
 		Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailija.getKilpailuId());
-		model.addAttribute("lohkot", lohkoRepository.findByKilpailu(kilpailu));
+		List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
+		for(int i=0; i<lohkot.size(); i++) {
+			if(lohkot.get(i).getLohkoNro().equals("finaali")) {
+				lohkot.remove(i);
+			}
+		}
+		model.addAttribute("lohkot", lohkot);
 		model.addAttribute("kilpailu", kilpailu);
 		model.addAttribute("kilpailija", kilpailija);
 		model.addAttribute("koulut", kouluRepository.findByKilpailuId(kilpailija.getKilpailuId()));

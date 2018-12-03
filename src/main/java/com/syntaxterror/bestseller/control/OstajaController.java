@@ -142,9 +142,26 @@ public class OstajaController {
 	@Secured("ADMIN")
 	@RequestMapping(value = "/tallennaostaja", method = RequestMethod.POST)
 	public String tallennaOstaja(Model model, Ostaja ostaja) {
+		if(ostaja.getFinaaliin()==0 && ostaja.getLohkoNro().equals("finaali")) {
+			ostaja.setFinaaliin(new Long(1));
+		}
 		ostajaRepository.save(ostaja);
 		model.addAttribute("ostajaId", ostaja.getOstajaId());
 		String redirect = "redirect:/ostaja/luoostuser/" + Long.toString(ostaja.getOstajaId());
+
+		return redirect;
+	}
+	
+	@Secured("ADMIN")
+	@RequestMapping(value = "/tallennaostajaedit", method = RequestMethod.POST)
+	public String tallennaOstajaEdit(Model model, Ostaja ostaja) {
+		if(ostaja.getFinaaliin()==0 && ostaja.getLohkoNro().equals("finaali")) {
+			ostaja.setFinaaliin(new Long(1));
+		}
+		ostajaRepository.save(ostaja);
+		model.addAttribute("ostajaId", ostaja.getOstajaId());
+		
+		String redirect = "redirect:/datat/"+ostaja.getKilpailuId().toString();
 
 		return redirect;
 	}

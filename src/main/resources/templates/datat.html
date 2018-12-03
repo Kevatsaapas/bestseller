@@ -356,7 +356,7 @@
 									<p th:if="${ostaja.finaaliin==1}">KYLLÄ</p>
 								</td>
 								<td>
-									<form th:if="${kilpailu.auki==0}" th:action="@{'/editostaja/'+${ostaja.ostajaId}}">
+									<form th:if="${kilpailu.auki==0}" th:action="@{'/ostaja/editostaja/'+${ostaja.ostajaId}}">
 										<button class="btn btn-sm btn-warning">Muokkaa</button>
 									</form>
 								</td>
