@@ -48,7 +48,8 @@
 				<a href="index.html" th:href="@{/}"> <img
 					src="../static/img/BSC_sinetti_logo.png"
 					th:src="@{/img/BSC_sinetti_logo.png}" alt="logo-sm" class="logo-sm" /></a>
-				<h1 class="headertext">Arviointi</h1>
+				<h1 th:if="${arviointi.lohko.lohkoNro!='finaali'}" class="headertext">Arviointi</h1>
+				<h1 th:if="${arviointi.lohko.lohkoNro=='finaali'}" class="headertext">Finaaliarviointi</h1>
 			</div>
 
 			<hr>
@@ -294,8 +295,13 @@
 
 			<!-- Footer -->
 
-			<div class="row padding">
-				<form action="testaus.html" th:action="@{/testaus}">
+			<div class="row padding" th:if="${arviointi.lohko.lohkoNro!='finaali'}">
+				<form action="testaus.html" th:action="@{'/datat/'+${kilpailu.kilpailuId}}">
+					<button class="btn btn-lg btn-info">Takaisin</button>
+				</form>
+			</div>
+			<div class="row padding" th:if="${arviointi.lohko.lohkoNro=='finaali'}">
+				<form action="testaus.html" th:action="@{'/finaalidatat/'+${kilpailu.kilpailuId}}">
 					<button class="btn btn-lg btn-info">Takaisin</button>
 				</form>
 			</div>

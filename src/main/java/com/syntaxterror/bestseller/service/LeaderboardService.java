@@ -13,6 +13,7 @@ import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.OstajaArviointi;
+import com.syntaxterror.bestseller.model.Valmentaja;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
@@ -36,6 +37,9 @@ public class LeaderboardService {
 
 	@Autowired
 	private LohkoRepository lohkoRepository;
+	
+	@Autowired 
+	private MailClient mailClient;
 
 	public List<Kilpailija> palautaParhaastaHuonoimpaan(Long kilpailuId) {
 
@@ -540,5 +544,19 @@ public class LeaderboardService {
 			kokonaistulos = 0;
 		}
 
+	}
+	
+	public void sendValmentajaEmail(Valmentaja val) {
+		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKoulu(val.getKoulu());
+		for(Kilpailija kil : kilpailijat) {
+			sendMail(kil, kil.getKilpailuId(), val.getSposti());
+		}
+	}
+	
+	public void sendMail(Kilpailija kilpailija, Long kilpailuId, String sposti) {
+		String recipient = sposti;
+		String message = "Best Seller - Tulokset";
+		mailClient.prepareAndSendVal(recipient, message, kilpailija.getKilpailuId(), kilpailija.getKilpailijaId());
+		System.out.println("Sent mail to "+kilpailija.getEtunimi()+" "+kilpailija.getSukunimi());
 	}
 }

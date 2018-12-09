@@ -40,10 +40,10 @@
 					 alt="logo-sm" class="logo-sm" /></a>
 				<h1 class="headertext" th:text="${kilpailu.nimi}+' - Data'"></h1>
 				<div class="row padding" th:if="${kilpailu.testi==1}">
-					<form th:if="${kouluLkm==0}" th:action="@{'/luodatat/'+${kilpailu.kilpailuId}}">
+					<form th:if="${kilpailijaLkm==0 && tuomariLkm==0 && ostajaLkm==0}" th:action="@{'/luodatat/'+${kilpailu.kilpailuId}}">
 						<button class="btn btn-sm btn-danger">Lisää Testidata</button>
 					</form>
-					<form th:if="${arviointiLkm==0}" th:action="@{'/luoarviot/'+${kilpailu.kilpailuId}}">
+					<form th:if="${arviointiLkm==0 && kilpailijaLkm>0 && tuomariLkm>0 && ostajaLkm>0}" th:action="@{'/luoarviot/'+${kilpailu.kilpailuId}}">
 						<button class="btn btn-sm btn-info">Lisää Arvioinnit</button>
 					</form>
 				</div>
@@ -420,6 +420,12 @@
 								<td>
 									<form th:action="@{'/poistavalmentaja/'+${valmentaja.valmentajaId}}">
 										<button class="btn btn-sm btn-danger">Poista</button>
+									</form>
+								</td>
+								<td>
+									<form th:if="${kilpailu.valmis==1}" onSubmit="if(!confirm('Haluatko varmasti lähettää tulokset valmentajalle?')){return false;}"
+									 th:action="@{'/sendMailVal/'+${valmentaja.valmentajaId}}">
+										<button class="btn btn-sm btn-info">Lähetä arvioinnit</button>
 									</form>
 								</td>
 							</tr>

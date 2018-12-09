@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Koulu;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.service.ArviointiService;
@@ -33,6 +35,9 @@ public class KilpailuController {
 
 	@Autowired
 	private LohkoRepository lohkoRepository;
+	
+	@Autowired
+	private KouluRepository kouluRepository;
 
 	@Autowired
 	private KilpailijaRepository kilpailijaRepository;
@@ -115,10 +120,27 @@ public class KilpailuController {
 			Lohko loh = new Lohko((Integer.toString(i)), kilpailu, null);
 			lohkoRepository.save(loh);
 		}
-
 		Lohko loh = new Lohko("finaali", kilpailu, null);
 		lohkoRepository.save(loh);
-		kilpailuRepository.save(kilpailu);
+		
+		Koulu hh1 = new Koulu("Haaga-Helia AMK","", kilpailuId);
+		kouluRepository.save(hh1);
+		
+		Koulu l1 = new Koulu("Laurea AMK", "", kilpailuId);
+		kouluRepository.save(l1);
+		
+		Koulu tamk = new Koulu("Tampereen AMK", "", kilpailuId);
+		kouluRepository.save(tamk);
+		
+		Koulu jamk = new Koulu("Jyväskylän AMK", "", kilpailuId);
+		kouluRepository.save(jamk);
+		
+		Koulu xamk = new Koulu("Kaakkois-Suomen AMK", "", kilpailuId);
+		kouluRepository.save(xamk);
+		
+		Koulu tuamk = new Koulu("Turku AMK", "", kilpailuId);
+		kouluRepository.save(tuamk);
+		
 	}
 
 	@RequestMapping(value = "/tallennakilpailu", method = RequestMethod.POST)

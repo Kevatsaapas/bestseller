@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface KouluRepository extends CrudRepository<Koulu, Long> {
 	Koulu findByKouluId(Long kouluId);
 
-	Iterable<Koulu> findByKilpailuId(Kilpailu kilpailu);
+	List<Koulu> findByKilpailuId(Kilpailu kilpailu);
 
 	List<Koulu> findByKilpailuId(Long kilpailuId);
 }

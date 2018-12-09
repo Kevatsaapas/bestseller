@@ -113,7 +113,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mb-4">
+						<div class="row mb-4" th:if="${valmis==1}">
 							<div class="col-lg-12">
 								<form th:action="@{/logout}" , method="post">
 									<button class="btn btn-custom btn-danger" type="submit">
