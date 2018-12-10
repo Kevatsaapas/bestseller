@@ -3,550 +3,524 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Best Seller Competition</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Best Seller Competition</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	 crossorigin="anonymous"></script>
 </head>
 
 <body style="margin:0; padding:10px 0 0 0;" bgcolor="#F8F8F8">
-    <table align="center" border="0" cellpadding="0" cellspacing="0" width="95%%">
-        <tr>
-            <td align="center">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: separate; border-spacing: 2px 5px; box-shadow: 1px 0 1px 1px #B8B8B8;"
-                    bgcolor="#FFFFFF">
+	<table align="center" border="0" cellpadding="0" cellspacing="0" width="95%%">
+		<tr>
+			<td align="center">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: separate; border-spacing: 2px 5px; box-shadow: 1px 0 1px 1px #B8B8B8;"
+				 bgcolor="#FFFFFF">
 
-                    <!-- Logo -->
+					<!-- Logo -->
 
-                    <tr>
-                        <td align="center" style="background-color: #cbdadb;">
-                            <a href="http://www.bestsellercompetition.fi/">
-                                <img th:src="@{./img/BSC_sinetti_logo.png}" src="../static/img/BSC_sinetti_logo.png"
-                                    class="logo" alt="logo" style="height: 200px; padding: 10px;" />
-                            </a>
-                        </td>
-                    </tr>
-					
-                    <!-- Body -->
+					<tr>
+						<td align="center" style="background-color: #cbdadb;">
+							<a href="http://www.bestsellercompetition.fi/">
+								<img th:src="@{https://raw.githubusercontent.com/Kevatsaapas/bestseller/master/src/main/resources/static/img/BSC_sinetti_logo.png}"
+								 src="https://raw.githubusercontent.com/Kevatsaapas/bestseller/master/src/main/resources/static/img/BSC_sinetti_logo.png"
+								 class="logo" alt="logo" style="height: 200px; padding: 10px;" />
+							</a>
+						</td>
+					</tr>
+
+					<!-- Body -->
 					<h1 th:text="${kilpailu.nimi}"></h1>
 					<h2 th:text="${'Alkuerän arvioinnit kilpailijalle '+kilpailija.etunimi}"></h2>
-                    <tr  th:each="arviointi:${arvioinnit}" >
-                       <div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<tr class="table-info">
-							<th scope="col">PVM</th>
-							<th scope="col">Tuomari</th>
-							<th scope="col">Kilpailija</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td th:text="${arviointi.arviointiPvm}"></td>
-							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
-							<td
-								th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+					<tr th:each="arviointi:${arvioinnit}">
+						<div class="row padding">
+							<table class="table">
+								<thead class="thead-custom">
+									<tr class="table-info">
+										<th scope="col">PVM</th>
+										<th scope="col">Tuomari</th>
+										<th scope="col">Kilpailija</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td th:text="${arviointi.arviointiPvm}"></td>
+										<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+										<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-			<!-- Aloitus -->
+						<!-- Aloitus -->
 
-			<div class="row padding">
-				<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Aloitus
-					(10%)</h2>
-				<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Aloitus (5%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Selkeä esittäytyminen ja luonteva aloitus:</td>
-							<td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
-						</tr>
+						<div class="row padding">
+							<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Aloitus
+								(10%)</h2>
+							<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Aloitus (5%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Selkeä esittäytyminen ja luonteva aloitus:</td>
+										<td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen
-								tarkoituksen täsmentäminen:</td>
-							<td
-								th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen
+											tarkoituksen täsmentäminen:</td>
+										<td th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Tapaamisen ajankäytöstä sopiminen:</td>
-							<td th:text="${arviointi.aloitus.tapaamisenAjankayttoPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Tapaamisen ajankäytöstä sopiminen:</td>
+										<td th:text="${arviointi.aloitus.tapaamisenAjankayttoPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
 
-						<tr>
-							<td th:text="${arviointi.aloitus.aloitusVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+									<tr>
+										<td th:text="${arviointi.aloitus.aloitusVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-			<!-- Tarvekartoitus -->
+						<!-- Tarvekartoitus -->
 
-			<div class="row padding">
-				<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Tarvekartoitus
-					(25%)</h2>
-				<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Tarvekartoitus
-					(30%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Perustietojen selvitys ja asiakkaan tavoitteiden
-								selvittäminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
-						</tr>
+						<div class="row padding">
+							<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Tarvekartoitus
+								(25%)</h2>
+							<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Tarvekartoitus
+								(30%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Perustietojen selvitys ja asiakkaan tavoitteiden
+											selvittäminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Asiakasyrityksen nykytilanteeseen liittyvien haasteiden
-								ja mahdollisuuksien tunnistaminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Asiakasyrityksen nykytilanteeseen liittyvien haasteiden
+											ja mahdollisuuksien tunnistaminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Muutostarpeen kehittäminen ja asiakasarvon
-								tunnistaminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Muutostarpeen kehittäminen ja asiakasarvon
+											tunnistaminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston
-								selvittäminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston
+											selvittäminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
 
-						<tr>
-							<td
-								th:text="${arviointi.tarvekartoitus.tarvekartoitusVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+									<tr>
+										<td th:text="${arviointi.tarvekartoitus.tarvekartoitusVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-			<!-- Ratkaisun esittäminen -->
+						<!-- Ratkaisun esittäminen -->
 
-			<div class="row padding">
-				<h2>Ratkaisun esittäminen (25%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen
-								pohjalta (haasteet ja mahdollisuudet):</td>
-							<td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
-						</tr>
+						<div class="row padding">
+							<h2>Ratkaisun esittäminen (25%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen
+											pohjalta (haasteet ja mahdollisuudet):</td>
+										<td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja
-								asiakkaan tavoitteita tukien (miten ratkaisu auttaa asiakasta
-								saavuttamaan tavoitteensa):</td>
-							<td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja
+											asiakkaan tavoitteita tukien (miten ratkaisu auttaa asiakasta
+											saavuttamaan tavoitteensa):</td>
+										<td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä
-								asiakas voisi saavuttaa verrattuna nykytilanteeseensa):</td>
-							<td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä
+											asiakas voisi saavuttaa verrattuna nykytilanteeseensa):</td>
+										<td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
 
-						<tr>
-							<td th:text="${arviointi.ratkaisu.ratkaisuVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+									<tr>
+										<td th:text="${arviointi.ratkaisu.ratkaisuVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-			<!-- Ratkaisun esittäminen -->
+						<!-- Ratkaisun esittäminen -->
 
-			<div class="row padding">
-				<h2>Asiakkaan kysymysten käsittely (10%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Asiakkaan vastaväitteiden huomiointi ja käsittely:</td>
-							<td
-								th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
-						</tr>
+						<div class="row padding">
+							<h2>Asiakkaan kysymysten käsittely (10%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Asiakkaan vastaväitteiden huomiointi ja käsittely:</td>
+										<td th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Asiakkaan huolenaiheiden huomiointi ja käsittely:</td>
-							<td
-								th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Asiakkaan huolenaiheiden huomiointi ja käsittely:</td>
+										<td th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
 
-						<tr>
-							<td
-								th:text="${arviointi.kysymystenKasittely.kasittelyVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+									<tr>
+										<td th:text="${arviointi.kysymystenKasittely.kasittelyVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-			<!-- Päättäminen -->
+						<!-- Päättäminen -->
 
-			<div class="row padding">
-				<h2>Päättäminen (10%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Sopivan ettenemisen ehdottaminen asiakkaalle:</td>
-							<td
-								th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
-						</tr>
+						<div class="row padding">
+							<h2>Päättäminen (10%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Sopivan ettenemisen ehdottaminen asiakkaalle:</td>
+										<td th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Asiakkaan sitoutumisen varmistaminen ja
-								jatkotoimenpiteistä sopiminen:</td>
-							<td
-								th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Asiakkaan sitoutumisen varmistaminen ja
+											jatkotoimenpiteistä sopiminen:</td>
+										<td th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
 
-						<tr>
-							<td th:text="${arviointi.paattaminen.paattaminenVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+									<tr>
+										<td th:text="${arviointi.paattaminen.paattaminenVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-			<!-- Päättäminen -->
+						<!-- Päättäminen -->
 
-			<div class="row padding">
-				<h2>Yleisvaikutelma (10%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Keskustelun edistäminen asiakasta kuunnellen:</td>
-							<td
-								th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
-						</tr>
+						<div class="row padding">
+							<h2>Yleisvaikutelma (10%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Keskustelun edistäminen asiakasta kuunnellen:</td>
+										<td th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Selkeä suullinen ilmaisu:</td>
-							<td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Selkeä suullinen ilmaisu:</td>
+										<td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Oman käyttäytymisen sopeuttaminen asiakkaan tyyliin
-								sopien:</td>
-							<td
-								th:text="${arviointi.yleisvaikutelma.omaKayttaytyminenPist}+'/7'"></td>
-						</tr>
+									<tr>
+										<td>Oman käyttäytymisen sopeuttaminen asiakkaan tyyliin
+											sopien:</td>
+										<td th:text="${arviointi.yleisvaikutelma.omaKayttaytyminenPist}+'/7'"></td>
+									</tr>
 
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
 
-						<tr>
-							<td
-								th:text="${arviointi.yleisvaikutelma.yleisvaikutelmaVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+									<tr>
+										<td th:text="${arviointi.yleisvaikutelma.yleisvaikutelmaVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-                    </tr>
-                    
-                    <br/>
-                    <!-- Finaaliarvioinnit -->
-                    <h1 th:text="${kilpailu.nimi}"></h1>
+					</tr>
+
+					<br />
+					<!-- Finaaliarvioinnit -->
+					<h1 th:text="${kilpailu.nimi}"></h1>
 					<h2 th:text="${'Finaalin arvioinnit kilpailijalle '+kilpailija.etunimi}"></h2>
-                    <tr  th:each="arviointi:${finaaliArvioinnit}" >
-                       <div class="row padding">
-				<table class="table">
-					<thead class="thead-custom">
-						<tr class="table-info">
-							<th scope="col">PVM</th>
-							<th scope="col">Tuomari</th>
-							<th scope="col">Kilpailija</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td th:text="${arviointi.arviointiPvm}"></td>
-							<td th:text="${arviointi.tuomari.tuomariNro}"></td>
-							<td
-								th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
-						</tr>
-					</tbody>
+					<tr th:each="arviointi:${finaaliArvioinnit}">
+						<div class="row padding">
+							<table class="table">
+								<thead class="thead-custom">
+									<tr class="table-info">
+										<th scope="col">PVM</th>
+										<th scope="col">Tuomari</th>
+										<th scope="col">Kilpailija</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td th:text="${arviointi.arviointiPvm}"></td>
+										<td th:text="${arviointi.tuomari.tuomariNro}"></td>
+										<td th:text="${arviointi.kilpailija.etunimi+' '+{arviointi.kilpailija.sukunimi}}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Aloitus -->
+
+						<div class="row padding">
+							<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Aloitus
+								(10%)</h2>
+							<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Aloitus (5%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Selkeä esittäytyminen ja luonteva aloitus:</td>
+										<td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen
+											tarkoituksen täsmentäminen:</td>
+										<td th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Tapaamisen ajankäytöstä sopiminen:</td>
+										<td th:text="${arviointi.aloitus.tapaamisenAjankayttoPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
+
+									<tr>
+										<td th:text="${arviointi.aloitus.aloitusVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Tarvekartoitus -->
+
+						<div class="row padding">
+							<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Tarvekartoitus
+								(25%)</h2>
+							<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Tarvekartoitus
+								(30%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Perustietojen selvitys ja asiakkaan tavoitteiden
+											selvittäminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Asiakasyrityksen nykytilanteeseen liittyvien haasteiden
+											ja mahdollisuuksien tunnistaminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Muutostarpeen kehittäminen ja asiakasarvon
+											tunnistaminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston
+											selvittäminen:</td>
+										<td th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
+
+									<tr>
+										<td th:text="${arviointi.tarvekartoitus.tarvekartoitusVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Ratkaisun esittäminen -->
+
+						<div class="row padding">
+							<h2>Ratkaisun esittäminen (25%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen
+											pohjalta (haasteet ja mahdollisuudet):</td>
+										<td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja
+											asiakkaan tavoitteita tukien (miten ratkaisu auttaa asiakasta
+											saavuttamaan tavoitteensa):</td>
+										<td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä
+											asiakas voisi saavuttaa verrattuna nykytilanteeseensa):</td>
+										<td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
+
+									<tr>
+										<td th:text="${arviointi.ratkaisu.ratkaisuVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Ratkaisun esittäminen -->
+
+						<div class="row padding">
+							<h2>Asiakkaan kysymysten käsittely (10%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Asiakkaan vastaväitteiden huomiointi ja käsittely:</td>
+										<td th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Asiakkaan huolenaiheiden huomiointi ja käsittely:</td>
+										<td th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
+
+									<tr>
+										<td th:text="${arviointi.kysymystenKasittely.kasittelyVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Päättäminen -->
+
+						<div class="row padding">
+							<h2>Päättäminen (10%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Sopivan ettenemisen ehdottaminen asiakkaalle:</td>
+										<td th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Asiakkaan sitoutumisen varmistaminen ja
+											jatkotoimenpiteistä sopiminen:</td>
+										<td th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
+
+									<tr>
+										<td th:text="${arviointi.paattaminen.paattaminenVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- Päättäminen -->
+
+						<div class="row padding">
+							<h2>Yleisvaikutelma (10%)</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>Keskustelun edistäminen asiakasta kuunnellen:</td>
+										<td th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Selkeä suullinen ilmaisu:</td>
+										<td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Oman käyttäytymisen sopeuttaminen asiakkaan tyyliin
+											sopien:</td>
+										<td th:text="${arviointi.yleisvaikutelma.omaKayttaytyminenPist}+'/7'"></td>
+									</tr>
+
+									<tr>
+										<td>Vapaa palaute:</td>
+									</tr>
+
+									<tr>
+										<td th:text="${arviointi.yleisvaikutelma.yleisvaikutelmaVapaaPalaute}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</tr>
+
+					<tr>
+						<p>Ostajan arvio(t) alkuerästä: (Max 7p)</p>
+					</tr>
+
+					<tr th:each="arvio:${ostajaArvioinnit}">
+						<td th:text="${arvio.ostajanArvio}"></td>
+					</tr>
+					<br />
+
+					<tr>
+						<p>Ostajan arvio(t) finaalista: (Max 7p)</p>
+					</tr>
+
+					<tr th:each="arvio:${ostajaFinaaliArvioinnit}">
+						<td th:text="${arvio.ostajanArvio}"></td>
+					</tr>
+					<br />
+					<br />
+
+
+					<!-- Footer -->
+
+					<tr>
+						<td bgcolor="#66989c" style="padding: 15px 15px 15px 15px; font-family: Avenir, sans-serif; font-size: 12px; text-align: center;">
+							&copy Best Seller Competition - <a href="www.bestsellercompetition.fi">www.bestsellercompetition.fi</a>
+						</td>
+					</tr>
 				</table>
-			</div>
-
-			<!-- Aloitus -->
-
-			<div class="row padding">
-				<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Aloitus
-					(10%)</h2>
-				<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Aloitus (5%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Selkeä esittäytyminen ja luonteva aloitus:</td>
-							<td th:text="${arviointi.aloitus.selkeaEsittaytyminenPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Tapaamisen lähtötilanteen taustoittaminen ja tapaamisen
-								tarkoituksen täsmentäminen:</td>
-							<td
-								th:text="${arviointi.aloitus.tapaamisenLahtotilannePist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Tapaamisen ajankäytöstä sopiminen:</td>
-							<td th:text="${arviointi.aloitus.tapaamisenAjankayttoPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
-
-						<tr>
-							<td th:text="${arviointi.aloitus.aloitusVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<!-- Tarvekartoitus -->
-
-			<div class="row padding">
-				<h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Tarvekartoitus
-					(25%)</h2>
-				<h2 th:if="${arviointi.lohko.lohkoNro!='finaali'}">Tarvekartoitus
-					(30%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Perustietojen selvitys ja asiakkaan tavoitteiden
-								selvittäminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.perustietojenSelvitysPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Asiakasyrityksen nykytilanteeseen liittyvien haasteiden
-								ja mahdollisuuksien tunnistaminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.asiakkaanNykytilaPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Muutostarpeen kehittäminen ja asiakasarvon
-								tunnistaminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.tarpeenKehittaminenPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Asiakkaan päätöksentekoprosessin ja vaikuttajaverkoston
-								selvittäminen:</td>
-							<td
-								th:text="${arviointi.tarvekartoitus.paatoksentekoprosessiPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
-
-						<tr>
-							<td
-								th:text="${arviointi.tarvekartoitus.tarvekartoitusVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<!-- Ratkaisun esittäminen -->
-
-			<div class="row padding">
-				<h2>Ratkaisun esittäminen (25%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Yhteenveto asiakkaan tilanteesta tarvekartoituksen
-								pohjalta (haasteet ja mahdollisuudet):</td>
-							<td th:text="${arviointi.ratkaisu.haasteYhteenvetoPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Ratkaisun esittäminen tarvekartoitukseen perustuen ja
-								asiakkaan tavoitteita tukien (miten ratkaisu auttaa asiakasta
-								saavuttamaan tavoitteensa):</td>
-							<td th:text="${arviointi.ratkaisu.ratkaisunEsittaminenPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Ratkaisun esittäminen arvopohjaisesti (mitä hyötyä
-								asiakas voisi saavuttaa verrattuna nykytilanteeseensa):</td>
-							<td th:text="${arviointi.ratkaisu.hyotyjenEsilletuontiPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
-
-						<tr>
-							<td th:text="${arviointi.ratkaisu.ratkaisuVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<!-- Ratkaisun esittäminen -->
-
-			<div class="row padding">
-				<h2>Asiakkaan kysymysten käsittely (10%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Asiakkaan vastaväitteiden huomiointi ja käsittely:</td>
-							<td
-								th:text="${arviointi.kysymystenKasittely.vastavaitteidenYmmartaminenPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Asiakkaan huolenaiheiden huomiointi ja käsittely:</td>
-							<td
-								th:text="${arviointi.kysymystenKasittely.huolenaiheidenKasittelyPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
-
-						<tr>
-							<td
-								th:text="${arviointi.kysymystenKasittely.kasittelyVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<!-- Päättäminen -->
-
-			<div class="row padding">
-				<h2>Päättäminen (10%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Sopivan ettenemisen ehdottaminen asiakkaalle:</td>
-							<td
-								th:text="${arviointi.paattaminen.sitoutumisenEhdotusPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Asiakkaan sitoutumisen varmistaminen ja
-								jatkotoimenpiteistä sopiminen:</td>
-							<td
-								th:text="${arviointi.paattaminen.sitoutumisenSaaminenPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
-
-						<tr>
-							<td th:text="${arviointi.paattaminen.paattaminenVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<!-- Päättäminen -->
-
-			<div class="row padding">
-				<h2>Yleisvaikutelma (10%)</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>Keskustelun edistäminen asiakasta kuunnellen:</td>
-							<td
-								th:text="${arviointi.yleisvaikutelma.aktiivinenKuunteluPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Selkeä suullinen ilmaisu:</td>
-							<td th:text="${arviointi.yleisvaikutelma.tilannetajuPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Oman käyttäytymisen sopeuttaminen asiakkaan tyyliin
-								sopien:</td>
-							<td
-								th:text="${arviointi.yleisvaikutelma.omaKayttaytyminenPist}+'/7'"></td>
-						</tr>
-
-						<tr>
-							<td>Vapaa palaute:</td>
-						</tr>
-
-						<tr>
-							<td
-								th:text="${arviointi.yleisvaikutelma.yleisvaikutelmaVapaaPalaute}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-                    </tr>
-                    
-                    <tr>
-                    <p>Ostajan arvio(t) alkuerästä: (Max 7p)</p>
-                    </tr>
-                    
-                    <tr th:each="arvio:${ostajaArvioinnit}">
-                    <td th:text="${arvio.ostajanArvio}"></td>
-                    </tr>
-                    <br/>
-                    
-                     <tr>
-                    <p>Ostajan arvio(t) finaalista: (Max 7p)</p>
-                    </tr>
-                    
-                    <tr th:each="arvio:${ostajaFinaaliArvioinnit}">
-                    <td th:text="${arvio.ostajanArvio}"></td>
-                    </tr>
-                    <br/>
-                    <br/>
-                    
-
-                    <!-- Footer -->
-
-                    <tr>
-                        <td bgcolor="#66989c" style="padding: 15px 15px 15px 15px; font-family: Avenir, sans-serif; font-size: 12px; text-align: center;">
-                            &copy Best Seller Competition - <a href="www.bestsellercompetition.fi">www.bestsellercompetition.fi</a>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+			</td>
+		</tr>
+	</table>
 </body>
 
 </html>
