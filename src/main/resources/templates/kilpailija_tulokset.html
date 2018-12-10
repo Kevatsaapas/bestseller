@@ -45,23 +45,26 @@
             <tr th:each="arviointi:${arvioinnit}">
                 <div class="row padding">
                     <table class="nopadding table table-striped">
+<<<<<<< HEAD
+                        <thead class="thead-custom" type="button" data-toggle="collapse" th:attr="data-target='#tuomari'+${arviointi.arviointiId}"
+=======
                         <thead class="thead-custom" type="button" data-toggle="collapse" th:attr="data-target='#tuomari'+${arviointi.id}"
+>>>>>>> 67ec686293afbec7479003f249607b75924c6f92
                             aria-expanded="false">
                             <tr class="table-info">
-                                <th scope="col">
-                                    Tuomari
+                                <th scope="col" th:text="${arviointi.tuomari.tuomariNro}">
                                 </th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                     </table>
                 </div>
 
                 <!-- Aloitus -->
+<<<<<<< HEAD
+                <div class="collapse show" th:id="tuomari+${arviointi.arviointiId}">
+=======
                 <div class="collapse show" th:id="tuomari+${arviointi.id}">
+>>>>>>> 67ec686293afbec7479003f249607b75924c6f92
                     <div class="row ml-3">
                         <h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Aloitus
                             (10%)</h2>

@@ -549,14 +549,22 @@ public class LeaderboardService {
 	public void sendValmentajaEmail(Valmentaja val) {
 		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKoulu(val.getKoulu());
 		for(Kilpailija kil : kilpailijat) {
-			sendMail(kil, kil.getKilpailuId(), val.getSposti());
+			sendMail1(kil, kil.getKilpailuId(), val.getSposti());
 		}
+		sendMail2(val);
 	}
 	
-	public void sendMail(Kilpailija kilpailija, Long kilpailuId, String sposti) {
+	public void sendMail1(Kilpailija kilpailija, Long kilpailuId, String sposti) {
 		String recipient = sposti;
 		String message = "Best Seller - Tulokset";
 		mailClient.prepareAndSendVal(recipient, message, kilpailija.getKilpailuId(), kilpailija.getKilpailijaId());
-		System.out.println("Sent mail to "+kilpailija.getEtunimi()+" "+kilpailija.getSukunimi());
+		System.out.println("Sent mail about "+kilpailija.getEtunimi()+" "+kilpailija.getSukunimi());
+	}
+	
+	public void sendMail2(Valmentaja valmentaja) {
+		String recipient = valmentaja.getSposti();
+		String message = "Best Seller - Tulokset";
+		//mailClient.prepareAndSend(recipient, message, valmentaja);
+		System.out.println("Sent mail to "+valmentaja.getSposti());
 	}
 }

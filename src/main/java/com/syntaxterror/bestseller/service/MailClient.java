@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Valmentaja;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 
 @Service
@@ -28,12 +29,12 @@ public class MailClient {
         this.mailContentBuilder = mailContentBuilder;
     }
 
-    public void prepareAndSend(String recipient, String message, Long kilpailuId, Long kilpailijaId) {
+   /* public void prepareAndSend(String recipient, String message, Valmentaja val) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom("bestsellertesteri@gmail.com");
             messageHelper.setTo(recipient);
-            messageHelper.setSubject("Finaalin suoritukset");
+            messageHelper.setSubject("Koulu");
             String content = mailContentBuilder.kilpailijanSuoritukset(message, kilpailuId, kilpailijaId);
             messageHelper.setText(content, true);
         };
@@ -42,7 +43,7 @@ public class MailClient {
         } catch (MailException e) {
             // runtime exception; compiler will not force you to handle it
         }
-    }
+    }*/
     
     public void prepareAndSendVal(String recipient, String message, Long kilpailuId, Long kilpailijaId) {
     	Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);

@@ -22,6 +22,7 @@ import com.syntaxterror.bestseller.service.MailClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -237,7 +238,7 @@ public class DataController {
 		return "redirect:/datat/" + kilid;
 	}
 
-	@RequestMapping("/sendMail/{kilpailijaId}")
+	/*@RequestMapping("/sendMail/{kilpailijaId}")
 	public String sendMail(@PathVariable Long kilpailijaId, Model model) {
 		Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
 		Long kilpailuId = kilpailija.getKilpailuId();
@@ -248,7 +249,8 @@ public class DataController {
 		String kilid = kilpailuId.toString();
 		System.out.println("mentiin emailin läpi käy kattoo sposti");
 		return "redirect:/datat/" + kilid;
-	}
+	}*/
+	
 	
 	@RequestMapping("/sendMailVal/{valmentajaId}")
 	public String sendValmentajaMail(@PathVariable Long valmentajaId, Model model) {
@@ -287,8 +289,10 @@ public class DataController {
 				int randomNum = ThreadLocalRandom.current().nextInt(0, koulut.size());
 				Koulu koulu = koulut.get(randomNum);
 				String posti = spostit[randomNum];
+				String kilHash = UUID.randomUUID().toString();
+				kilHash.replace("-", "");
 				Kilpailija kilpailija = new Kilpailija(etunimet[kohta], sukunimet[kohta], 0, koulu, posti, lohko,
-						kilpailuId, 0);
+						kilpailuId, 0, kilHash);
 				kilpailijaRepository.save(kilpailija);
 			}
 			for (int luku = 1; luku < 3; luku++) {
