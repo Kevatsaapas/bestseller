@@ -45,8 +45,8 @@
             <tr th:each="arviointi:${arvioinnit}">
                 <div class="row padding">
                     <table class="nopadding table table-striped">
-                        <thead class="thead-custom" type="button" data-toggle="collapse" data-target="#collapseExample"
-                            aria-expanded="false" aria-controls="collapseExample">
+                        <thead class="thead-custom" type="button" data-toggle="collapse" th:attr="data-target='#tuomari'+${arviointi.id}"
+                            aria-expanded="false">
                             <tr class="table-info">
                                 <th scope="col">
                                     Tuomari
@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- Aloitus -->
-                <div class="collapse show" id="collapseExample">
+                <div class="collapse show" th:id="tuomari+${arviointi.id}">
                     <div class="row ml-3">
                         <h2 th:if="${arviointi.lohko.lohkoNro=='finaali'}">Aloitus
                             (10%)</h2>
