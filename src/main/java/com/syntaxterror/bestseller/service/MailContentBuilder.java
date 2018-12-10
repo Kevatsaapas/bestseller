@@ -60,14 +60,20 @@ public class MailContentBuilder {
     
     public String kilpailijanSuoritukset(String message, Long kilpailuId, Long kilpailijaId) {
     	Context context = new Context();
+
     	Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
     	context.setVariable("kilpailu", kilpailu);
+
     	Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
     	context.setVariable("kilpailija", kilpailija);
+
     	Lohko lohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, kilpailija.getLohko().getLohkoNro());
+
     	List<Arviointi> arvioinnit = arviointiRepository.findByKilpailijaAndLohko(kilpailija, lohko);
     	context.setVariable("arvioinnit", arvioinnit);
+
     	Lohko finaalilohko = lohkoRepository.findByKilpailuAndLohkoNro(kilpailu, "finaali");
+
     	List<Arviointi> finaaliArvioinnit = arviointiRepository.findByKilpailijaAndLohko(kilpailija, finaalilohko);
     	context.setVariable("finaaliArvioinnit", finaaliArvioinnit);
 
@@ -76,6 +82,7 @@ public class MailContentBuilder {
     	
     	List<OstajaArviointi> ostajaFinaaliArvioinnit = ostajaArviointiRepository.findByKilpailijaAndLohko(kilpailija, finaalilohko);
     	context.setVariable("ostajaFinaaliArvioinnit", ostajaFinaaliArvioinnit);
+
     	return templateEngine.process("sahkoposti_kilpailija", context);
     }
 
