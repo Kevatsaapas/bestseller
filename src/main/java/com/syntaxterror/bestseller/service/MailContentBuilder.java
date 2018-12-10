@@ -23,7 +23,9 @@ import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
 @Service
 public class MailContentBuilder {
 
+    @Autowired
     private TemplateEngine templateEngine;
+
     @Autowired
     private KilpailuRepository kilpailuRepository;
     

@@ -23,7 +23,6 @@ public class KouluController {
     @Autowired
     private KilpailuRepository kilpailuRepository;
 
-
     @Secured("ADMIN")
     @RequestMapping("/luokoulu/{kilpailuId}")
     public String luoKoulu(Model model, Koulu koulu) {

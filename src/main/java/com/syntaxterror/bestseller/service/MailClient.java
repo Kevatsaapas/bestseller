@@ -13,7 +13,10 @@ import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 @Service
 public class MailClient {
 
+    @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
     private MailContentBuilder mailContentBuilder;
     
     @Autowired
