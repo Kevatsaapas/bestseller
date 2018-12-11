@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "account")
 public class User {
 
 	@Id
