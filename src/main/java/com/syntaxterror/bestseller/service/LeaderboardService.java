@@ -13,7 +13,6 @@ import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Kilpailu;
 import com.syntaxterror.bestseller.model.Lohko;
 import com.syntaxterror.bestseller.model.OstajaArviointi;
-import com.syntaxterror.bestseller.model.Valmentaja;
 import com.syntaxterror.bestseller.repository.ArviointiRepository;
 import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
@@ -38,8 +37,6 @@ public class LeaderboardService {
 	@Autowired
 	private LohkoRepository lohkoRepository;
 	
-	@Autowired 
-	private MailClient mailClient;
 
 	public List<Kilpailija> palautaParhaastaHuonoimpaan(Long kilpailuId) {
 
@@ -546,17 +543,29 @@ public class LeaderboardService {
 
 	}
 	
-	public void sendValmentajaEmail(Valmentaja val) {
+	/*public void sendValmentajaEmail(Valmentaja val, HttpRequest request) {
 		List<Kilpailija> kilpailijat = kilpailijaRepository.findByKoulu(val.getKoulu());
-		for(Kilpailija kil : kilpailijat) {
-			sendMail(kil, kil.getKilpailuId(), val.getSposti());
-		}
+		String[] links = new String[kilpailijat.size()];
+    	for(Kilpailija kilpailija:kilpailijat) {
+    		String osoite = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath())+"/tulokset/"+kil.getKilHash();
+    	}
+		String recipient = val.getSposti();
+		String message = "Best Seller - Tulokset";
+		mailClient.prepareAndSendVal(recipient, message, val, kilpailijat);
+		System.out.println("Sent mail to "+valmentaja.getSposti());
 	}
 	
-	public void sendMail(Kilpailija kilpailija, Long kilpailuId, String sposti) {
+	public void sendMail1(Kilpailija kilpailija, Long kilpailuId, String sposti) {
 		String recipient = sposti;
 		String message = "Best Seller - Tulokset";
 		mailClient.prepareAndSendVal(recipient, message, kilpailija.getKilpailuId(), kilpailija.getKilpailijaId());
-		System.out.println("Sent mail to "+kilpailija.getEtunimi()+" "+kilpailija.getSukunimi());
+		System.out.println("Sent mail about "+kilpailija.getEtunimi()+" "+kilpailija.getSukunimi());
 	}
+	
+	public void sendMail2(Valmentaja valmentaja, List<Kilpailija> kilpailijat) {
+		String recipient = valmentaja.getSposti();
+		String message = "Best Seller - Tulokset";
+		mailClient.prepareAndSendVal(recipient, message, valmentaja);
+		System.out.println("Sent mail to "+valmentaja.getSposti());
+	}*/
 }

@@ -24,4 +24,6 @@ public interface KilpailijaRepository extends CrudRepository<Kilpailija, Long> {
 	List<Kilpailija> findByKilpailuIdAndFinaalissa(Long kilpailuId, Long finaalissa);
 
 	List<Kilpailija> findByKoulu(Koulu koulu);
+	
+	Kilpailija findByKilHash(String kilHash);
 }

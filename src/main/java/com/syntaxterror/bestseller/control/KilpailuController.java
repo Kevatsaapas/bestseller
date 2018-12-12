@@ -3,7 +3,6 @@ package com.syntaxterror.bestseller.control;
 import java.text.ParseException;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.KouluRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
-import com.syntaxterror.bestseller.repository.TuomariRepository;
 import com.syntaxterror.bestseller.service.ArviointiService;
 import com.syntaxterror.bestseller.service.LeaderboardService;
 
@@ -42,8 +40,6 @@ public class KilpailuController {
 	@Autowired
 	private KilpailijaRepository kilpailijaRepository;
 
-	@Autowired
-	private TuomariRepository tuomariRepository;
 
 	@Autowired
 	private ArviointiService arviointiservice;

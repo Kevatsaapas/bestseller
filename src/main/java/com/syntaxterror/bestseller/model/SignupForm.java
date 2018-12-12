@@ -1,9 +1,7 @@
 package com.syntaxterror.bestseller.model;
 
-import javax.validation.constraints.Size;
-
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class SignupForm {
 
@@ -22,10 +20,8 @@ public class SignupForm {
 	@NotEmpty
 	private String role = "USER";
 
-	@NotEmpty
 	private String rooli = "";
 
-	@NotNull
 	private Long rooliId;
 
 	public String getUsername() {

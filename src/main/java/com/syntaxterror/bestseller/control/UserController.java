@@ -1,5 +1,7 @@
 package com.syntaxterror.bestseller.control;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,9 +25,21 @@ public class UserController {
 	private UserRepository repository;
 
 	@RequestMapping(value = "signup")
-	public String addStudent(Model model) {
+	public String addUser(Model model) {
 		model.addAttribute("signupform", new SignupForm());
 		return "signup";
+	}
+	
+	@RequestMapping(value = "adminSignUp")
+	public String addAdmin(Model model) {
+		List<User> uu = repository.findByRole("ADMIN");
+		if(uu.size()>0) {		
+			return "redirect:/login";
+		}else {
+		
+		model.addAttribute("signupform", new SignupForm());
+		return "adminsignup";
+		}
 	}
 
 	@RequestMapping(value = "saveuser", method = RequestMethod.POST)
@@ -62,4 +76,39 @@ public class UserController {
 
 		return "redirect:/testaus";
 	}
+	
+	@RequestMapping(value = "saveadmin", method = RequestMethod.POST)
+	public String save2(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
+
+		if (!bindingResult.hasErrors()) { // validation errors
+
+            if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match
+				String pwd = signupForm.getPassword();
+				BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+				String hashPwd = bc.encode(pwd);
+
+				User newUser = new User();
+				newUser.setPasswordHash(hashPwd);
+				newUser.setUsername(signupForm.getUsername());
+				newUser.setRooli("");
+				newUser.setRole("ADMIN");
+				newUser.setrooliId(null);
+
+				if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
+					repository.save(newUser);
+				} else {
+					bindingResult.rejectValue("username", "err.username", "Username already exists");
+					return "adminsignup";
+				}
+
+			} else {
+				bindingResult.rejectValue("passwordCheck", "err.passCheck", "Passwords does not match");
+				return "adminsignup";
+			}
+		} else {
+			return "adminsignup";
+		}
+		return "redirect:/";
+	}
+	
 }

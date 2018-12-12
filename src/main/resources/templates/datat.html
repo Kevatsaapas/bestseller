@@ -104,6 +104,16 @@
 									</form>
 								</td>
 							</tr>
+							<tr th:if="${kilpailu.valmis==1}">
+							<td>
+							<form  onSubmit="if(!confirm('Haluatko varmasti lähettää tulokset tähän osoitteeseen?')){return false;}"
+									 th:action="@{/sendMailAll}" method="POST">
+									 <input type="hidden" name="kilpailuId" th:value="${kilpailu.kilpailuId}"/>
+									 <input type="text" name="recip"/>
+										<button class="btn btn-sm btn-info" type="submit">Lähetä kilpailun tulokset</button>
+									</form>
+							</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -163,7 +173,13 @@
 							Kilpailijat
 						</th>
 						<th scope="col" th:text="${kilpailijaLkm}+' kpl'"></th>
-						<th scope="col"></th>
+						<th scope="col" th:if="${kilpailu.valmis==0}"></th>
+						<th scope="col" th:if="${kilpailu.valmis==1}">
+						<form  onSubmit="if(!confirm('Haluatko varmasti lähettää tulokset kilpailijoille?')){return false;}"
+									 th:action="@{'/sendMailKilpailijat/'+${kilpailu.kilpailuId}}">
+										<button class="btn btn-sm btn-info">Lähetä arvioinnit</button>
+									</form>
+									</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -387,7 +403,13 @@
 						<th scope="col">
 							Valmentajat
 						</th>
-						<th scope="col"></th>
+						<th scope="col" th:if="${kilpailu.valmis==0}"></th>
+						<th scope="col" th:if="${kilpailu.valmis==1}">
+						<form  onSubmit="if(!confirm('Haluatko varmasti lähettää tulokset valmentajille?')){return false;}"
+									 th:action="@{'/sendMailValmentajat/'+${kilpailu.kilpailuId}}">
+										<button class="btn btn-sm btn-info">Lähetä arvioinnit</button>
+									</form>
+									</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
