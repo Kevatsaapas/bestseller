@@ -14,4 +14,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	User findByRooliId(Long rooliId);
 
 	List<User> findByRooli(String rooli);
+	
+	List<User> findByRole(String role);
 }

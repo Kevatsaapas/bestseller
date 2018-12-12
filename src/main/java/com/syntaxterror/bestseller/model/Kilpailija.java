@@ -44,6 +44,9 @@ public class Kilpailija {
 
 	@Column(name = "finaali_kokonaistulos")
 	public double finaaliKokonaistulos;
+	
+	@Column(name="kilpailija_hash")
+	public String kilHash;
 
 	@ManyToOne
 	private Lohko lohko;
@@ -62,10 +65,11 @@ public class Kilpailija {
 		this.kokonaistulos = 0;
 		this.finaalissa = null;
 		this.finaaliKokonaistulos = 0;
+		this.kilHash="";
 	}
 
 	public Kilpailija(String etunimi, String sukunimi, int kilpailijaNro, Koulu koulu, String sposti, Lohko lohko,
-			Long kilpailuId, double kokonaistulos) {
+			Long kilpailuId, double kokonaistulos, String kilHash) {
 		super();
 		this.etunimi = etunimi;
 		this.sukunimi = sukunimi;
@@ -76,6 +80,7 @@ public class Kilpailija {
 		this.kilpailuId = kilpailuId;
 		this.kokonaistulos = kokonaistulos;
 		this.finaalissa = new Long(0);
+		this.kilHash = kilHash;
 	}
 
 	public String getSposti() {
@@ -173,14 +178,26 @@ public class Kilpailija {
 	public void setFinaaliKokonaistulos(double finaaliKokonaistulos) {
 		this.finaaliKokonaistulos = finaaliKokonaistulos;
 	}
+	
+	
+
+	public String getKilHash() {
+		return kilHash;
+	}
+
+	public void setKilHash(String kilHash) {
+		this.kilHash = kilHash;
+	}
 
 	@Override
 	public String toString() {
 		return "Kilpailija [kilpailijaId=" + kilpailijaId + ", etunimi=" + etunimi + ", sukunimi=" + sukunimi
 				+ ", kilpailijaNro=" + kilpailijaNro + ", koulu=" + koulu + ", sposti=" + sposti + ", kilpailuId="
 				+ kilpailuId + ", kokonaistulos=" + kokonaistulos + ", finaalissa=" + finaalissa
-				+ ", finaaliKokonaistulos=" + finaaliKokonaistulos + ", lohko=" + lohko + ", arvioinnit=" + arvioinnit
-				+ "]";
+				+ ", finaaliKokonaistulos=" + finaaliKokonaistulos + ", kilHash=" + kilHash + ", lohko=" + lohko
+				+ ", arvioinnit=" + arvioinnit + "]";
 	}
+
+	
 
 }

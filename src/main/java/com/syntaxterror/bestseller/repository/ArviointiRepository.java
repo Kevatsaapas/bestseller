@@ -24,6 +24,7 @@ public interface ArviointiRepository extends CrudRepository<Arviointi, Long> {
 	List<Arviointi> findByKilpailija(Kilpailija kilpailija);
 
 	List<Arviointi> findByKilpailijaAndLohko(Kilpailija kilpailija, Lohko lohko);
+	
 
 	List<Arviointi> findByKilpailuIdAndLohko(Long kilpailuId, Lohko lohko);
 

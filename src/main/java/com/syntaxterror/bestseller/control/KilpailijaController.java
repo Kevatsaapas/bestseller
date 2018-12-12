@@ -3,6 +3,7 @@ package com.syntaxterror.bestseller.control;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -40,6 +41,7 @@ public class KilpailijaController {
 	@Secured("ADMIN")
 	@RequestMapping("/luokilpailija/{kilpailuId}")
 	public String luoKilpailija(Model model, @PathVariable Long kilpailuId, Kilpailija kilpailija) {
+		
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailuId);
 		List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
 		for(int i=0; i<lohkot.size(); i++) {
@@ -59,6 +61,7 @@ public class KilpailijaController {
 	@RequestMapping("/editkilpailija/{kilpailijaId}")
 	public String editKilpailija(Model model, @PathVariable Long kilpailijaId) {
 		Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
+		System.out.println(kilpailija.getKilHash());
 		Kilpailu kilpailu = kilpailuRepository.findByKilpailuId(kilpailija.getKilpailuId());
 		List<Lohko> lohkot = lohkoRepository.findByKilpailu(kilpailu);
 		for(int i=0; i<lohkot.size(); i++) {
@@ -78,6 +81,9 @@ public class KilpailijaController {
 	@Secured("ADMIN")
 	@RequestMapping(value = "/tallennakilpailija", method = RequestMethod.POST)
 	public String tallennaKilpailija(Kilpailija kilpailija) {
+		String kilHash = UUID.randomUUID().toString();
+		kilHash.replace("-", "");
+		kilpailija.setKilHash(kilHash);
 		kilpailijaRepository.save(kilpailija);
 		String redirect = "redirect:/datat/" + Long.toString(kilpailija.getKilpailuId());
 
