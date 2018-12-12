@@ -70,6 +70,16 @@
 						</div>
 						<div th:if="${kilpailu.auki==0}">
 							<p class="lead">Kilpailu on suljettu tällä hetkellä.</p>
+							<div class="row mb-4">
+							<div class="col-lg-12">
+								<form th:action="@{/logout}" , method="post">
+									<button class="btn btn-custom btn-danger" type="submit">
+										Kirjaudu ulos</a>
+									</button>
+								</form>
+							</div>
+
+						</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-12">
