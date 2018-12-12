@@ -19,8 +19,6 @@ import com.syntaxterror.bestseller.model.Ostaja;
 import com.syntaxterror.bestseller.model.OstajaArviointi;
 import com.syntaxterror.bestseller.model.SignupForm;
 import com.syntaxterror.bestseller.model.User;
-import com.syntaxterror.bestseller.repository.ArviointiRepository;
-import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
@@ -142,7 +140,7 @@ public class OstajaController {
 	@Secured("ADMIN")
 	@RequestMapping(value = "/tallennaostaja", method = RequestMethod.POST)
 	public String tallennaOstaja(Model model, Ostaja ostaja) {
-		if(ostaja.getFinaaliin()==0 && ostaja.getLohkoNro().equals("finaali")) {
+		if (ostaja.getFinaaliin() == 0 && ostaja.getLohkoNro().equals("finaali")) {
 			ostaja.setFinaaliin(new Long(1));
 		}
 		ostajaRepository.save(ostaja);
@@ -151,17 +149,17 @@ public class OstajaController {
 
 		return redirect;
 	}
-	
+
 	@Secured("ADMIN")
 	@RequestMapping(value = "/tallennaostajaedit", method = RequestMethod.POST)
 	public String tallennaOstajaEdit(Model model, Ostaja ostaja) {
-		if(ostaja.getFinaaliin()==0 && ostaja.getLohkoNro().equals("finaali")) {
+		if (ostaja.getFinaaliin() == 0 && ostaja.getLohkoNro().equals("finaali")) {
 			ostaja.setFinaaliin(new Long(1));
 		}
 		ostajaRepository.save(ostaja);
 		model.addAttribute("ostajaId", ostaja.getOstajaId());
-		
-		String redirect = "redirect:/datat/"+ostaja.getKilpailuId().toString();
+
+		String redirect = "redirect:/datat/" + ostaja.getKilpailuId().toString();
 
 		return redirect;
 	}

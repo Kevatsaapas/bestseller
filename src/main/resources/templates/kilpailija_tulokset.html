@@ -33,15 +33,15 @@
             <!-- Header -->
 
             <div class="row padding">
-                <a href="testaus.html" th:href="@{/testaus}"> <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
-                        alt="logo-sm" class="logo-sm" /></a>
+                 <img src="../static/img/BSC_sinetti_logo.png" th:src="@{/img/BSC_sinetti_logo.png}"
+                        alt="logo-sm" class="logo-sm" />
                 <h1 class="headertext" th:text="${kilpailu.nimi}+' - Tulokset'"></h1>
             </div>
             <hr>
 
             <!-- Alkueräarvioinnit -->
 
-            <h2 th:text="${kilpailu.nimi}"></h2>
+            <h1 th:text="${kilpailu.nimi}"></h1>
             <h3 th:text="${'Alkuerän arvioinnit kilpailijalle '+kilpailija.etunimi}"></h3>
             <tr th:each="arviointi:${arvioinnit}">
                 <div class="row padding">
@@ -526,13 +526,13 @@
                     </tr>
                 </table>
             </div>
-            <div th:if="${kilpailija.finaalissa}" class="row padding">
+            <div th:if="${kilpailija.finaalissa==1}" class="row padding">
                 <table class="table">
                     <tr>
-                        <h5><em>Ostajan arvio myyjän kokonaissuorituksesta (Max 7p):</em></h4>
+                        <h5><em>Ostajan arvio myyjän kokonaissuorituksesta finaalissa (Max 7p):</em></h4>
                     </tr>
 
-                    <tr th:each="arvio:${ostajaFinaaliArvioinnit}">
+                    <tr th:each="arvio:${finaaliOstajaArvioinnit}">
                         <td th:text="${arvio.ostajanArvio}">7</td>
                     </tr>
                 </table>

@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class BestsellerApplication extends SpringBootServletInitializer {
+	
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -17,5 +18,5 @@ public class BestsellerApplication extends SpringBootServletInitializer {
 		SpringApplication.run(BestsellerApplication.class, args);
 
 	}
-
+	
 }

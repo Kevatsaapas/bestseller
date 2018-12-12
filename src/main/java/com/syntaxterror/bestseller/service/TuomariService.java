@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.syntaxterror.bestseller.model.Arviointi;
 import com.syntaxterror.bestseller.model.Kilpailija;
@@ -18,15 +19,10 @@ import com.syntaxterror.bestseller.repository.KilpailijaRepository;
 import com.syntaxterror.bestseller.repository.KilpailuRepository;
 import com.syntaxterror.bestseller.repository.LohkoRepository;
 import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
-import com.syntaxterror.bestseller.repository.TuomariRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
 public class TuomariService {
-
-	@Autowired
-	private TuomariRepository tuomariRepository;
 
 	@Autowired
 	private KilpailuRepository kilpailuRepository;
@@ -230,7 +226,7 @@ public class TuomariService {
 		}
 		if (kilpailijat.size() > 0) {
 
-		    return false;
+			return false;
 
 		} else {
 

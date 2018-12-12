@@ -72,6 +72,24 @@ public class LeaderboardController {
 		model.addAttribute("finaali", tulokset.get(4));
 		return "pisteet";
 	}
+	
+	@RequestMapping("/pisteytys/{kilpailuId}")
+	private String luoLeaderboard2(@PathVariable Long kilpailuId, Model model) {
+		model.addAttribute("kilpailu", kilpailuRepository.findByKilpailuId(kilpailuId));
+		List<List<Kilpailija>> tulokset = jaaTulokset(kilpailuId);
+		int i = 1;
+		for (List<Kilpailija> lohko : tulokset) {
+			if (i < 5) {
+				String nimi = "lohko" + Integer.toString(i);
+				model.addAttribute(nimi, lohko);
+				i++;
+			}
+		}
+		model.addAttribute("finaali", tulokset.get(4));
+		List<Kilpailija> finaalitulokset = leaderboardService.palautaFinalistitParhaastaHuonoimpaan(kilpailuId);
+		model.addAttribute("finaalitulokset", finaalitulokset);
+		return "pisteytys";
+	}
 
 	@RequestMapping("/seuranta")
 	private String Seuranta(Model model) {
@@ -104,7 +122,7 @@ public class LeaderboardController {
 		if(kil.finaalissa==1) {
 			Lohko finaalilohko=lohkoRepository.findByKilpailuAndLohkoNro(kilp, "finaali");
 			List<Arviointi> finaaliArvioinnit = arviointiRepository.findByKilpailijaAndLohko(kil,finaalilohko);
-			List<OstajaArviointi> finaaliOstajaArvioinnit = ostajaArviointiRepository.findByKilpailuIdAndLohko(kilp.getkilpailuId(), finaalilohko);
+			List<OstajaArviointi> finaaliOstajaArvioinnit = ostajaArviointiRepository.findByKilpailijaAndLohko(kil, finaalilohko);
 			model.addAttribute("finaaliArvioinnit", finaaliArvioinnit);
 			model.addAttribute("finaaliOstajaArvioinnit", finaaliOstajaArvioinnit);
 		}

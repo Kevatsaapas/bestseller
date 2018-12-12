@@ -1,26 +1,5 @@
 package com.syntaxterror.bestseller.control;
 
-import com.syntaxterror.bestseller.model.Arviointi;
-import com.syntaxterror.bestseller.model.Kilpailija;
-import com.syntaxterror.bestseller.model.Kilpailu;
-import com.syntaxterror.bestseller.model.Koulu;
-import com.syntaxterror.bestseller.model.Lohko;
-import com.syntaxterror.bestseller.model.Ostaja;
-import com.syntaxterror.bestseller.model.OstajaArviointi;
-import com.syntaxterror.bestseller.repository.*;
-import com.syntaxterror.bestseller.model.Tuomari;
-import com.syntaxterror.bestseller.model.Valmentaja;
-import com.syntaxterror.bestseller.repository.ArviointiRepository;
-import com.syntaxterror.bestseller.repository.KilpailijaRepository;
-import com.syntaxterror.bestseller.repository.KilpailuRepository;
-import com.syntaxterror.bestseller.repository.KouluRepository;
-import com.syntaxterror.bestseller.repository.LohkoRepository;
-import com.syntaxterror.bestseller.repository.TuomariRepository;
-import com.syntaxterror.bestseller.service.ArviointiService;
-import com.syntaxterror.bestseller.service.LeaderboardService;
-import com.syntaxterror.bestseller.service.MailClient;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,6 +10,26 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.syntaxterror.bestseller.model.Arviointi;
+import com.syntaxterror.bestseller.model.Kilpailija;
+import com.syntaxterror.bestseller.model.Kilpailu;
+import com.syntaxterror.bestseller.model.Koulu;
+import com.syntaxterror.bestseller.model.Lohko;
+import com.syntaxterror.bestseller.model.Ostaja;
+import com.syntaxterror.bestseller.model.OstajaArviointi;
+import com.syntaxterror.bestseller.model.Tuomari;
+import com.syntaxterror.bestseller.repository.ArviointiRepository;
+import com.syntaxterror.bestseller.repository.KilpailijaRepository;
+import com.syntaxterror.bestseller.repository.KilpailuRepository;
+import com.syntaxterror.bestseller.repository.KouluRepository;
+import com.syntaxterror.bestseller.repository.LohkoRepository;
+import com.syntaxterror.bestseller.repository.OstajaArviointiRepository;
+import com.syntaxterror.bestseller.repository.OstajaRepository;
+import com.syntaxterror.bestseller.repository.TuomariRepository;
+import com.syntaxterror.bestseller.repository.ValmentajaRepository;
+import com.syntaxterror.bestseller.service.ArviointiService;
+import com.syntaxterror.bestseller.service.LeaderboardService;
 
 @Controller
 @Transactional
@@ -69,8 +68,6 @@ public class DataController {
 	@Autowired
 	private ValmentajaRepository valmentajaRepository;
 
-	@Autowired
-	private MailClient mailClient;
 
 	private String[] etunimet = { "Juhani", "Maria", "Johannes", "Helena", "Olavi", "Johanna", "Antero", "Anneli",
 			"Tapani", "Kaarina", "Kalevi", "Marjatta", "Tapio", "Anna", "Matti", "Liisa", "Mikael", "Annikki", "Ilmari",
@@ -235,28 +232,6 @@ public class DataController {
 		leaderboardService.laskeLopputulokset(kilpailuId);
 		String kilid = kilpailuId.toString();
 
-		return "redirect:/datat/" + kilid;
-	}
-
-	/*@RequestMapping("/sendMail/{kilpailijaId}")
-	public String sendMail(@PathVariable Long kilpailijaId, Model model) {
-		Kilpailija kilpailija = kilpailijaRepository.findByKilpailijaId(kilpailijaId);
-		Long kilpailuId = kilpailija.getKilpailuId();
-		String recipient = kilpailija.getSposti();
-		String message = "Best Seller - Tulokset";
-		mailClient.prepareAndSend(recipient, message, kilpailija.getKilpailuId(), kilpailija.getKilpailijaId());
-
-		String kilid = kilpailuId.toString();
-		System.out.println("mentiin emailin läpi käy kattoo sposti");
-		return "redirect:/datat/" + kilid;
-	}*/
-	
-	
-	@RequestMapping("/sendMailVal/{valmentajaId}")
-	public String sendValmentajaMail(@PathVariable Long valmentajaId, Model model) {
-		Valmentaja valmentaja = valmentajaRepository.findByValmentajaId(valmentajaId);
-		leaderboardService.sendValmentajaEmail(valmentaja);
-		String kilid = valmentaja.getKilpailuId().toString();
 		return "redirect:/datat/" + kilid;
 	}
 

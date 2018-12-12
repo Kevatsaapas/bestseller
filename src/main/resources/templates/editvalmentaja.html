@@ -57,6 +57,7 @@
 			<div class="padding col-5">
 				<form role="form" class="was-validated" th:object="${valmentaja}"
 					th:action="@{/tallennavalmentaja}" action="#" method="post">
+					<input type="hidden" th:field="*{valmentajaId}"/>
 
 					<div class="form-group">
 						<label for="etunimi">Etunimi:</label> <input

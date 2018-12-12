@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.syntaxterror.bestseller.model.Kilpailija;
 import com.syntaxterror.bestseller.model.Valmentaja;
 
 public interface ValmentajaRepository extends CrudRepository<Valmentaja, Long> {

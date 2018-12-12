@@ -115,9 +115,22 @@ public class DefaultController {
 		}
 	}
 
+	
+	
+	/* TÄÄ VERSIO HEROKUUN!
 	@RequestMapping(value = "/login")
 	public String showLogin() {
 		return "login";
+	}*/
+	
+	@RequestMapping(value = "/login")
+	public String showLogin() {
+		List<User> adm = urepository.findByRole("ADMIN");
+		if(adm.size()==0) {
+			return "redirect:/adminSignUp";
+		}else {
+		return "login";
+		}
 	}
 
 	@RequestMapping("/testaus")
